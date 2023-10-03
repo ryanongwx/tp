@@ -7,19 +7,18 @@
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `low.darren[at]u.nus.edu`
 
 ## Project team
 
-### John Doe
+### Darren Low
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/darren159.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Darren159)]
+[[portfolio](team/darren159.md)]
 
-* Role: Project Advisor
+* Role: Developer
 
 ### Jane Doe
 
