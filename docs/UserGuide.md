@@ -6,7 +6,7 @@
 
 # MedBook User Guide
 
-Medbook (AB3) is a **desktop app for managing patient details and medical records, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, MedBook can get your contact management tasks done faster than traditional GUI apps.
+Medbook is a **desktop app for managing patient details and medical records, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, MedBook can get your contact management tasks done faster than traditional GUI apps.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -209,9 +209,9 @@ Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear**  | `clear`
-**Delete** | `delete patientId`<br> e.g., `delete 3`
+**Delete** | `delete [patientId]`<br> e.g., `delete 3`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Pin**    | `pin patientId`<br> e.g., `pin 2`
+**Pin**    | `pin [patientId]`<br> e.g., `pin 2`
 **List**   | `list`
 **Help**   | `help`
