@@ -302,49 +302,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `MedBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a patient**
+**Use case: UC01 - Viewing help**
 
 **MSS**
 
-1.  User requests to list patients
-2.  MedBook shows a list of patients
-3.  User requests to delete a specific patient in the list
-4.  MedBook deletes the patient
+**Use case: UC02 - Adding a patient**
+
+**MSS**
+
+**Use case: UC03 - Listing all patient**
+
+**MSS**
+
+**Use case: UC04 - Editing a patient**
+
+**MSS**
+
+**Use case: UC05 - Locating a specific patient**
+
+**MSS**
+
+**Use case: UC06 - Delete a patient**
+
+**MSS**
+
+1. User <u>lists all patients (UC03)</u>
+2. User requests to delete a specific patient in the list
+3. MedBook deletes the patient
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* ~~2a. The given id is invalid.
 
-  Use case ends.
-
-* 3a. The given id is invalid.
-
-    * 3a1. MedBook shows an error message.
+    * 2a1. MedBook shows an error message.~~
 
       Use case resumes at step 2.
 
-**Use case: Pin a patient**
+**Use case: UC07 - Pin a patient**
 
 **MSS**
 
-1.  User requests to list patients
-2.  MedBook shows a list of patients
-3.  User requests to pin a specific patient in the list
-4.  MedBook pins the patient
+1.  User <u>lists all patients (UC03)</u>
+2.  User requests to pin a specific patient in the list
+3.  MedBook pins the patient
 
-    Use case ends.
+       Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The given id is invalid.
 
-  Use case ends.
-
-* 3a. The given id is invalid.
-
-    * 3a1. MedBook shows an error message.
+    * 2a1. MedBook shows an error message.
 
       Use case resumes at step 2.
 
