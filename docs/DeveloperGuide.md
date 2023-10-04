@@ -276,7 +276,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 
 * streamline patient management
 * easy access to patients' details such as medical records and contact information
