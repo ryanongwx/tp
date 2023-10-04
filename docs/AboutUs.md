@@ -28,6 +28,14 @@ You can reach us at the email `low.darren[at]u.nus.edu`
 [[portfolio](team/hjoneweek.md)]
 * Role: Developer
 
+### Adam Ang Zi Jun
+
+<img src="images/adammangzijun.png" width = "200px">
+
+[[github](https://github.com/adammangzijun)]
+[[portfolio](team/adammangzijun.md)]
+* Role: Developer
+
 ### Lin Yuxiang
 
 <img src="images/clin-lyx.png" width="200px">
@@ -35,7 +43,7 @@ You can reach us at the email `low.darren[at]u.nus.edu`
 [[github](http://github.com/Clin-lyx)]
 [[portfolio](team/clin-lyx.md)]
 
-* Role: Developer 
+* Role: Developer
 * Responsibilities: UI
 
 ### Johnny Doe

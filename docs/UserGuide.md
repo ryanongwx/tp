@@ -119,22 +119,29 @@ Format: `view`
 
 Shows the detailed information of the patient by clicking.
 
-### Editing a person : `edit`
 
-Edits an existing person in the address book.
+### Editing detail of a patient : `editdetail`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Edits an existing person in MedBook.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Format: `editdetail [patient ID/detail field/updated patient details]`
+* Edits the person at the specified `patient ID`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* The `detail field` must be provided.
+* Accepted `detail field` : **name**, **email**, **phone**, **gender**, **age**, **blood**, **allergy**.
+* Existing values in the `detail field` will be updated to the `updated patient details` input.
+* **Name**: Text (up to 256 characters)
+* **Email**: Valid email format
+* **Phone**: Number (up to 15 digits)
+* **Gender**: M/F
+* **Age**: Number (0-120)
+* **Blood Type**: One of [A+, A-, B+, B-, AB+, AB-, O+, O-]
+* **Allergies**: Text (up to 512 characters)
+
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `editdetail 1/email/johndoe_updated@gmail.com` Edits the email address of the 1st person to be `johndoe_updated@gmail.com`.
+*  `editdetail 2/phone/92345678` Edits the name of the 2nd person to be `92345678`.
+*  `editdetail 3/allergy/aspirin` Edits the allergy of the 3rd person to be `aspirin`.
 
 ### Locating persons by name: `find`
 
@@ -228,13 +235,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action     | Format, Examples
------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear**  | `clear`
-**Delete** | `delete [patientId]`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Pin**    | `pin [patientId]`<br> e.g., `pin 2`
-**List**   | `list`
-**Help**   | `help`
+| Action     | Format, Examples|
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`|
+| **List**   | `list`|
+| **Edit**   | `editdetail [patient ID/detail field/updated patient details]`<br> e.g.,`editdetail 1/email/johndoe_updated@gmail.com`|
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`|
+| **Delete** | `delete [patientId]`<br> e.g., `delete 3`|
+| **Pin**    | `pin [patientId]`<br> e.g., `pin 2`|
+| **Clear**  | `clear`|
+| **exit**   | `exit`|
