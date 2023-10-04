@@ -338,6 +338,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
+1.  User requests to view patients.
+2.  Medbook shows a list of patients.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
 **Use case: UC04 - Editing a patient**
 
 1. User <u>lists all patients (UC03)</u>

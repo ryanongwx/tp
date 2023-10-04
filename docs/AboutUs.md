@@ -36,6 +36,16 @@ You can reach us at the email `low.darren[at]u.nus.edu`
 [[portfolio](team/adammangzijun.md)]
 * Role: Developer
 
+### Lin Yuxiang
+
+<img src="images/clin-lyx.png" width="200px">
+
+[[github](http://github.com/Clin-lyx)]
+[[portfolio](team/clin-lyx.md)]
+
+* Role: Developer
+* Responsibilities: UI
+
 ### Johnny Doe
 
 <img src="images/johndoe.png" width="200px">

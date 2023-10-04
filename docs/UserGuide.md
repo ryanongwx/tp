@@ -75,26 +75,50 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a patient: `add`
+### Adding a patient: `addpatient`
 
-Adds a person to the MedBook.
+Adds a patient's contact and medical details.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<box type="tip" seamless>
-
-**Tip:** A person can have any number of tags (including 0)
-</box>
+Command Format: addpatient [name/email/phone/gender/age/blood type/allergies]
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addpatient John Doe/johndoe@gmail.com/12345678/M/26/AB+/Penicillin`
 
-### Listing all patients : `list`
+Expected Outputs on Success
+* **GUI:** Contact details added to the respective patient's record.
+* **Message:** Patient details added successfully.
 
-Shows a list of all persons in MedBook.
+Expected Output on Failure
+* **Message:** Failed to add details. Please check the command format and try again.
 
-Format: `list`
+### Adding Medical Records : 'addrecord'
+
+Adds a new patient's medical records to the app.
+
+Command Format: addrecord [id/date/condition(s)]
+
+Examples:
+* `addrecord 3/18-09-2023 1800/Fever`
+
+Expected outputs on success:
+* **GUI:** A new entry appearing in the patient list.
+* **Messages:** "Patient record added successfully."
+
+Expected outputs on failure:
+* **Messages:** "Failed to add patient record. Please check the command format and try again."
+* **Messages:** “Failed to add patient record. The patient does not exist”
+
+
+### Listing all persons : `view`
+
+Shows a list of all patients in the Medbook.
+
+Format: `view`
+
+### View patient detail
+
+Shows the detailed information of the patient by clicking.
+
 
 ### Editing detail of a patient : `editdetail`
 
