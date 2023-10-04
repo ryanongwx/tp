@@ -77,7 +77,7 @@ Format: `help`
 
 ### Adding a patient: `addpatient`
 
-Enables the user to add a patient's contact and medical details.
+Adds a patient's contact and medical details.
 
 Command Format: addpatient [name/email/phone/gender/age/blood type/allergies]
 
@@ -93,7 +93,7 @@ Expected Output on Failure
 
 ### Adding Medical Records : 'addrecord'
 
-Allows the user to add a new patient's medical records to the app.
+Adds a new patient's medical records to the app.
 
 Command Format: addrecord [id/date/condition(s)]
 
