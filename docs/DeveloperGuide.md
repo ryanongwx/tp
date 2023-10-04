@@ -408,6 +408,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+## Use Case: UC08 - Searching for Patients
+
+**Main Success Scenario (MSS)**
+
+1. User initiates a search for patients based on specific keywords using the `search` command.
+2. MedBook performs a case-insensitive search of patient names and details.
+3. MedBook returns a list of patients matching at least one keyword.
+4. The user views the list of matching patients.
+
+**Extensions**
+
+* 3a. No matches found.
+    * 3a1. MedBook displays a message: "No matches found. Try using a different keyword."
+    * Use case ends.
+
+
 *{More to be added}*
 
 ### Non-Functional Requirements
