@@ -338,7 +338,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. MedBook shows an error message.~~
 
-      Use case resumes at step 2.
+      Use case ends.
 
 **Use case: UC07 - Pin a patient**
 
@@ -356,7 +356,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 2a1. MedBook shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
 
 *{More to be added}*
 
