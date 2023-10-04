@@ -28,15 +28,13 @@ You can reach us at the email `low.darren[at]u.nus.edu`
 [[portfolio](team/hjoneweek.md)]
 * Role: Developer
 
-### Jane Doe
+### Adam Ang Zi Jun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/adammangzijun.png" width = "200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
+[[github](https://github.com/adammangzijun)]
+[[portfolio](team/adammangzijun.md)]
+* Role: Developer
 
 ### Johnny Doe
 
