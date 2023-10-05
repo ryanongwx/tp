@@ -384,7 +384,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* ~~2a. The given id is invalid.
+* 2a. The given id is invalid.
 
     * 2a1. MedBook shows an error message.~~
 
@@ -408,6 +408,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+## Use Case: UC08 - Searching for Patients
+
+**Main Success Scenario (MSS)**
+
+1. User initiates a search for patients based on specific keywords using the `search` command.
+2. MedBook performs a case-insensitive search of patient names and details.
+3. MedBook returns a list of patients matching at least one keyword.
+4. The user views the list of matching patients.
+
+**Extensions**
+
+* 3a. No matches found.
+    * 3a1. MedBook displays a message: "No matches found. Try using a different keyword."
+    * Use case ends.
+
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -415,6 +431,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The system should be backward compatible with data produced by earlier versions of the system.
+5.  The system should be usable by a novice who has never used an address book.
 
 *{More to be added}*
 

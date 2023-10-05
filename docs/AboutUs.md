@@ -46,9 +46,11 @@ You can reach us at the email `low.darren[at]u.nus.edu`
 * Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Ryan Ong Wei Xian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ryanongwx.png" width = "200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/ryanongwx)]
+[[portfolio](team/ryanongwx.md)]
+* Role: Developer
 
