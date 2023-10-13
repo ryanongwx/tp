@@ -39,6 +39,9 @@ public class Person {
         this.isPinned = false;
     }
 
+    /**
+     * Copy constructor.
+     */
     public Person(Person otherPerson) {
         this.name = otherPerson.getName();
         this.phone = otherPerson.getPhone();
