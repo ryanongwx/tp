@@ -24,6 +24,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private boolean isPinned;
 
     /**
      * Every field must be present and not null.
@@ -35,6 +36,16 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.isPinned = false;
+    }
+
+    public Person(Person otherPerson) {
+        this.name = otherPerson.getName();
+        this.phone = otherPerson.getPhone();
+        this.email = otherPerson.getEmail();
+        this.address = otherPerson.getAddress();
+        this.isPinned = otherPerson.isPinned();
+        this.tags.addAll(otherPerson.getTags());
     }
 
     public Name getName() {
@@ -51,6 +62,14 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public boolean isPinned() {
+        return isPinned;
+    }
+
+    public void setPinned(boolean isPinned) {
+        this.isPinned = isPinned;
     }
 
     /**
