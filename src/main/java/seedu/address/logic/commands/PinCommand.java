@@ -41,8 +41,8 @@ public class PinCommand extends Command {
         }
 
         Person personToPin = lastShownList.get(targetIndex.getZeroBased());
-        Person pinnedPerson = new Person(personToPin);
-        pinnedPerson.setPinned(true);
+        Person pinnedPerson = new Person(personToPin.getName(), personToPin.getPhone(), personToPin.getEmail(),
+                personToPin.getAddress(), personToPin.getTags(), true);
 
         model.setPerson(personToPin, pinnedPerson);
         return new CommandResult(String.format(MESSAGE_PIN_PERSON_SUCCESS, Messages.format(personToPin)));

@@ -29,26 +29,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, boolean isPinned) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.isPinned = false;
-    }
-
-    /**
-     * Copy constructor.
-     */
-    public Person(Person otherPerson) {
-        this.name = otherPerson.getName();
-        this.phone = otherPerson.getPhone();
-        this.email = otherPerson.getEmail();
-        this.address = otherPerson.getAddress();
-        this.isPinned = otherPerson.isPinned();
-        this.tags.addAll(otherPerson.getTags());
+        this.isPinned = isPinned;
     }
 
     public Name getName() {
@@ -69,10 +57,6 @@ public class Person {
 
     public boolean isPinned() {
         return isPinned;
-    }
-
-    public void setPinned(boolean isPinned) {
-        this.isPinned = isPinned;
     }
 
     /**
@@ -116,7 +100,8 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && isPinned == otherPerson.isPinned;
     }
 
     @Override
