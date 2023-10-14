@@ -14,25 +14,33 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.Age;
+import seedu.address.model.person.Allergy;
+import seedu.address.model.person.BloodType;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_GENDER = " ";
+    private static final String INVALID_AGE = " ";
+    private static final String INVALID_BLOODTYPE = "D";
+    private static final String INVALID_ALLERGY = "#dust";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_PHONE = "123456";
+    private static final String VALID_GENDER = "M";
+    private static final int VALID_AGE = 10;
+    private static final String VALID_AGE_STRING = "10";
+    private static final String VALID_BLOODTYPE = "A";
+    private static final String VALID_ALLERGY_1 = "Nuts";
+    private static final String VALID_ALLERGY_2 = "Coconut";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -80,52 +88,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
-    }
-
-    @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
-    }
-
-    @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
-    }
-
-    @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
-    }
-
-    @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
-    }
-
-    @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
-    }
-
-    @Test
     public void parseEmail_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
     }
@@ -149,48 +111,140 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    public void parsePhone_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
     }
 
     @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    public void parsePhone_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
     }
 
     @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
+    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
+        Phone expectedPhone = new Phone(VALID_PHONE);
+        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
     }
 
     @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
+        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
+        Phone expectedPhone = new Phone(VALID_PHONE);
+        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+    public void parseGender_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGender((String) null));
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    public void parseGender_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGender(INVALID_GENDER));
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+    public void parseGender_validValueWithoutWhitespace_returnsGender() throws Exception {
+        Gender expectedGender = new Gender(VALID_GENDER);
+        assertEquals(expectedGender, ParserUtil.parseGender(VALID_GENDER));
     }
 
     @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+    public void parseGender_validValueWithWhitespace_returnsTrimmedGender() throws Exception {
+        String genderWithWhitespace = WHITESPACE + VALID_GENDER + WHITESPACE;
+        Gender expectedGender = new Gender(VALID_GENDER);
+        assertEquals(expectedGender, ParserUtil.parseGender(genderWithWhitespace));
+    }
 
-        assertEquals(expectedTagSet, actualTagSet);
+    @Test
+    public void parseAge_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAge((String) null));
+    }
+
+    @Test
+    public void parseAge_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAge(INVALID_AGE));
+    }
+
+    @Test
+    public void parseAge_validValueWithoutWhitespace_returnsAge() throws Exception {
+        Age expectedAge = new Age(VALID_AGE);
+        assertEquals(expectedAge, ParserUtil.parseAge(VALID_AGE_STRING));
+    }
+
+    @Test
+    public void parseAge_validValueWithWhitespace_returnsTrimmedAge() throws Exception {
+        String ageWithWhitespace = WHITESPACE + VALID_AGE + WHITESPACE;
+        Age expectedAge = new Age(VALID_AGE);
+        assertEquals(expectedAge, ParserUtil.parseAge(ageWithWhitespace));
+    }
+
+    @Test
+    public void parseBloodType_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseBloodType((String) null));
+    }
+
+    @Test
+    public void parseBloodType_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseBloodType(INVALID_BLOODTYPE));
+    }
+
+    @Test
+    public void parseBloodType_validValueWithoutWhitespace_returnsBloodType() throws Exception {
+        BloodType expectedBloodType = new BloodType(VALID_BLOODTYPE);
+        assertEquals(expectedBloodType, ParserUtil.parseBloodType(VALID_BLOODTYPE));
+    }
+
+    @Test
+    public void parseBloodType_validValueWithWhitespace_returnsTrimmedBloodType() throws Exception {
+        String bloodTypeWithWhitespace = WHITESPACE + VALID_BLOODTYPE + WHITESPACE;
+        BloodType expectedBloodType = new BloodType(VALID_BLOODTYPE);
+        assertEquals(expectedBloodType, ParserUtil.parseBloodType(bloodTypeWithWhitespace));
+    }
+
+    @Test
+    public void parseAllergy_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAllergy(null));
+    }
+
+    @Test
+    public void parseAllergy_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAllergy(INVALID_ALLERGY));
+    }
+
+    @Test
+    public void parseAllergy_validValueWithoutWhitespace_returnsAllergy() throws Exception {
+        Allergy expectedAllergy = new Allergy(VALID_ALLERGY_1);
+        assertEquals(expectedAllergy, ParserUtil.parseAllergy(VALID_ALLERGY_1));
+    }
+
+    @Test
+    public void parseAllergy_validValueWithWhitespace_returnsTrimmedAllergy() throws Exception {
+        String allergyWithWhitespace = WHITESPACE + VALID_ALLERGY_1 + WHITESPACE;
+        Allergy expectedAllergy = new Allergy(VALID_ALLERGY_1);
+        assertEquals(expectedAllergy, ParserUtil.parseAllergy(allergyWithWhitespace));
+    }
+
+    @Test
+    public void parseAllergies_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAllergies(null));
+    }
+
+    @Test
+    public void parseAllergies_collectionWithInvalidAllergies_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAllergies(Arrays.asList(VALID_ALLERGY_1, INVALID_ALLERGY)));
+    }
+
+    @Test
+    public void parseAllergies_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseAllergies(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseAllergies_collectionWithValidAllergies_returnsAllergySet() throws Exception {
+        Set<Allergy> actualAllergySet = ParserUtil.parseAllergies(Arrays.asList(VALID_ALLERGY_1, VALID_ALLERGY_2));
+        Set<Allergy> expectedAllergySet = new HashSet<Allergy>(Arrays.asList(new Allergy(VALID_ALLERGY_1), new Allergy(VALID_ALLERGY_2)));
+
+        assertEquals(expectedAllergySet, actualAllergySet);
     }
 }
