@@ -111,7 +111,8 @@ public class EditCommand extends Command {
         BloodType updatedBloodType = editPersonDescriptor.getBloodType().orElse(personToEdit.getBloodType());
         Set<Allergy> updatedAllergies = editPersonDescriptor.getAllergies().orElse(personToEdit.getAllergies());
 
-        return new Person(updatedName, updatedEmail, updatedPhone, updatedGender, updatedAge, updatedBloodType, updatedAllergies);
+        return new Person(updatedName, updatedEmail, updatedPhone, updatedGender,
+                updatedAge, updatedBloodType, updatedAllergies);
     }
 
     @Override

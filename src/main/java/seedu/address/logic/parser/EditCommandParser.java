@@ -34,7 +34,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_GENDER, PREFIX_AGE, PREFIX_BLOODTYPE, PREFIX_ALLERGIES);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_EMAIL, PREFIX_PHONE,
+                        PREFIX_GENDER, PREFIX_AGE, PREFIX_BLOODTYPE, PREFIX_ALLERGIES);
 
         Index index;
 
@@ -44,7 +45,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_EMAIL, PREFIX_PHONE, PREFIX_GENDER, PREFIX_AGE,  PREFIX_BLOODTYPE);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_EMAIL, PREFIX_PHONE,
+                PREFIX_GENDER, PREFIX_AGE, PREFIX_BLOODTYPE);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
@@ -86,7 +88,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (allergies.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> allergySet = allergies.size() == 1 && allergies.contains("") ? Collections.emptySet() : allergies;
+        Collection<String> allergySet = allergies.size() == 1
+                && allergies.contains("") ? Collections.emptySet() : allergies;
         return Optional.of(ParserUtil.parseAllergies(allergySet));
     }
 
