@@ -89,8 +89,8 @@ public class PinCommandTest {
         assertTrue(pinFirstCommand.equals(pinFirstCommand));
 
         // same values -> returns true
-        PinCommand deleteFirstCommandCopy = new PinCommand(INDEX_FIRST_PERSON);
-        assertTrue(pinFirstCommand.equals(deleteFirstCommandCopy));
+        PinCommand unpinFirstCommandCopy = new PinCommand(INDEX_FIRST_PERSON);
+        assertTrue(pinFirstCommand.equals(unpinFirstCommandCopy));
 
         // different types -> returns false
         assertFalse(pinFirstCommand.equals(1));
