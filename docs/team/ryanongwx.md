@@ -5,16 +5,16 @@
 
 ### Project: MedBook
 
-* **New Feature**:
+- **New Feature**:
 
-* **Code contributed**: 
+- **Code contributed**:
 
-* **Project management**:
+- **Project management**:
 
-* **Enhancements to existing features**:
+- **Enhancements to existing features**:
 
-* **Documentation**:
+- **Documentation**:
 
-* **Community**:
+- **Community**:
 
-* **Tools**:
+- **Tools**:

@@ -129,6 +129,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Person> getPinnedPersonList() {
+        FilteredList<Person> pinnedPersons = new FilteredList<>(this.addressBook.getPersonList());
+        pinnedPersons.setPredicate(person -> person.isPinned());
+        return pinnedPersons;
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -144,5 +151,7 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
+
+
 
 }
