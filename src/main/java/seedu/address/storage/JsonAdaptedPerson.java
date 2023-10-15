@@ -130,7 +130,8 @@ class JsonAdaptedPerson {
         final BloodType modelBloodType = new BloodType(bloodType);
 
         final Set<Allergy> modelAllergies = new HashSet<>(allergiesList);
-        return new Person(modelName, modelEmail, modelPhone, modelGender, modelAge, modelBloodType, modelAllergies, false);
+        return new Person(modelName, modelEmail, modelPhone, modelGender, modelAge, modelBloodType, modelAllergies,
+                false);
     }
 
 }
