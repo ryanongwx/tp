@@ -35,11 +35,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
-    @FXML
     private Label email;
-    @FXML
-    private FlowPane tags;
     @FXML
     private Label age;
     @FXML
@@ -65,6 +61,6 @@ public class PersonCard extends UiPart<Region> {
 
         person.getAllergies().stream()
                 .sorted(Comparator.comparing(allergy -> allergy.allergy))
-                .forEach(allergy -> allergies.getChildren().add(new Label(allergy.allergy)));
+                .forEach(allergy -> allergies.getChildren().add(new Label(allergy.allergy + " ")));
     }
 }

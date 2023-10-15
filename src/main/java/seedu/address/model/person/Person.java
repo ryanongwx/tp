@@ -8,6 +8,7 @@ import java.util.*;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.record.Record;
 
+
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.

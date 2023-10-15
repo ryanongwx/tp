@@ -7,11 +7,17 @@ import java.util.*;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+
 import seedu.address.model.record.Condition;
 import seedu.address.model.record.DateTime;
-import seedu.address.model.tag.Tag;
 
+import seedu.address.model.person.Age;
+import seedu.address.model.person.Allergy;
+import seedu.address.model.person.BloodType;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
@@ -128,7 +134,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code allergy} is invalid.
      */
-    public static Set<Allergy> parseAllergies(Collection<String> allergies) throws ParseException{
+    public static Set<Allergy> parseAllergies(Collection<String> allergies) throws ParseException {
         requireNonNull(allergies);
         final Set<Allergy> allergiesSet = new HashSet<>();
         for (String allergy : allergies) {
