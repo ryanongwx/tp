@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -20,22 +19,24 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-
-    // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Gender gender;
+    private final Age age;
+    private final BloodType bloodType;
+    private final Set<Allergy> allergies = new HashSet<>();
     private boolean isPinned;
-
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, boolean isPinned) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Email email, Phone phone, Gender gender, Age age,
+                  BloodType bloodType, Set<Allergy> allergies, boolean isPinned) {
+        requireAllNonNull(name, phone, email, gender, age, allergies);
         this.name = name;
-        this.phone = phone;
         this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
+        this.phone = phone;
+        this.gender = gender;
+        this.age = age;
+        this.bloodType = bloodType;
+        this.allergies.addAll(allergies);
         this.isPinned = isPinned;
     }
 
@@ -51,20 +52,28 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Gender getGender() {
+        return gender;
     }
 
     public boolean isPinned() {
         return isPinned;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public boolean isPinned() {
+        return isPinned;
+    }
+
+    public Age getAge() {
+        return age;
+    }
+
+    public BloodType getBloodType() {
+        return bloodType;
+    }
+
+    public Set<Allergy> getAllergies() {
+        return Collections.unmodifiableSet(allergies);
     }
 
     /**
@@ -99,25 +108,29 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags)
+                && gender.equals(otherPerson.gender)
+                && age.equals(otherPerson.age)
+                && bloodType.equals(otherPerson.bloodType)
+                && allergies.equals(otherPerson.allergies)
                 && isPinned == otherPerson.isPinned;
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, email, phone, gender, age, bloodType, allergies);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
-                .add("phone", phone)
                 .add("email", email)
-                .add("address", address)
-                .add("tags", tags)
+                .add("phone", phone)
+                .add("gender", gender)
+                .add("age", age)
+                .add("bloodType", bloodType)
+                .add("allergies", allergies)
                 .toString();
     }
 
