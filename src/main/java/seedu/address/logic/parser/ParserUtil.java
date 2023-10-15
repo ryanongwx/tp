@@ -2,14 +2,14 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.*;
+import seedu.address.model.record.Condition;
+import seedu.address.model.record.DateTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -153,4 +153,48 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    /**
+     * Parses a {@code String dateTime} into an {@code DateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid.
+     */
+    public static DateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+        return new DateTime(trimmedDateTime);
+    }
+
+    /**
+     * Parses a {@code String condition} into an {@code Condition}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code condition} is invalid.
+     */
+    public static Condition parseCondition(String condition) throws ParseException {
+        requireNonNull(condition);
+        String trimmedCondition = condition.trim();
+        if (!Condition.isValidCondition(trimmedCondition)) {
+            throw new ParseException(Condition.MESSAGE_CONSTRAINTS);
+        }
+        return new Condition(trimmedCondition);
+    }
+
+    /**
+     * Parses a {@code Collection<String> condtions} into an {@code List<Condition>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code condition} is invalid.
+     */
+    public static List<Condition> parseConditions(Collection<String> conditions) throws ParseException {
+        requireNonNull(conditions);
+        final List<Condition> conditionsList = new ArrayList<>();
+        for (String condition : conditions) {
+            conditionsList.add(parseCondition(condition));
+        }
+        return conditionsList;
+    }
 }

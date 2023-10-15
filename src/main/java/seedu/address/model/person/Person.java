@@ -1,14 +1,12 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.record.Record;
 
 /**
  * Represents a Person in the address book.
@@ -24,6 +22,7 @@ public class Person {
     private final Age age;
     private final BloodType bloodType;
     private final Set<Allergy> allergies = new HashSet<>();
+    private final List<Record> records = new ArrayList<>();
     /**
      * Every field must be present and not null.
      */
@@ -37,6 +36,19 @@ public class Person {
         this.age = age;
         this.bloodType = bloodType;
         this.allergies.addAll(allergies);
+    }
+
+    public Person(Name name, Email email, Phone phone, Gender gender, Age age,
+                  BloodType bloodType, Set<Allergy> allergies, List<Record> records) {
+        requireAllNonNull(name, phone, email, gender, age, allergies, records);
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.gender = gender;
+        this.age = age;
+        this.bloodType = bloodType;
+        this.allergies.addAll(allergies);
+        this.records.addAll(records);
     }
 
     public Name getName() {
@@ -67,6 +79,8 @@ public class Person {
         return Collections.unmodifiableSet(allergies);
     }
 
+    public List<Record> getConditions() {return Collections.unmodifiableList(records);}
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -78,6 +92,11 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    public void addRecord(Record record) {
+        requireNonNull(record);
+        this.records.add(record);
     }
 
     /**

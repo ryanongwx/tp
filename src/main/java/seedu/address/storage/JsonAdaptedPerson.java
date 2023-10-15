@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.record.Record;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -27,6 +27,7 @@ class JsonAdaptedPerson {
     private final Integer age;
     private final String bloodType;
     private final List<JsonAdaptedAllergy> allergies = new ArrayList<>();
+    private final List<JsonAdaptedRecord> records = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -35,7 +36,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("gender") String gender,
             @JsonProperty("age") Integer age, @JsonProperty("bloodType") String bloodType,
-            @JsonProperty("allergies") List<JsonAdaptedAllergy> allergies) {
+            @JsonProperty("allergies") List<JsonAdaptedAllergy> allergies,
+            @JsonProperty("records") List<JsonAdaptedRecord> records) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,6 +46,9 @@ class JsonAdaptedPerson {
         this.bloodType = bloodType;
         if (allergies != null) {
             this.allergies.addAll(allergies);
+        }
+        if (records != null) {
+            this.records.addAll(records);
         }
 
     }
@@ -61,6 +66,9 @@ class JsonAdaptedPerson {
         allergies.addAll(source.getAllergies().stream()
                 .map(JsonAdaptedAllergy::new)
                 .collect(Collectors.toList()));
+        records.addAll(source.getConditions().stream()
+                .map(JsonAdaptedRecord::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -72,6 +80,11 @@ class JsonAdaptedPerson {
         final List<Allergy> allergiesList = new ArrayList<>();
         for (JsonAdaptedAllergy allergy : allergies) {
             allergiesList.add(allergy.toModelType());
+        }
+
+        final List<Record> modelRecords = new ArrayList<>();
+        for (JsonAdaptedRecord record : records) {
+            modelRecords.add(record.toModelType());
         }
 
         if (name == null) {
@@ -123,7 +136,8 @@ class JsonAdaptedPerson {
         final BloodType modelBloodType = new BloodType(bloodType);
 
         final Set<Allergy> modelAllergies = new HashSet<>(allergiesList);
-        return new Person(modelName, modelEmail, modelPhone, modelGender, modelAge, modelBloodType, modelAllergies);
+        return new Person(modelName, modelEmail, modelPhone, modelGender,
+                modelAge, modelBloodType, modelAllergies, modelRecords);
     }
 
 }
