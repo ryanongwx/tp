@@ -23,11 +23,12 @@ public class Person {
     private final Age age;
     private final BloodType bloodType;
     private final Set<Allergy> allergies = new HashSet<>();
+    private boolean isPinned;
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Email email, Phone phone, Gender gender, Age age,
-                  BloodType bloodType, Set<Allergy> allergies) {
+                  BloodType bloodType, Set<Allergy> allergies, boolean isPinned) {
         requireAllNonNull(name, phone, email, gender, age, allergies);
         this.name = name;
         this.email = email;
@@ -36,6 +37,7 @@ public class Person {
         this.age = age;
         this.bloodType = bloodType;
         this.allergies.addAll(allergies);
+        this.isPinned = isPinned;
     }
 
     public Name getName() {
@@ -52,6 +54,10 @@ public class Person {
 
     public Gender getGender() {
         return gender;
+    }
+
+    public boolean isPinned() {
+        return isPinned;
     }
 
     public Age getAge() {
@@ -101,7 +107,8 @@ public class Person {
                 && gender.equals(otherPerson.gender)
                 && age.equals(otherPerson.age)
                 && bloodType.equals(otherPerson.bloodType)
-                && allergies.equals(otherPerson.allergies);
+                && allergies.equals(otherPerson.allergies)
+                && isPinned == otherPerson.isPinned;
     }
 
     @Override

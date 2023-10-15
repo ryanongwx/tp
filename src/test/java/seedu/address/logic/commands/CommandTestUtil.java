@@ -2,7 +2,13 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGIES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -58,7 +64,7 @@ public class CommandTestUtil {
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "A"; // 'A' not allowed in gender
     public static final String INVALID_AGE_DESC = " " + PREFIX_AGE + "0"; // age must be more than 0
     public static final String INVALID_BLOODTYPE_DESC = " " + PREFIX_BLOODTYPE + "G"; // 'G' not allowed in bloodtype
-    public static final String INVALID_ALLERGY_DESC = " " + PREFIX_ALLERGIES + "Peanuts*"; // '*' not allowed in allergies
+    public static final String INVALID_ALLERGY_DESC = " " + PREFIX_ALLERGIES + "Peanuts*";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -74,7 +80,7 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withEmail(VALID_EMAIL_BOB).withPhone(VALID_PHONE_BOB).withGender(VALID_GENDER_BOB)
                 .withAge(VALID_AGE_BOB).withBloodType(VALID_BLOODTYPE_BOB)
-                .withAllergies(VALID_ALLERGY_DUST ,VALID_ALLERGY_PEANUTS).build();
+                .withAllergies(VALID_ALLERGY_DUST, VALID_ALLERGY_PEANUTS).build();
     }
 
     /**

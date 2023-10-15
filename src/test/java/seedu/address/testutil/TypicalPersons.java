@@ -1,14 +1,26 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AGE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AGE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_DUST;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_PEANUTS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BLOODTYPE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BLOODTYPE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
-
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
@@ -20,7 +32,7 @@ public class TypicalPersons {
             .withGender("F")
             .withAge(20)
             .withBloodType("AB+")
-            .withAllergies("Chocolate").build();
+            .withAllergies("Chocolate").withIsPinned(true).build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com")
             .withPhone("98765432")
@@ -60,7 +72,7 @@ public class TypicalPersons {
             .withPhone("9482442")
             .withGender("M")
             .withAge(30)
-            .withBloodType("O").build();
+            .withBloodType("O+").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier")
@@ -68,13 +80,13 @@ public class TypicalPersons {
             .withPhone("8482424")
             .withGender("M")
             .withAge(30)
-            .withBloodType("A").build();
+            .withBloodType("A+").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller")
             .withEmail("hans@example.com")
             .withPhone("8482131")
             .withGender("M")
             .withAge(33)
-            .withBloodType("B").build();
+            .withBloodType("B+").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY)

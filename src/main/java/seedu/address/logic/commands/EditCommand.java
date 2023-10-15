@@ -38,7 +38,7 @@ import seedu.address.model.person.Phone;
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = "editPatient";
+    public static final String COMMAND_WORD = "editpatient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
@@ -112,7 +112,7 @@ public class EditCommand extends Command {
         Set<Allergy> updatedAllergies = editPersonDescriptor.getAllergies().orElse(personToEdit.getAllergies());
 
         return new Person(updatedName, updatedEmail, updatedPhone, updatedGender,
-                updatedAge, updatedBloodType, updatedAllergies);
+                updatedAge, updatedBloodType, updatedAllergies, personToEdit.isPinned());
     }
 
     @Override
@@ -150,7 +150,7 @@ public class EditCommand extends Command {
         private Gender gender;
         private Age age;
         private BloodType bloodType;
-        private Set<Allergy> allergies = new HashSet<>();
+        private Set<Allergy> allergies;
 
         public EditPersonDescriptor() {}
 

@@ -3,8 +3,14 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Age;
+import seedu.address.model.person.Allergy;
+import seedu.address.model.person.BloodType;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -17,7 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_GENDER = "F";
     public static final int DEFAULT_AGE = 21;
-    public static final String DEFAULT_BLOODTYPE = "O";
+    public static final String DEFAULT_BLOODTYPE = "O+";
     public static final String DEFAULT_ALLERGY = "Ants";
 
     private Name name;
@@ -27,6 +33,7 @@ public class PersonBuilder {
     private Age age;
     private BloodType bloodType;
     private Set<Allergy> allergies;
+    private boolean isPinned;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -39,6 +46,7 @@ public class PersonBuilder {
         age = new Age(DEFAULT_AGE);
         bloodType = new BloodType(DEFAULT_BLOODTYPE);
         allergies = new HashSet<>();
+        isPinned = false;
     }
 
     /**
@@ -52,6 +60,7 @@ public class PersonBuilder {
         age = personToCopy.getAge();
         bloodType = personToCopy.getBloodType();
         allergies = new HashSet<>(personToCopy.getAllergies());
+        isPinned = personToCopy.isPinned();
     }
 
     /**
@@ -110,8 +119,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code isPinned} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withIsPinned(boolean isPinned) {
+        this.isPinned = isPinned;
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, email, phone, gender, age, bloodType, allergies);
+        return new Person(name, email, phone, gender, age, bloodType, allergies, isPinned);
     }
 
 }
