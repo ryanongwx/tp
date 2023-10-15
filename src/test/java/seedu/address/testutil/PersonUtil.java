@@ -1,14 +1,19 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGIES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Allergy;
 import seedu.address.model.person.Person;
-
-import static seedu.address.logic.parser.CliSyntax.*;
-
 /**
  * A utility class for Person.
  */
@@ -48,7 +53,8 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getGender().ifPresent(gender -> sb.append(PREFIX_GENDER).append(gender.gender).append(" "));
         descriptor.getAge().ifPresent(age -> sb.append(PREFIX_AGE).append(age.age).append(" "));
-        descriptor.getBloodType().ifPresent(bloodType -> sb.append(PREFIX_BLOODTYPE).append(bloodType.bloodType).append(" "));
+        descriptor.getBloodType().ifPresent(bloodType -> sb.append(PREFIX_BLOODTYPE).append(bloodType.bloodType)
+                .append(" "));
         if (descriptor.getAllergies().isPresent()) {
             Set<Allergy> allergies = descriptor.getAllergies().get();
             if (allergies.isEmpty()) {

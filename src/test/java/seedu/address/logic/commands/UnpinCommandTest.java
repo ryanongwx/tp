@@ -33,7 +33,8 @@ public class UnpinCommandTest {
         Person unpinnedPerson = new PersonBuilder(personToUnpin).withIsPinned(false).build();
         UnpinCommand unpinCommand = new UnpinCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(UnpinCommand.MESSAGE_UNPIN_PERSON_SUCCESS, Messages.format(personToUnpin));
+        String expectedMessage = String.format(UnpinCommand.MESSAGE_UNPIN_PERSON_SUCCESS,
+                Messages.format(personToUnpin));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getPinnedPersonList().get(0), unpinnedPerson);

@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.AGE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ALLERGY_DESC_DUST;
 import static seedu.address.logic.commands.CommandTestUtil.ALLERGY_DESC_PEANUTS;
-import static seedu.address.logic.commands.CommandTestUtil.AGE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.BLOODTYPE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
@@ -25,7 +25,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
@@ -49,7 +48,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -103,13 +101,16 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + ALLERGY_DESC_DUST + ALLERGY_DESC_PEANUTS + ALLERGY_EMPTY, Allergy.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + ALLERGY_DESC_DUST + ALLERGY_EMPTY + ALLERGY_DESC_PEANUTS, Allergy.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + ALLERGY_EMPTY + ALLERGY_DESC_DUST + ALLERGY_DESC_PEANUTS, Allergy.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + ALLERGY_DESC_DUST + ALLERGY_DESC_PEANUTS + ALLERGY_EMPTY,
+                Allergy.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + ALLERGY_DESC_DUST + ALLERGY_EMPTY + ALLERGY_DESC_PEANUTS,
+                Allergy.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + ALLERGY_EMPTY + ALLERGY_DESC_DUST + ALLERGY_DESC_PEANUTS,
+                Allergy.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_PHONE_AMY
-                        + VALID_GENDER_AMY  + VALID_AGE_AMY + VALID_BLOODTYPE_AMY,
+                        + VALID_GENDER_AMY + VALID_AGE_AMY + VALID_BLOODTYPE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
