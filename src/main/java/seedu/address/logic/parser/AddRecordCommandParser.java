@@ -21,8 +21,8 @@ public class AddRecordCommandParser implements Parser<AddRecordCommand>{
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(userInput, PREFIX_DATE, PREFIX_CONDITION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_CONDITION) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_CONDITION) || argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecordCommand.MESSAGE_USAGE));
         }
 
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
