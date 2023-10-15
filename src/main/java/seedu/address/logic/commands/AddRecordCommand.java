@@ -16,7 +16,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 public class AddRecordCommand extends Command {
 
-    public static final String COMMAND_WORD = "addpatient";
+    public static final String COMMAND_WORD = "addrecord";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient record to the address book. "
             + "Parameters: "
