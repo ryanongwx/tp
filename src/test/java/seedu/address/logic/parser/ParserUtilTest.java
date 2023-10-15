@@ -38,7 +38,7 @@ public class ParserUtilTest {
     private static final String VALID_GENDER = "M";
     private static final int VALID_AGE = 10;
     private static final String VALID_AGE_STRING = "10";
-    private static final String VALID_BLOODTYPE = "A";
+    private static final String VALID_BLOODTYPE = "A+";
     private static final String VALID_ALLERGY_1 = "Nuts";
     private static final String VALID_ALLERGY_2 = "Coconut";
 

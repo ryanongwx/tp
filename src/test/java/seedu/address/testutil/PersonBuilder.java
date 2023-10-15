@@ -16,7 +16,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_GENDER = "F";
     public static final int DEFAULT_AGE = 21;
-    public static final String DEFAULT_BLOODTYPE = "O";
+    public static final String DEFAULT_BLOODTYPE = "O+";
     public static final String DEFAULT_ALLERGY = "Ants";
 
     private Name name;

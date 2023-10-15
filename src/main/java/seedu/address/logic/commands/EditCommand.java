@@ -150,7 +150,7 @@ public class EditCommand extends Command {
         private Gender gender;
         private Age age;
         private BloodType bloodType;
-        private Set<Allergy> allergies = new HashSet<>();
+        private Set<Allergy> allergies;
 
         public EditPersonDescriptor() {}
 

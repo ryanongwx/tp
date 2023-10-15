@@ -60,7 +60,7 @@ public class TypicalPersons {
             .withPhone("9482442")
             .withGender("M")
             .withAge(30)
-            .withBloodType("O").build();
+            .withBloodType("O+").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier")
@@ -68,13 +68,13 @@ public class TypicalPersons {
             .withPhone("8482424")
             .withGender("M")
             .withAge(30)
-            .withBloodType("A").build();
+            .withBloodType("A+").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller")
             .withEmail("hans@example.com")
             .withPhone("8482131")
             .withGender("M")
             .withAge(33)
-            .withBloodType("B").build();
+            .withBloodType("B+").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY)
