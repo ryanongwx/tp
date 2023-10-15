@@ -109,11 +109,11 @@ Expected outputs on failure:
 * **Messages:** “Failed to add patient record. The patient does not exist”
 
 
-### Listing all persons : `view`
+### Listing all persons : `list`
 
 Shows a list of all patients in the Medbook.
 
-Format: `view`
+Format: `list`
 
 ### View patient detail
 
@@ -143,23 +143,19 @@ Examples:
 *  `editdetail 2/phone/92345678` Edits the name of the 2nd person to be `92345678`.
 *  `editdetail 3/allergy/aspirin` Edits the allergy of the 3rd person to be `aspirin`.
 
-### Locating persons by name: `find`
+### Locating persons by keywords: `search`
 
-Finds persons whose names contain any of the given keywords.
+In MedBook, the Search functionality streamlines the process of finding patients based on specific keywords. Simply enter the keyword, and MedBook will display a list of patients matching your search criteria. If no matches are found, the system will provide feedback, allowing you to refine your search for better results.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `search [Keyword]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* The search is case-insensitive. e.g `Penicillin` will match `penicillin`
+* A patient's name and details will be searched.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `arm fracture` will return `burnt arm`, `leg fracture`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `search Penicillin` returns `Penicillin`
 
 ### Deleting a patient : `delete`
 
