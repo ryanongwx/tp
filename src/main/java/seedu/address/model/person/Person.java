@@ -60,10 +60,6 @@ public class Person {
         return isPinned;
     }
 
-    public boolean isPinned() {
-        return isPinned;
-    }
-
     public Age getAge() {
         return age;
     }
