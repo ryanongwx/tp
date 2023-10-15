@@ -109,11 +109,11 @@ Expected outputs on failure:
 * **Messages:** “Failed to add patient record. The patient does not exist”
 
 
-### Listing all persons : `view`
+### Listing all persons : `list`
 
 Shows a list of all patients in the Medbook.
 
-Format: `view`
+Format: `list`
 
 ### View patient detail
 
