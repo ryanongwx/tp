@@ -66,12 +66,10 @@ public class JsonAddressBookStorageTest {
         AddressBook original = getTypicalAddressBook();
         JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
 
-        System.out.println("0");
         // Save in new file and read back
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         ReadOnlyAddressBook readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
-        System.out.println("1");
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
@@ -79,14 +77,12 @@ public class JsonAddressBookStorageTest {
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
-        System.out.println("2");
 
         // Save and read without specifying file path
         original.addPerson(IDA);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new AddressBook(readBack));
-        System.out.println("3");
 
     }
 

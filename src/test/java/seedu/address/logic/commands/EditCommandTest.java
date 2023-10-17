@@ -29,7 +29,8 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * EditCommand.
  */
 public class EditCommandTest {
 
@@ -40,7 +41,6 @@ public class EditCommandTest {
         Person editedPerson = new PersonBuilder().build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
-        System.out.println(new EditPersonDescriptorBuilder(editedPerson).build());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
