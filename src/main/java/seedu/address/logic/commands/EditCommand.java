@@ -31,6 +31,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.appointment.UniqueAppointmentList;
 
 
 /**
@@ -111,9 +112,10 @@ public class EditCommand extends Command {
         BloodType updatedBloodType = editPersonDescriptor.getBloodType().orElse(personToEdit.getBloodType());
         Set<Allergy> updatedAllergies = editPersonDescriptor.getAllergies().orElse(personToEdit.getAllergies());
         Boolean updatedisPinned = editPersonDescriptor.getIsPinned().orElse(personToEdit.isPinned());
+        UniqueAppointmentList updatedAppointments = personToEdit.getAppointments();
 
         return new Person(updatedName, updatedEmail, updatedPhone, updatedGender,
-                updatedAge, updatedBloodType, updatedAllergies, updatedisPinned);
+                updatedAge, updatedBloodType, updatedAllergies, updatedisPinned, updatedAppointments);
     }
 
     @Override

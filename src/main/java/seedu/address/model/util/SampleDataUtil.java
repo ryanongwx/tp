@@ -14,6 +14,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.appointment.UniqueAppointmentList;
 
 
 /**
@@ -23,20 +24,20 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Email("alexyeoh@example.com"), new Phone("87438807"),
-                new Gender("M"), new Age(12), new BloodType("A+"), getAllergySet("Peanuts"), true),
+                new Gender("M"), new Age(12), new BloodType("A+"), getAllergySet("Peanuts"), true, new UniqueAppointmentList()),
             new Person(new Name("Bernice Yu"), new Email("berniceyu@example.com"), new Phone("99272758"),
-                new Gender("F"), new Age(31), new BloodType("B+"), getAllergySet("Dust", "Peanuts"), false),
+                new Gender("F"), new Age(31), new BloodType("B+"), getAllergySet("Dust", "Peanuts"), false, new UniqueAppointmentList()),
             new Person(new Name("Charlotte Oliveiro"), new Email("charlotte@example.com"), new Phone("93210283"),
-                new Gender("F"), new Age(12), new BloodType("AB+"), getAllergySet("Dust"), false),
+                new Gender("F"), new Age(12), new BloodType("AB+"), getAllergySet("Dust"), false, new UniqueAppointmentList()),
             new Person(new Name("David Li"), new Email("lidavid@example.com"), new Phone("91031282"),
                 new Gender("M"), new Age(33), new BloodType("O-"),
-                getAllergySet("Pollen"), false),
+                getAllergySet("Pollen"), false, new UniqueAppointmentList()),
             new Person(new Name("Irfan Ibrahim"), new Email("irfan@example.com"), new Phone("92492021"),
                 new Gender("M"), new Age(21), new BloodType("B-"),
-                getAllergySet("Fur"), false),
+                getAllergySet("Fur"), false, new UniqueAppointmentList()),
             new Person(new Name("Roy Balakrishnan"), new Email("royb@example.com"), new Phone("92624417"),
                 new Gender("M"), new Age(24), new BloodType("B+"),
-                getAllergySet("Grass"), false)
+                getAllergySet("Grass"), false, new UniqueAppointmentList()),
         };
     }
 

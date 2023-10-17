@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -8,7 +9,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-
+import seedu.address.model.person.appointment.Appointment;
+import seedu.address.model.person.appointment.UniqueAppointmentList;
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -24,12 +26,13 @@ public class Person {
     private final BloodType bloodType;
     private final Set<Allergy> allergies = new HashSet<>();
     private boolean isPinned;
+    private final UniqueAppointmentList appointments;
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Email email, Phone phone, Gender gender, Age age,
-                  BloodType bloodType, Set<Allergy> allergies, boolean isPinned) {
-        requireAllNonNull(name, phone, email, gender, age, allergies);
+                  BloodType bloodType, Set<Allergy> allergies, boolean isPinned, UniqueAppointmentList appointments) {
+        requireAllNonNull(name, phone, email, gender, age, allergies, isPinned, appointments);
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -38,6 +41,7 @@ public class Person {
         this.bloodType = bloodType;
         this.allergies.addAll(allergies);
         this.isPinned = isPinned;
+        this.appointments = appointments;
     }
 
     public Name getName() {
@@ -72,10 +76,17 @@ public class Person {
         return Collections.unmodifiableSet(allergies);
     }
 
-    public void setPinned(boolean pinned) {
-        this.isPinned = pinned;
+    public UniqueAppointmentList getAppointments() {
+        return appointments;
     }
 
+    /**
+     * Returns true if the same appointment as {@code appointment} exists in the person.
+     */
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return appointments.contains(appointment);
+    }
 
     /**
      * Returns true if both persons have the same name.
@@ -135,5 +146,4 @@ public class Person {
                 .add("isPinned", isPinned)
                 .toString();
     }
-
 }

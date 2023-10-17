@@ -33,9 +33,6 @@ public class Appointment {
         return dateTime;
     }
 
-    /**
-     * Returns true if both appointments have the same identity and data fields.
-     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -65,5 +62,4 @@ public class Appointment {
                 .add("dateTime", dateTime)
                 .toString();
     }
-
 }

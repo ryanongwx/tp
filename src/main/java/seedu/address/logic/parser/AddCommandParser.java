@@ -22,6 +22,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.appointment.UniqueAppointmentList;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -54,7 +55,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         BloodType bloodType = ParserUtil.parseBloodType(argMultimap.getValue(PREFIX_BLOODTYPE).get());
         Set<Allergy> allergies = ParserUtil.parseAllergies(argMultimap.getAllValues(PREFIX_ALLERGIES));
 
-        Person person = new Person(name, email, phone, gender, age, bloodType, allergies, false);
+        Person person = new Person(name, email, phone, gender, age, bloodType, allergies, false, new UniqueAppointmentList());
 
         return new AddCommand(person);
     }

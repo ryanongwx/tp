@@ -18,6 +18,8 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.appointment.Appointment;
+import seedu.address.model.person.appointment.UniqueAppointmentList;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -34,6 +36,7 @@ class JsonAdaptedPerson {
     private final String bloodType;
     private final List<JsonAdaptedAllergy> allergies = new ArrayList<>();
     private final Boolean isPinned;
+    private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -43,7 +46,8 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("gender") String gender,
             @JsonProperty("age") Integer age, @JsonProperty("bloodType") String bloodType,
             @JsonProperty("allergies") List<JsonAdaptedAllergy> allergies,
-            @JsonProperty("isPinned") Boolean isPinned) {
+            @JsonProperty("isPinned") Boolean isPinned,
+            @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -54,7 +58,9 @@ class JsonAdaptedPerson {
             this.allergies.addAll(allergies);
         }
         this.isPinned = isPinned;
-
+        if (appointments != null) {
+            this.appointments.addAll(appointments);
+        }
     }
 
     /**
@@ -71,6 +77,9 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedAllergy::new)
                 .collect(Collectors.toList()));
         isPinned = source.isPinned();
+        appointments.addAll(source.getAppointments().asUnmodifiableObservableList().stream()
+            .map(JsonAdaptedAppointment::new)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -134,8 +143,15 @@ class JsonAdaptedPerson {
         final BloodType modelBloodType = new BloodType(bloodType);
 
         final Set<Allergy> modelAllergies = new HashSet<>(allergiesList);
+
+        final UniqueAppointmentList modelAppointments = new UniqueAppointmentList();
+        for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
+            Appointment appointment = jsonAdaptedAppointment.toModelType();
+            modelAppointments.add(appointment);
+        }
+
         return new Person(modelName, modelEmail, modelPhone, modelGender, modelAge, modelBloodType, modelAllergies,
-                isPinned);
+                isPinned, modelAppointments);
     }
 
 }
