@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.record.Record;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
@@ -19,6 +18,8 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.record.Record;
+
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -144,8 +145,10 @@ class JsonAdaptedPerson {
         final BloodType modelBloodType = new BloodType(bloodType);
 
         final Set<Allergy> modelAllergies = new HashSet<>(allergiesList);
+
         return new Person(modelName, modelEmail, modelPhone, modelGender,
-                modelAge, modelBloodType, modelAllergies, modelRecords);
+                modelAge, modelBloodType, modelAllergies, modelRecords, false);
+
     }
 
 }
