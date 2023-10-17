@@ -33,6 +33,7 @@ class JsonAdaptedPerson {
     private final Integer age;
     private final String bloodType;
     private final List<JsonAdaptedAllergy> allergies = new ArrayList<>();
+    private final Boolean isPinned;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -41,7 +42,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("gender") String gender,
             @JsonProperty("age") Integer age, @JsonProperty("bloodType") String bloodType,
-            @JsonProperty("allergies") List<JsonAdaptedAllergy> allergies) {
+            @JsonProperty("allergies") List<JsonAdaptedAllergy> allergies,
+            @JsonProperty("isPinned") Boolean isPinned) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,6 +53,7 @@ class JsonAdaptedPerson {
         if (allergies != null) {
             this.allergies.addAll(allergies);
         }
+        this.isPinned = isPinned;
 
     }
 
@@ -67,6 +70,7 @@ class JsonAdaptedPerson {
         allergies.addAll(source.getAllergies().stream()
                 .map(JsonAdaptedAllergy::new)
                 .collect(Collectors.toList()));
+        isPinned = source.isPinned();
     }
 
     /**
@@ -113,7 +117,7 @@ class JsonAdaptedPerson {
         final Gender modelGender = new Gender(gender);
 
         if (age == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName()));
         }
         if (!Age.isValidAge(age)) {
             throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
@@ -131,7 +135,7 @@ class JsonAdaptedPerson {
 
         final Set<Allergy> modelAllergies = new HashSet<>(allergiesList);
         return new Person(modelName, modelEmail, modelPhone, modelGender, modelAge, modelBloodType, modelAllergies,
-                false);
+                isPinned);
     }
 
 }

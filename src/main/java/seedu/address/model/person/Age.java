@@ -28,7 +28,7 @@ public class Age {
      * Returns true if a given integer is a valid age.
      */
     public static boolean isValidAge(Integer test) {
-        return test >= 0;
+        return test > 0;
     }
 
     @Override
