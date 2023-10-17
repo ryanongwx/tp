@@ -55,7 +55,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         BloodType bloodType = ParserUtil.parseBloodType(argMultimap.getValue(PREFIX_BLOODTYPE).get());
         Set<Allergy> allergies = ParserUtil.parseAllergies(argMultimap.getAllValues(PREFIX_ALLERGIES));
 
-        Person person = new Person(name, email, phone, gender, age, bloodType, allergies, false, new UniqueAppointmentList());
+        Person person = new Person(name, email, phone, gender, age, bloodType, allergies,
+            false, new UniqueAppointmentList());
 
         return new AddCommand(person);
     }

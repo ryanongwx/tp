@@ -56,7 +56,7 @@ class JsonAdaptedAppointment {
         if (!DateTime.isValidDateTime(dateTime)) {
             throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
         }
-        final DateTime modelDateTime = new DateTime(dateTime);  // Replace with your own constructor or factory method
+        final DateTime modelDateTime = new DateTime(dateTime);
 
         return new Appointment(modelTitle, modelDateTime);
     }

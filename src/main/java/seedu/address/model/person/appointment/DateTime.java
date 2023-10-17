@@ -1,12 +1,16 @@
 package seedu.address.model.person.appointment;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
+/**
+ * Represents an Appointment's date and time in the MedBook.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
+ */
 public class DateTime {
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in the form of 'dd-MM-yyyy HHmm";
@@ -23,11 +27,6 @@ public class DateTime {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         this.dateTime = LocalDateTime.parse(dateTime, FORMATTER);
-    }
-
-    public DateTime(LocalDateTime dateTime) {
-        requireNonNull(dateTime);
-        this.dateTime = dateTime;
     }
 
     /**

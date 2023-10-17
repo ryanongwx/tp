@@ -167,6 +167,11 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    /**
+     * Parses a {@code String dateTime} into an {@code DateTime}.
+     *
+     * @throws ParseException
+     */
     public static DateTime parseDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();

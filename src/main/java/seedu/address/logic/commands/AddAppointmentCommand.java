@@ -40,10 +40,10 @@ public class AddAppointmentCommand extends Command {
     /**
      * Creates an AddAppointmentCommand to add the specified {@code Appointment}
      */
-    public AddAppointmentCommand(Index index, Appointment Appointment) {
+    public AddAppointmentCommand(Index index, Appointment appointment) {
         requireNonNull(index);
-        requireNonNull(Appointment);
-        this.toAdd = Appointment;
+        requireNonNull(appointment);
+        this.toAdd = appointment;
         this.index = index;
     }
 

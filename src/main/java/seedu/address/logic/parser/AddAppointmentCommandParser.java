@@ -32,7 +32,8 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            AddAppointmentCommand.MESSAGE_USAGE), pe);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TITLE, PREFIX_DATE);

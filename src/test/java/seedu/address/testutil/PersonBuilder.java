@@ -11,6 +11,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.appointment.UniqueAppointmentList;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -34,6 +35,7 @@ public class PersonBuilder {
     private BloodType bloodType;
     private Set<Allergy> allergies;
     private boolean isPinned;
+    private UniqueAppointmentList appointments;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -47,6 +49,7 @@ public class PersonBuilder {
         bloodType = new BloodType(DEFAULT_BLOODTYPE);
         allergies = new HashSet<>();
         isPinned = false;
+        appointments = new UniqueAppointmentList();
     }
 
     /**
@@ -61,6 +64,7 @@ public class PersonBuilder {
         bloodType = personToCopy.getBloodType();
         allergies = new HashSet<>(personToCopy.getAllergies());
         isPinned = personToCopy.isPinned();
+        appointments = personToCopy.getAppointments();
     }
 
     /**
@@ -127,8 +131,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code appointments} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAppointments(UniqueAppointmentList appointments) {
+        this.appointments = appointments;
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, email, phone, gender, age, bloodType, allergies, isPinned);
+        return new Person(name, email, phone, gender, age, bloodType, allergies, isPinned, appointments);
     }
 
 }

@@ -48,7 +48,8 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     /**
      * Replaces the appointment {@code target} in the list with {@code editedappointment}.
      * {@code target} must exist in the list.
-     * The appointment identity of {@code editedappointment} must not be the same as another existing appointment in the list.
+     * The appointment identity of {@code editedappointment} must not be the same as
+     * another existing appointment in the list.
      */
     public void setappointment(Appointment target, Appointment editedappointment) {
         requireAllNonNull(target, editedappointment);
