@@ -93,6 +93,8 @@ public class CommandTestUtil {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
+            System.out.println(expectedModel.getAddressBook());
+            System.out.println(actualModel.getAddressBook());
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);

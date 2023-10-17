@@ -41,6 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAge(person.getAge());
         descriptor.setBloodType(person.getBloodType());
         descriptor.setAllergies(person.getAllergies());
+        descriptor.setIsPinned(person.isPinned());
     }
 
     /**
