@@ -3,16 +3,18 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Objects;
 
 /**
  * Represents a Patient's blood type in the MedBook.
- * Guarantees: immutable; is valid as declared in {@link #isValidBloodType(String)}
+ * Guarantees: immutable; is valid as declared in
+ * {@link #isValidBloodType(String)}
  */
 public class BloodType {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Blood Type should only be one of the following: A+, A-, B+, B-, AB+, AB-, O+, O-";
+    public static final String
+        MESSAGE_CONSTRAINTS = "Blood Type should only be one of the following: A+, A-, B+, B-, AB+, AB-, O+, O-";
 
-    public static final String[] POSSIBLE_BLOOD_TYPES = {"A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};
+    public static final String[] POSSIBLE_BLOOD_TYPES = { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" };
 
     public final String bloodType;
 
@@ -57,7 +59,7 @@ public class BloodType {
         }
 
         BloodType otherBloodType = (BloodType) other;
-        return this.bloodType == otherBloodType.bloodType;
+        return Objects.equals(this.bloodType, otherBloodType.bloodType);
     }
 
     @Override
