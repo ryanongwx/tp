@@ -110,6 +110,7 @@ public class PersonTest {
                 + ", age=" + ALICE.getAge()
                 + ", bloodType=" + ALICE.getBloodType()
                 + ", allergies=" + ALICE.getAllergies()
+                + ", isPinned=" + ALICE.isPinned()
                 + "}";
         assertEquals(expected, ALICE.toString());
     }

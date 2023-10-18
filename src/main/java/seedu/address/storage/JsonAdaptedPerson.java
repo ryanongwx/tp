@@ -36,6 +36,7 @@ class JsonAdaptedPerson {
     private final String bloodType;
     private final List<JsonAdaptedAllergy> allergies = new ArrayList<>();
     private final List<JsonAdaptedRecord> records = new ArrayList<>();
+    private final Boolean isPinned;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -45,7 +46,9 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("gender") String gender,
             @JsonProperty("age") Integer age, @JsonProperty("bloodType") String bloodType,
             @JsonProperty("allergies") List<JsonAdaptedAllergy> allergies,
-            @JsonProperty("records") List<JsonAdaptedRecord> records) {
+            @JsonProperty("records") List<JsonAdaptedRecord> records,
+            @JsonProperty("isPinned") Boolean isPinned) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -58,7 +61,7 @@ class JsonAdaptedPerson {
         if (records != null) {
             this.records.addAll(records);
         }
-
+        this.isPinned = isPinned;
     }
 
     /**
@@ -77,6 +80,7 @@ class JsonAdaptedPerson {
         records.addAll(source.getConditions().stream()
                 .map(JsonAdaptedRecord::new)
                 .collect(Collectors.toList()));
+        isPinned = source.isPinned();
     }
 
     /**
@@ -128,7 +132,7 @@ class JsonAdaptedPerson {
         final Gender modelGender = new Gender(gender);
 
         if (age == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName()));
         }
         if (!Age.isValidAge(age)) {
             throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
@@ -147,8 +151,6 @@ class JsonAdaptedPerson {
         final Set<Allergy> modelAllergies = new HashSet<>(allergiesList);
 
         return new Person(modelName, modelEmail, modelPhone, modelGender,
-                modelAge, modelBloodType, modelAllergies, modelRecords, false);
-
+                modelAge, modelBloodType, modelAllergies, modelRecords, isPinned);
     }
-
 }

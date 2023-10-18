@@ -110,9 +110,10 @@ public class EditCommand extends Command {
         Age updatedAge = editPersonDescriptor.getAge().orElse(personToEdit.getAge());
         BloodType updatedBloodType = editPersonDescriptor.getBloodType().orElse(personToEdit.getBloodType());
         Set<Allergy> updatedAllergies = editPersonDescriptor.getAllergies().orElse(personToEdit.getAllergies());
+        Boolean updatedisPinned = editPersonDescriptor.getIsPinned().orElse(personToEdit.isPinned());
 
         return new Person(updatedName, updatedEmail, updatedPhone, updatedGender,
-                updatedAge, updatedBloodType, updatedAllergies, personToEdit.isPinned());
+                updatedAge, updatedBloodType, updatedAllergies, updatedisPinned);
     }
 
     @Override
@@ -151,6 +152,7 @@ public class EditCommand extends Command {
         private Age age;
         private BloodType bloodType;
         private Set<Allergy> allergies;
+        private Boolean isPinned;
 
         public EditPersonDescriptor() {}
 
@@ -166,6 +168,7 @@ public class EditCommand extends Command {
             setAge(toCopy.age);
             setBloodType(toCopy.bloodType);
             setAllergies(toCopy.allergies);
+            setIsPinned(toCopy.isPinned);
         }
 
         /**
@@ -210,6 +213,16 @@ public class EditCommand extends Command {
         public void setAge(Age age) {
             this.age = age;
         }
+
+        public void setIsPinned(Boolean isPinned) {
+            this.isPinned = isPinned;
+        }
+
+        public Optional<Boolean> getIsPinned() {
+            return Optional.ofNullable(isPinned);
+        }
+
+
 
         public Optional<Age> getAge() {
             return Optional.ofNullable(age);
@@ -271,6 +284,7 @@ public class EditCommand extends Command {
                     .add("age", age)
                     .add("bloodType", bloodType)
                     .add("allergies", allergies)
+                    .add("isPinned", isPinned)
                     .toString();
         }
     }

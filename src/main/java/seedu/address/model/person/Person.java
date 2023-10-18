@@ -99,6 +99,10 @@ public class Person {
         return Collections.unmodifiableList(records);
     }
 
+    public void setPinned(boolean pinned) {
+        this.isPinned = pinned;
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -143,6 +147,7 @@ public class Person {
                 && age.equals(otherPerson.age)
                 && bloodType.equals(otherPerson.bloodType)
                 && allergies.equals(otherPerson.allergies)
+                && records.equals(otherPerson.records)
                 && isPinned == otherPerson.isPinned;
     }
 
@@ -162,6 +167,8 @@ public class Person {
                 .add("age", age)
                 .add("bloodType", bloodType)
                 .add("allergies", allergies)
+                .add("records", records)
+                .add("isPinned", isPinned)
                 .toString();
     }
 
