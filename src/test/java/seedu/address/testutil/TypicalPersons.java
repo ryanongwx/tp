@@ -14,6 +14,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.testutil.TypicalAppointments.COLONOSCOPY;
+import static seedu.address.testutil.TypicalAppointments.EYE_EXAM;
+import static seedu.address.testutil.TypicalAppointments.VACCINATION;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +37,7 @@ public class TypicalPersons {
             .withBloodType("AB+")
             .withAllergies("Chocolate")
             .withIsPinned(true)
-            .withAppointments(TypicalAppointments.getTypicalAppointments()).build();
+            .withAppointments(EYE_EXAM).build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com")
             .withPhone("98765432")
@@ -43,7 +46,7 @@ public class TypicalPersons {
             .withBloodType("B-")
             .withAllergies("Pollen", "Soil")
             .withIsPinned(false)
-            .withAppointments(TypicalAppointments.getTypicalAppointments()).build();
+            .withAppointments(VACCINATION).build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
             .withEmail("heinz@example.com")
             .withPhone("95352563")
@@ -52,7 +55,7 @@ public class TypicalPersons {
             .withBloodType("AB-")
             .withAllergies("Dogs")
             .withIsPinned(false)
-            .withAppointments(TypicalAppointments.getTypicalAppointments()).build();
+            .withAppointments(COLONOSCOPY).build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
             .withEmail("cornelia@example.com")
             .withPhone("87652533")

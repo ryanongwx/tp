@@ -12,8 +12,8 @@
       "isPinned": true,
       "appointments": [
         {
-          "name": "Eye Examination",
-          "dateTime": "18-09-2023 1800"
+          "name": "Eye Exam",
+          "dateTime": "01-01-2001 1200"
         }
       ]
     },
@@ -28,8 +28,8 @@
       "isPinned": true,
       "appointments": [
         {
-          "name": "Eye Examination",
-          "dateTime": "18-09-2023 1800"
+          "name": "Eye Exam",
+          "dateTime": "01-01-2001 1200"
         }
       ]
     }

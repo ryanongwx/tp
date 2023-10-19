@@ -11,6 +11,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.appointment.Appointment;
 import seedu.address.model.person.appointment.UniqueAppointmentList;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -136,6 +137,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withAppointments(UniqueAppointmentList appointment) {
         this.appointments = appointment;
+        return this;
+    }
+
+    /**
+     * Sets the {@code appointments} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAppointments(Appointment ... appointments) {
+        this.appointments = SampleDataUtil.getAppointmentList(appointments);
         return this;
     }
 
