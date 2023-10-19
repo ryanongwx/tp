@@ -99,6 +99,10 @@ public class Person {
         return Collections.unmodifiableList(records);
     }
 
+    public List<Record> getModifiableRecords() {
+        return records;
+    }
+
     public void setPinned(boolean pinned) {
         this.isPinned = pinned;
     }

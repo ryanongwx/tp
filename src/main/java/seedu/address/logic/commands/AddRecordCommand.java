@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -54,9 +54,14 @@ public class AddRecordCommand extends Command {
         }
 
         Person personToAddRecord = lastShownList.get(index.getZeroBased());
+        List<Record> newRecords = new ArrayList<>(personToAddRecord.getRecords());
+        newRecords.add(record);
+        Person personWithAddedRecord = new Person(personToAddRecord.getName(), personToAddRecord.getEmail(),
+                personToAddRecord.getPhone(), personToAddRecord.getGender(), personToAddRecord.getAge(),
+                personToAddRecord.getBloodType(), personToAddRecord.getAllergies(),
+                newRecords, personToAddRecord.isPinned());
 
-        personToAddRecord.addRecord(this.record);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setPerson(personToAddRecord, personWithAddedRecord);
 
         return new CommandResult(MESSAGE_SUCCESS);
     }

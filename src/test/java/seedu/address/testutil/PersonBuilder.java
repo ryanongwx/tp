@@ -134,6 +134,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code records} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRecords(List<Record> records) {
+        this.records = records;
+        return this;
+    }
+
+    /**
      * Sets the {@code isPinned} of the {@code Person} that we are building.
      */
     public PersonBuilder withIsPinned(boolean isPinned) {
@@ -143,6 +151,10 @@ public class PersonBuilder {
 
     public Person build() {
         return new Person(name, email, phone, gender, age, bloodType, allergies, isPinned);
+    }
+
+    public Person buildWithRecord() {
+        return new Person(name, email, phone, gender, age, bloodType, allergies, records, isPinned);
     }
 
 }
