@@ -1,25 +1,27 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Name;
-import seedu.address.model.record.Condition;
-import seedu.address.model.record.DateTime;
-import seedu.address.model.record.Record;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.record.Condition;
+import seedu.address.model.record.DateTime;
+import seedu.address.model.record.Record;
+
+/**
+ * Jackson-friendly version of {@link Record}.
+ */
 public class JsonAdaptedRecord {
 
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("ddMMyyyy HHmm");
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
     private final LocalDateTime dateTime;
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("ddMMyyyy HHmm");
-
     private final List<JsonAdaptedCondition> conditions = new ArrayList<>();
 
 
@@ -59,10 +61,6 @@ public class JsonAdaptedRecord {
         if (dateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     DateTime.class.getSimpleName()));
-        }
-
-        if (!DateTime.isValidDateTime(dateTime)) {
-            throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
         }
 
         final DateTime modelDateTime = new DateTime(dateTime);

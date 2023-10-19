@@ -95,7 +95,7 @@ public class Person {
         return Collections.unmodifiableSet(allergies);
     }
 
-    public List<Record> getConditions() {
+    public List<Record> getRecords() {
         return Collections.unmodifiableList(records);
     }
 

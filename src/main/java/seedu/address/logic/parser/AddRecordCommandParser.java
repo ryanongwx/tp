@@ -1,21 +1,23 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGIES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddRecordCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.record.Condition;
 import seedu.address.model.record.DateTime;
 import seedu.address.model.record.Record;
 
-import java.util.List;
-import java.util.stream.Stream;
-
-public class AddRecordCommandParser implements Parser<AddRecordCommand>{
+/**
+ * Parses a user input and creates a AddRecordCommand object
+ */
+public class AddRecordCommandParser implements Parser<AddRecordCommand> {
     @Override
     public AddRecordCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argMultimap =

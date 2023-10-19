@@ -1,12 +1,13 @@
 package seedu.address.model.record;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
+/**
+ * Represents the date and time in which patient visits the doctor
+ */
 public class DateTime {
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in the form of 'dd-MM-yyyy HHmm";
@@ -21,23 +22,18 @@ public class DateTime {
      */
     public DateTime(String dateTime) {
         requireNonNull(dateTime);
-        checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         this.dateTime = LocalDateTime.parse(dateTime, FORMATTER);
     }
 
+    /**
+     * Constructs a {@code DateTime}.
+     *
+     * @param dateTime A valid date and time.
+     */
     public DateTime(LocalDateTime dateTime) {
         requireNonNull(dateTime);
         this.dateTime = dateTime;
     }
-
-    public static boolean isValidDateTime(String test) {
-        return true;
-    }
-
-    public static boolean isValidDateTime(LocalDateTime test) {
-        return true;
-    }
-
 
     @Override
     public boolean equals(Object other) {

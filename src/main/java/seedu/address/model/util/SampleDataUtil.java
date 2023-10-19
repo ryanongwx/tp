@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,6 +15,8 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.record.Condition;
+import seedu.address.model.record.Record;
 
 
 /**
@@ -55,6 +58,19 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Allergy::new)
                 .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a list of conditions containing the list of strings given.
+     */
+    public static List<Condition> getConditionList(String ... strings) {
+        return Arrays.stream(strings)
+                .map(Condition::new)
+                .collect(Collectors.toList());
+    }
+
+    public static List<Record> getRecordList(Record ... records) {
+        return Arrays.asList(records);
     }
 
 }

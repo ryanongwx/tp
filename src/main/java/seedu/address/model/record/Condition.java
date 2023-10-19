@@ -1,10 +1,10 @@
 package seedu.address.model.record;
 
-import seedu.address.model.person.Allergy;
-
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a condition a patient. Recorded inside a Record object.
+ */
 public class Condition {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -21,12 +21,7 @@ public class Condition {
      */
     public Condition(String condition) {
         requireNonNull(condition);
-        checkArgument(isValidCondition(condition), MESSAGE_CONSTRAINTS);
         this.condition = condition;
-    }
-
-    public static boolean isValidCondition(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

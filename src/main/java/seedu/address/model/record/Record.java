@@ -1,19 +1,25 @@
 package seedu.address.model.record;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Person;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.commons.util.ToStringBuilder;
 
+/**
+ * Record of condition of a patient and date and time in which a patient visits the doctor
+ */
 public class Record {
 
     private final List<Condition> conditions = new ArrayList<>();
     private final DateTime dateTime;
+
+    /**
+     * Constructs a record object
+     */
 
     public Record(DateTime dateTime, List<Condition> conditions) {
         requireAllNonNull(dateTime, conditions);
@@ -29,10 +35,12 @@ public class Record {
         return Collections.unmodifiableList(conditions);
     }
 
+    @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(dateTime, conditions);
     }
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -47,7 +55,7 @@ public class Record {
         return dateTime.equals(otherRecord.dateTime)
                 && conditions.equals(otherRecord.conditions);
     }
-
+    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("dateTime", dateTime)

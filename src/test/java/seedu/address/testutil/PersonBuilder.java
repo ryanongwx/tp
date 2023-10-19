@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.person.Age;
@@ -11,6 +13,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.record.Record;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -33,6 +36,7 @@ public class PersonBuilder {
     private Age age;
     private BloodType bloodType;
     private Set<Allergy> allergies;
+    private List<Record> records;
     private boolean isPinned;
 
     /**
@@ -46,6 +50,7 @@ public class PersonBuilder {
         age = new Age(DEFAULT_AGE);
         bloodType = new BloodType(DEFAULT_BLOODTYPE);
         allergies = new HashSet<>();
+        records = new ArrayList<>();
         isPinned = false;
     }
 
@@ -60,6 +65,7 @@ public class PersonBuilder {
         age = personToCopy.getAge();
         bloodType = personToCopy.getBloodType();
         allergies = new HashSet<>(personToCopy.getAllergies());
+        records = new ArrayList<>(personToCopy.getRecords());
         isPinned = personToCopy.isPinned();
     }
 
@@ -116,6 +122,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withAllergies(String ... allergies) {
         this.allergies = SampleDataUtil.getAllergySet(allergies);
+        return this;
+    }
+
+    /**
+     * Sets the {@code records} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRecords(Record ... records) {
+        this.records = SampleDataUtil.getRecordList(records);
         return this;
     }
 

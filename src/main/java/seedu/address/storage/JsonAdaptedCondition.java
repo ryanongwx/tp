@@ -2,9 +2,14 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.record.Condition;
 
+
+/**
+ * Jackson-friendly version of {@link Condition}.
+ */
 public class JsonAdaptedCondition {
 
     private final String condition;
@@ -32,10 +37,7 @@ public class JsonAdaptedCondition {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted condition.
      */
-    public Condition toModelType() throws IllegalValueException {
-        if (!Condition.isValidCondition(condition)) {
-            throw new IllegalValueException(Condition.MESSAGE_CONSTRAINTS);
-        }
+    public Condition toModelType() {
         return new Condition(condition);
     }
 }

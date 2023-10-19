@@ -1,19 +1,23 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddRecordCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.record.Record;
 
-import java.util.List;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
+/**
+ * Adds a record to a patient in the MedBook
+ */
 public class AddRecordCommand extends Command {
 
     public static final String COMMAND_WORD = "addrecord";
@@ -32,6 +36,9 @@ public class AddRecordCommand extends Command {
 
     private final Index index;
 
+    /**
+     * Creates a record under a patient of specified index
+     */
     public AddRecordCommand(Index index, Record record) {
         requireAllNonNull(index, record);
         this.index = index;
@@ -52,5 +59,29 @@ public class AddRecordCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddRecordCommand)) {
+            return false;
+        }
+
+        AddRecordCommand otherAddRecordCommand = (AddRecordCommand) other;
+        return record.equals(otherAddRecordCommand.record)
+                && index.equals(otherAddRecordCommand.index);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("index", index)
+                .add("record", record)
+                .toString();
     }
 }

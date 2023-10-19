@@ -2,15 +2,15 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import seedu.address.model.record.Condition;
-import seedu.address.model.record.DateTime;
-
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
@@ -18,6 +18,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.record.Condition;
+import seedu.address.model.record.DateTime;
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
@@ -175,9 +177,6 @@ public class ParserUtil {
     public static DateTime parseDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
-        if (!DateTime.isValidDateTime(trimmedDateTime)) {
-            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
-        }
         return new DateTime(trimmedDateTime);
     }
 
@@ -187,12 +186,10 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code condition} is invalid.
      */
-    public static Condition parseCondition(String condition) throws ParseException {
+    public static Condition parseCondition(String condition) {
         requireNonNull(condition);
         String trimmedCondition = condition.trim();
-        if (!Condition.isValidCondition(trimmedCondition)) {
-            throw new ParseException(Condition.MESSAGE_CONSTRAINTS);
-        }
+
         return new Condition(trimmedCondition);
     }
 

@@ -77,7 +77,7 @@ class JsonAdaptedPerson {
         allergies.addAll(source.getAllergies().stream()
                 .map(JsonAdaptedAllergy::new)
                 .collect(Collectors.toList()));
-        records.addAll(source.getConditions().stream()
+        records.addAll(source.getRecords().stream()
                 .map(JsonAdaptedRecord::new)
                 .collect(Collectors.toList()));
         isPinned = source.isPinned();
