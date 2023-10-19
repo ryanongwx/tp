@@ -12,8 +12,16 @@
       "isPinned": true,
       "appointments": [
         {
-          "title": "Eye Exam",
+          "name": "Eye Exam",
           "dateTime": "01-01-2001 1200"
+        },
+        {
+          "name": "Vaccination",
+          "dateTime": "11-09-2001 1200"
+        },
+        {
+          "name": "Colonoscopy",
+          "dateTime": "21-12-2001 1200"
         }
       ]
     },
@@ -28,8 +36,16 @@
       "isPinned": false,
       "appointments": [
         {
-          "title": "Vaccination",
+          "name": "Eye Exam",
+          "dateTime": "01-01-2001 1200"
+        },
+        {
+          "name": "Vaccination",
           "dateTime": "11-09-2001 1200"
+        },
+        {
+          "name": "Colonoscopy",
+          "dateTime": "21-12-2001 1200"
         }
       ]
     },
@@ -44,7 +60,15 @@
       "isPinned": false,
       "appointments": [
         {
-          "title": "Colonoscopy",
+          "name": "Eye Exam",
+          "dateTime": "01-01-2001 1200"
+        },
+        {
+          "name": "Vaccination",
+          "dateTime": "11-09-2001 1200"
+        },
+        {
+          "name": "Colonoscopy",
           "dateTime": "21-12-2001 1200"
         }
       ]

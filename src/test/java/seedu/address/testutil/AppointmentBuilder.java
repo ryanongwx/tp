@@ -9,17 +9,17 @@ import seedu.address.model.person.appointment.DateTime;
  */
 public class AppointmentBuilder {
 
-    public static final String DEFAULT_TITLE = "Nose Exam";
+    public static final String DEFAULT_NAME = "Nose Exam";
     public static final String DEFAULT_DATETIME = "27-10-2010 1200";
 
-    private Name title;
+    private Name name;
     private DateTime dateTime;
 
     /**
      * Creates a {@code AppoointmentBuilder} with the default details.
      */
     public AppointmentBuilder() {
-        title = new Name(DEFAULT_TITLE);
+        name = new Name(DEFAULT_NAME);
         dateTime = new DateTime(DEFAULT_DATETIME);
     }
 
@@ -27,15 +27,15 @@ public class AppointmentBuilder {
      * InitializesAppointment with the data of {@code personToCopy}.
      */
     public AppointmentBuilder(Appointment appointmentToCopy) {
-        title = appointmentToCopy.getTitle();
+        name = appointmentToCopy.getName();
         dateTime = appointmentToCopy.getDateTime();
     }
 
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
-    public AppointmentBuilder withTitle(String title) {
-        this.title = new Name(title);
+    public AppointmentBuilder withName(String name) {
+        this.name = new Name(name);
         return this;
     }
 
@@ -48,7 +48,7 @@ public class AppointmentBuilder {
     }
 
     public Appointment build() {
-        return new Appointment(title, dateTime);
+        return new Appointment(name, dateTime);
     }
 
 }

@@ -14,19 +14,19 @@ import seedu.address.model.person.Name;
 public class Appointment {
 
     // Identity fields
-    private final Name title;
+    private final Name name;
     private final DateTime dateTime;
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Name title, DateTime dateTime) {
-        requireAllNonNull(title, dateTime);
-        this.title = title;
+    public Appointment(Name name, DateTime dateTime) {
+        requireAllNonNull(name, dateTime);
+        this.name = name;
         this.dateTime = dateTime;
     }
 
-    public Name getTitle() {
-        return title;
+    public Name getName() {
+        return name;
     }
 
     public DateTime getDateTime() {
@@ -45,20 +45,20 @@ public class Appointment {
         }
 
         Appointment otherAppointment = (Appointment) other;
-        return title.equals(otherAppointment.title)
+        return name.equals(otherAppointment.name)
                 && dateTime.equals(otherAppointment.dateTime);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, dateTime);
+        return Objects.hash(name, dateTime);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("title", title)
+                .add("name", name)
                 .add("dateTime", dateTime)
                 .toString();
     }

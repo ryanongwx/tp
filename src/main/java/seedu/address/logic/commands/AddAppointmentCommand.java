@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 
@@ -24,10 +24,10 @@ public class AddAppointmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to the address book.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_TITLE + "TITLE "
+            + PREFIX_NAME + "NAME "
             + PREFIX_DATE + "DATE\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TITLE + "Eye Examination "
+            + PREFIX_NAME + "Eye Examination "
             + PREFIX_DATE + "18-09-2023 1800 ";
 
 

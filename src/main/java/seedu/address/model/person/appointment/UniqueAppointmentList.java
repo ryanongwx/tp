@@ -51,7 +51,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
      * The appointment identity of {@code editedappointment} must not be the same as
      * another existing appointment in the list.
      */
-    public void setappointment(Appointment target, Appointment editedappointment) {
+    public void setAppointment(Appointment target, Appointment editedappointment) {
         requireAllNonNull(target, editedappointment);
 
         int index = internalList.indexOf(target);
@@ -86,7 +86,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
      * Replaces the contents of this list with {@code appointments}.
      * {@code appointments} must not contain duplicate appointments.
      */
-    public void setappointments(List<Appointment> appointments) {
+    public void setAppointments(List<Appointment> appointments) {
         requireAllNonNull(appointments);
         if (!appointmentsAreUnique(appointments)) {
             throw new DuplicateAppointmentException();

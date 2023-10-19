@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_THYROID_CHECK;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -16,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -50,7 +51,7 @@ public class AddAppointmentCommandTest {
         String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS,
                 Messages.format(validAppointment, editedPerson));
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(addAppointmentCommand, model, expectedMessage, expectedModel);
@@ -70,7 +71,7 @@ public class AddAppointmentCommandTest {
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         
-        Appointment validAppointment = new AppointmentBuilder().build();
+        Appointment validAppointment = new AppointmentBuilder().withName(VALID_NAME_THYROID_CHECK).build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, validAppointment);
 
         Person personToAddAppointment = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -83,7 +84,7 @@ public class AddAppointmentCommandTest {
         String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS,
                 Messages.format(validAppointment, editedPerson));
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
@@ -105,25 +106,17 @@ public class AddAppointmentCommandTest {
     }
 
     @Test
-    public void execute_duplicateAppointment_throwsCommandException() {
-        Appointment validAppointment = new AppointmentBuilder().build();
-        AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, validAppointment);
+    public void execute_duplicatePersonUnfilteredList_failure() {
+        Appointment appointment = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()).getAppointments().asUnmodifiableObservableList().get(0);
+        AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, appointment);
 
-        Person personToAddAppointment = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        UniqueAppointmentList newAppointmentList = personToAddAppointment.getAppointments();
-        newAppointmentList.add(validAppointment);
-
-        Person editedPerson = new PersonBuilder(personToAddAppointment).withAppointments(newAppointmentList).build();
-
-        model.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-
-        assertThrows(CommandException.class, AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT, () -> addAppointmentCommand.execute(model));
+        assertCommandFailure(addAppointmentCommand, model, AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT);
     }
 
     @Test
     public void equals() {
-        Appointment eyeExam = new AppointmentBuilder().withTitle("Eye Exam").build();
-        Appointment earExam = new AppointmentBuilder().withTitle("Ear Exam").build();
+        Appointment eyeExam = new AppointmentBuilder().withName("Eye Exam").build();
+        Appointment earExam = new AppointmentBuilder().withName("Ear Exam").build();
 
         final AddAppointmentCommand standardCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, eyeExam);
 

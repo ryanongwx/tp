@@ -16,15 +16,15 @@ class JsonAdaptedAppointment {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
 
-    private final String title;
+    private final String name;
     private final String dateTime;
 
     /**
      * Constructs a {@code JsonAdaptedAppointment} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedAppointment(@JsonProperty("title") String title, @JsonProperty("dateTime") String dateTime) {
-        this.title = title;
+    public JsonAdaptedAppointment(@JsonProperty("name") String name, @JsonProperty("dateTime") String dateTime) {
+        this.name = name;
         this.dateTime = dateTime;
     }
 
@@ -32,7 +32,7 @@ class JsonAdaptedAppointment {
      * Converts a given {@code Appointment} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
-        title = source.getTitle().fullName;
+        name = source.getName().fullName;
         dateTime = source.getDateTime().toString();
     }
 
@@ -42,13 +42,13 @@ class JsonAdaptedAppointment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted appointment.
      */
     public Appointment toModelType() throws IllegalValueException {
-        if (title == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Title"));
+        if (name == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Name"));
         }
-        if (!Name.isValidName(title)) {
+        if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelTitle = new Name(title);
+        final Name modelname = new Name(name);
 
         if (dateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "DateTime"));
@@ -58,6 +58,6 @@ class JsonAdaptedAppointment {
         }
         final DateTime modelDateTime = new DateTime(dateTime);
 
-        return new Appointment(modelTitle, modelDateTime);
+        return new Appointment(modelname, modelDateTime);
     }
 }

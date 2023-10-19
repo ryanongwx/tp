@@ -145,6 +145,7 @@ public class Person {
                 .add("bloodType", bloodType)
                 .add("allergies", allergies)
                 .add("isPinned", isPinned)
+                .add("appointments", appointments)
                 .toString();
     }
 }
