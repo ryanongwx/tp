@@ -19,8 +19,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.appointment.Appointment;
+import seedu.address.model.person.appointment.DateTime;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -42,6 +45,14 @@ public class CommandTestUtil {
     public static final String VALID_BLOODTYPE_BOB = "A-";
     public static final String VALID_ALLERGY_DUST = "Dust";
     public static final String VALID_ALLERGY_PEANUTS = "Peanuts";
+
+    public static final String VALID_TITLE_THYROID_CHECK = "Thyroid Check";
+    public static final String VALID_TITLE_SLEEP_STUDY = "Sleep Study";
+    public static final String VALID_DATETIME_THYROID_CHECK = "01-01-2001 1200";
+    public static final String VALID_DATETIME_SLEEP_STUDY = "11-09-2001 1200";
+    public static final Appointment VALID_APPOINTMENT_THYROID_CHECK = new Appointment(new Name(VALID_TITLE_THYROID_CHECK),
+            new DateTime(VALID_DATETIME_THYROID_CHECK));
+    public static final Appointment VALID_APPOINTMENT_SLEEP_STUDY = new Appointment(new Name(VALID_TITLE_SLEEP_STUDY), new DateTime(VALID_DATETIME_SLEEP_STUDY));
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

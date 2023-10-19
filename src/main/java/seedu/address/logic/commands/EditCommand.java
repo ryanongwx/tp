@@ -111,7 +111,7 @@ public class EditCommand extends Command {
         Age updatedAge = editPersonDescriptor.getAge().orElse(personToEdit.getAge());
         BloodType updatedBloodType = editPersonDescriptor.getBloodType().orElse(personToEdit.getBloodType());
         Set<Allergy> updatedAllergies = editPersonDescriptor.getAllergies().orElse(personToEdit.getAllergies());
-        Boolean updatedisPinned = editPersonDescriptor.getIsPinned().orElse(personToEdit.isPinned());
+        Boolean updatedisPinned = personToEdit.isPinned();
         UniqueAppointmentList updatedAppointments = personToEdit.getAppointments();
 
         return new Person(updatedName, updatedEmail, updatedPhone, updatedGender,
@@ -154,7 +154,6 @@ public class EditCommand extends Command {
         private Age age;
         private BloodType bloodType;
         private Set<Allergy> allergies;
-        private Boolean isPinned;
 
         public EditPersonDescriptor() {}
 
@@ -170,7 +169,6 @@ public class EditCommand extends Command {
             setAge(toCopy.age);
             setBloodType(toCopy.bloodType);
             setAllergies(toCopy.allergies);
-            setIsPinned(toCopy.isPinned);
         }
 
         /**
@@ -180,70 +178,52 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, email, phone, gender, age, bloodType, allergies);
         }
 
-        public void setName(Name name) {
-            this.name = name;
-        }
-
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
-
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        
+        public void setName(Name name) {
+            this.name = name;
         }
 
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
         }
 
-        public void setGender(Gender gender) {
-            this.gender = gender;
+        public void setPhone(Phone phone) {
+            this.phone = phone;
+        }
+
+        public Optional<Email> getEmail() {
+            return Optional.ofNullable(email);
+        }
+        
+        public void setEmail(Email email) {
+            this.email = email;
         }
 
         public Optional<Gender> getGender() {
             return Optional.ofNullable(gender);
+        }
+        
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+
+        public Optional<Age> getAge() {
+            return Optional.ofNullable(age);
         }
 
         public void setAge(Age age) {
             this.age = age;
         }
 
-        public void setIsPinned(Boolean isPinned) {
-            this.isPinned = isPinned;
-        }
-
-        public Optional<Boolean> getIsPinned() {
-            return Optional.ofNullable(isPinned);
-        }
-
-
-
-        public Optional<Age> getAge() {
-            return Optional.ofNullable(age);
-        }
-
-        public void setBloodType(BloodType bloodType) {
-            this.bloodType = bloodType;
-        }
-
         public Optional<BloodType> getBloodType() {
             return Optional.ofNullable(bloodType);
         }
 
-        /**
-         * Sets {@code allergies} to this object's {@code tags}.
-         * A defensive copy of {@code allergies} is used internally.
-         */
-        public void setAllergies(Set<Allergy> allergies) {
-            this.allergies = (allergies != null) ? new HashSet<>(allergies) : null;
+        public void setBloodType(BloodType bloodType) {
+            this.bloodType = bloodType;
         }
 
         /**
@@ -253,6 +233,14 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Allergy>> getAllergies() {
             return (allergies != null) ? Optional.of(Collections.unmodifiableSet(allergies)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code allergies} to this object's {@code tags}.
+         * A defensive copy of {@code allergies} is used internally.
+         */
+        public void setAllergies(Set<Allergy> allergies) {
+            this.allergies = (allergies != null) ? new HashSet<>(allergies) : null;
         }
 
         @Override
@@ -286,7 +274,6 @@ public class EditCommand extends Command {
                     .add("age", age)
                     .add("bloodType", bloodType)
                     .add("allergies", allergies)
-                    .add("isPinned", isPinned)
                     .toString();
         }
     }

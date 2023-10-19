@@ -32,47 +32,57 @@ public class TypicalPersons {
             .withGender("F")
             .withAge(20)
             .withBloodType("AB+")
-            .withAllergies("Chocolate").withIsPinned(true).build();
+            .withAllergies("Chocolate")
+            .withIsPinned(true)
+            .withAppointments(TypicalAppointments.getTypicalAppointments()).build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com")
             .withPhone("98765432")
             .withGender("M")
             .withAge(15)
             .withBloodType("B-")
-            .withAllergies("Pollen", "Soil").build();
+            .withAllergies("Pollen", "Soil").
+            withIsPinned(false).
+            withAppointments(TypicalAppointments.getTypicalAppointments()).build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
             .withEmail("heinz@example.com")
             .withPhone("95352563")
             .withGender("M")
             .withAge(24)
             .withBloodType("AB-")
-            .withAllergies("Dogs").build();
+            .withAllergies("Dogs")
+            .withIsPinned(false).
+            withAppointments(TypicalAppointments.getTypicalAppointments()).build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
             .withEmail("cornelia@example.com")
             .withPhone("87652533")
             .withGender("M")
             .withAge(26)
             .withBloodType("AB+")
-            .withAllergies("Cats").build();
+            .withAllergies("Cats")
+            .withIsPinned(false).build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
             .withPhone("9482224")
             .withEmail("werner@example.com")
             .withGender("F")
             .withAge(27)
             .withBloodType("A-")
-            .withAllergies("Light").build();
+            .withAllergies("Light")
+            .withIsPinned(false).build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
             .withEmail("lydia@example.com")
             .withPhone("9482427")
             .withGender("F")
             .withAge(29)
-            .withBloodType("B+").build();
+            .withBloodType("B+")
+            .withIsPinned(false).build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best")
             .withEmail("anna@example.com")
             .withPhone("9482442")
             .withGender("M")
             .withAge(30)
-            .withBloodType("O+").build();
+            .withBloodType("O+")
+            .withIsPinned(false).build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier")
@@ -80,13 +90,15 @@ public class TypicalPersons {
             .withPhone("8482424")
             .withGender("M")
             .withAge(30)
-            .withBloodType("A+").build();
+            .withBloodType("A+")
+            .withIsPinned(true).build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller")
             .withEmail("hans@example.com")
             .withPhone("8482131")
             .withGender("M")
             .withAge(33)
-            .withBloodType("B+").build();
+            .withBloodType("B+")
+            .withIsPinned(false).build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY)
@@ -95,7 +107,8 @@ public class TypicalPersons {
             .withGender(VALID_GENDER_AMY)
             .withAge(VALID_AGE_AMY)
             .withBloodType(VALID_BLOODTYPE_AMY)
-            .withAllergies(VALID_ALLERGY_DUST).build();
+            .withAllergies(VALID_ALLERGY_DUST).
+            build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB)
             .withEmail(VALID_EMAIL_BOB)
             .withPhone(VALID_PHONE_BOB)

@@ -85,7 +85,7 @@ public class AddAppointmentCommand extends Command {
         }
 
         AddAppointmentCommand otherAddCommand = (AddAppointmentCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        return toAdd.equals(otherAddCommand.toAdd) && index.equals(otherAddCommand.index);
     }
 
     @Override

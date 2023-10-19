@@ -9,7 +9,13 @@
       "gender": "F",
       "age": 20,
       "allergies": ["Chocolate"],
-      "isPinned": true
+      "isPinned": true,
+      "appointments": [
+        {
+          "title": "Eye Exam",
+          "dateTime": "01-01-2001 1200"
+        }
+      ]
     },
     {
       "name": "Benson Meier",
@@ -19,7 +25,13 @@
       "gender": "M",
       "age": 15,
       "allergies": ["Pollen", "Soil"],
-      "isPinned": false
+      "isPinned": false,
+      "appointments": [
+        {
+          "title": "Vaccination",
+          "dateTime": "11-09-2001 1200"
+        }
+      ]
     },
     {
       "name": "Carl Kurz",
@@ -29,7 +41,13 @@
       "gender": "M",
       "age": 24,
       "allergies": ["Dogs"],
-      "isPinned": false
+      "isPinned": false,
+      "appointments": [
+        {
+          "title": "Colonoscopy",
+          "dateTime": "21-12-2001 1200"
+        }
+      ]
     },
     {
       "name": "Daniel Meier",
@@ -39,7 +57,8 @@
       "gender": "M",
       "age": 26,
       "allergies": ["Cats"],
-      "isPinned": false
+      "isPinned": false,
+      "appointments": []
     },
     {
       "name": "Elle Meyer",
@@ -49,7 +68,8 @@
       "gender": "F",
       "age": 27,
       "allergies": ["Light"],
-      "isPinned": false
+      "isPinned": false,
+      "appointments": []
     },
     {
       "name": "Fiona Kunz",
@@ -59,7 +79,8 @@
       "gender": "F",
       "age": 29,
       "allergies": [],
-      "isPinned": false
+      "isPinned": false,
+      "appointments": []
     },
     {
       "name": "George Best",
@@ -69,7 +90,8 @@
       "gender": "M",
       "age": 30,
       "allergies": [],
-      "isPinned": false
+      "isPinned": false,
+      "appointments": []
     }
   ]
 }

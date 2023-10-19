@@ -14,6 +14,8 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.appointment.Appointment;
+import seedu.address.model.person.appointment.DateTime;
 import seedu.address.model.person.appointment.UniqueAppointmentList;
 
 
@@ -25,7 +27,7 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Email("alexyeoh@example.com"), new Phone("87438807"),
                         new Gender("M"), new Age(12), new BloodType("A+"), getAllergySet("Peanuts"),
-                true, new UniqueAppointmentList()),
+                true, getAppointmentList(new Appointment(new Name("Eye Exam"), new DateTime("01-01-2001 1200")))),
             new Person(new Name("Bernice Yu"), new Email("berniceyu@example.com"), new Phone("99272758"),
                         new Gender("F"), new Age(31), new BloodType("B+"), getAllergySet("Dust", "Peanuts"),
                 false, new UniqueAppointmentList()),
@@ -53,7 +55,7 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns an allergy set containing the list of strings given.
      */
     public static Set<Allergy> getAllergySet(String... strings) {
         return Arrays.stream(strings)
@@ -61,4 +63,14 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns an appointment list containing the list of appointments given.
+     */
+    public static UniqueAppointmentList getAppointmentList(Appointment... appointments) {
+        UniqueAppointmentList appointmentList = new UniqueAppointmentList();
+        for (Appointment appointment : appointments) {
+            appointmentList.add(appointment);
+        }
+        return appointmentList;
+    }
 }

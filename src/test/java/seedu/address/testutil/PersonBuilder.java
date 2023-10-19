@@ -134,8 +134,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code appointments} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAppointments(UniqueAppointmentList appointments) {
-        this.appointments = appointments;
+    public PersonBuilder withAppointments(UniqueAppointmentList appointment) {
+        this.appointments = appointment;
         return this;
     }
 

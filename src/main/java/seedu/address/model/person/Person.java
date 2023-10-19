@@ -124,7 +124,8 @@ public class Person {
                 && age.equals(otherPerson.age)
                 && bloodType.equals(otherPerson.bloodType)
                 && allergies.equals(otherPerson.allergies)
-                && isPinned == otherPerson.isPinned;
+                && isPinned == otherPerson.isPinned
+                && appointments.equals(otherPerson.appointments);
     }
 
     @Override
