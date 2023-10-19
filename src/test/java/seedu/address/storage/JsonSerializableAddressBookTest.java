@@ -31,7 +31,6 @@ public class JsonSerializableAddressBookTest {
 
         System.out.println(addressBookFromFile);
         System.out.println(typicalPersonsAddressBook);
-        
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 

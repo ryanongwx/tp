@@ -5,12 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -52,9 +51,10 @@ public class CommandTestUtil {
     public static final String VALID_NAME_SLEEP_STUDY = "Sleep Study";
     public static final String VALID_DATETIME_THYROID_CHECK = "01-01-2001 1200";
     public static final String VALID_DATETIME_SLEEP_STUDY = "11-09-2001 1200";
-    public static final Appointment VALID_APPOINTMENT_THYROID_CHECK = new Appointment(new Name(VALID_NAME_THYROID_CHECK),
-            new DateTime(VALID_DATETIME_THYROID_CHECK));
-    public static final Appointment VALID_APPOINTMENT_SLEEP_STUDY = new Appointment(new Name(VALID_NAME_SLEEP_STUDY), new DateTime(VALID_DATETIME_SLEEP_STUDY));
+    public static final Appointment VALID_APPOINTMENT_THYROID_CHECK =
+            new Appointment(new Name(VALID_NAME_THYROID_CHECK), new DateTime(VALID_DATETIME_THYROID_CHECK));
+    public static final Appointment VALID_APPOINTMENT_SLEEP_STUDY = new Appointment(new Name(VALID_NAME_SLEEP_STUDY),
+            new DateTime(VALID_DATETIME_SLEEP_STUDY));
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -84,7 +84,8 @@ public class CommandTestUtil {
     public static final String INVALID_BLOODTYPE_DESC = " " + PREFIX_BLOODTYPE + "G"; // 'G' not allowed in bloodtype
     public static final String INVALID_ALLERGY_DESC = " " + PREFIX_ALLERGIES + "Peanuts*";
 
-    public static final String INVALID_DATETIME_DESC = " " + PREFIX_DATE + "11/1/01 1200"; // date must be in the format dd-mm-yyyy
+    public static final String INVALID_DATETIME_DESC = " " + PREFIX_DATE
+            + "11/1/01 1200"; // date must be in the format dd-mm-yyyy
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

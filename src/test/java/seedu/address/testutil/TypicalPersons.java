@@ -41,9 +41,9 @@ public class TypicalPersons {
             .withGender("M")
             .withAge(15)
             .withBloodType("B-")
-            .withAllergies("Pollen", "Soil").
-            withIsPinned(false).
-            withAppointments(TypicalAppointments.getTypicalAppointments()).build();
+            .withAllergies("Pollen", "Soil")
+            .withIsPinned(false)
+            .withAppointments(TypicalAppointments.getTypicalAppointments()).build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
             .withEmail("heinz@example.com")
             .withPhone("95352563")
@@ -51,8 +51,8 @@ public class TypicalPersons {
             .withAge(24)
             .withBloodType("AB-")
             .withAllergies("Dogs")
-            .withIsPinned(false).
-            withAppointments(TypicalAppointments.getTypicalAppointments()).build();
+            .withIsPinned(false)
+            .withAppointments(TypicalAppointments.getTypicalAppointments()).build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
             .withEmail("cornelia@example.com")
             .withPhone("87652533")
@@ -107,8 +107,8 @@ public class TypicalPersons {
             .withGender(VALID_GENDER_AMY)
             .withAge(VALID_AGE_AMY)
             .withBloodType(VALID_BLOODTYPE_AMY)
-            .withAllergies(VALID_ALLERGY_DUST).
-            build();
+            .withAllergies(VALID_ALLERGY_DUST)
+            .build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB)
             .withEmail(VALID_EMAIL_BOB)
             .withPhone(VALID_PHONE_BOB)

@@ -57,7 +57,6 @@ public class AddAppointmentCommandTest {
         assertCommandSuccess(addAppointmentCommand, model, expectedMessage, expectedModel);
     }
 
-    
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Appointment validAppointment = new AppointmentBuilder().build();
@@ -70,7 +69,6 @@ public class AddAppointmentCommandTest {
     @Test
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        
         Appointment validAppointment = new AppointmentBuilder().withName(VALID_NAME_THYROID_CHECK).build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, validAppointment);
 
@@ -107,7 +105,8 @@ public class AddAppointmentCommandTest {
 
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
-        Appointment appointment = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()).getAppointments().asUnmodifiableObservableList().get(0);
+        Appointment appointment = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
+                .getAppointments().asUnmodifiableObservableList().get(0);
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, appointment);
 
         assertCommandFailure(addAppointmentCommand, model, AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT);

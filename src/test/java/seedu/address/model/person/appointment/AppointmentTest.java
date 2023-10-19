@@ -26,7 +26,8 @@ public class AppointmentTest {
         assertFalse(EYE_EXAM.equals(editedEyeExam));
 
         // name differs in case, same date -> returns false
-        Appointment editedSleepStudy = new AppointmentBuilder(SLEEP_STUDY).withName(VALID_NAME_SLEEP_STUDY.toLowerCase()).build();
+        Appointment editedSleepStudy = new AppointmentBuilder(SLEEP_STUDY).withName(VALID_NAME_SLEEP_STUDY
+                .toLowerCase()).build();
         assertFalse(SLEEP_STUDY.equals(editedSleepStudy));
 
         // name has trailing spaces, all other attributes same -> returns false

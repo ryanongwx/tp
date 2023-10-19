@@ -21,10 +21,9 @@ import seedu.address.model.person.appointment.DateTime;
 
 public class AddAppointmentCommandParserTest {
 
-    private AddAppointmentCommandParser parser = new AddAppointmentCommandParser();
-
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE);
+    private AddAppointmentCommandParser parser = new AddAppointmentCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -40,25 +39,27 @@ public class AddAppointmentCommandParserTest {
 
     @Test
     public void parse_invalidPreamble_failure() {
-            // negative index
-            assertParseFailure(parser, "-5" + NAME_DESC_SLEEP_STUDY + DATETIME_DESC_SLEEP_STUDY,
+        // negative index
+        assertParseFailure(parser, "-5" + NAME_DESC_SLEEP_STUDY + DATETIME_DESC_SLEEP_STUDY,
                             MESSAGE_INVALID_FORMAT);
 
-            // zero index
-            assertParseFailure(parser, "0" + NAME_DESC_SLEEP_STUDY + DATETIME_DESC_SLEEP_STUDY,
+        // zero index
+        assertParseFailure(parser, "0" + NAME_DESC_SLEEP_STUDY + DATETIME_DESC_SLEEP_STUDY,
                             MESSAGE_INVALID_FORMAT);
 
-            // invalid arguments being parsed as preamble
-            assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        // invalid arguments being parsed as preamble
+        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
 
-            // invalid prefix being parsed as preamble
-            assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        // invalid prefix being parsed as preamble
+        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-         assertParseFailure(parser, "1" + INVALID_NAME_DESC + DATETIME_DESC_SLEEP_STUDY, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + NAME_DESC_SLEEP_STUDY + INVALID_DATETIME_DESC, DateTime.MESSAGE_CONSTRAINTS); // invalid datetime
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + DATETIME_DESC_SLEEP_STUDY,
+                Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1" + NAME_DESC_SLEEP_STUDY + INVALID_DATETIME_DESC,
+                DateTime.MESSAGE_CONSTRAINTS); // invalid datetime
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_DATETIME_DESC,
@@ -71,11 +72,10 @@ public class AddAppointmentCommandParserTest {
         String userInput = targetIndex.getOneBased() + NAME_DESC_SLEEP_STUDY + DATETIME_DESC_SLEEP_STUDY;
 
         Appointment appointment = new Appointment(new Name(VALID_NAME_SLEEP_STUDY),
-                        new DateTime(VALID_DATETIME_SLEEP_STUDY));
-        
+                new DateTime(VALID_DATETIME_SLEEP_STUDY));
+
         AddAppointmentCommand expectedCommand = new AddAppointmentCommand(targetIndex, appointment);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
-    
 }

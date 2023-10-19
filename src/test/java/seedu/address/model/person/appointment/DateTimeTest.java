@@ -41,21 +41,21 @@ public class DateTimeTest {
 
     @Test
     public void equals() {
-        DateTime DateTime = new DateTime("21-10-2001 1900");
+        DateTime dateTime = new DateTime("21-10-2001 1900");
 
         // same values -> returns true
-        assertTrue(DateTime.equals(new DateTime("21-10-2001 1900")));
+        assertTrue(dateTime.equals(new DateTime("21-10-2001 1900")));
 
         // same object -> returns true
-        assertTrue(DateTime.equals(DateTime));
+        assertTrue(dateTime.equals(dateTime));
 
         // null -> returns false
-        assertFalse(DateTime.equals(null));
+        assertFalse(dateTime.equals(null));
 
         // different types -> returns false
-        assertFalse(DateTime.equals(5.0f));
+        assertFalse(dateTime.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(DateTime.equals(new DateTime("22-10-2001 1900")));
+        assertFalse(dateTime.equals(new DateTime("22-10-2001 1900")));
     }
 }

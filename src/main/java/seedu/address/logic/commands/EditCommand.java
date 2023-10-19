@@ -181,7 +181,7 @@ public class EditCommand extends Command {
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
-        
+
         public void setName(Name name) {
             this.name = name;
         }
@@ -197,7 +197,7 @@ public class EditCommand extends Command {
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
         }
-        
+
         public void setEmail(Email email) {
             this.email = email;
         }
@@ -205,7 +205,7 @@ public class EditCommand extends Command {
         public Optional<Gender> getGender() {
             return Optional.ofNullable(gender);
         }
-        
+
         public void setGender(Gender gender) {
             this.gender = gender;
         }

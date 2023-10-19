@@ -13,17 +13,17 @@ public class AppointmentUtil {
     /**
      * Returns an add command string for adding the {@code Appointment}.
      */
-    public static String getAddAppointmentCommand(Appointment Appointment) {
-        return AddAppointmentCommand.COMMAND_WORD + " 1 " + getAppointmentDetails(Appointment);
+    public static String getAddAppointmentCommand(Appointment appointment) {
+        return AddAppointmentCommand.COMMAND_WORD + " 1 " + getAppointmentDetails(appointment);
     }
 
     /**
      * Returns the part of command string for the given {@code Appointment}'s details.
      */
-    public static String getAppointmentDetails(Appointment Appointment) {
+    public static String getAppointmentDetails(Appointment appointment) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + Appointment.getName().fullName + " ");
-        sb.append(PREFIX_DATE + Appointment.getDateTime().toString());
+        sb.append(PREFIX_NAME + appointment.getName().fullName + " ");
+        sb.append(PREFIX_DATE + appointment.getDateTime().toString());
         return sb.toString();
     }
 }

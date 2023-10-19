@@ -30,9 +30,7 @@ public class TypicalAppointments {
             .withDateTime(VALID_DATETIME_SLEEP_STUDY).build();
     public static final Appointment THYROID_CHECK = new AppointmentBuilder().withName(VALID_NAME_THYROID_CHECK)
                     .withDateTime(VALID_DATETIME_THYROID_CHECK).build();
- 
     private TypicalAppointments() {} // prevents instantiation
-
     public static UniqueAppointmentList getTypicalAppointments() {
         UniqueAppointmentList ab = new UniqueAppointmentList();
         ab.add(EYE_EXAM);
@@ -40,6 +38,4 @@ public class TypicalAppointments {
         ab.add(COLONOSCOPY);
         return ab;
     }
-
-    
 }

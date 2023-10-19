@@ -59,7 +59,8 @@ public class UniqueAppointmentListTest {
 
     @Test
     public void setAppointment_targetAppointmentNotInList_throwsappointmentNotFoundException() {
-        assertThrows(AppointmentNotFoundException.class, () -> uniqueAppointmentList.setAppointment(EYE_EXAM, EYE_EXAM));
+        assertThrows(AppointmentNotFoundException.class, () -> uniqueAppointmentList
+                .setAppointment(EYE_EXAM, EYE_EXAM));
     }
 
     @Test
@@ -76,7 +77,8 @@ public class UniqueAppointmentListTest {
     public void setAppointment_editedAppointmentHasNonUniqueIdentity_throwsDuplicateappointmentException() {
         uniqueAppointmentList.add(EYE_EXAM);
         uniqueAppointmentList.add(SLEEP_STUDY);
-        assertThrows(DuplicateAppointmentException.class, () -> uniqueAppointmentList.setAppointment(EYE_EXAM, SLEEP_STUDY));
+        assertThrows(DuplicateAppointmentException.class, () ->
+                uniqueAppointmentList.setAppointment(EYE_EXAM, SLEEP_STUDY));
     }
 
     @Test
@@ -99,7 +101,8 @@ public class UniqueAppointmentListTest {
 
     @Test
     public void setAppointments_nullUniqueAppointmentList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueAppointmentList.setAppointments((UniqueAppointmentList) null));
+        assertThrows(NullPointerException.class, () ->
+                uniqueAppointmentList.setAppointments((UniqueAppointmentList) null));
     }
 
     @Test
@@ -129,7 +132,8 @@ public class UniqueAppointmentListTest {
     @Test
     public void setappointments_listWithDuplicateappointments_throwsDuplicateappointmentException() {
         List<Appointment> listWithDuplicateappointments = Arrays.asList(EYE_EXAM, EYE_EXAM);
-        assertThrows(DuplicateAppointmentException.class, () -> uniqueAppointmentList.setAppointments(listWithDuplicateappointments));
+        assertThrows(DuplicateAppointmentException.class, () ->
+                uniqueAppointmentList.setAppointments(listWithDuplicateappointments));
     }
 
     @Test
