@@ -109,11 +109,11 @@ Expected outputs on failure:
 * **Messages:** “Failed to add patient record. The patient does not exist”
 
 
-### Listing all persons : `view`
+### Listing all persons : `list`
 
 Shows a list of all patients in the Medbook.
 
-Format: `view`
+Format: `list`
 
 ### View patient detail
 
@@ -236,7 +236,7 @@ _Details coming soon ..._
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`|
 | **List**   | `list`|
 | **Edit**   | `editdetail [patient ID/detail field/updated patient details]`<br> e.g.,`editdetail 1/email/johndoe_updated@gmail.com`|
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`|
+| **search**   | `search KEYWORDS]`<br> e.g., `find James Jake`|
 | **Delete** | `delete [patientId]`<br> e.g., `delete 3`|
 | **Pin**    | `pin [patientId]`<br> e.g., `pin 2`|
 | **Clear**  | `clear`|

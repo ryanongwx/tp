@@ -35,11 +35,15 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
-    @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private Label age;
+    @FXML
+    private FlowPane allergies;
+    @FXML
+    private Label gender;
+    @FXML
+    private Label bloodType;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -50,10 +54,13 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
+        age.setText(String.valueOf(person.getAge().age));
+        gender.setText(person.getGender().gender);
         email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        bloodType.setText(person.getBloodType().bloodType);
+
+        person.getAllergies().stream()
+                .sorted(Comparator.comparing(allergy -> allergy.allergy))
+                .forEach(allergy -> allergies.getChildren().add(new Label(allergy.allergy + " ")));
     }
 }

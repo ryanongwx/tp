@@ -338,7 +338,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to view patients.
+1.  User requests to list patients.
 2.  Medbook shows a list of patients.
 
     Use case ends.
