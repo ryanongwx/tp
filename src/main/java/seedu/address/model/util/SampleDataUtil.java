@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,9 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.appointment.Appointment;
 import seedu.address.model.person.appointment.DateTime;
 import seedu.address.model.person.appointment.UniqueAppointmentList;
+import seedu.address.model.record.Condition;
+import seedu.address.model.record.Record;
+import seedu.address.model.record.UniqueRecordList;
 
 
 /**
@@ -64,13 +68,23 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns an appointment list containing the list of appointments given.
+     * Returns a list of conditions containing the list of strings given.
      */
+    public static List<Condition> getConditionList(String ... strings) {
+        return Arrays.stream(strings)
+                .map(Condition::new)
+                .collect(Collectors.toList());
+    }
+
+    public static UniqueRecordList getRecordList(Record... records) {
+        UniqueRecordList recordList = new UniqueRecordList();
+        recordList.setRecords(Arrays.asList(records));
+        return recordList;
+    }
+    
     public static UniqueAppointmentList getAppointmentList(Appointment... appointments) {
         UniqueAppointmentList appointmentList = new UniqueAppointmentList();
-        for (Appointment appointment : appointments) {
-            appointmentList.add(appointment);
-        }
+        appointmentList.setAppointments(Arrays.asList(appointments));
         return appointmentList;
     }
 }

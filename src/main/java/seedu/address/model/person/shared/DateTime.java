@@ -1,4 +1,4 @@
-package seedu.address.model.person.appointment;
+package seedu.address.model.person.shared;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -8,8 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * Represents an Appointment's date and time in the MedBook.
- * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
+ * Represents the date and time in which patient visits the doctor
  */
 public class DateTime {
     public static final String MESSAGE_CONSTRAINTS =
@@ -27,6 +26,16 @@ public class DateTime {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         this.dateTime = LocalDateTime.parse(dateTime, FORMATTER);
+    }
+
+    /**
+     * Constructs a {@code DateTime}.
+     *
+     * @param dateTime A valid date and time.
+     */
+    public DateTime(LocalDateTime dateTime) {
+        requireNonNull(dateTime);
+        this.dateTime = dateTime;
     }
 
     /**
@@ -65,4 +74,6 @@ public class DateTime {
     public String toString() {
         return dateTime.format(FORMATTER);
     }
+
+
 }

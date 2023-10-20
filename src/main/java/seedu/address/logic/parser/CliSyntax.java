@@ -14,4 +14,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_BLOODTYPE = new Prefix("bt/");
     public static final Prefix PREFIX_ALLERGIES = new Prefix("al/");
     public static final Prefix PREFIX_DATE = new Prefix("d/");
+    public static final Prefix PREFIX_CONDITION = new Prefix("c/");
 }

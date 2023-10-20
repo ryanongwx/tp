@@ -18,6 +18,8 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.record.UniqueRecordList;
+
 import seedu.address.model.person.appointment.Appointment;
 import seedu.address.model.person.appointment.UniqueAppointmentList;
 
@@ -35,6 +37,7 @@ class JsonAdaptedPerson {
     private final Integer age;
     private final String bloodType;
     private final List<JsonAdaptedAllergy> allergies = new ArrayList<>();
+    private final List<JsonAdaptedRecord> records = new ArrayList<>();
     private final Boolean isPinned;
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
 
@@ -46,8 +49,9 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("gender") String gender,
             @JsonProperty("age") Integer age, @JsonProperty("bloodType") String bloodType,
             @JsonProperty("allergies") List<JsonAdaptedAllergy> allergies,
-            @JsonProperty("isPinned") Boolean isPinned,
-            @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
+            @JsonProperty("records") List<JsonAdaptedRecord> records,
+            @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments, @JsonProperty("isPinned") Boolean isPinned) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -56,6 +60,9 @@ class JsonAdaptedPerson {
         this.bloodType = bloodType;
         if (allergies != null) {
             this.allergies.addAll(allergies);
+        }
+        if (records != null) {
+            this.records.addAll(records);
         }
         this.isPinned = isPinned;
         if (appointments != null) {
@@ -76,6 +83,10 @@ class JsonAdaptedPerson {
         allergies.addAll(source.getAllergies().stream()
                 .map(JsonAdaptedAllergy::new)
                 .collect(Collectors.toList()));
+        records.addAll(source.getRecords().asUnmodifiableObservableList()
+                .stream()
+                .map(JsonAdaptedRecord::new)
+                .collect(Collectors.toList()));
         isPinned = source.isPinned();
         appointments.addAll(source.getAppointments().asUnmodifiableObservableList().stream()
             .map(JsonAdaptedAppointment::new)
@@ -91,6 +102,11 @@ class JsonAdaptedPerson {
         final List<Allergy> allergiesList = new ArrayList<>();
         for (JsonAdaptedAllergy allergy : allergies) {
             allergiesList.add(allergy.toModelType());
+        }
+
+        final UniqueRecordList modelRecords = new UniqueRecordList();
+        for (JsonAdaptedRecord record : records) {
+            modelRecords.add(record.toModelType());
         }
 
         if (name == null) {
@@ -150,8 +166,8 @@ class JsonAdaptedPerson {
             modelAppointments.add(appointment);
         }
 
-        return new Person(modelName, modelEmail, modelPhone, modelGender, modelAge, modelBloodType, modelAllergies,
-                isPinned, modelAppointments);
-    }
 
+        return new Person(modelName, modelEmail, modelPhone, modelGender,
+                modelAge, modelBloodType, modelAllergies, modelRecords, isPinned, modelAppointments);
+    }
 }
