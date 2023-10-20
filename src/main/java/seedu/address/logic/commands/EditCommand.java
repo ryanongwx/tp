@@ -237,7 +237,7 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code allergies} to this object's {@code tags}.
+         * Sets {@code allergies} to this object's {@code allergies}.
          * A defensive copy of {@code allergies} is used internally.
          */
         public void setAllergies(Set<Allergy> allergies) {
