@@ -52,6 +52,11 @@ public class JsonAdaptedRecord {
      */
     public Record toModelType() throws IllegalValueException {
         final List<Condition> conditionsList = new ArrayList<>();
+        if (conditions == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Condition.class.getSimpleName()));
+        }
+
         for (JsonAdaptedCondition condition : conditions) {
             if (condition == null) {
                 throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

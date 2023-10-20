@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -11,9 +12,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalRecords.FEVER;
 import static seedu.address.testutil.TypicalRecords.SORE_THROAT_AND_COLD;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -107,6 +105,16 @@ public class AddRecordCommandTest {
         assertFalse(addRecordCommand1.equals(1));
         assertFalse(addRecordCommand1.equals(null));
         assertFalse(addRecordCommand1.equals(addRecordCommand3));
+
+    }
+
+    @Test
+    public void toStringMethod() {
+        AddRecordCommand addRecordCommand = new AddRecordCommand(INDEX_FIRST_PERSON, FEVER);
+        String expected = AddRecordCommand.class.getCanonicalName() + "{index=" + INDEX_FIRST_PERSON + ", "
+                + "record=" + FEVER + "}";
+
+        assertEquals(expected, addRecordCommand.toString());
 
     }
 }

@@ -20,7 +20,7 @@ public class ConditionTest {
     }
     @Test
     public void isValidCondtion_failure() {
-        String inValidCondition = "+";
+        String inValidCondition = "";
         assertFalse(Condition.isValidCondition(inValidCondition));
     }
 
