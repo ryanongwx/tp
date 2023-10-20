@@ -37,7 +37,8 @@ public class Person {
      * Constructs a Person
      */
     public Person(Name name, Email email, Phone phone, Gender gender, Age age,
-                  BloodType bloodType, Set<Allergy> allergies, UniqueRecordList records, UniqueAppointmentList appointments, boolean isPinned) {
+                  BloodType bloodType, Set<Allergy> allergies, UniqueRecordList records,
+                  UniqueAppointmentList appointments, boolean isPinned) {
         requireAllNonNull(name, phone, email, gender, age, allergies, isPinned, appointments);
         this.name = name;
         this.email = email;

@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.shared.DateTime;
 import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Allergy;
@@ -21,6 +20,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.record.Condition;
 import seedu.address.model.record.Record;
 import seedu.address.model.record.UniqueRecordList;
+import seedu.address.model.shared.DateTime;
 
 
 /**
@@ -31,7 +31,9 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Email("alexyeoh@example.com"), new Phone("87438807"),
                         new Gender("M"), new Age(12), new BloodType("A+"), getAllergySet("Peanuts"),
-                getRecordList(new Record(new DateTime("01-01-2001 1200"), getConditionList("Fever"))), getAppointmentList(new Appointment(new Name("Eye Exam"), new DateTime("01-01-2001 1200"))), true),
+                getRecordList(new Record(new DateTime("01-01-2001 1200"), getConditionList("Fever"))),
+                    getAppointmentList(new Appointment(new Name("Eye Exam"), new DateTime("01-01-2001 1200"))),
+                    true),
             new Person(new Name("Bernice Yu"), new Email("berniceyu@example.com"), new Phone("99272758"),
                         new Gender("F"), new Age(31), new BloodType("B+"), getAllergySet("Dust", "Peanuts"),
                 new UniqueRecordList(), new UniqueAppointmentList(), false),
@@ -81,7 +83,6 @@ public class SampleDataUtil {
         recordList.setRecords(Arrays.asList(records));
         return recordList;
     }
-    
     public static UniqueAppointmentList getAppointmentList(Appointment... appointments) {
         UniqueAppointmentList appointmentList = new UniqueAppointmentList();
         appointmentList.setAppointments(Arrays.asList(appointments));

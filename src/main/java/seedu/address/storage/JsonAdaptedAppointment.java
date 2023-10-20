@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.shared.DateTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.shared.DateTime;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -51,7 +51,8 @@ class JsonAdaptedAppointment {
         final Name modelname = new Name(name);
 
         if (dateTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DateTime.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DateTime.class.getSimpleName()));
         }
         if (!DateTime.isValidDateTime(dateTime)) {
             throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);

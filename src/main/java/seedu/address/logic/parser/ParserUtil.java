@@ -11,7 +11,6 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.shared.DateTime;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
@@ -20,6 +19,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.record.Condition;
+import seedu.address.model.shared.DateTime;
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */

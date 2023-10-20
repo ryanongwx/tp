@@ -49,7 +49,8 @@ class JsonAdaptedPerson {
             @JsonProperty("age") Integer age, @JsonProperty("bloodType") String bloodType,
             @JsonProperty("allergies") List<JsonAdaptedAllergy> allergies,
             @JsonProperty("records") List<JsonAdaptedRecord> records,
-            @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments, @JsonProperty("isPinned") Boolean isPinned) {
+            @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
+            @JsonProperty("isPinned") Boolean isPinned) {
 
         this.name = name;
         this.phone = phone;

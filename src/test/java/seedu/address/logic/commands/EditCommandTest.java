@@ -40,7 +40,7 @@ public class EditCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder().withRecords(personToEdit.getRecords())
-        .withAppointments(personToEdit.getAppointments()).withIsPinned(personToEdit.isPinned()).build();
+            .withAppointments(personToEdit.getAppointments()).withIsPinned(personToEdit.isPinned()).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);

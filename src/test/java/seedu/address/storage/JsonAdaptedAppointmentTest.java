@@ -8,8 +8,8 @@ import static seedu.address.testutil.TypicalAppointments.VACCINATION;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.shared.DateTime;
 import seedu.address.model.person.Name;
+import seedu.address.model.shared.DateTime;
 
 public class JsonAdaptedAppointmentTest {
     private static final String INVALID_NAME = "Sl@@p Study";
