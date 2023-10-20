@@ -11,6 +11,8 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.record.Record;
+import seedu.address.model.record.UniqueRecordList;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -33,6 +35,7 @@ public class PersonBuilder {
     private Age age;
     private BloodType bloodType;
     private Set<Allergy> allergies;
+    private UniqueRecordList records;
     private boolean isPinned;
 
     /**
@@ -46,6 +49,7 @@ public class PersonBuilder {
         age = new Age(DEFAULT_AGE);
         bloodType = new BloodType(DEFAULT_BLOODTYPE);
         allergies = new HashSet<>();
+        records = new UniqueRecordList();
         isPinned = false;
     }
 
@@ -60,6 +64,8 @@ public class PersonBuilder {
         age = personToCopy.getAge();
         bloodType = personToCopy.getBloodType();
         allergies = new HashSet<>(personToCopy.getAllergies());
+        records = new UniqueRecordList();
+        records.setRecords(personToCopy.getRecords());
         isPinned = personToCopy.isPinned();
     }
 
@@ -120,6 +126,22 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code records} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRecords(Record ... records) {
+        this.records = SampleDataUtil.getRecordList(records);
+        return this;
+    }
+
+    /**
+     * Sets the {@code records} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRecords(UniqueRecordList records) {
+        this.records = records;
+        return this;
+    }
+
+    /**
      * Sets the {@code isPinned} of the {@code Person} that we are building.
      */
     public PersonBuilder withIsPinned(boolean isPinned) {
@@ -129,6 +151,10 @@ public class PersonBuilder {
 
     public Person build() {
         return new Person(name, email, phone, gender, age, bloodType, allergies, isPinned);
+    }
+
+    public Person buildWithRecord() {
+        return new Person(name, email, phone, gender, age, bloodType, allergies, records, isPinned);
     }
 
 }
