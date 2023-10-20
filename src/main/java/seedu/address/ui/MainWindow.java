@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -35,7 +36,8 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private PinnedPersonListPanel pinnedPersonListPanel;
-
+    private RecordListPanel recordListPanel;
+    private PersonListPanel personBeingViewed;
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -47,6 +49,11 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane pinnedPersonListPanelPlaceholder;
+
+    @FXML
+    private StackPane personBeingViewedPanelPlaceholder;
+    @FXML
+    private StackPane recordListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -119,6 +126,9 @@ public class MainWindow extends UiPart<Stage> {
 
         pinnedPersonListPanel = new PinnedPersonListPanel(logic.getPinnedPersonList());
         pinnedPersonListPanelPlaceholder.getChildren().add(pinnedPersonListPanel.getRoot());
+
+        //recordListPanel = new RecordListPanel();
+        //recordListPanelPlaceholder.getChildren().add(recordListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
