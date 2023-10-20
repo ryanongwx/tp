@@ -53,7 +53,6 @@ public class PersonTest {
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSamePerson(editedBob));
     }
-
     @Test
     public void equals() {
         // same values -> returns true
@@ -100,7 +99,6 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withAllergies(VALID_ALLERGY_PEANUTS).build();
         assertFalse(ALICE.equals(editedAlice));
     }
-
     @Test
     public void toStringMethod() {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName()
@@ -110,6 +108,7 @@ public class PersonTest {
                 + ", age=" + ALICE.getAge()
                 + ", bloodType=" + ALICE.getBloodType()
                 + ", allergies=" + ALICE.getAllergies()
+                + ", records=" + ALICE.getRecords()
                 + ", isPinned=" + ALICE.isPinned()
                 + "}";
         assertEquals(expected, ALICE.toString());

@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -8,6 +9,9 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.record.Record;
+import seedu.address.model.record.UniqueRecordList;
+
 
 /**
  * Represents a Person in the address book.
@@ -23,6 +27,7 @@ public class Person {
     private final Age age;
     private final BloodType bloodType;
     private final Set<Allergy> allergies = new HashSet<>();
+    private final UniqueRecordList records = new UniqueRecordList();
     private boolean isPinned;
     /**
      * Every field must be present and not null.
@@ -37,6 +42,23 @@ public class Person {
         this.age = age;
         this.bloodType = bloodType;
         this.allergies.addAll(allergies);
+        this.isPinned = isPinned;
+    }
+
+    /**
+     * Constructs a Person object
+     */
+    public Person(Name name, Email email, Phone phone, Gender gender, Age age,
+                  BloodType bloodType, Set<Allergy> allergies, UniqueRecordList records, boolean isPinned) {
+        requireAllNonNull(name, phone, email, gender, age, allergies, records);
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.gender = gender;
+        this.age = age;
+        this.bloodType = bloodType;
+        this.allergies.addAll(allergies);
+        this.records.setRecords(records);
         this.isPinned = isPinned;
     }
 
@@ -72,10 +94,13 @@ public class Person {
         return Collections.unmodifiableSet(allergies);
     }
 
+    public UniqueRecordList getRecords() {
+        return this.records;
+    }
+
     public void setPinned(boolean pinned) {
         this.isPinned = pinned;
     }
-
 
     /**
      * Returns true if both persons have the same name.
@@ -88,6 +113,14 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Adds a record to the patient
+     */
+    public void addRecord(Record record) {
+        requireNonNull(record);
+        this.records.add(record);
     }
 
     /**
@@ -113,6 +146,7 @@ public class Person {
                 && age.equals(otherPerson.age)
                 && bloodType.equals(otherPerson.bloodType)
                 && allergies.equals(otherPerson.allergies)
+                && records.equals(otherPerson.records)
                 && isPinned == otherPerson.isPinned;
     }
 
@@ -132,6 +166,7 @@ public class Person {
                 .add("age", age)
                 .add("bloodType", bloodType)
                 .add("allergies", allergies)
+                .add("records", records)
                 .add("isPinned", isPinned)
                 .toString();
     }
