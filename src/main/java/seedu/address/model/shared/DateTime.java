@@ -1,20 +1,20 @@
-package seedu.address.model.record;
+package seedu.address.model.shared;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents the date and time in which patient visits the doctor
  */
 public class DateTime {
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should be in the form of 'ddMMyyyy HHmm";
+            "Date should be in the form of 'dd-MM-yyyy HHmm";
 
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("ddMMyyyy HHmm");
-    public static final String VALIDATION_REGEX = "\\d{8}\\s\\d{4}";
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
     public final LocalDateTime dateTime;
 
     /**
@@ -29,17 +29,15 @@ public class DateTime {
     }
 
     /**
-     * Constructs a {@code DateTime}.
-     *
-     * @param dateTime A valid date and time.
+     * Returns true if a given string is a valid date-time.
      */
-    public DateTime(LocalDateTime dateTime) {
-        requireNonNull(dateTime);
-        this.dateTime = dateTime;
-    }
-
     public static boolean isValidDateTime(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            LocalDateTime.parse(test, FORMATTER);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
     @Override
@@ -66,6 +64,4 @@ public class DateTime {
     public String toString() {
         return dateTime.format(FORMATTER);
     }
-
-
 }

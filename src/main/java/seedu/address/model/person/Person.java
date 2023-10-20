@@ -9,6 +9,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.record.Record;
 import seedu.address.model.record.UniqueRecordList;
 
@@ -28,29 +30,16 @@ public class Person {
     private final BloodType bloodType;
     private final Set<Allergy> allergies = new HashSet<>();
     private final UniqueRecordList records = new UniqueRecordList();
+    private final UniqueAppointmentList appointments = new UniqueAppointmentList();
     private boolean isPinned;
-    /**
-     * Every field must be present and not null.
-     */
-    public Person(Name name, Email email, Phone phone, Gender gender, Age age,
-                  BloodType bloodType, Set<Allergy> allergies, boolean isPinned) {
-        requireAllNonNull(name, phone, email, gender, age, allergies);
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.gender = gender;
-        this.age = age;
-        this.bloodType = bloodType;
-        this.allergies.addAll(allergies);
-        this.isPinned = isPinned;
-    }
 
     /**
-     * Constructs a Person object
+     * Constructs a Person
      */
     public Person(Name name, Email email, Phone phone, Gender gender, Age age,
-                  BloodType bloodType, Set<Allergy> allergies, UniqueRecordList records, boolean isPinned) {
-        requireAllNonNull(name, phone, email, gender, age, allergies, records);
+                  BloodType bloodType, Set<Allergy> allergies, UniqueRecordList records,
+                  UniqueAppointmentList appointments, boolean isPinned) {
+        requireAllNonNull(name, phone, email, gender, age, allergies, isPinned, appointments);
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -59,6 +48,7 @@ public class Person {
         this.bloodType = bloodType;
         this.allergies.addAll(allergies);
         this.records.setRecords(records);
+        this.appointments.setAppointments(appointments);
         this.isPinned = isPinned;
     }
 
@@ -98,8 +88,16 @@ public class Person {
         return this.records;
     }
 
-    public void setPinned(boolean pinned) {
-        this.isPinned = pinned;
+    public UniqueAppointmentList getAppointments() {
+        return this.appointments;
+    }
+
+    /**
+     * Returns true if the same appointment as {@code appointment} exists in the person.
+     */
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return appointments.contains(appointment);
     }
 
     /**
@@ -147,6 +145,7 @@ public class Person {
                 && bloodType.equals(otherPerson.bloodType)
                 && allergies.equals(otherPerson.allergies)
                 && records.equals(otherPerson.records)
+                && appointments.equals(otherPerson.appointments)
                 && isPinned == otherPerson.isPinned;
     }
 
@@ -168,7 +167,7 @@ public class Person {
                 .add("allergies", allergies)
                 .add("records", records)
                 .add("isPinned", isPinned)
+                .add("appointments", appointments)
                 .toString();
     }
-
 }

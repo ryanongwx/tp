@@ -19,7 +19,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.record.Condition;
-import seedu.address.model.record.DateTime;
+import seedu.address.model.shared.DateTime;
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
@@ -193,7 +193,7 @@ public class ParserUtil {
         requireNonNull(condition);
         String trimmedCondition = condition.trim();
         if (!Condition.isValidCondition(trimmedCondition)) {
-            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Condition.MESSAGE_CONSTRAINTS);
         }
         return new Condition(trimmedCondition);
     }
