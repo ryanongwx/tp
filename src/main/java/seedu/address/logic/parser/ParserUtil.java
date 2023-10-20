@@ -177,6 +177,9 @@ public class ParserUtil {
     public static DateTime parseDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
+        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
         return new DateTime(trimmedDateTime);
     }
 
@@ -186,10 +189,12 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code condition} is invalid.
      */
-    public static Condition parseCondition(String condition) {
+    public static Condition parseCondition(String condition) throws ParseException {
         requireNonNull(condition);
         String trimmedCondition = condition.trim();
-
+        if (!Condition.isValidCondition(trimmedCondition)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
         return new Condition(trimmedCondition);
     }
 

@@ -39,7 +39,8 @@ public class JsonAdaptedPersonTest {
             .map(JsonAdaptedAllergy::new)
             .collect(Collectors.toList());
 
-    private static final List<JsonAdaptedRecord> VALID_RECORDS = BENSON.getRecords().stream()
+    private static final List<JsonAdaptedRecord> VALID_RECORDS = BENSON.getRecords().asUnmodifiableObservableList()
+            .stream()
             .map(JsonAdaptedRecord::new)
             .collect(Collectors.toList());
 

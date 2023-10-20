@@ -4,7 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -14,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.record.Record;
+import seedu.address.model.record.UniqueRecordList;
 
 /**
  * Adds a record to a patient in the MedBook
@@ -54,7 +54,8 @@ public class AddRecordCommand extends Command {
         }
 
         Person personToAddRecord = lastShownList.get(index.getZeroBased());
-        List<Record> newRecords = new ArrayList<>(personToAddRecord.getRecords());
+        UniqueRecordList newRecords = new UniqueRecordList();
+        newRecords.setRecords(personToAddRecord.getRecords());
         newRecords.add(record);
         Person personWithAddedRecord = new Person(personToAddRecord.getName(), personToAddRecord.getEmail(),
                 personToAddRecord.getPhone(), personToAddRecord.getGender(), personToAddRecord.getAge(),

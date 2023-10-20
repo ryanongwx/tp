@@ -25,6 +25,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.record.Record;
+import seedu.address.model.record.UniqueRecordList;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddRecordCommandTest {
@@ -33,7 +34,7 @@ public class AddRecordCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person personToAddRecord = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
-        List<Record> records = new ArrayList<>();
+        UniqueRecordList records = new UniqueRecordList();
         for (Record record : personToAddRecord.getRecords()) {
             records.add(record);
         }
@@ -62,7 +63,7 @@ public class AddRecordCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToAddRecord = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        List<Record> records = new ArrayList<>();
+        UniqueRecordList records = new UniqueRecordList();
         for (Record record : personToAddRecord.getRecords()) {
             records.add(record);
         }

@@ -1,6 +1,7 @@
 package seedu.address.model.record;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a condition a patient. Recorded inside a Record object.
@@ -10,7 +11,9 @@ public class Condition {
     public static final String MESSAGE_CONSTRAINTS =
             "Condition should be alphamnumeric";
 
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String VALIDATION_REGEX1 = "\\w+\\s\\w+";
+    public static final String VALIDATION_REGEX2 = "\\w+";
+
 
     public final String condition;
 
@@ -21,7 +24,12 @@ public class Condition {
      */
     public Condition(String condition) {
         requireNonNull(condition);
+        checkArgument(isValidCondition(condition), MESSAGE_CONSTRAINTS);
         this.condition = condition;
+    }
+
+    public static boolean isValidCondition(String test) {
+        return test.matches(VALIDATION_REGEX1) || test.matches(VALIDATION_REGEX2);
     }
 
     @Override

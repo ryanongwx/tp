@@ -18,7 +18,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.record.Record;
+import seedu.address.model.record.UniqueRecordList;
 
 
 /**
@@ -77,7 +77,8 @@ class JsonAdaptedPerson {
         allergies.addAll(source.getAllergies().stream()
                 .map(JsonAdaptedAllergy::new)
                 .collect(Collectors.toList()));
-        records.addAll(source.getRecords().stream()
+        records.addAll(source.getRecords().asUnmodifiableObservableList()
+                .stream()
                 .map(JsonAdaptedRecord::new)
                 .collect(Collectors.toList()));
         isPinned = source.isPinned();
@@ -94,7 +95,7 @@ class JsonAdaptedPerson {
             allergiesList.add(allergy.toModelType());
         }
 
-        final List<Record> modelRecords = new ArrayList<>();
+        final UniqueRecordList modelRecords = new UniqueRecordList();
         for (JsonAdaptedRecord record : records) {
             modelRecords.add(record.toModelType());
         }

@@ -17,6 +17,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.record.Condition;
 import seedu.address.model.record.Record;
+import seedu.address.model.record.UniqueRecordList;
 
 
 /**
@@ -69,8 +70,10 @@ public class SampleDataUtil {
                 .collect(Collectors.toList());
     }
 
-    public static List<Record> getRecordList(Record ... records) {
-        return Arrays.asList(records);
+    public static UniqueRecordList getRecordList(Record ... records) {
+        UniqueRecordList recordList = new UniqueRecordList();
+        recordList.setRecords(Arrays.asList(records));
+        return recordList;
     }
 
 }

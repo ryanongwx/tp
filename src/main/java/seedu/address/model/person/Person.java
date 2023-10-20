@@ -3,15 +3,16 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.record.Record;
+import seedu.address.model.record.UniqueRecordList;
 
 
 /**
@@ -28,7 +29,7 @@ public class Person {
     private final Age age;
     private final BloodType bloodType;
     private final Set<Allergy> allergies = new HashSet<>();
-    private final List<Record> records = new ArrayList<>();
+    private final UniqueRecordList records = new UniqueRecordList();
     private boolean isPinned;
     /**
      * Every field must be present and not null.
@@ -50,7 +51,7 @@ public class Person {
      * Constructs a Person object
      */
     public Person(Name name, Email email, Phone phone, Gender gender, Age age,
-                  BloodType bloodType, Set<Allergy> allergies, List<Record> records, boolean isPinned) {
+                  BloodType bloodType, Set<Allergy> allergies, UniqueRecordList records, boolean isPinned) {
         requireAllNonNull(name, phone, email, gender, age, allergies, records);
         this.name = name;
         this.email = email;
@@ -59,7 +60,7 @@ public class Person {
         this.age = age;
         this.bloodType = bloodType;
         this.allergies.addAll(allergies);
-        this.records.addAll(records);
+        this.records.setRecords(records);
         this.isPinned = isPinned;
     }
 
@@ -95,12 +96,8 @@ public class Person {
         return Collections.unmodifiableSet(allergies);
     }
 
-    public List<Record> getRecords() {
-        return Collections.unmodifiableList(records);
-    }
-
-    public List<Record> getModifiableRecords() {
-        return records;
+    public UniqueRecordList getRecords() {
+        return this.records;
     }
 
     public void setPinned(boolean pinned) {

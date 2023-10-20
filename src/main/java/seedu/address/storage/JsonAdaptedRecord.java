@@ -1,7 +1,6 @@
 package seedu.address.storage;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,8 +18,7 @@ import seedu.address.model.record.Record;
  */
 public class JsonAdaptedRecord {
 
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("ddMMyyyy HHmm");
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Record's %s field is missing!";
     private final LocalDateTime dateTime;
     private final List<JsonAdaptedCondition> conditions = new ArrayList<>();
 
@@ -55,6 +53,10 @@ public class JsonAdaptedRecord {
     public Record toModelType() throws IllegalValueException {
         final List<Condition> conditionsList = new ArrayList<>();
         for (JsonAdaptedCondition condition : conditions) {
+            if (condition == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        Condition.class.getSimpleName()));
+            }
             conditionsList.add(condition.toModelType());
         }
 

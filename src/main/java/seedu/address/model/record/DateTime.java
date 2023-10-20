@@ -1,6 +1,7 @@
 package seedu.address.model.record;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -10,9 +11,10 @@ import java.time.format.DateTimeFormatter;
  */
 public class DateTime {
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should be in the form of 'dd-MM-yyyy HHmm";
+            "Date should be in the form of 'ddMMyyyy HHmm";
 
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("ddMMyyyy HHmm");
+    public static final String VALIDATION_REGEX = "\\d{8}\\s\\d{4}";
     public final LocalDateTime dateTime;
 
     /**
@@ -22,6 +24,7 @@ public class DateTime {
      */
     public DateTime(String dateTime) {
         requireNonNull(dateTime);
+        checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         this.dateTime = LocalDateTime.parse(dateTime, FORMATTER);
     }
 
@@ -33,6 +36,10 @@ public class DateTime {
     public DateTime(LocalDateTime dateTime) {
         requireNonNull(dateTime);
         this.dateTime = dateTime;
+    }
+
+    public static boolean isValidDateTime(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

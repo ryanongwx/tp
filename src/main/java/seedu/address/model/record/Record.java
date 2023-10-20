@@ -34,7 +34,6 @@ public class Record {
     public List<Condition> getConditions() {
         return Collections.unmodifiableList(conditions);
     }
-
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
