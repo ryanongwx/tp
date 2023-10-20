@@ -4,18 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.time.LocalDateTime;
-
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.shared.DateTime;
+import seedu.address.model.shared.DateTime;
 
 public class DateTimeTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new DateTime((String) null));
-        assertThrows(NullPointerException.class, () -> new DateTime((LocalDateTime) null));
+        assertThrows(NullPointerException.class, () -> new DateTime(null));
     }
     @Test
     public void constructor_invalidDateTime_throwsIllegalArgumentException() {
@@ -24,7 +21,7 @@ public class DateTimeTest {
     }
     @Test
     public void isValidDateTime_success() {
-        String validDateTime = "09092023 1800";
+        String validDateTime = "09-09-2023 1800";
         assertTrue(DateTime.isValidDateTime(validDateTime));
     }
     @Test

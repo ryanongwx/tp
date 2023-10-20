@@ -10,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
@@ -19,9 +21,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.record.UniqueRecordList;
-
-import seedu.address.model.person.appointment.Appointment;
-import seedu.address.model.person.appointment.UniqueAppointmentList;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -87,10 +86,10 @@ class JsonAdaptedPerson {
                 .stream()
                 .map(JsonAdaptedRecord::new)
                 .collect(Collectors.toList()));
-        isPinned = source.isPinned();
         appointments.addAll(source.getAppointments().asUnmodifiableObservableList().stream()
             .map(JsonAdaptedAppointment::new)
-            .collect(Collectors.toList()));
+                .collect(Collectors.toList()));
+        isPinned = source.isPinned();
     }
 
     /**
@@ -168,6 +167,6 @@ class JsonAdaptedPerson {
 
 
         return new Person(modelName, modelEmail, modelPhone, modelGender,
-                modelAge, modelBloodType, modelAllergies, modelRecords, isPinned, modelAppointments);
+                modelAge, modelBloodType, modelAllergies, modelRecords, modelAppointments, isPinned);
     }
 }

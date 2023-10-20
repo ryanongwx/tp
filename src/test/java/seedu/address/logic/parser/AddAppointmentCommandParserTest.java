@@ -15,9 +15,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddAppointmentCommand;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.shared.DateTime;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.appointment.Appointment;
-import seedu.address.model.person.appointment.DateTime;
 
 public class AddAppointmentCommandParserTest {
 

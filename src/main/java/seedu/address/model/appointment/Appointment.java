@@ -1,4 +1,4 @@
-package seedu.address.model.person.appointment;
+package seedu.address.model.appointment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Name;
+import seedu.address.model.shared.DateTime;
 
 /**
  * Represents an Appointment in the address book.

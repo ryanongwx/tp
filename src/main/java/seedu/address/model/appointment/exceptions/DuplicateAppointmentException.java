@@ -1,4 +1,4 @@
-package seedu.address.model.person.appointment.exceptions;
+package seedu.address.model.appointment.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Appointments (Appointments are considered

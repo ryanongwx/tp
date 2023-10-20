@@ -5,8 +5,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_THYROI
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_SLEEP_STUDY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_THYROID_CHECK;
 
-import seedu.address.model.person.appointment.Appointment;
-import seedu.address.model.person.appointment.UniqueAppointmentList;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.UniqueAppointmentList;
 /**
  * A utility class containing a list of {@code Appointment} objects to be used in tests.
  */

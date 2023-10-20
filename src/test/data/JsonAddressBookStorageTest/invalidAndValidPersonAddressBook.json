@@ -8,13 +8,19 @@
       "age": "18",
       "bloodType": "A+",
       "allergies": ["Peanuts"],
-      "isPinned": true,
+      "records": [
+        {
+          "dateTime": "01-01-2001 1200",
+          "conditions": ["Fever"]
+        }
+      ],
       "appointments": [
         {
           "name": "Eye Examination",
           "dateTime": "18-09-2023 1800"
         }
-      ]
+      ],
+      "isPinned": true
     },
     {
       "name": "Person With Invalid Phone Field",
@@ -24,13 +30,19 @@
       "age": "18",
       "bloodType": "A+",
       "allergies": ["Peanuts"],
-      "isPinned": true,
+      "records": [
+        {
+          "dateTime": "01-01-2001 1200",
+          "conditions": ["Fever"]
+        }
+      ],
       "appointments": [
         {
           "name": "Eye Examination",
           "dateTime": "18-09-2023 1800"
         }
-      ]
+      ],
+      "isPinned": true
     }
   ]
 }

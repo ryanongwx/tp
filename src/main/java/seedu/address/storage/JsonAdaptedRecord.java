@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,9 +8,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.shared.DateTime;
 import seedu.address.model.record.Condition;
 import seedu.address.model.record.Record;
+import seedu.address.model.shared.DateTime;
 
 /**
  * Jackson-friendly version of {@link Record}.
@@ -19,7 +18,7 @@ import seedu.address.model.record.Record;
 public class JsonAdaptedRecord {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Record's %s field is missing!";
-    private final LocalDateTime dateTime;
+    private final String dateTime;
     private final List<JsonAdaptedCondition> conditions = new ArrayList<>();
 
 
@@ -27,7 +26,7 @@ public class JsonAdaptedRecord {
      * Constructs a {@code JsonAdoptedRecord} with the given record details.
      */
     @JsonCreator
-    public JsonAdaptedRecord(@JsonProperty("dateTime") LocalDateTime dateTime,
+    public JsonAdaptedRecord(@JsonProperty("dateTime") String dateTime,
                              @JsonProperty("condition") List<JsonAdaptedCondition> conditions) {
         this.dateTime = dateTime;
         if (conditions != null) {
@@ -39,7 +38,7 @@ public class JsonAdaptedRecord {
      * Converts a given {@code Record} into this class for Jackson use.
      */
     public JsonAdaptedRecord(Record source) {
-        this.dateTime = source.getDateTime().dateTime;
+        this.dateTime = source.getDateTime().toString();
         this.conditions.addAll(source.getConditions().stream()
                 .map(JsonAdaptedCondition::new)
                 .collect(Collectors.toList()));
@@ -74,6 +73,5 @@ public class JsonAdaptedRecord {
 
         final List<Condition> modelConditions = new ArrayList<>(conditionsList);
         return new Record(modelDateTime, modelConditions);
-
     }
 }

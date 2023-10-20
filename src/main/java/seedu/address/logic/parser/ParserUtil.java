@@ -11,6 +11,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.shared.DateTime;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
@@ -18,7 +19,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.appointment.DateTime;
 import seedu.address.model.record.Condition;
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -193,7 +193,7 @@ public class ParserUtil {
         requireNonNull(condition);
         String trimmedCondition = condition.trim();
         if (!Condition.isValidCondition(trimmedCondition)) {
-            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Condition.MESSAGE_CONSTRAINTS);
         }
         return new Condition(trimmedCondition);
     }

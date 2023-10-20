@@ -20,7 +20,6 @@ import static seedu.address.testutil.TypicalAppointments.VACCINATION;
 import static seedu.address.testutil.TypicalRecords.ALLERGIC_REACTION;
 import static seedu.address.testutil.TypicalRecords.FEVER_AND_COLD;
 import static seedu.address.testutil.TypicalRecords.HEADACHE;
-import static seedu.address.testutil.TypicalRecords.SORE_THROAT_AND_COLD;
 import static seedu.address.testutil.TypicalRecords.STOMACHACHE;
 
 import java.util.ArrayList;
@@ -43,14 +42,14 @@ public class TypicalPersons {
             .withBloodType("AB+")
             .withAllergies("Chocolate")
             .withRecords(FEVER_AND_COLD, ALLERGIC_REACTION)
-            .withAppointments(EYE_EXAM).
-            .withIsPinned(true)build();
+            .withAppointments(EYE_EXAM)
+            .withIsPinned(true).build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com")
             .withPhone("98765432")
             .withGender("M")
             .withAge(15)
-                    .withBloodType("B-")
+            .withBloodType("B-")
             .withAllergies("Pollen", "Soil")
             .withRecords(HEADACHE, ALLERGIC_REACTION)
             .withAppointments(VACCINATION)
@@ -74,7 +73,6 @@ public class TypicalPersons {
             .withAge(26)
             .withBloodType("AB+")
             .withAllergies("Cats")
-            .withRecords(SORE_THROAT_AND_COLD)
             .withIsPinned(false).build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
             .withPhone("9482224")
@@ -82,16 +80,14 @@ public class TypicalPersons {
             .withGender("F")
             .withAge(27)
             .withBloodType("A-")
-            .withRecords(HEADACHE)
             .withAllergies("Light")
-            withIsPinned(false).build();
+            .withIsPinned(false).build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
             .withEmail("lydia@example.com")
             .withPhone("9482427")
             .withGender("F")
             .withAge(29)
             .withBloodType("B+")
-            .withRecords(HEADACHE)
             .withIsPinned(false).build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best")
             .withEmail("anna@example.com")
@@ -99,7 +95,6 @@ public class TypicalPersons {
             .withGender("M")
             .withAge(30)
             .withBloodType("O+")
-            .withRecords(HEADACHE)
             .withIsPinned(false).build();
 
     // Manually added
@@ -128,7 +123,6 @@ public class TypicalPersons {
             .withAge(VALID_AGE_AMY)
             .withBloodType(VALID_BLOODTYPE_AMY)
             .withAllergies(VALID_ALLERGY_DUST)
-            .withRecords(HEADACHE)
             .build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB)
             .withEmail(VALID_EMAIL_BOB)
@@ -137,7 +131,6 @@ public class TypicalPersons {
             .withAge(VALID_AGE_BOB)
             .withBloodType(VALID_BLOODTYPE_BOB)
             .withAllergies(VALID_ALLERGY_DUST, VALID_ALLERGY_PEANUTS)
-            .withRecords(HEADACHE)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

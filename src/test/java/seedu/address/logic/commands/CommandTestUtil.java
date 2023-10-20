@@ -20,11 +20,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.shared.DateTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.appointment.Appointment;
-import seedu.address.model.person.appointment.DateTime;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**

@@ -11,9 +11,9 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.appointment.Appointment;
-import seedu.address.model.person.appointment.UniqueAppointmentList;
 
 /**
  * Adds an appointment to the address book.
@@ -67,7 +67,7 @@ public class AddAppointmentCommand extends Command {
 
         Person newPerson = new Person(oldPerson.getName(), oldPerson.getEmail(), oldPerson.getPhone(),
                 oldPerson.getGender(), oldPerson.getAge(), oldPerson.getBloodType(), oldPerson.getAllergies(),
-                oldPerson.isPinned(), newAppointmentList);
+                oldPerson.getRecords(), newAppointmentList, oldPerson.isPinned());
 
         model.setPerson(oldPerson, newPerson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd, newPerson)));

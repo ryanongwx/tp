@@ -10,9 +10,9 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddRecordCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.shared.DateTime;
 import seedu.address.model.record.Condition;
 import seedu.address.model.record.Record;
+import seedu.address.model.shared.DateTime;
 
 /**
  * Parses a user input and creates a AddRecordCommand object

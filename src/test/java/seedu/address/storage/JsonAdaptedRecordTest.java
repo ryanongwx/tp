@@ -5,7 +5,6 @@ import static seedu.address.storage.JsonAdaptedRecord.MISSING_FIELD_MESSAGE_FORM
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRecords.FEVER;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,12 +12,12 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.shared.DateTime;
 import seedu.address.model.record.Condition;
+import seedu.address.model.shared.DateTime;
 
 public class JsonAdaptedRecordTest {
 
-    private static final LocalDateTime VALID_DATETIME = FEVER.getDateTime().dateTime;
+    private static final String VALID_DATETIME = FEVER.getDateTime().toString();
 
     private static final List<JsonAdaptedCondition> VALID_CONDITIONS = FEVER.getConditions()
             .stream()

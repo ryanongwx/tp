@@ -1,4 +1,4 @@
-package seedu.address.model.person.appointment;
+package seedu.address.model.appointment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalAppointments.SLEEP_STUDY;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.appointment.Appointment;
 import seedu.address.testutil.AppointmentBuilder;
 
 public class AppointmentTest {

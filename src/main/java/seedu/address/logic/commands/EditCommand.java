@@ -23,6 +23,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
@@ -31,7 +32,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.appointment.UniqueAppointmentList;
+import seedu.address.model.record.UniqueRecordList;
 
 
 /**
@@ -111,11 +112,12 @@ public class EditCommand extends Command {
         Age updatedAge = editPersonDescriptor.getAge().orElse(personToEdit.getAge());
         BloodType updatedBloodType = editPersonDescriptor.getBloodType().orElse(personToEdit.getBloodType());
         Set<Allergy> updatedAllergies = editPersonDescriptor.getAllergies().orElse(personToEdit.getAllergies());
-        Boolean updatedisPinned = personToEdit.isPinned();
+        UniqueRecordList updatedRecords = personToEdit.getRecords();
         UniqueAppointmentList updatedAppointments = personToEdit.getAppointments();
+        Boolean updatedisPinned = personToEdit.isPinned();
 
         return new Person(updatedName, updatedEmail, updatedPhone, updatedGender,
-                updatedAge, updatedBloodType, updatedAllergies, updatedisPinned, updatedAppointments);
+                updatedAge, updatedBloodType, updatedAllergies, updatedRecords, updatedAppointments, updatedisPinned);
     }
 
     @Override

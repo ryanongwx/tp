@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.shared.DateTime;
+import seedu.address.model.shared.DateTime;
 
 /**
  * Record of condition of a patient and date and time in which a patient visits the doctor

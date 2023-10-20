@@ -4,7 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
-import seedu.address.model.person.appointment.Appointment;
+import seedu.address.model.appointment.Appointment;
 /**
  * A utility class for Appointment.
  */
