@@ -10,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
@@ -19,7 +21,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.record.UniqueRecordList;
-
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -37,6 +38,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedAllergy> allergies = new ArrayList<>();
     private final List<JsonAdaptedRecord> records = new ArrayList<>();
     private final Boolean isPinned;
+    private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -47,6 +49,7 @@ class JsonAdaptedPerson {
             @JsonProperty("age") Integer age, @JsonProperty("bloodType") String bloodType,
             @JsonProperty("allergies") List<JsonAdaptedAllergy> allergies,
             @JsonProperty("records") List<JsonAdaptedRecord> records,
+            @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
             @JsonProperty("isPinned") Boolean isPinned) {
 
         this.name = name;
@@ -62,6 +65,9 @@ class JsonAdaptedPerson {
             this.records.addAll(records);
         }
         this.isPinned = isPinned;
+        if (appointments != null) {
+            this.appointments.addAll(appointments);
+        }
     }
 
     /**
@@ -80,6 +86,9 @@ class JsonAdaptedPerson {
         records.addAll(source.getRecords().asUnmodifiableObservableList()
                 .stream()
                 .map(JsonAdaptedRecord::new)
+                .collect(Collectors.toList()));
+        appointments.addAll(source.getAppointments().asUnmodifiableObservableList().stream()
+            .map(JsonAdaptedAppointment::new)
                 .collect(Collectors.toList()));
         isPinned = source.isPinned();
     }
@@ -151,7 +160,14 @@ class JsonAdaptedPerson {
 
         final Set<Allergy> modelAllergies = new HashSet<>(allergiesList);
 
+        final UniqueAppointmentList modelAppointments = new UniqueAppointmentList();
+        for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
+            Appointment appointment = jsonAdaptedAppointment.toModelType();
+            modelAppointments.add(appointment);
+        }
+
+
         return new Person(modelName, modelEmail, modelPhone, modelGender,
-                modelAge, modelBloodType, modelAllergies, modelRecords, isPinned);
+                modelAge, modelBloodType, modelAllergies, modelRecords, modelAppointments, isPinned);
     }
 }

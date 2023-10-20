@@ -22,15 +22,15 @@ public class AddRecordCommand extends Command {
 
     public static final String COMMAND_WORD = "addrecord";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient record to the address book. "
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient record to the address book.\n"
+            + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_DATE + "DATE "
             + PREFIX_CONDITION + "CONDITION " + "\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DATE + "18092023 1800"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_DATE + "18-09-2023 1800 "
             + PREFIX_CONDITION + "Fever";
 
-    public static final String MESSAGE_SUCCESS = "New record added";
+    public static final String MESSAGE_SUCCESS = "New record added: %1$s";
 
     private final Record record;
 
@@ -60,11 +60,11 @@ public class AddRecordCommand extends Command {
         Person personWithAddedRecord = new Person(personToAddRecord.getName(), personToAddRecord.getEmail(),
                 personToAddRecord.getPhone(), personToAddRecord.getGender(), personToAddRecord.getAge(),
                 personToAddRecord.getBloodType(), personToAddRecord.getAllergies(),
-                newRecords, personToAddRecord.isPinned());
+                newRecords, personToAddRecord.getAppointments(), personToAddRecord.isPinned());
 
         model.setPerson(personToAddRecord, personWithAddedRecord);
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(record, personWithAddedRecord)));
     }
 
     @Override

@@ -9,6 +9,22 @@
       "gender": "F",
       "age": 20,
       "allergies": ["Chocolate"],
+      "records": [
+        {
+          "dateTime": "09-09-2023 1800",
+          "conditions": ["Fever", "Cold"]
+        },
+        {
+          "dateTime": "23-10-2022 1130",
+          "conditions": ["Allergic Reaction"]
+        }
+      ],
+      "appointments": [
+        {
+          "name": "Eye Exam",
+          "dateTime": "01-01-2001 1200"
+        }
+      ],
       "isPinned": true
     },
     {
@@ -19,6 +35,22 @@
       "gender": "M",
       "age": 15,
       "allergies": ["Pollen", "Soil"],
+      "records": [
+        {
+          "dateTime": "24-12-2023 1200",
+          "conditions": ["Headache"]
+        },
+        {
+          "dateTime": "23-10-2022 1130",
+          "conditions": ["Allergic Reaction"]
+        }
+      ],
+      "appointments": [
+        {
+          "name": "Vaccination",
+          "dateTime": "11-09-2001 1200"
+        }
+      ],
       "isPinned": false
     },
     {
@@ -29,6 +61,18 @@
       "gender": "M",
       "age": 24,
       "allergies": ["Dogs"],
+      "records": [
+        {
+          "dateTime": "20-03-2023 1500",
+          "conditions": ["Stomachache"]
+        }
+      ],
+      "appointments": [
+        {
+          "name": "Colonoscopy",
+          "dateTime": "21-12-2001 1200"
+        }
+      ],
       "isPinned": false
     },
     {
@@ -39,6 +83,8 @@
       "gender": "M",
       "age": 26,
       "allergies": ["Cats"],
+      "records": [],
+      "appointments": [],
       "isPinned": false
     },
     {
@@ -49,6 +95,8 @@
       "gender": "F",
       "age": 27,
       "allergies": ["Light"],
+      "records": [],
+      "appointments": [],
       "isPinned": false
     },
     {
@@ -59,6 +107,8 @@
       "gender": "F",
       "age": 29,
       "allergies": [],
+      "records": [],
+      "appointments": [],
       "isPinned": false
     },
     {
@@ -69,6 +119,8 @@
       "gender": "M",
       "age": 30,
       "allergies": [],
+      "records": [],
+      "appointments": [],
       "isPinned": false
     }
   ]
