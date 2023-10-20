@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.record.Condition;
-import seedu.address.model.record.DateTime;
 import seedu.address.model.record.Record;
+import seedu.address.model.shared.DateTime;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -22,7 +22,7 @@ public class RecordBuilder {
      */
     public RecordBuilder() {
         conditions = new ArrayList<>();
-        dateTime = new DateTime("09102023 1800");
+        dateTime = new DateTime("09-10-2023 1800");
     }
 
     /**

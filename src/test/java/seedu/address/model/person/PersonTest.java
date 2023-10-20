@@ -110,6 +110,7 @@ public class PersonTest {
                 + ", allergies=" + ALICE.getAllergies()
                 + ", records=" + ALICE.getRecords()
                 + ", isPinned=" + ALICE.isPinned()
+                + ", appointments=" + ALICE.getAppointments()
                 + "}";
         assertEquals(expected, ALICE.toString());
     }

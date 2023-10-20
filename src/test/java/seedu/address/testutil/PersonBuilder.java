@@ -3,6 +3,8 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
@@ -36,6 +38,7 @@ public class PersonBuilder {
     private BloodType bloodType;
     private Set<Allergy> allergies;
     private UniqueRecordList records;
+    private UniqueAppointmentList appointments;
     private boolean isPinned;
 
     /**
@@ -50,6 +53,7 @@ public class PersonBuilder {
         bloodType = new BloodType(DEFAULT_BLOODTYPE);
         allergies = new HashSet<>();
         records = new UniqueRecordList();
+        appointments = new UniqueAppointmentList();
         isPinned = false;
     }
 
@@ -66,6 +70,8 @@ public class PersonBuilder {
         allergies = new HashSet<>(personToCopy.getAllergies());
         records = new UniqueRecordList();
         records.setRecords(personToCopy.getRecords());
+        appointments = new UniqueAppointmentList();
+        appointments.setAppointments(personToCopy.getAppointments());;
         isPinned = personToCopy.isPinned();
     }
 
@@ -149,12 +155,23 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code appointments} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAppointments(UniqueAppointmentList appointment) {
+        this.appointments = appointment;
+        return this;
+    }
+
+    /**
+     * Sets the {@code appointments} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAppointments(Appointment ... appointments) {
+        this.appointments = SampleDataUtil.getAppointmentList(appointments);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, email, phone, gender, age, bloodType, allergies, isPinned);
+        return new Person(name, email, phone, gender, age, bloodType, allergies, records, appointments, isPinned);
     }
-
-    public Person buildWithRecord() {
-        return new Person(name, email, phone, gender, age, bloodType, allergies, records, isPinned);
-    }
-
 }

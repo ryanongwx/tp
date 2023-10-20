@@ -54,8 +54,6 @@ public class Condition {
 
     @Override
     public String toString() {
-        return "[" + condition + "]";
+        return condition;
     }
-
-
 }

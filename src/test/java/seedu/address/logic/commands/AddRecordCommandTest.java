@@ -22,7 +22,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.record.Record;
 import seedu.address.model.record.UniqueRecordList;
 import seedu.address.testutil.PersonBuilder;
 
@@ -33,15 +32,14 @@ public class AddRecordCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         Person personToAddRecord = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
         UniqueRecordList records = new UniqueRecordList();
-        for (Record record : personToAddRecord.getRecords()) {
-            records.add(record);
-        }
+        records.setRecords(personToAddRecord.getRecords());
         records.add(FEVER);
 
-        Person personWithAddedRecord = new PersonBuilder(personToAddRecord).withRecords(records).buildWithRecord();
+        Person personWithAddedRecord = new PersonBuilder(personToAddRecord).withRecords(records).build();
         AddRecordCommand addRecordCommand = new AddRecordCommand(INDEX_THIRD_PERSON, FEVER);
 
-        String expectedMessage = AddRecordCommand.MESSAGE_SUCCESS;
+        String expectedMessage = String.format(AddRecordCommand.MESSAGE_SUCCESS,
+                Messages.format(FEVER, personWithAddedRecord));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(2), personWithAddedRecord);
@@ -62,15 +60,14 @@ public class AddRecordCommandTest {
 
         Person personToAddRecord = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         UniqueRecordList records = new UniqueRecordList();
-        for (Record record : personToAddRecord.getRecords()) {
-            records.add(record);
-        }
+        records.setRecords(personToAddRecord.getRecords());
         records.add(FEVER);
 
-        Person personWithAddedRecord = new PersonBuilder(personToAddRecord).withRecords(records).buildWithRecord();
+        Person personWithAddedRecord = new PersonBuilder(personToAddRecord).withRecords(records).build();
         AddRecordCommand addRecordCommand = new AddRecordCommand(INDEX_FIRST_PERSON, FEVER);
 
-        String expectedMessage = AddRecordCommand.MESSAGE_SUCCESS;
+        String expectedMessage = String.format(AddRecordCommand.MESSAGE_SUCCESS,
+                Messages.format(FEVER, personWithAddedRecord));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
