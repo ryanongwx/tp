@@ -1,35 +1,43 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Person;
 import seedu.address.model.record.Condition;
 import seedu.address.model.record.Record;
 import seedu.address.model.record.UniqueRecordList;
 import seedu.address.model.shared.DateTime;
 
-import java.util.*;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
+/**
+ * Edits the details of an existing record of a Person in the address book.
+ */
 public class EditRecordCommand extends Command {
 
     public static final String COMMAND_WORD = "editrecord";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a patient's record in the address book. "
-            + "by the patient's index number and the record's index number used in the displayed person list."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a patient's record in the address book "
+            + "by the patient's index number and the record's index number.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: PATIENT'S INDEX/RECORD INDEX (both must be a positive integer) "
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_CONDITION + "CONDITION] " + "\n"
             + "Example: " + COMMAND_WORD + " 1/2 "
-            + PREFIX_DATE + "21092023 1800"
+            + PREFIX_DATE + "21092023 1800 "
             + PREFIX_CONDITION + "Cold";
 
     public static final String MESSAGE_EDIT_RECORD_SUCCESS = "Edited record: %1$s";
@@ -45,7 +53,8 @@ public class EditRecordCommand extends Command {
      * @param recordIndex index of the record of the targeted patient
      * @param editRecordDescriptor details to edit the record with
      */
-    public EditRecordCommand(Index patientIndex, Index recordIndex, EditRecordCommand.EditRecordDescriptor editRecordDescriptor) {
+    public EditRecordCommand(Index patientIndex, Index recordIndex,
+                             EditRecordCommand.EditRecordDescriptor editRecordDescriptor) {
         requireNonNull(patientIndex);
         requireNonNull(recordIndex);
         requireNonNull(editRecordDescriptor);
@@ -68,6 +77,7 @@ public class EditRecordCommand extends Command {
 
         UniqueRecordList uniqueRecordList = personToEdit.getRecords();
         List<Record> lastShownRecordList = uniqueRecordList.getRecordList();
+
         if (recordIndex.getZeroBased() >= lastShownRecordList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_RECORD_DISPLAYED_INDEX);
         }
@@ -81,6 +91,11 @@ public class EditRecordCommand extends Command {
 
         uniqueRecordList.setRecord(recordToEdit, editedRecord);
         Person editedPerson = createdEditedPerson(personToEdit, uniqueRecordList);
+
+        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+            throw new CommandException(EditCommand.MESSAGE_DUPLICATE_PERSON);
+        }
+
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_RECORD_SUCCESS,
@@ -91,7 +106,8 @@ public class EditRecordCommand extends Command {
      * Creates and returns a {@code Record} with the details of {@code recordToEdit}
      * edited with {@code editRecordDescriptor}.
      */
-    private static Record createEditedRecord(Record recordToEdit, EditRecordCommand.EditRecordDescriptor editRecordDescriptor) {
+    private static Record createEditedRecord(Record recordToEdit,
+                                             EditRecordCommand.EditRecordDescriptor editRecordDescriptor) {
         assert recordToEdit != null;
 
         DateTime updatedDateTime = editRecordDescriptor.getDateTime().orElse(recordToEdit.getDateTime());
@@ -199,7 +215,8 @@ public class EditRecordCommand extends Command {
                 return false;
             }
 
-            EditRecordCommand.EditRecordDescriptor otherEditRecordDescriptor = (EditRecordCommand.EditRecordDescriptor) other;
+            EditRecordCommand.EditRecordDescriptor otherEditRecordDescriptor =
+                    (EditRecordCommand.EditRecordDescriptor) other;
             return Objects.equals(dateTime, otherEditRecordDescriptor.dateTime)
                     && Objects.equals(conditions, otherEditRecordDescriptor.conditions);
         }

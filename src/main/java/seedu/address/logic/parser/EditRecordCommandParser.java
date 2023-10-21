@@ -1,16 +1,20 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditRecordCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.record.Condition;
-
-import java.util.*;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Parses input arguments and creates a new EditRecordCommand object
@@ -35,17 +39,18 @@ public class EditRecordCommandParser implements Parser<EditRecordCommand> {
             patientIndex = ParserUtil.parsePatientIndex(preamble);
             recordIndex = ParserUtil.parseRecordIndex(preamble);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditRecordCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DATE, PREFIX_CONDITION);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DATE);
 
         EditRecordCommand.EditRecordDescriptor editRecordDescriptor = new EditRecordCommand.EditRecordDescriptor();
 
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             editRecordDescriptor.setDateTime(ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATE).get()));
         }
-        parseConditionsForEdit(argMultimap.getAllValues(PREFIX_CONDITION)).ifPresent(editRecordDescriptor::setConditions);
+        parseConditionsForEdit(argMultimap.getAllValues(PREFIX_CONDITION))
+                .ifPresent(editRecordDescriptor::setConditions);
 
         if (!editRecordDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -67,6 +72,6 @@ public class EditRecordCommandParser implements Parser<EditRecordCommand> {
         }
         Collection<String> conditionSet = conditions.size() == 1
                 && conditions.contains("") ? Collections.emptySet() : conditions;
-        return Optional.of(ParserUtil.parseConditions(conditions));
+        return Optional.of(ParserUtil.parseConditions(conditionSet));
     }
 }
