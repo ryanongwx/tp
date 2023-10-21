@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -19,8 +20,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.shared.DateTime;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -43,6 +47,15 @@ public class CommandTestUtil {
     public static final String VALID_ALLERGY_DUST = "Dust";
     public static final String VALID_ALLERGY_PEANUTS = "Peanuts";
 
+    public static final String VALID_NAME_THYROID_CHECK = "Thyroid Check";
+    public static final String VALID_NAME_SLEEP_STUDY = "Sleep Study";
+    public static final String VALID_DATETIME_THYROID_CHECK = "01-01-2001 1200";
+    public static final String VALID_DATETIME_SLEEP_STUDY = "11-09-2001 1200";
+    public static final Appointment VALID_APPOINTMENT_THYROID_CHECK =
+            new Appointment(new Name(VALID_NAME_THYROID_CHECK), new DateTime(VALID_DATETIME_THYROID_CHECK));
+    public static final Appointment VALID_APPOINTMENT_SLEEP_STUDY = new Appointment(new Name(VALID_NAME_SLEEP_STUDY),
+            new DateTime(VALID_DATETIME_SLEEP_STUDY));
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
@@ -58,6 +71,11 @@ public class CommandTestUtil {
     public static final String ALLERGY_DESC_DUST = " " + PREFIX_ALLERGIES + VALID_ALLERGY_DUST;
     public static final String ALLERGY_DESC_PEANUTS = " " + PREFIX_ALLERGIES + VALID_ALLERGY_PEANUTS;
 
+    public static final String NAME_DESC_SLEEP_STUDY = " " + PREFIX_NAME + VALID_NAME_SLEEP_STUDY;
+    public static final String NAME_DESC_THYROID_CHECK = " " + PREFIX_NAME + VALID_NAME_THYROID_CHECK;
+    public static final String DATETIME_DESC_SLEEP_STUDY = " " + PREFIX_DATE + VALID_DATETIME_SLEEP_STUDY;
+    public static final String DATETIME_DESC_THYROID_CHECK = " " + PREFIX_DATE + VALID_DATETIME_THYROID_CHECK;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -65,6 +83,9 @@ public class CommandTestUtil {
     public static final String INVALID_AGE_DESC = " " + PREFIX_AGE + "0"; // age must be more than 0
     public static final String INVALID_BLOODTYPE_DESC = " " + PREFIX_BLOODTYPE + "G"; // 'G' not allowed in bloodtype
     public static final String INVALID_ALLERGY_DESC = " " + PREFIX_ALLERGIES + "Peanuts*";
+
+    public static final String INVALID_DATETIME_DESC = " " + PREFIX_DATE
+            + "11/1/01 1200"; // date must be in the format dd-mm-yyyy
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

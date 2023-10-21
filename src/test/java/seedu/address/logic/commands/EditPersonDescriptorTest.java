@@ -77,8 +77,7 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getGender().orElse(null) + ", age="
                 + editPersonDescriptor.getAge().orElse(null) + ", bloodType="
                 + editPersonDescriptor.getBloodType().orElse(null) + ", allergies="
-                + editPersonDescriptor.getAllergies().orElse(null) + ", isPinned="
-                + editPersonDescriptor.getIsPinned().orElse(null) + "}";
+                + editPersonDescriptor.getAllergies().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
 }
