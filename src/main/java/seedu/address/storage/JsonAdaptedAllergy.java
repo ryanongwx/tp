@@ -40,6 +40,9 @@ public class JsonAdaptedAllergy {
      */
 
     public Allergy toModelType() throws IllegalValueException {
+        if (allergy == null) {
+            throw new IllegalValueException(Allergy.MESSAGE_CONSTRAINTS);
+        }
         if (!Allergy.isValidAllergy(allergy)) {
             throw new IllegalValueException(Allergy.MESSAGE_CONSTRAINTS);
         }
