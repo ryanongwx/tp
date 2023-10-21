@@ -35,20 +35,23 @@
           </Menu>
         </MenuBar>
 
-        <SplitPane dividerPositions="0">
-          <VBox fx:id="recordList" styleClass="pane_with-border" minWidth="50" prefWidth="50" VBox.vgrow="ALWAYS">
-            <StackPane fx:id="personBeingViewedPanelPlaceHolder"/>
+        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+                   minHeight="100" prefHeight="100" maxHeight="100">
+          <padding>
+            <Insets top="5" right="10" bottom="5" left="10" />
+          </padding>
+        </StackPane>
+
+        <SplitPane VBox.vgrow="ALWAYS">
+          <VBox fx:id="recordList" styleClass="pane_with-border" minWidth="200" prefWidth="400"
+                maxWidth="400" VBox.vgrow="ALWAYS">
+            <Label text="PATIENT BEING VIEWED" styleClass="cell_big_label" style="-fx-text-fill:#FFFF"/>
+            <StackPane fx:id="personBeingViewedPanelPlaceholder" minHeight="110"/>
             <Label text="RECORDS" styleClass="cell_big_label" style="-fx-text-fill:#FFFF"/>
-            <StackPane fx:id="recordListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            <StackPane fx:id="recordListPanelPlaceholder" VBox.vgrow="ALWAYS" prefHeight="850"/>
           </VBox>
-          <SplitPane dividerPositions="0.7">
+          <SplitPane dividerPositions="0.7" VBox.vgrow="ALWAYS">
             <VBox>
-              <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                         minHeight="100" prefHeight="100" maxHeight="100">
-                <padding>
-                  <Insets top="5" right="10" bottom="5" left="10" />
-                </padding>
-              </StackPane>
 
               <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
                 <padding>
@@ -61,11 +64,11 @@
             </VBox>
 
             <VBox fx:id="pinnedPersonList" styleClass="pane-with-border" minWidth="200" prefWidth="200" VBox.vgrow="ALWAYS">
+              <Label text="PINNED PATIENT" styleClass="cell_big_label" style="-fx-text-fill:#FFFF"/>
               <StackPane fx:id="pinnedPersonListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
           </SplitPane>
         </SplitPane>
-
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />

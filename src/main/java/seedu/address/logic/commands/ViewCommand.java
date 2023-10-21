@@ -10,7 +10,12 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-public class ViewCommand extends Command{
+/**
+ * Views patient detailed information at the specified index
+ * and list medical records of the patient.
+ */
+
+public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
 
@@ -24,6 +29,10 @@ public class ViewCommand extends Command{
 
     private final Index targetIndex;
 
+    /**
+     * Constructor for ViewCommand class
+     * @param targetIndex the patient Index to view
+     */
     public ViewCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
@@ -39,7 +48,7 @@ public class ViewCommand extends Command{
         }
 
         Person personToView = lastShownList.get(targetIndex.getZeroBased());
-
+        model.updateRecordList(personToView);
         return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(personToView)));
     }
 

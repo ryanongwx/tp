@@ -6,7 +6,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.record.Record;
 
-public class RecordCard extends UiPart<Region>{
+/**
+ * An UI component that displays information of a {@code Record}.
+ */
+
+public class RecordCard extends UiPart<Region> {
 
     private static final String FXML = "RecordListCard.fxml";
 
@@ -19,6 +23,10 @@ public class RecordCard extends UiPart<Region>{
     private Label dateTime;
     @FXML
     private Label condition;
+
+    /**
+     * Creates a {@code RecordCode} with the given {@code Record} and index to display.
+     */
 
     public RecordCard(Record record, int displayedIndex) {
         super(FXML);

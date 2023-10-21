@@ -10,7 +10,11 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.record.Record;
 
-public class RecordListPanel extends UiPart<Region>{
+/**
+ * Panel contains a list of records.
+ */
+
+public class RecordListPanel extends UiPart<Region> {
 
     private static final String FXML = "RecordListPanel.fxml";
 
@@ -19,12 +23,18 @@ public class RecordListPanel extends UiPart<Region>{
     @FXML
     private ListView<Record> recordListView;
 
+    /**
+     * Creates a {@code RecordListPanel} with the given {@code ObservableList}.
+     */
     public RecordListPanel(ObservableList<Record> recordList) {
         super(FXML);
         recordListView.setItems(recordList);
         recordListView.setCellFactory(listView -> new RecordListPanel.RecordListViewCell());
     }
 
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Record} using a {@code RecordCard}.
+     */
     class RecordListViewCell extends ListCell<Record> {
         @Override
         protected void updateItem(Record record, boolean empty) {
