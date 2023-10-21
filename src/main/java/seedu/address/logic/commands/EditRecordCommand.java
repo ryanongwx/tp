@@ -8,8 +8,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.*;
 import seedu.address.model.record.Condition;
-import seedu.address.model.record.DateTime;
 import seedu.address.model.record.Record;
+import seedu.address.model.record.UniqueRecordList;
+import seedu.address.model.shared.DateTime;
 
 import java.util.*;
 
@@ -65,7 +66,8 @@ public class EditRecordCommand extends Command {
 
         Person personToEdit = lastShownPersonList.get(patientIndex.getZeroBased());
 
-        List<Record> lastShownRecordList = model.getFilteredRecordList();
+        UniqueRecordList uniqueRecordList = personToEdit.getRecords();
+        List<Record> lastShownRecordList = uniqueRecordList.getRecordList();
         if (recordIndex.getZeroBased() >= lastShownRecordList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_RECORD_DISPLAYED_INDEX);
         }
@@ -73,14 +75,16 @@ public class EditRecordCommand extends Command {
         Record recordToEdit = lastShownRecordList.get(recordIndex.getZeroBased());
         Record editedRecord = createEditedRecord(recordToEdit, editRecordDescriptor);
 
-        if (!recordToEdit.isSameRecord(editedRecord) && model.hasRecord(editedRecord)) {
+        if (!recordToEdit.equals(editedRecord) && uniqueRecordList.contains(editedRecord)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECORD);
         }
 
-        model.setRecord(recordToEdit, editedRecord);
-        model.updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
+        uniqueRecordList.setRecord(recordToEdit, editedRecord);
+        Person editedPerson = createdEditedPerson(personToEdit, uniqueRecordList);
+        model.setPerson(personToEdit, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_RECORD_SUCCESS,
-                Messages.format(editedRecord)));
+                Messages.format(editedRecord, personToEdit)));
     }
 
     /**
@@ -94,6 +98,17 @@ public class EditRecordCommand extends Command {
         List<Condition> updatedConditions = editRecordDescriptor.getConditions().orElse(recordToEdit.getConditions());
 
         return new Record(updatedDateTime, updatedConditions);
+    }
+
+    private static Person createdEditedPerson(Person personToEdit, UniqueRecordList records) {
+        assert personToEdit != null;
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getEmail(),
+                personToEdit.getPhone(), personToEdit.getGender(),
+                personToEdit.getAge(), personToEdit.getBloodType(),
+                personToEdit.getAllergies(), records,
+                personToEdit.getAppointments(), personToEdit.isPinned());
+
+        return editedPerson;
     }
 
     @Override
@@ -134,7 +149,7 @@ public class EditRecordCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code allergies} is used internally.
+         * A defensive copy of {@code conditionss} is used internally.
          */
         public EditRecordDescriptor(EditRecordCommand.EditRecordDescriptor toCopy) {
             setDateTime(toCopy.dateTime);
