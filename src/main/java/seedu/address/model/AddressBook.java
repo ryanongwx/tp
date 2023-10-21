@@ -19,7 +19,7 @@ import seedu.address.model.record.UniqueRecordList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private UniquePersonList personBeingViewed;
+    private final UniquePersonList personBeingViewed;
     private final UniqueRecordList records;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -53,6 +53,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
     }
+
     public void setRecords(Person person) {
         ArrayList<Person> beingViewed = new ArrayList<>();
         beingViewed.add(person);

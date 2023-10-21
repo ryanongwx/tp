@@ -36,7 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private PinnedPersonListPanel pinnedPersonListPanel;
     private RecordListPanel recordListPanel;
-    private PersonListPanel personBeingViewed;
+    private PersonListPanel personBeingViewedPanel;
     @FXML
     private StackPane commandBoxPlaceholder;
     @FXML
@@ -123,8 +123,8 @@ public class MainWindow extends UiPart<Stage> {
         recordListPanel = new RecordListPanel(logic.getRecordList());
         recordListPanelPlaceholder.getChildren().add(recordListPanel.getRoot());
 
-        personBeingViewed = new PersonListPanel(logic.getPersonBeingViewed());
-        personBeingViewedPanelPlaceholder.getChildren().add(personBeingViewed.getRoot());
+        personBeingViewedPanel = new PersonListPanel(logic.getPersonBeingViewed());
+        personBeingViewedPanelPlaceholder.getChildren().add(personBeingViewedPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
