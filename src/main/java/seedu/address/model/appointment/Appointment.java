@@ -5,8 +5,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Name;
 import seedu.address.model.shared.DateTime;
+import seedu.address.model.shared.Name;
 
 /**
  * Represents an Appointment in the address book.
