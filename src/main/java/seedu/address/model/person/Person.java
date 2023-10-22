@@ -47,7 +47,7 @@ public class Person {
         this.gender = gender;
         this.age = age;
         this.bloodType = bloodType;
-        this.allergies.addAll(allergies);   
+        this.allergies.addAll(allergies);
         this.records.setRecords(records);
         this.appointments.setAppointments(appointments);
         this.isPinned = isPinned;
