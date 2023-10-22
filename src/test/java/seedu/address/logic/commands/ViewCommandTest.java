@@ -43,7 +43,7 @@ public class ViewCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validIndexRecordList_success() {
 
         Person personToView = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_PERSON);
@@ -60,6 +60,27 @@ public class ViewCommandTest {
         }
 
         sameRecordList(model, expectedModel);
+        assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validIndexSamePerson_success() {
+
+        Person personToView = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_PERSON);
+
+        String expectedMessage = String.format(ViewCommand.MESSAGE_VIEW_PERSON_SUCCESS,
+                Messages.format(personToView));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        try {
+            viewCommand.execute(model);
+            viewCommand.execute(expectedModel);
+        } catch (Exception ignore) {
+            return;
+        }
+
+        samePersonViewed(model, expectedModel);
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 
@@ -90,4 +111,7 @@ public class ViewCommandTest {
         assertTrue(model1.getRecordList().equals(model2.getRecordList()));
     }
 
+    private void samePersonViewed(Model model1, Model model2) {
+        assertTrue(model1.getPersonBeingViewed().equals(model2.getPersonBeingViewed()));
+    }
 }
