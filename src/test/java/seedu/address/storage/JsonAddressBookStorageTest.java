@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.HOON;
@@ -9,13 +10,17 @@ import static seedu.address.testutil.TypicalPersons.IDA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Base64;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 
@@ -106,5 +111,37 @@ public class JsonAddressBookStorageTest {
     @Test
     public void saveAddressBook_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveAddressBook(new AddressBook(), null));
+    }
+
+    @Test
+    public void saveAndRead_encryptionDecryption_success() throws Exception {
+        Path filePath = testFolder.resolve("TempEncryptedAddressBook.json");
+        AddressBook original = getTypicalAddressBook();
+        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+
+        // Save in new file
+        jsonAddressBookStorage.saveAddressBook(original, filePath);
+
+        // Check if file content is encrypted
+        String content = new String(Files.readAllBytes(filePath), StandardCharsets.UTF_8);
+        String originalJson = JsonUtil.toJsonString(new JsonSerializableAddressBook(original));
+
+        // Use JUnit's assertion to check that the content is not equal to the original
+        // JSON
+        assertNotSame(originalJson, content);
+
+        // Read back and decrypt
+        ReadOnlyAddressBook readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        assertEquals(original, new AddressBook(readBack));
+    }
+
+    @Test
+    public void read_corruptedData_throwDataLoadingException() throws Exception {
+        Path filePath = testFolder.resolve("CorruptedEncryptedAddressBook.json");
+        String corruptedData = Base64.getEncoder().encodeToString("corrupted data".getBytes(StandardCharsets.UTF_8));
+        Files.write(filePath, corruptedData.getBytes(StandardCharsets.UTF_8));
+
+        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+        assertThrows(DataLoadingException.class, () -> jsonAddressBookStorage.readAddressBook(filePath));
     }
 }
