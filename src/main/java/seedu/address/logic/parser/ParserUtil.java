@@ -2,8 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -14,16 +16,19 @@ import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-
+import seedu.address.model.record.Condition;
+import seedu.address.model.shared.DateTime;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
 
+    public static final String MESSAGE_INVALID_INPUT = "Index input is not in the format of number/number";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_PATIENT_INDEX = "Patient index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_RECORD_INDEX = "Record index is not a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -38,6 +43,38 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses {@code oneBasedIndexes} for edit record command into a patient's {@code Index}
+     * and returns it. Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified patient index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parsePatientIndex(String oneBasedIndexes) throws ParseException {
+        // Check if input matches the format of two numbers separated by a slash
+        if (!oneBasedIndexes.matches("\\d+/\\d+")) {
+            System.out.println("invalid input");
+            throw new ParseException(MESSAGE_INVALID_INPUT);
+        }
+        String trimmedIndex = oneBasedIndexes.split("/")[0].trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            System.out.println("invalid patient index 0");
+            throw new ParseException(MESSAGE_INVALID_PATIENT_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code oneBasedIndexes} for edit record command into a record's {@code Index}
+     * and returns it. Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified patient index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseRecordIndex(String oneBasedIndexes) throws ParseException {
+        String trimmedIndex = oneBasedIndexes.split("/")[1].trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            System.out.println("invalid record index 0");
+            throw new ParseException(MESSAGE_INVALID_RECORD_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
@@ -166,4 +203,48 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    /**
+     * Parses a {@code String dateTime} into an {@code DateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid.
+     */
+    public static DateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+        return new DateTime(trimmedDateTime);
+    }
+
+    /**
+     * Parses a {@code String condition} into an {@code Condition}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code condition} is invalid.
+     */
+    public static Condition parseCondition(String condition) throws ParseException {
+        requireNonNull(condition);
+        String trimmedCondition = condition.trim();
+        if (!Condition.isValidCondition(trimmedCondition)) {
+            throw new ParseException(Condition.MESSAGE_CONSTRAINTS);
+        }
+        return new Condition(trimmedCondition);
+    }
+
+    /**
+     * Parses a {@code Collection<String> condtions} into an {@code List<Condition>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code condition} is invalid.
+     */
+    public static List<Condition> parseConditions(Collection<String> conditions) throws ParseException {
+        requireNonNull(conditions);
+        final List<Condition> conditionsList = new ArrayList<>();
+        for (String condition : conditions) {
+            conditionsList.add(parseCondition(condition));
+        }
+        return conditionsList;
+    }
 }

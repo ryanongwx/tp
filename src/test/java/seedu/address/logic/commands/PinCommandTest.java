@@ -28,6 +28,7 @@ public class PinCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
+
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person personToPin = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -49,7 +50,6 @@ public class PinCommandTest {
 
         assertCommandFailure(pinCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
-
     @Test
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
@@ -65,7 +65,6 @@ public class PinCommandTest {
         expectedModel.setPerson(model.getFilteredPersonList().get(0), pinnedPerson);
         assertCommandSuccess(pinCommand, model, expectedMessage, expectedModel);
     }
-
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);

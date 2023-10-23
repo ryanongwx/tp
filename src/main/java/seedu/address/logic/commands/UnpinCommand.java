@@ -43,7 +43,7 @@ public class UnpinCommand extends Command {
         Person personToUnpin = lastShownPinnedList.get(targetIndex.getZeroBased());
         Person unpinnedPerson = new Person(personToUnpin.getName(), personToUnpin.getEmail(), personToUnpin.getPhone(),
                 personToUnpin.getGender(), personToUnpin.getAge(), personToUnpin.getBloodType(),
-                personToUnpin.getAllergies(), false);
+                personToUnpin.getAllergies(), personToUnpin.getRecords(), personToUnpin.getAppointments(), false);
 
         model.setPerson(personToUnpin, unpinnedPerson);
         return new CommandResult(String.format(MESSAGE_UNPIN_PERSON_SUCCESS, Messages.format(personToUnpin)));

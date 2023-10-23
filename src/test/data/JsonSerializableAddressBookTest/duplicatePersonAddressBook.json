@@ -9,7 +9,13 @@
       "gender": "F",
       "age": 20,
       "allergies": ["Chocolate"],
-      "isPinned": true
+      "isPinned": true,
+      "appointments": [
+        {
+          "name": "Eye Exam",
+          "dateTime": "01-01-2001 1200"
+        }
+      ]
     },
     {
       "name": "Alice Pauline",
@@ -19,7 +25,13 @@
       "gender": "F",
       "age": 20,
       "allergies": ["Chocolate"],
-      "isPinned": true
+      "isPinned": true,
+      "appointments": [
+        {
+          "name": "Eye Exam",
+          "dateTime": "01-01-2001 1200"
+        }
+      ]
     }
   ]
 }

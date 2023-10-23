@@ -34,7 +34,7 @@ public class BloodType {
      */
     public static boolean isValidBloodType(String test) {
         for (int i = 0; i < POSSIBLE_BLOOD_TYPES.length; i++) {
-            if (POSSIBLE_BLOOD_TYPES[i].equals(test)) {
+            if (test.equals(POSSIBLE_BLOOD_TYPES[i])) {
                 return true;
             }
         }
