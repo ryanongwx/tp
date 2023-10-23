@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Name;
 import seedu.address.model.shared.DateTime;
+import seedu.address.model.shared.Name;
 
 /**
  * A utility class to help with building Appointment objects.

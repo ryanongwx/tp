@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.record.Record;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -133,6 +134,22 @@ public class ModelManager implements Model {
         FilteredList<Person> pinnedPersons = new FilteredList<>(this.addressBook.getPersonList());
         pinnedPersons.setPredicate(person -> person.isPinned());
         return pinnedPersons;
+    }
+
+    @Override
+    public ObservableList<Record> getRecordList() {
+        return this.addressBook.getRecordList();
+    }
+
+    @Override
+    public void updateRecordList(Person person) {
+        requireNonNull(person);
+        this.addressBook.setRecords(person);
+    }
+
+    @Override
+    public ObservableList<Person> getPersonBeingViewed() {
+        return this.addressBook.getPersonBeingViewed();
     }
 
     @Override
