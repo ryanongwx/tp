@@ -51,6 +51,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_SLEEP_STUDY = "Sleep Study";
     public static final String VALID_DATETIME_THYROID_CHECK = "01-01-2001 1200";
     public static final String VALID_DATETIME_SLEEP_STUDY = "11-09-2001 1200";
+    public static final String VALID_CONDITION_DIARRHEA = "Diarrhea";
+    public static final String VALID_CONDITION_HEAT_STROKE = "Heat stroke";
     public static final Appointment VALID_APPOINTMENT_THYROID_CHECK =
             new Appointment(new Name(VALID_NAME_THYROID_CHECK), new DateTime(VALID_DATETIME_THYROID_CHECK));
     public static final Appointment VALID_APPOINTMENT_SLEEP_STUDY = new Appointment(new Name(VALID_NAME_SLEEP_STUDY),

@@ -77,6 +77,13 @@ public class UniqueRecordList implements Iterable<Record> {
         }
     }
 
+    /**
+     * @return the list of records
+     */
+    public ObservableList<Record> getRecordList() {
+        return this.internalList;
+    }
+
     public void setRecords(UniqueRecordList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
