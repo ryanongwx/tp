@@ -26,6 +26,8 @@ import seedu.address.model.ReadOnlyAddressBook;
 
 public class JsonAddressBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final String TEST_SECRET_KEY = "IncorrectSizeKey"; // An intentionally wrong size key
+    private static final String TEST_INIT_VECTOR = "a5s8d2e9w4z6x3c7"; // Assuming this is your standard IV
 
     @TempDir
     public Path testFolder;
@@ -63,6 +65,16 @@ public class JsonAddressBookStorageTest {
     @Test
     public void readAddressBook_invalidAndValidPersonAddressBook_throwDataLoadingException() {
         assertThrows(DataLoadingException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+    }
+
+    @Test
+    public void readAddressBook_invalidJson_throwsDataLoadingException() throws Exception {
+        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidJson.json"));
+    }
+
+    @Test
+    public void readAddressBook_nonExistentFile_returnsOptionalEmpty() throws Exception {
+        assertFalse(readAddressBook("invalidInvalid.json").isPresent());
     }
 
     @Test
@@ -144,4 +156,24 @@ public class JsonAddressBookStorageTest {
         JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
         assertThrows(DataLoadingException.class, () -> jsonAddressBookStorage.readAddressBook(filePath));
     }
+
+    /**
+     * Utility function to change final static fields (use with caution)
+     */
+    private static void setFinalStaticFieldValue(Object obj, String fieldName, Object newValue) {
+        try {
+            java.lang.reflect.Field field = obj.getClass().getDeclaredField(fieldName);
+            field.setAccessible(true);
+
+            // remove final modifier from field
+            java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
+            modifiersField.setAccessible(true);
+            modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
+
+            field.set(obj, newValue);
+        } catch (Exception e) {
+            // Handle this if needed
+        }
+    }
+
 }
