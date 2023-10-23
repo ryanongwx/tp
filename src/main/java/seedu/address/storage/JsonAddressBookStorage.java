@@ -46,7 +46,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      * @param value The string to be encrypted.
      * @return The encrypted string.
      */
-    String encrypt(String value) {
+    protected String encrypt(String value) {
         try {
             IvParameterSpec iv = new IvParameterSpec(INIT_VECTOR.getBytes("UTF-8"));
             SecretKeySpec skeySpec = new SecretKeySpec(SECRET_KEY.getBytes("UTF-8"), "AES");

@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.HOON;
@@ -23,11 +24,10 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.testutil.MockInvalidKeyJsonAddressBookStorage;
 
 public class JsonAddressBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
-    private static final String TEST_SECRET_KEY = "IncorrectSizeKey"; // An intentionally wrong size key
-    private static final String TEST_INIT_VECTOR = "a5s8d2e9w4z6x3c7"; // Assuming this is your standard IV
 
     @TempDir
     public Path testFolder;
@@ -157,23 +157,12 @@ public class JsonAddressBookStorageTest {
         assertThrows(DataLoadingException.class, () -> jsonAddressBookStorage.readAddressBook(filePath));
     }
 
-    /**
-     * Utility function to change final static fields (use with caution)
-     */
-    private static void setFinalStaticFieldValue(Object obj, String fieldName, Object newValue) {
-        try {
-            java.lang.reflect.Field field = obj.getClass().getDeclaredField(fieldName);
-            field.setAccessible(true);
+    @Test
+    public void encrypt_invalidKeySize_returnsNull() throws Exception {
+        JsonAddressBookStorage storage = new MockInvalidKeyJsonAddressBookStorage(TEST_DATA_FOLDER);
 
-            // remove final modifier from field
-            java.lang.reflect.Field modifiersField = java.lang.reflect.Field.class.getDeclaredField("modifiers");
-            modifiersField.setAccessible(true);
-            modifiersField.setInt(field, field.getModifiers() & ~java.lang.reflect.Modifier.FINAL);
-
-            field.set(obj, newValue);
-        } catch (Exception e) {
-            // Handle this if needed
-        }
+        String result = storage.encrypt("testString");
+        assertNull(result);
     }
 
 }
