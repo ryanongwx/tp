@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -11,8 +10,6 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.EditRecordCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Allergy;
@@ -23,6 +20,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.record.Condition;
 import seedu.address.model.shared.DateTime;
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */

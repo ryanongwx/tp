@@ -39,7 +39,8 @@ public class EditRecordCommandParser implements Parser<EditRecordCommand> {
             patientIndex = ParserUtil.parsePatientIndex(preamble);
             recordIndex = ParserUtil.parseRecordIndex(preamble);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditRecordCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditRecordCommand.MESSAGE_USAGE), pe);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DATE);
