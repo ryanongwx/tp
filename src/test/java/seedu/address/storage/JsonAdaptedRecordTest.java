@@ -29,9 +29,10 @@ public class JsonAdaptedRecordTest {
         JsonAdaptedRecord record = new JsonAdaptedRecord(FEVER);
         assertEquals(FEVER, record.toModelType());
     }
+
     @Test
     public void toModelType_nullDateTime_throwsIllegalValueException() {
-        JsonAdaptedRecord record = new JsonAdaptedRecord(null, VALID_CONDITIONS);
+        JsonAdaptedRecord record = new JsonAdaptedRecord(null, VALID_CONDITIONS, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 DateTime.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, record::toModelType);
@@ -43,7 +44,7 @@ public class JsonAdaptedRecordTest {
         invalidCondition.add(null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Condition.class.getSimpleName());
-        JsonAdaptedRecord record = new JsonAdaptedRecord(VALID_DATETIME, invalidCondition);
+        JsonAdaptedRecord record = new JsonAdaptedRecord(VALID_DATETIME, invalidCondition, null);
         assertThrows(IllegalValueException.class, expectedMessage, record::toModelType);
     }
 }

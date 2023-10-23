@@ -37,7 +37,7 @@ public class RecordBuilder {
      * Parses the {@code conditions} into a {@code List<Condition>}
      * and set it to the {@code Record} that we are building.
      */
-    public RecordBuilder withConditions(String ... conditions) {
+    public RecordBuilder withConditions(String... conditions) {
         this.conditions = SampleDataUtil.getConditionList(conditions);
         return this;
     }
@@ -54,8 +54,7 @@ public class RecordBuilder {
      * Builds a new record
      */
     public Record build() {
-        return new Record(dateTime, conditions);
+        return new Record(dateTime, conditions, null);
     }
-
 
 }
