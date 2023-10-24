@@ -95,7 +95,7 @@ Constraints
 Examples:
 
 - `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` 
-adds a patient named John Doe who is a male, 26 years old, has a AB+ blood type, and allergic to penicillin.
+adds a patient named John Doe who is a male, 26 years old, has AB+ blood type, and allergic to penicillin.
 His email and phone number is johndoe@gmail.com and 12345678, respectively.
 
 ### Adding Medical Records : `addrecord`
