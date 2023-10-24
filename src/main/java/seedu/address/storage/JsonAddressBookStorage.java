@@ -15,7 +15,6 @@ import javax.crypto.spec.SecretKeySpec;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -25,12 +24,12 @@ import seedu.address.model.ReadOnlyAddressBook;
  */
 public class JsonAddressBookStorage implements AddressBookStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
     protected static final String INIT_VECTOR = "a5s8d2e9w4z6x3c7";
+    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
     private static final String SECRET_KEY = "Xp2s5v8y/B?E(H+M";
 
-    private Path filePath;
     private JsonUtil jsonUtil;
+    private Path filePath;
 
     /**
      * Constructs a new JsonAddressBookStorage instance with a given filePath.
