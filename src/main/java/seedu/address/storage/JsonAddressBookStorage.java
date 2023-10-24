@@ -125,7 +125,6 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         try {
             String encryptedData = new String(Files.readAllBytes(filePath), StandardCharsets.UTF_8);
             String decryptedData = decrypt(encryptedData);
-            System.out.println(decryptedData);
 
             JsonSerializableAddressBook jsonAddressBook = JsonUtil.fromJsonString(
                     decryptedData, JsonSerializableAddressBook.class);
@@ -138,7 +137,6 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-
             throw new DataLoadingException(ive);
         } catch (Exception e) {
             throw new DataLoadingException(e);
