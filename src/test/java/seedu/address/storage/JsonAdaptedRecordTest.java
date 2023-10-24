@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedRecord.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalRecords.FEVER;
+import static seedu.address.testutil.TypicalRecords.FEVER0;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,21 +17,22 @@ import seedu.address.model.shared.DateTime;
 
 public class JsonAdaptedRecordTest {
 
-    private static final String VALID_DATETIME = FEVER.getDateTime().toString();
+    private static final String VALID_DATETIME = FEVER0.getDateTime().toString();
 
-    private static final List<JsonAdaptedCondition> VALID_CONDITIONS = FEVER.getConditions()
+    private static final List<JsonAdaptedCondition> VALID_CONDITIONS = FEVER0.getConditions()
             .stream()
             .map(JsonAdaptedCondition::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validRecordDetails_returnsRecord() throws Exception {
-        JsonAdaptedRecord record = new JsonAdaptedRecord(FEVER);
-        assertEquals(FEVER, record.toModelType());
+        JsonAdaptedRecord record = new JsonAdaptedRecord(FEVER0);
+        assertEquals(FEVER0, record.toModelType());
     }
+
     @Test
     public void toModelType_nullDateTime_throwsIllegalValueException() {
-        JsonAdaptedRecord record = new JsonAdaptedRecord(null, VALID_CONDITIONS);
+        JsonAdaptedRecord record = new JsonAdaptedRecord(null, VALID_CONDITIONS, null, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 DateTime.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, record::toModelType);
@@ -43,7 +44,7 @@ public class JsonAdaptedRecordTest {
         invalidCondition.add(null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Condition.class.getSimpleName());
-        JsonAdaptedRecord record = new JsonAdaptedRecord(VALID_DATETIME, invalidCondition);
+        JsonAdaptedRecord record = new JsonAdaptedRecord(VALID_DATETIME, invalidCondition, null, null);
         assertThrows(IllegalValueException.class, expectedMessage, record::toModelType);
     }
 }

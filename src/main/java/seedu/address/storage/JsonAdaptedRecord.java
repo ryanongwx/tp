@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,18 +22,23 @@ public class JsonAdaptedRecord {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Record's %s field is missing!";
     private final String dateTime;
     private final List<JsonAdaptedCondition> conditions = new ArrayList<>();
-
+    private final String filePath;
+    private final Integer personIndex;
 
     /**
      * Constructs a {@code JsonAdoptedRecord} with the given record details.
      */
     @JsonCreator
     public JsonAdaptedRecord(@JsonProperty("dateTime") String dateTime,
-                             @JsonProperty("condition") List<JsonAdaptedCondition> conditions) {
+            @JsonProperty("condition") List<JsonAdaptedCondition> conditions,
+            @JsonProperty("filePath") String filePath,
+            @JsonProperty("personIndex") Integer personIndex) {
         this.dateTime = dateTime;
         if (conditions != null) {
             this.conditions.addAll(conditions);
         }
+        this.filePath = filePath;
+        this.personIndex = personIndex;
     }
 
     /**
@@ -39,15 +46,19 @@ public class JsonAdaptedRecord {
      */
     public JsonAdaptedRecord(Record source) {
         this.dateTime = source.getDateTime().toString();
+        this.personIndex = source.getPersonIndex();
+        this.filePath = source.getFilePath() == null ? null : source.getFilePath().toString();
         this.conditions.addAll(source.getConditions().stream()
                 .map(JsonAdaptedCondition::new)
                 .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's
+     * {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted person.
      */
     public Record toModelType() throws IllegalValueException {
         final List<Condition> conditionsList = new ArrayList<>();
@@ -72,6 +83,11 @@ public class JsonAdaptedRecord {
         final DateTime modelDateTime = new DateTime(dateTime);
 
         final List<Condition> modelConditions = new ArrayList<>(conditionsList);
-        return new Record(modelDateTime, modelConditions);
+        if (filePath == null) {
+            return new Record(modelDateTime, modelConditions, null, personIndex);
+        } else {
+            Path modelFilePath = Paths.get(filePath);
+            return new Record(modelDateTime, modelConditions, modelFilePath, personIndex);
+        }
     }
 }

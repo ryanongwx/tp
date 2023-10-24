@@ -11,12 +11,10 @@
       "allergies": ["Chocolate"],
       "records": [
         {
-          "dateTime": "09-09-2023 1800",
-          "conditions": ["Fever", "Cold"]
-        },
-        {
-          "dateTime": "23-10-2022 1130",
-          "conditions": ["Allergic Reaction"]
+          "dateTime": "09-10-2023 1800",
+          "conditions": ["Fever"],
+          "filename": null,
+          "personIndex": 0
         }
       ],
       "appointments": [
@@ -37,12 +35,10 @@
       "allergies": ["Pollen", "Soil"],
       "records": [
         {
-          "dateTime": "24-12-2023 1200",
-          "conditions": ["Headache"]
-        },
-        {
-          "dateTime": "23-10-2022 1130",
-          "conditions": ["Allergic Reaction"]
+          "dateTime": "09-09-2023 1800",
+          "conditions": ["Fever", "Cold"],
+          "filename": null,
+          "personIndex": 1
         }
       ],
       "appointments": [
@@ -63,8 +59,10 @@
       "allergies": ["Dogs"],
       "records": [
         {
-          "dateTime": "20-03-2023 1500",
-          "conditions": ["Stomachache"]
+          "dateTime": "23-10-2022 1130",
+          "conditions": ["Allergic Reaction"],
+          "filename": null,
+          "personIndex": 2
         }
       ],
       "appointments": [

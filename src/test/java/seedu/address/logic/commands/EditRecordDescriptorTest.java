@@ -47,8 +47,10 @@ public class EditRecordDescriptorTest {
     public void toStringMethod() {
         EditRecordCommand.EditRecordDescriptor editRecordDescriptor = new EditRecordCommand.EditRecordDescriptor();
         String expected = EditRecordCommand.EditRecordDescriptor.class.getCanonicalName() + "{dateTime="
-                + editRecordDescriptor.getDateTime().orElse(null) + ", conditions="
-                + editRecordDescriptor.getConditions().orElse(null) + "}";
+                + editRecordDescriptor.getDateTime().orElse(null) + ", filePath="
+                + editRecordDescriptor.getFilePath().orElse(null) + ", conditions="
+                + editRecordDescriptor.getConditions().orElse(null) + ", patientIndex="
+                + editRecordDescriptor.getPatientIndex().orElse(null) + "}";
 
         assertEquals(expected, editRecordDescriptor.toString());
     }

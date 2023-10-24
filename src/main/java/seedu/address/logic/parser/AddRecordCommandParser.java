@@ -20,8 +20,7 @@ import seedu.address.model.shared.DateTime;
 public class AddRecordCommandParser implements Parser<AddRecordCommand> {
     @Override
     public AddRecordCommand parse(String userInput) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(userInput, PREFIX_DATE, PREFIX_CONDITION);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_DATE, PREFIX_CONDITION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_CONDITION) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecordCommand.MESSAGE_USAGE));
@@ -34,12 +33,13 @@ public class AddRecordCommandParser implements Parser<AddRecordCommand> {
         DateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATE).get());
         List<Condition> conditions = ParserUtil.parseConditions(argMultimap.getAllValues(PREFIX_CONDITION));
 
-        Record record = new Record(dateTime, conditions);
+        Record record = new Record(dateTime, conditions, null, index.getZeroBased());
         return new AddRecordCommand(index, record);
     }
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * Returns true if none of the prefixes contains empty {@code Optional} values
+     * in the given
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
