@@ -35,22 +35,22 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private PinnedPersonListPanel pinnedPersonListPanel;
-
+    private RecordListPanel recordListPanel;
+    private PersonListPanel personBeingViewedPanel;
     @FXML
     private StackPane commandBoxPlaceholder;
-
     @FXML
     private MenuItem helpMenuItem;
-
     @FXML
     private StackPane personListPanelPlaceholder;
-
     @FXML
     private StackPane pinnedPersonListPanelPlaceholder;
-
+    @FXML
+    private StackPane personBeingViewedPanelPlaceholder;
+    @FXML
+    private StackPane recordListPanelPlaceholder;
     @FXML
     private StackPane resultDisplayPlaceholder;
-
     @FXML
     private StackPane statusbarPlaceholder;
 
@@ -120,6 +120,12 @@ public class MainWindow extends UiPart<Stage> {
         pinnedPersonListPanel = new PinnedPersonListPanel(logic.getPinnedPersonList());
         pinnedPersonListPanelPlaceholder.getChildren().add(pinnedPersonListPanel.getRoot());
 
+        recordListPanel = new RecordListPanel(logic.getRecordList());
+        recordListPanelPlaceholder.getChildren().add(recordListPanel.getRoot());
+
+        personBeingViewedPanel = new PersonListPanel(logic.getPersonBeingViewed());
+        personBeingViewedPanelPlaceholder.getChildren().add(personBeingViewedPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -129,6 +135,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
+
 
     /**
      * Sets the default size based on {@code guiSettings}.

@@ -46,8 +46,8 @@ import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.shared.Name;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -204,7 +204,7 @@ public class EditCommandParserTest {
 
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
 
-        // mulltiple valid fields repeated
+        // multiple valid fields repeated
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + GENDER_DESC_AMY + EMAIL_DESC_AMY
                 + ALLERGY_DESC_DUST + PHONE_DESC_AMY + GENDER_DESC_AMY + EMAIL_DESC_AMY + ALLERGY_DESC_DUST
                 + PHONE_DESC_BOB + GENDER_DESC_AMY + EMAIL_DESC_BOB + ALLERGY_DESC_PEANUTS;
