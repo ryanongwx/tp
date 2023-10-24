@@ -100,7 +100,7 @@ His email and phone number is johndoe@gmail.com and 12345678, respectively.
 
 ### Adding Medical Records : `addrecord`
 
-Adds a new patient's medical records to the app.
+Adds a new patient's medical record to the app.
 
 Format: `addrecord PATIENTID d/DATETIME c/CONDITION`
 - Adds a medical record to the patient with the `PATIENTID`
@@ -112,8 +112,7 @@ Constraints
 Examples:
 - `addrecord 3 d/18-09-2023 1800 c/Fever`
 adds a record to the patient who has the `PATIENTID` of `3`. 
-Within the record, the patient visited the clinic on September 18th, 2023 at 6PM due to fever.
-
+The record says that the patient visited the clinic on September 18th, 2023 at 6PM due to fever.
 
 ### Listing all persons : `list`
 
