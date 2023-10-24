@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
@@ -26,6 +27,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.shared.DateTime;
 import seedu.address.model.shared.Name;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditRecordDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -51,6 +53,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_SLEEP_STUDY = "Sleep Study";
     public static final String VALID_DATETIME_THYROID_CHECK = "01-01-2001 1200";
     public static final String VALID_DATETIME_SLEEP_STUDY = "11-09-2001 1200";
+    public static final String VALID_CONDITION_DIARRHEA = "Diarrhea";
+    public static final String VALID_CONDITION_HEAT_STROKE = "Heat stroke";
     public static final Appointment VALID_APPOINTMENT_THYROID_CHECK =
             new Appointment(new Name(VALID_NAME_THYROID_CHECK), new DateTime(VALID_DATETIME_THYROID_CHECK));
     public static final Appointment VALID_APPOINTMENT_SLEEP_STUDY = new Appointment(new Name(VALID_NAME_SLEEP_STUDY),
@@ -75,6 +79,8 @@ public class CommandTestUtil {
     public static final String NAME_DESC_THYROID_CHECK = " " + PREFIX_NAME + VALID_NAME_THYROID_CHECK;
     public static final String DATETIME_DESC_SLEEP_STUDY = " " + PREFIX_DATE + VALID_DATETIME_SLEEP_STUDY;
     public static final String DATETIME_DESC_THYROID_CHECK = " " + PREFIX_DATE + VALID_DATETIME_THYROID_CHECK;
+    public static final String CONDITON_DESC_HEAT_STROKE = " " + PREFIX_CONDITION + VALID_CONDITION_HEAT_STROKE;
+    public static final String CONDITION_DESC_DIARRHEA = " " + PREFIX_CONDITION + VALID_CONDITION_DIARRHEA;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -86,12 +92,17 @@ public class CommandTestUtil {
 
     public static final String INVALID_DATETIME_DESC = " " + PREFIX_DATE
             + "11/1/01 1200"; // date must be in the format dd-mm-yyyy
+    public static final String INVALID_CONDITION_DESC = " " + PREFIX_CONDITION
+            + "Fever*"; // '*' not allowed in conditions
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+
+    public static final EditRecordCommand.EditRecordDescriptor DESC_FIRST_REC;
+    public static final EditRecordCommand.EditRecordDescriptor DESC_SECOND_REC;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -102,6 +113,13 @@ public class CommandTestUtil {
                 .withEmail(VALID_EMAIL_BOB).withPhone(VALID_PHONE_BOB).withGender(VALID_GENDER_BOB)
                 .withAge(VALID_AGE_BOB).withBloodType(VALID_BLOODTYPE_BOB)
                 .withAllergies(VALID_ALLERGY_DUST, VALID_ALLERGY_PEANUTS).build();
+        DESC_FIRST_REC = new EditRecordDescriptorBuilder()
+                .withDateTime(VALID_DATETIME_SLEEP_STUDY)
+                .withConditions(VALID_CONDITION_DIARRHEA).build();
+
+        DESC_SECOND_REC = new EditRecordDescriptorBuilder()
+                .withDateTime(VALID_DATETIME_THYROID_CHECK)
+                .withConditions(VALID_CONDITION_HEAT_STROKE).build();
     }
 
     /**
