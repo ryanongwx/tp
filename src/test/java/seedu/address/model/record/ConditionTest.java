@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.model.person.Name;
 
 
 public class ConditionTest {
@@ -22,6 +23,18 @@ public class ConditionTest {
     public void isValidCondtion_failure() {
         String inValidCondition = "";
         assertFalse(Condition.isValidCondition(inValidCondition));
+    }
+    @Test
+    public void equals() {
+        Condition condition = new Condition("Allergic Reaction");
+
+        assertTrue(condition.equals(condition));
+
+        assertTrue(condition.equals(new Condition("Allergic Reaction")));
+
+        assertFalse(condition.equals(null));
+
+        assertFalse(condition.equals(new Name("Alice Pauline")));
     }
 
 }
