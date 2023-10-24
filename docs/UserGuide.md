@@ -22,8 +22,8 @@ Medbook is a **desktop app for managing patient details and medical records, opt
 1. Copy the file to the folder you want to use as the _home folder_ for your MedBook.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar medbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   A GUI same as the below should appear in a few seconds. Note that the app contains some sample data.<br>
+   ![Ui](images/MedBookUi.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -120,9 +120,23 @@ Shows a list of all patients in the Medbook.
 
 Format: `list`
 
-### View patient detail
+- All patients in the Medbook will always be visible on the screen in the **MIDDLE** column.
 
-Shows the detailed information of the patient by clicking.
+Examples:
+
+- `list` lists all the patients in the `MIDDLE` column.
+
+### View patient records : `view`
+
+Displays the medical records of the specified patient in the **RECORD** list
+
+Format: `view PATIENTID`
+
+- The medical records of the viewed patient will be displayed on screen in the **RECORD** list.
+- Information about the patient will be displayed in the **PATIENT BEING VIEWED** section.
+
+Examples:
+- `view 2` views the medical records of the patient with the `PATIENTID` of `2`. The displayed records will be in the `RECORDS` list and patient information will be in the `PATIENT BEING VIEWED` section.
 
 ### Editing detail of a patient : `editdetail`
 
@@ -265,13 +279,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **List**   | `list`                                                                                                                                                                |
-| **Edit**   | `editdetail [patient ID/detail field/updated patient details]`<br> e.g.,`editdetail 1/email/johndoe_updated@gmail.com`                                                |
-| **search** | `search KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                        |
-| **Delete** | `delete [patientId]`<br> e.g., `delete 3`                                                                                                                             |
-| **Pin**    | `pin [patientId]`<br> e.g., `pin 2`                                                                                                                                   |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **exit**   | `exit`                                                                                                                                                                |
+| Action          | Format, Examples                                                                                                                       |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Patient** | `addpatient n/NAME e/EMAIL p/PHONE …​` <br> e.g., `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` |
+| **List**        | `list`                                                                                                                                 |
+| **View**        | `view PATIENTID`<br> e.g., `view 2`                                                                                                    |
+| **Edit**        | `editdetail [patient ID/detail field/updated patient details]`<br> e.g.,`editdetail 1/email/johndoe_updated@gmail.com`                 |
+| **search**      | `search [KEYWORDS]`<br> e.g., `find James Jake`                                                                                        |
+| **Delete**      | `delete PATIENTID`<br> e.g., `delete 3`                                                                                              |
+| **Pin**         | `pin PATIENTID`<br> e.g., `pin 2`                                                                                                      |
+| **Clear**       | `clear`                                                                                                                                |
+| **exit**        | `exit`                                                                                                                                 |
