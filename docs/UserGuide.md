@@ -22,15 +22,15 @@ Medbook is a **desktop app for managing patient details and medical records, opt
 1. Copy the file to the folder you want to use as the _home folder_ for your MedBook.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar medbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   A GUI same as the below should appear in a few seconds. Note that the app contains some sample data.<br>
+   ![Ui](images/MedBookUi.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    - `list` : Lists all contacts.
 
-   - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the MedBook.
+   - `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` : Adds a new patient named John Doe with basic information about the patient 
 
    - `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -80,40 +80,39 @@ Format: `help`
 
 Adds a patient's contact and medical details.
 
-Command Format: addpatient [name/email/phone/gender/age/blood type/allergies]
+Format: `addpatient n/NAME e/EMAIL p/PHONE g/GENDER a/AGE bt/BLOODTYPE al/ALLERGIES`
+- Adds a patient with information including: `NAME`, `EMAIL`, `GENDER`, `PHONE`, `AGE`, `BLOODTYPE`, `ALLERGIES`
+
+Constraints
+- `NAME`: Must have first and last name, a space in between the names
+- `EMAIL`: Must adhere to the following format: `email@domain.com`
+- `GENDER`: Must be one of `M` or `F`
+- `PHONE`: Must be 8 digits in length
+- `AGE`: Must be an integer greater than or equal to 1
+- `BLOODTYPE`: Must be one of `A-`, `A+`, `B-`, `B+`, `AB-`, `AB+`, `O-`, `O+`
+- `ALLERGIES`: Must be alphanumeric characters 
 
 Examples:
 
-- `addpatient John Doe/johndoe@gmail.com/12345678/M/26/AB+/Penicillin`
-
-Expected Outputs on Success
-
-- **GUI:** Contact details added to the respective patient's record.
-- **Message:** Patient details added successfully.
-
-Expected Output on Failure
-
-- **Message:** Failed to add details. Please check the command format and try again.
+- `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` 
+adds a patient named John Doe who is a male, 26 years old, has AB+ blood type, and allergic to penicillin.
+His email and phone number is johndoe@gmail.com and 12345678, respectively.
 
 ### Adding Medical Records : `addrecord`
 
-Adds a new patient's medical records to the app.
+Adds a new patient's medical record to the app.
 
-Command Format: addrecord [id/date/condition(s)]
+Format: `addrecord PATIENTID d/DATETIME c/CONDITIONS`
+- Adds a medical record to the patient with the `PATIENTID`
+
+Constraints
+- `DATETIME`: Must adhere to the `DD-MM-YY HHMM` format
+- `CONDITION`: Can have up to 256 alphanumeric characters
 
 Examples:
-
-- `addrecord 3/18-09-2023 1800/Fever`
-
-Expected outputs on success:
-
-- **GUI:** A new entry appearing in the patient list.
-- **Messages:** "Patient record added successfully."
-
-Expected outputs on failure:
-
-- **Messages:** "Failed to add patient record. Please check the command format and try again."
-- **Messages:** “Failed to add patient record. The patient does not exist”
+- `addrecord 3 d/18-09-2023 1800 c/Fever`
+adds a record to the patient who has the `PATIENTID` of `3`. 
+The record says that the patient visited the clinic on September 18th, 2023 at 6PM due to fever.
 
 ### Listing all persons : `list`
 
@@ -121,9 +120,23 @@ Shows a list of all patients in the Medbook.
 
 Format: `list`
 
-### View patient detail
+- All patients in the Medbook will always be visible on the screen in the **MIDDLE** column.
 
-Shows the detailed information of the patient by clicking.
+Examples:
+
+- `list` lists all the patients in the `MIDDLE` column.
+
+### View patient records : `view`
+
+Displays the medical records of the specified patient in the **RECORD** list
+
+Format: `view PATIENTID`
+
+- The medical records of the viewed patient will be displayed on screen in the **RECORD** list.
+- Information about the patient will be displayed in the **PATIENT BEING VIEWED** section.
+
+Examples:
+- `view 2` views the medical records of the patient with the `PATIENTID` of `2`. The displayed records will be in the `RECORDS` list and patient information will be in the `PATIENT BEING VIEWED` section.
 
 ### Editing detail of a patient : `editdetail`
 
@@ -266,13 +279,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **List**   | `list`                                                                                                                                                                |
-| **Edit**   | `editdetail [patient ID/detail field/updated patient details]`<br> e.g.,`editdetail 1/email/johndoe_updated@gmail.com`                                                |
-| **search** | `search KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                        |
-| **Delete** | `delete [patientId]`<br> e.g., `delete 3`                                                                                                                             |
-| **Pin**    | `pin [patientId]`<br> e.g., `pin 2`                                                                                                                                   |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **exit**   | `exit`                                                                                                                                                                |
+| Action          | Format, Examples                                                                                                                       |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Patient** | `addpatient n/NAME e/EMAIL p/PHONE …​` <br> e.g., `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` |
+| **List**        | `list`                                                                                                                                 |
+| **View**        | `view PATIENTID`<br> e.g., `view 2`                                                                                                    |
+| **Edit**        | `editdetail [patient ID/detail field/updated patient details]`<br> e.g.,`editdetail 1/email/johndoe_updated@gmail.com`                 |
+| **search**      | `search [KEYWORDS]`<br> e.g., `find James Jake`                                                                                        |
+| **Delete**      | `delete PATIENTID`<br> e.g., `delete 3`                                                                                              |
+| **Pin**         | `pin PATIENTID`<br> e.g., `pin 2`                                                                                                      |
+| **Clear**       | `clear`                                                                                                                                |
+| **exit**        | `exit`                                                                                                                                 |
