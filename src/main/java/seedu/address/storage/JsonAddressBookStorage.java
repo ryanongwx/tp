@@ -26,18 +26,20 @@ import seedu.address.model.ReadOnlyAddressBook;
 public class JsonAddressBookStorage implements AddressBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
-    private static final String INIT_VECTOR = "a5s8d2e9w4z6x3c7";
+    protected static final String INIT_VECTOR = "a5s8d2e9w4z6x3c7";
     private static final String SECRET_KEY = "Xp2s5v8y/B?E(H+M";
 
     private Path filePath;
+    private JsonUtil jsonUtil;
 
     /**
      * Constructs a new JsonAddressBookStorage instance with a given filePath.
      *
      * @param filePath The path to the file.
      */
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonAddressBookStorage(Path filePath, JsonUtil jsonUtil) {
         this.filePath = filePath;
+        this.jsonUtil = jsonUtil;
     }
 
     /**
@@ -116,7 +118,6 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      */
     public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataLoadingException {
         requireNonNull(filePath);
-        System.out.println("reading");
 
         if (!FileUtil.isFileExists(filePath)) {
             return Optional.empty();
@@ -135,9 +136,6 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
             return Optional.of(jsonAddressBook.toModelType());
 
-        } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-            throw new DataLoadingException(ive);
         } catch (Exception e) {
             throw new DataLoadingException(e);
         }
@@ -162,7 +160,6 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      * @throws IOException if there was an error writing to the file.
      */
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        System.out.println("saving");
         requireNonNull(addressBook);
         requireNonNull(filePath);
 

@@ -6,6 +6,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import seedu.address.commons.util.JsonUtil;
 import seedu.address.storage.JsonAddressBookStorage;
 
 /**
@@ -19,8 +20,7 @@ import seedu.address.storage.JsonAddressBookStorage;
  * </p>
  */
 public class MockInvalidKeyJsonAddressBookStorage extends JsonAddressBookStorage {
-    private static final String MOCK_INIT_VECTOR = "a5s8d2e9w4z6x3c7";
-    private static final String MOCK_SECRET_KEY = "IncorrectSizeKeyljkh";
+    private static final String MOCK_SECRET_KEY = "InvalidKey";
 
     /**
      * Constructs a new instance of {@code MockInvalidKeyJsonAddressBookStorage}
@@ -29,7 +29,7 @@ public class MockInvalidKeyJsonAddressBookStorage extends JsonAddressBookStorage
      * @param filePath The path to the storage file.
      */
     public MockInvalidKeyJsonAddressBookStorage(Path filePath) {
-        super(filePath);
+        super(filePath, new JsonUtil());
     }
 
     /**
@@ -44,7 +44,7 @@ public class MockInvalidKeyJsonAddressBookStorage extends JsonAddressBookStorage
     protected String encrypt(String value) {
         // Use the mock key and init vector
         try {
-            IvParameterSpec iv = new IvParameterSpec(MOCK_INIT_VECTOR.getBytes("UTF-8"));
+            IvParameterSpec iv = new IvParameterSpec(INIT_VECTOR.getBytes("UTF-8"));
             SecretKeySpec skeySpec = new SecretKeySpec(MOCK_SECRET_KEY.getBytes("UTF-8"), "AES");
 
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
