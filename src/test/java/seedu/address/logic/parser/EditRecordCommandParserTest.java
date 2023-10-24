@@ -14,8 +14,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECORD;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECORD;
 
 import org.junit.jupiter.api.Test;
 
@@ -156,21 +156,21 @@ public class EditRecordCommandParserTest {
                 + CONDITON_DESC_HEAT_STROKE;
 
         assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DATE, PREFIX_CONDITION));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DATE));
 
         // multiple invalid values
         userInput = patientIndex.getOneBased() + "/" + recordIndex.getOneBased()
-                + INVALID_DATETIME_DESC + INVALID_CONDITION_DESC;
+                + INVALID_DATETIME_DESC + INVALID_DATETIME_DESC + INVALID_CONDITION_DESC;
 
         assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_CONDITION, PREFIX_CONDITION));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DATE));
     }
 
     @Test
     public void parse_resetConditions_success() {
         Index patientIndex = INDEX_FIRST_PERSON;
         Index recordIndex = INDEX_FIRST_RECORD;
-        String userInput = patientIndex.getZeroBased() + "/" + recordIndex.getZeroBased() + CONDITION_EMPTY;
+        String userInput = patientIndex.getOneBased() + "/" + recordIndex.getOneBased() + CONDITION_EMPTY;
 
         EditRecordCommand.EditRecordDescriptor descriptor = new EditRecordDescriptorBuilder().withConditions().build();
         EditRecordCommand expectedCommand = new EditRecordCommand(patientIndex, recordIndex, descriptor);

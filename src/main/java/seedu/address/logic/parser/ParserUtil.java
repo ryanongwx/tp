@@ -19,6 +19,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Phone;
 import seedu.address.model.record.Condition;
 import seedu.address.model.shared.DateTime;
+import seedu.address.model.shared.Name;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

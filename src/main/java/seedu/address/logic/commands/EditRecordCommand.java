@@ -140,7 +140,7 @@ public class EditRecordCommand extends Command {
 
         EditRecordCommand otherEditRecordCommand = (EditRecordCommand) other;
         return patientIndex.equals(otherEditRecordCommand.patientIndex)
-                && recordIndex.equals(otherEditRecordCommand.editRecordDescriptor)
+                && recordIndex.equals(otherEditRecordCommand.recordIndex)
                 && editRecordDescriptor.equals(otherEditRecordCommand.editRecordDescriptor);
     }
 

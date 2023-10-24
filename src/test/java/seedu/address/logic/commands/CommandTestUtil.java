@@ -27,6 +27,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.shared.DateTime;
 import seedu.address.model.shared.Name;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditRecordDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -100,6 +101,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final EditRecordCommand.EditRecordDescriptor DESC_FIRST_REC;
+    public static final EditRecordCommand.EditRecordDescriptor DESC_SECOND_REC;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withEmail(VALID_EMAIL_AMY).withPhone(VALID_PHONE_AMY).withGender(VALID_GENDER_AMY)
@@ -109,6 +113,13 @@ public class CommandTestUtil {
                 .withEmail(VALID_EMAIL_BOB).withPhone(VALID_PHONE_BOB).withGender(VALID_GENDER_BOB)
                 .withAge(VALID_AGE_BOB).withBloodType(VALID_BLOODTYPE_BOB)
                 .withAllergies(VALID_ALLERGY_DUST, VALID_ALLERGY_PEANUTS).build();
+        DESC_FIRST_REC = new EditRecordDescriptorBuilder()
+                .withDateTime(VALID_DATETIME_SLEEP_STUDY)
+                .withConditions(VALID_CONDITION_DIARRHEA).build();
+
+        DESC_SECOND_REC = new EditRecordDescriptorBuilder()
+                .withDateTime(VALID_DATETIME_THYROID_CHECK)
+                .withConditions(VALID_CONDITION_HEAT_STROKE).build();
     }
 
     /**
