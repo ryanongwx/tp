@@ -102,7 +102,7 @@ His email and phone number is johndoe@gmail.com and 12345678, respectively.
 
 Adds a new patient's medical record to the app.
 
-Format: `addrecord PATIENTID d/DATETIME c/CONDITION`
+Format: `addrecord PATIENTID d/DATETIME c/CONDITIONS`
 - Adds a medical record to the patient with the `PATIENTID`
 
 Constraints
