@@ -126,7 +126,7 @@ Examples:
 
 - `list` lists all the patients in the `MIDDLE` column.
 
-### View patient records
+### View patient records : `view`
 
 Displays the medical records of the specified patient in the **RECORD** list
 
