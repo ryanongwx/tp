@@ -279,13 +279,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **List**   | `list`                                                                                                                                                                |
-| **Edit**   | `editdetail [patient ID/detail field/updated patient details]`<br> e.g.,`editdetail 1/email/johndoe_updated@gmail.com`                                                |
-| **search** | `search KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                        |
-| **Delete** | `delete [patientId]`<br> e.g., `delete 3`                                                                                                                             |
-| **Pin**    | `pin [patientId]`<br> e.g., `pin 2`                                                                                                                                   |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **exit**   | `exit`                                                                                                                                                                |
+| Action          | Format, Examples                                                                                                                       |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Patient** | `addpatient n/NAME e/EMAIL p/PHONE …​` <br> e.g., `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` |
+| **List**        | `list`                                                                                                                                 |
+| **View**        | `view PATIENTID`<br> e.g., `view 2`                                                                                                    |
+| **Edit**        | `editdetail [patient ID/detail field/updated patient details]`<br> e.g.,`editdetail 1/email/johndoe_updated@gmail.com`                 |
+| **search**      | `search [KEYWORDS]`<br> e.g., `find James Jake`                                                                                        |
+| **Delete**      | `delete [patientId]`<br> e.g., `delete 3`                                                                                              |
+| **Pin**         | `pin PATIENTID`<br> e.g., `pin 2`                                                                                                      |
+| **Clear**       | `clear`                                                                                                                                |
+| **exit**        | `exit`                                                                                                                                 |
