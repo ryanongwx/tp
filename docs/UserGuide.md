@@ -286,7 +286,7 @@ _Details coming soon ..._
 | **View**        | `view PATIENTID`<br> e.g., `view 2`                                                                                                    |
 | **Edit**        | `editdetail [patient ID/detail field/updated patient details]`<br> e.g.,`editdetail 1/email/johndoe_updated@gmail.com`                 |
 | **search**      | `search [KEYWORDS]`<br> e.g., `find James Jake`                                                                                        |
-| **Delete**      | `delete [patientId]`<br> e.g., `delete 3`                                                                                              |
+| **Delete**      | `delete PATIENTID`<br> e.g., `delete 3`                                                                                              |
 | **Pin**         | `pin PATIENTID`<br> e.g., `pin 2`                                                                                                      |
 | **Clear**       | `clear`                                                                                                                                |
 | **exit**        | `exit`                                                                                                                                 |
