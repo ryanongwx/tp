@@ -115,7 +115,7 @@
         "adding-a-patient-addpatient": "Adding a patient: addpatient",
         "adding-medical-records-addrecord": "Adding Medical Records : addrecord",
         "listing-all-persons-list": "Listing all persons : list",
-        "view-patient-detail": "View patient detail",
+        "view-patient-records-view": "View patient records : view",
         "editing-detail-of-a-patient-editdetail": "Editing detail of a patient : editdetail",
         "locating-persons-by-keywords-search": "Locating persons by keywords: search",
         "deleting-a-patient-delete": "Deleting a patient : delete",
