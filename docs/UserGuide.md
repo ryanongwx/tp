@@ -17,15 +17,15 @@ Medbook is a **desktop app for managing patient details and medical records, opt
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `medbook.jar` from [here](https://github.com/AY2324S1-CS2103T-T12-4/tp/releases).
+2. Download the latest `medbook.jar` from [here](https://github.com/AY2324S1-CS2103T-T12-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your MedBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your MedBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar medbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar medbook.jar` command to run the application.<br>
    A GUI same as the below should appear in a few seconds. Note that the app contains some sample data.<br>
    ![Ui](images/MedBookUi.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    - `list` : Lists all contacts.
@@ -38,7 +38,7 @@ Medbook is a **desktop app for managing patient details and medical records, opt
 
    - `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 ---
 
@@ -138,29 +138,42 @@ Format: `view PATIENTID`
 Examples:
 - `view 2` views the medical records of the patient with the `PATIENTID` of `2`. The displayed records will be in the `RECORDS` list and patient information will be in the `PATIENT BEING VIEWED` section.
 
-### Editing detail of a patient : `editdetail`
+### Editing detail of a patient : `editpatient`
 
-Edits an existing person in MedBook.
+Edits an existing patient in MedBook.
 
-Format: `editdetail [patient ID/detail field/updated patient details]`
+Format: `editpatient PATIENTID/FIELD/NEWVALUE`
 
-- Edits the person at the specified `patient ID`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-- The `detail field` must be provided.
-- Accepted `detail field` : **name**, **email**, **phone**, **gender**, **age**, **blood**, **allergy**.
-- Existing values in the `detail field` will be updated to the `updated patient details` input.
-- **Name**: Text (up to 256 characters)
-- **Email**: Valid email format
-- **Phone**: Number (up to 15 digits)
-- **Gender**: M/F
-- **Age**: Number (0-120)
-- **Blood Type**: One of [A+, A-, B+, B-, AB+, AB-, O+, O-]
-- **Allergies**: Text (up to 512 characters)
+- Edits the patient at the specified `PATIENTID`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
+- The `FIELD` must be provided.
+- Accepted `FIELD` : **name**, **email**, **phone**, **gender**, **age**, **blood**, **allergy**.
+- Existing values in the `FIELD` will be updated to the `NEWVALUE` input.
+- Constraints are as state in `addpatient` command.
 
 Examples:
 
 - `editdetail 1/email/johndoe_updated@gmail.com` Edits the email address of the 1st person to be `johndoe_updated@gmail.com`.
 - `editdetail 2/phone/92345678` Edits the name of the 2nd person to be `92345678`.
 - `editdetail 3/allergy/aspirin` Edits the allergy of the 3rd person to be `aspirin`.
+
+### Editing a record of a patient : `editrecord`
+
+Edits a record of an existing patient in MedBook.
+
+Format: `editrecord PATIENTID/RECORDID FIELD/NEWVALUE`
+
+- Edits a record at the specific `RECORDID` of the patient at the specified `PATIENTID`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
+- The `FIELD` must be provided.
+- Accepted `FIELD` : **d** (for dateTime), **c** (for conditions).
+- Existing values in the `FIELD` will be updated to the `NEWVALUE` input.
+- Multiple editing of condition fields are allowed to represent a new set of conditions.
+- Contraints are as stated in `addrecord` command.
+
+Examples:
+
+- `editrecord 1/1 d/25-10-2023 1200` Edits the dateTime of the 1st record of the 1st patient to be `25-10-2023 1200`.
+- `editrecord 1/1 c/Fever` Edits the conditions of the 1st record of the 1st patient to be `Fever`.
+- `editrecord 1/1 c/Headache c/Flu` Edits the conditions of the 1st  of the 1st patient to be `Headache, Flu`.
 
 ### Locating persons by keywords: `search`
 
@@ -279,14 +292,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                                                       |
-|-----------------|----------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Patient** | `addpatient n/NAME e/EMAIL p/PHONE …​` <br> e.g., `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` |
-| **List**        | `list`                                                                                                                                 |
-| **View**        | `view PATIENTID`<br> e.g., `view 2`                                                                                                    |
-| **Edit**        | `editdetail [patient ID/detail field/updated patient details]`<br> e.g.,`editdetail 1/email/johndoe_updated@gmail.com`                 |
-| **search**      | `search [KEYWORDS]`<br> e.g., `find James Jake`                                                                                        |
-| **Delete**      | `delete PATIENTID`<br> e.g., `delete 3`                                                                                              |
-| **Pin**         | `pin PATIENTID`<br> e.g., `pin 2`                                                                                                      |
-| **Clear**       | `clear`                                                                                                                                |
-| **exit**        | `exit`                                                                                                                                 |
+| Action           | Format, Examples                                                                                                                       |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Patient**  | `addpatient n/NAME e/EMAIL p/PHONE …​` <br> e.g., `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` |
+| **List**         | `list`                                                                                                                                 |
+| **View**         | `view PATIENTID`<br> e.g., `view 2`                                                                                                    |
+| **Edit Patient** | `editpatient PATIENTID/FIELD/NEWVALUE`<br> e.g.,`editpatient 1/email/johndoe_updated@gmail.com`                                        |
+| **Edit Record**  | `editrecord PATIENTID/RECORDID FIELD/NEWVALUE`<br> e.g.,`editrecord 1/1 d/25-10-2023 1200`                                                                             |
+| **search**       | `search [KEYWORDS]`<br> e.g., `find James Jake`                                                                                        |
+| **Delete**       | `delete PATIENTID`<br> e.g., `delete 3`                                                                                                |
+| **Pin**          | `pin PATIENTID`<br> e.g., `pin 2`                                                                                                      |
+| **Clear**        | `clear`                                                                                                                                |
+| **exit**         | `exit`                                                                                                                                 |
