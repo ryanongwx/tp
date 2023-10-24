@@ -20,12 +20,16 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.record.Condition;
 import seedu.address.model.shared.DateTime;
 import seedu.address.model.shared.Name;
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
 
+    public static final String MESSAGE_INVALID_INPUT = "Index input is not in the format of number/number";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_PATIENT_INDEX = "Patient index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_RECORD_INDEX = "Record index is not a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -40,6 +44,38 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses {@code oneBasedIndexes} for edit record command into a patient's {@code Index}
+     * and returns it. Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified patient index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parsePatientIndex(String oneBasedIndexes) throws ParseException {
+        // Check if input matches the format of two numbers separated by a slash
+        if (!oneBasedIndexes.matches("\\d+/\\d+")) {
+            System.out.println("invalid input");
+            throw new ParseException(MESSAGE_INVALID_INPUT);
+        }
+        String trimmedIndex = oneBasedIndexes.split("/")[0].trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            System.out.println("invalid patient index 0");
+            throw new ParseException(MESSAGE_INVALID_PATIENT_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code oneBasedIndexes} for edit record command into a record's {@code Index}
+     * and returns it. Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified patient index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseRecordIndex(String oneBasedIndexes) throws ParseException {
+        String trimmedIndex = oneBasedIndexes.split("/")[1].trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            System.out.println("invalid record index 0");
+            throw new ParseException(MESSAGE_INVALID_RECORD_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.

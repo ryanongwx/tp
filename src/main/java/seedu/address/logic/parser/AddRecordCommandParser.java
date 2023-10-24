@@ -29,7 +29,7 @@ public class AddRecordCommandParser implements Parser<AddRecordCommand> {
 
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DATE, PREFIX_CONDITION);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DATE);
 
         DateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATE).get());
         List<Condition> conditions = ParserUtil.parseConditions(argMultimap.getAllValues(PREFIX_CONDITION));
