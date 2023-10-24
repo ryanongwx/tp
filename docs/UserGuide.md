@@ -30,7 +30,7 @@ Medbook is a **desktop app for managing patient details and medical records, opt
 
    - `list` : Lists all contacts.
 
-   - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the MedBook.
+   - `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` : Adds a new patient named John Doe with basic information about the patient 
 
    - `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -80,40 +80,40 @@ Format: `help`
 
 Adds a patient's contact and medical details.
 
-Command Format: addpatient [name/email/phone/gender/age/blood type/allergies]
+Format: `addpatient n/NAME e/EMAIL p/PHONE g/GENDER a/AGE bt/BLOODTYPE al/ALLERGIES`
+- Adds a patient with information including: `NAME`, `EMAIL`, `GENDER`, `PHONE`, `AGE`, `BLOODTYPE`, `ALLERGIES`
+
+Constraints
+- `NAME`: Must have first and last name, a space in between the names
+- `EMAIL`: Must adhere to the following format: `email@domain.com`
+- `GENDER`: Must be one of `M` or `F`
+- `PHONE`: Must be 8 digits in length
+- `AGE`: Must be an integer greater than or equal to 1
+- `BLOODTYPE`: Must be one of `A-`, `A+`, `B-`, `B+`, `AB-`, `AB+`, `O-`, `O+`
+- `ALLERGIES`: Must be alphanumeric characters 
 
 Examples:
 
-- `addpatient John Doe/johndoe@gmail.com/12345678/M/26/AB+/Penicillin`
-
-Expected Outputs on Success
-
-- **GUI:** Contact details added to the respective patient's record.
-- **Message:** Patient details added successfully.
-
-Expected Output on Failure
-
-- **Message:** Failed to add details. Please check the command format and try again.
+- `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` 
+adds a patient named John Doe who is a male, 26 years old, has a AB+ blood type, and allergic to penicillin.
+His email and phone number is johndoe@gmail.com and 12345678, respectively.
 
 ### Adding Medical Records : `addrecord`
 
 Adds a new patient's medical records to the app.
 
-Command Format: addrecord [id/date/condition(s)]
+Format: `addrecord PATIENTID d/DATETIME c/CONDITION`
+- Adds a medical record to the patient with the `PATIENTID`
+
+Constraints
+- `DATETIME`: Must adhere to the `DD-MM-YY HHMM` format
+- `CONDITION`: Can have up to 256 alphanumeric characters
 
 Examples:
+- `addrecord 3 d/18-09-2023 1800 c/Fever`
+adds a record to the patient who has the `PATIENTID` of `3`. 
+Within the record, the patient visited the clinic on September 18th, 2023 at 6PM due to fever.
 
-- `addrecord 3/18-09-2023 1800/Fever`
-
-Expected outputs on success:
-
-- **GUI:** A new entry appearing in the patient list.
-- **Messages:** "Patient record added successfully."
-
-Expected outputs on failure:
-
-- **Messages:** "Failed to add patient record. Please check the command format and try again."
-- **Messages:** “Failed to add patient record. The patient does not exist”
 
 ### Listing all persons : `list`
 
