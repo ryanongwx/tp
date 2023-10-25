@@ -155,29 +155,42 @@ Examples:
 
 - `view 2` displays the medical records of the patient with the `PATIENTID` of `2`. The displayed records will be in the `RECORDS` list and patient information will be in the `PATIENT BEING VIEWED` section.
 
-### Editing detail of a patient : `editdetail`
+### Editing detail of a patient : `editpatient`
 
-Edits an existing patient.
+Edits an existing patient in MedBook.
 
-Format: `editdetail [patient ID/detail field/updated patient details]`
+Format: `editpatient PATIENTID/FIELD/NEWVALUE`
 
-- Edits the person at the specified `patient ID`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-- The `detail field` must be provided.
-- Accepted `detail field` : **name**, **email**, **phone**, **gender**, **age**, **blood**, **allergy**.
-- Existing values in the `detail field` will be updated to the `updated patient details` input.
-- **Name**: Up to 256 alphanumeric characters
-- **Email**: Valid email format example@
-- **Phone**: Number (up to 15 digits)
-- **Gender**: M/F
-- **Age**: Number (0-120)
-- **Blood Type**: One of [A+, A-, B+, B-, AB+, AB-, O+, O-]
-- **Allergies**: Text (up to 512 characters)
+- Edits the patient at the specified `PATIENTID`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
+- The `FIELD` must be provided.
+- Accepted `FIELD` : **name**, **email**, **phone**, **gender**, **age**, **blood**, **allergy**.
+- Existing values in the `FIELD` will be updated to the `NEWVALUE` input.
+- Constraints are as state in `addpatient` command.
 
 Examples:
 
 - `editdetail 1/email/johndoe_updated@gmail.com` Edits the email address of the 1st person to be `johndoe_updated@gmail.com`.
 - `editdetail 2/phone/92345678` Edits the name of the 2nd person to be `92345678`.
 - `editdetail 3/allergy/aspirin` Edits the allergy of the 3rd person to be `aspirin`.
+
+### Editing a record of a patient : `editrecord`
+
+Edits a record of an existing patient in MedBook.
+
+Format: `editrecord PATIENTID/RECORDID FIELD/NEWVALUE`
+
+- Edits a record at the specific `RECORDID` of the patient at the specified `PATIENTID`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
+- The `FIELD` must be provided.
+- Accepted `FIELD` : **d** (for dateTime), **c** (for conditions).
+- Existing values in the `FIELD` will be updated to the `NEWVALUE` input.
+- Multiple editing of condition fields are allowed to represent a new set of conditions.
+- Contraints are as stated in `addrecord` command.
+
+Examples:
+
+- `editrecord 1/1 d/25-10-2023 1200` Edits the dateTime of the 1st record of the 1st patient to be `25-10-2023 1200`.
+- `editrecord 1/1 c/Fever` Edits the conditions of the 1st record of the 1st patient to be `Fever`.
+- `editrecord 1/1 c/Headache c/Flu` Edits the conditions of the 1st  of the 1st patient to be `Headache, Flu`.
 
 ### Locating persons by keywords: `search`
 
@@ -290,6 +303,7 @@ Do not make changes to the data file.
 
 ## Command summary
 
+
 | Action              | Format, Examples                                                                                                                       |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | **Add Patient**     | `addpatient n/NAME e/EMAIL p/PHONE …​` <br> e.g., `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` |
@@ -297,10 +311,12 @@ Do not make changes to the data file.
 | **Add Appointment** | `addappointment PATIENTID n/APPOINTMENTNAME d/DATETIME`<br> e.g., `addappointment 2 n/Eye Exam d/10-10-2020 1900`                      |
 | **List**            | `list`                                                                                                                                 |
 | **View**            | `view PATIENTID`<br> e.g., `view 2`                                                                                                    |
-| **Edit**            | `editdetail [patient ID/detail field/updated patient details]`<br> e.g.,`editdetail 1/email/johndoe_updated@gmail.com`                 |
+| **Edit Patient** | `editpatient PATIENTID/FIELD/NEWVALUE`<br> e.g.,`editpatient 1/email/johndoe_updated@gmail.com`                                        |
+| **Edit Record**  | `editrecord PATIENTID/RECORDID FIELD/NEWVALUE`<br> e.g.,`editrecord 1/1 d/25-10-2023 1200`                 |
 | **Search**          | `search [KEYWORDS]`<br> e.g., `find James Jake`                                                                                        |
 | **Delete**          | `delete PATIENTID`<br> e.g., `delete 3`                                                                                                |
 | **Pin**             | `pin PATIENTID`<br> e.g., `pin 2`                                                                                                      |
 | **Unpin**           | `unpin PATIENTID`<br> e.g. `unpin 2`                                                                                                   |
 | **Clear**           | `clear`                                                                                                                                |
 | **Exit**            | `exit`                                                                                                                                 |
+
