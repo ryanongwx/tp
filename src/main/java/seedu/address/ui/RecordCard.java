@@ -23,6 +23,8 @@ public class RecordCard extends UiPart<Region> {
     private Label dateTime;
     @FXML
     private Label condition;
+    @FXML
+    private Label medication;
 
     /**
      * Creates a {@code RecordCode} with the given {@code Record} and index to display.
@@ -34,5 +36,7 @@ public class RecordCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         dateTime.setText(record.getDateTime().toString());
         condition.setText(record.getConditions().toString());
+        medication.setText(record.getMedications().toString());
+
     }
 }

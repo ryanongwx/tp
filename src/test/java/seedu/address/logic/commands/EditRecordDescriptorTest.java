@@ -48,7 +48,8 @@ public class EditRecordDescriptorTest {
         EditRecordCommand.EditRecordDescriptor editRecordDescriptor = new EditRecordCommand.EditRecordDescriptor();
         String expected = EditRecordCommand.EditRecordDescriptor.class.getCanonicalName() + "{dateTime="
                 + editRecordDescriptor.getDateTime().orElse(null) + ", conditions="
-                + editRecordDescriptor.getConditions().orElse(null) + "}";
+                + editRecordDescriptor.getConditions().orElse(null) + ", medications="
+                + editRecordDescriptor.getMedications().orElse(null) + "}";
 
         assertEquals(expected, editRecordDescriptor.toString());
     }

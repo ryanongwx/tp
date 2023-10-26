@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.shared.Name;
 
 public class ConditionTest {
-
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Condition(null));
@@ -25,6 +24,11 @@ public class ConditionTest {
         assertFalse(Condition.isValidCondition(inValidCondition));
     }
     @Test
+    public void isValidCondtion_failure2() {
+        String inValidCondition = "Fever+";
+        assertFalse(Condition.isValidCondition(inValidCondition));
+    }
+    @Test
     public void equals() {
         Condition condition = new Condition("Allergic Reaction");
 
@@ -36,5 +40,6 @@ public class ConditionTest {
 
         assertFalse(condition.equals(new Name("Alice Pauline")));
     }
+
 
 }
