@@ -277,9 +277,9 @@ public class EditRecordCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("dateTime", dateTime)
-                    .add("filePath", filePath)
-                    .add("medications", medications)
                     .add("conditions", conditions)
+                    .add("medications", medications)
+                    .add("filePath", filePath)
                     .add("patientIndex", patientIndex)
                     .toString();
         }

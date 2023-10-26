@@ -38,6 +38,7 @@ public class TypicalRecords {
             .withDateTime("09-09-2023 1800")
             .withConditions("Fever", "Cold")
             .withPersonIndex(2)
+            .withMedications("Pepto-Bismol")
             .build();
 
     public static final Record HEADACHE3 = new RecordBuilder()
