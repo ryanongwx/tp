@@ -15,9 +15,10 @@ public class AddRecordCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsAddRecordCommand() {
-        assertParseSuccess(parser, "1 d/09-10-2023 1800 c/Fever",
+        assertParseSuccess(parser, "1 d/09-10-2023 1800 c/Fever m/Tylenol",
                 new AddRecordCommand(INDEX_FIRST_PERSON, FEVER0));
     }
+
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecordCommand.MESSAGE_USAGE));

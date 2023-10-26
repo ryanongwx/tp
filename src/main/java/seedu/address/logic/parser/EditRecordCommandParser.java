@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -15,6 +16,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditRecordCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.record.Condition;
+import seedu.address.model.record.Medication;
 
 /**
  * Parses input arguments and creates a new EditRecordCommand object
@@ -29,7 +31,7 @@ public class EditRecordCommandParser implements Parser<EditRecordCommand> {
     public EditRecordCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_CONDITION);
+                ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_CONDITION, PREFIX_MEDICATION);
 
         Index patientIndex;
         Index recordIndex;
@@ -53,6 +55,9 @@ public class EditRecordCommandParser implements Parser<EditRecordCommand> {
         parseConditionsForEdit(argMultimap.getAllValues(PREFIX_CONDITION))
                 .ifPresent(editRecordDescriptor::setConditions);
 
+        parseMedicationForEdit(argMultimap.getAllValues(PREFIX_MEDICATION))
+                .ifPresent(editRecordDescriptor::setMedications);
+
         if (!editRecordDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
@@ -61,9 +66,9 @@ public class EditRecordCommandParser implements Parser<EditRecordCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> allergies} into a {@code Set<Allergy>} if {@code allergies} is non-empty.
-     * If {@code allergies} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Allergy>} containing zero allergies.
+     * Parses {@code Collection<String> condtions} into a {@code Set<Condition>} if {@code condition} is non-empty.
+     * If {@code contion} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Condition>} containing zero allergies.
      */
     private Optional<List<Condition>> parseConditionsForEdit(Collection<String> conditions) throws ParseException {
         assert conditions != null;
@@ -74,5 +79,19 @@ public class EditRecordCommandParser implements Parser<EditRecordCommand> {
         Collection<String> conditionSet = conditions.size() == 1
                 && conditions.contains("") ? Collections.emptySet() : conditions;
         return Optional.of(ParserUtil.parseConditions(conditionSet));
+    }
+    /**
+     * Parses {@code Collection<String> medications} into a {@code Set<Medication>} if {@code medications} is non-empty.
+     * If {@code medications} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Medication>} containing zero allergies.
+     */
+    private Optional<List<Medication>> parseMedicationForEdit(Collection<String> medications) throws ParseException {
+        assert medications != null;
+        if (medications.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> medicationSet = medications.size() == 1
+                && medications.contains("") ? Collections.emptySet() : medications;
+        return Optional.of(ParserUtil.parseMedications(medicationSet));
     }
 }

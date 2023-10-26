@@ -8,11 +8,18 @@
       "bloodType": "AB+",
       "gender": "F",
       "age": 20,
-      "allergies": ["Chocolate"],
+      "allergies": [
+        "Chocolate"
+      ],
       "records": [
         {
           "dateTime": "09-10-2023 1800",
-          "conditions": ["Fever"],
+          "conditions": [
+            "Fever"
+          ],
+          "medications": [
+            "Tylenol"
+          ],
           "filename": null,
           "personIndex": 0
         }
@@ -32,11 +39,20 @@
       "bloodType": "B-",
       "gender": "M",
       "age": 15,
-      "allergies": ["Pollen", "Soil"],
+      "allergies": [
+        "Pollen",
+        "Soil"
+      ],
       "records": [
         {
           "dateTime": "09-09-2023 1800",
-          "conditions": ["Fever", "Cold"],
+          "conditions": [
+            "Fever",
+            "Cold"
+          ],
+          "medications": [
+            "Tylenol"
+          ],
           "filename": null,
           "personIndex": 1
         }
@@ -56,11 +72,18 @@
       "bloodType": "AB-",
       "gender": "M",
       "age": 24,
-      "allergies": ["Dogs"],
+      "allergies": [
+        "Dogs"
+      ],
       "records": [
         {
           "dateTime": "23-10-2022 1130",
-          "conditions": ["Allergic Reaction"],
+          "conditions": [
+            "Allergic Reaction"
+          ],
+          "medications": [
+            "Pepto-Bismol"
+          ],
           "filename": null,
           "personIndex": 2
         }
@@ -80,7 +103,9 @@
       "bloodType": "AB+",
       "gender": "M",
       "age": 26,
-      "allergies": ["Cats"],
+      "allergies": [
+        "Cats"
+      ],
       "records": [],
       "appointments": [],
       "isPinned": false
@@ -92,7 +117,9 @@
       "bloodType": "A-",
       "gender": "F",
       "age": 27,
-      "allergies": ["Light"],
+      "allergies": [
+        "Light"
+      ],
       "records": [],
       "appointments": [],
       "isPinned": false

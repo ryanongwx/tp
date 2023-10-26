@@ -33,6 +33,7 @@ public class RecordCard extends UiPart<Region> {
     private Hyperlink filePathLabel;
 
     private int displayedIndex;
+    private Label medication;
 
     /**
      * Creates a {@code RecordCard} with the given {@code Record} and index to
@@ -54,6 +55,7 @@ public class RecordCard extends UiPart<Region> {
             filePathLabel.setDisable(true); // Disable the hyperlink if no file is attached
         }
         this.displayedIndex = displayedIndex;
+        medication.setText(record.getMedications().toString());
     }
 
     /**
@@ -88,5 +90,6 @@ public class RecordCard extends UiPart<Region> {
                 e.printStackTrace();
             }
         }
+
     }
 }

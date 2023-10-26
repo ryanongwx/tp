@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -55,6 +56,8 @@ public class CommandTestUtil {
     public static final String VALID_DATETIME_SLEEP_STUDY = "11-09-2001 1200";
     public static final String VALID_CONDITION_DIARRHEA = "Diarrhea";
     public static final String VALID_CONDITION_HEAT_STROKE = "Heat stroke";
+    public static final String VALID_MEDICATION_DIARRHEA = "Loperamide";
+    public static final String VALID_MEDICATION_HEAT_STROKE = "Phenobarbital";
     public static final Appointment VALID_APPOINTMENT_THYROID_CHECK =
             new Appointment(new Name(VALID_NAME_THYROID_CHECK), new DateTime(VALID_DATETIME_THYROID_CHECK));
     public static final Appointment VALID_APPOINTMENT_SLEEP_STUDY = new Appointment(new Name(VALID_NAME_SLEEP_STUDY),
@@ -79,8 +82,10 @@ public class CommandTestUtil {
     public static final String NAME_DESC_THYROID_CHECK = " " + PREFIX_NAME + VALID_NAME_THYROID_CHECK;
     public static final String DATETIME_DESC_SLEEP_STUDY = " " + PREFIX_DATE + VALID_DATETIME_SLEEP_STUDY;
     public static final String DATETIME_DESC_THYROID_CHECK = " " + PREFIX_DATE + VALID_DATETIME_THYROID_CHECK;
-    public static final String CONDITON_DESC_HEAT_STROKE = " " + PREFIX_CONDITION + VALID_CONDITION_HEAT_STROKE;
+    public static final String CONDITION_DESC_HEAT_STROKE = " " + PREFIX_CONDITION + VALID_CONDITION_HEAT_STROKE;
     public static final String CONDITION_DESC_DIARRHEA = " " + PREFIX_CONDITION + VALID_CONDITION_DIARRHEA;
+    public static final String MEDICATION_DESC_HEAT_STROKE = " " + PREFIX_MEDICATION + VALID_MEDICATION_HEAT_STROKE;
+    public static final String MEDICATION_DESC_DIARRHEA = " " + PREFIX_MEDICATION + VALID_MEDICATION_DIARRHEA;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -94,6 +99,9 @@ public class CommandTestUtil {
             + "11/1/01 1200"; // date must be in the format dd-mm-yyyy
     public static final String INVALID_CONDITION_DESC = " " + PREFIX_CONDITION
             + "Fever*"; // '*' not allowed in conditions
+
+    public static final String INVALID_MEDICATION_DESC = " " + PREFIX_MEDICATION
+            + "Tylenol+";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -115,11 +123,13 @@ public class CommandTestUtil {
                 .withAllergies(VALID_ALLERGY_DUST, VALID_ALLERGY_PEANUTS).build();
         DESC_FIRST_REC = new EditRecordDescriptorBuilder()
                 .withDateTime(VALID_DATETIME_SLEEP_STUDY)
-                .withConditions(VALID_CONDITION_DIARRHEA).build();
+                .withConditions(VALID_CONDITION_DIARRHEA)
+                .withMedications(VALID_MEDICATION_DIARRHEA).build();
 
         DESC_SECOND_REC = new EditRecordDescriptorBuilder()
                 .withDateTime(VALID_DATETIME_THYROID_CHECK)
-                .withConditions(VALID_CONDITION_HEAT_STROKE).build();
+                .withConditions(VALID_CONDITION_HEAT_STROKE)
+                .withMedications(VALID_MEDICATION_HEAT_STROKE).build();
     }
 
     /**

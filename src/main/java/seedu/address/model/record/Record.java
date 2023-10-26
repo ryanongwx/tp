@@ -25,6 +25,7 @@ import seedu.address.storage.StorageManager;
 public class Record {
 
     private final List<Condition> conditions = new ArrayList<>();
+    private final List<Medication> medications = new ArrayList<>();
     private final DateTime dateTime;
     private Path filePath;
     private final Integer personIndex;
@@ -33,10 +34,12 @@ public class Record {
      * Constructs a record object
      */
 
-    public Record(DateTime dateTime, List<Condition> conditions, Path filePath, Integer personIndex) {
+    public Record(DateTime dateTime, List<Condition> conditions, List<Medication> medications, Path filePath,
+            Integer personIndex) {
         requireAllNonNull(dateTime, conditions);
         this.dateTime = dateTime;
         this.conditions.addAll(conditions);
+        this.medications.addAll(medications);
         this.filePath = filePath;
         this.personIndex = personIndex;
     }
@@ -82,6 +85,10 @@ public class Record {
         return Objects.hash(dateTime, conditions, filePath, personIndex);
     }
 
+    public List<Medication> getMedications() {
+        return Collections.unmodifiableList(medications);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -97,7 +104,8 @@ public class Record {
         return dateTime.equals(otherRecord.dateTime)
                 && conditions.equals(otherRecord.conditions)
                 && Objects.equals(filePath, otherRecord.filePath)
-                && personIndex.equals(otherRecord.personIndex);
+                && personIndex.equals(otherRecord.personIndex)
+                && medications.equals(otherRecord.medications);
     }
 
     @Override
@@ -105,6 +113,7 @@ public class Record {
         return new ToStringBuilder(this)
                 .add("dateTime", dateTime)
                 .add("conditions", conditions)
+                .add("medications", medications)
                 .add("filePath", filePath)
                 .add("personIndex", personIndex)
                 .toString();

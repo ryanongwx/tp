@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.nio.file.Path;
@@ -20,6 +21,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.record.Condition;
+import seedu.address.model.record.Medication;
 import seedu.address.model.record.Record;
 import seedu.address.model.record.UniqueRecordList;
 import seedu.address.model.shared.DateTime;
@@ -39,7 +41,8 @@ public class EditRecordCommand extends Command {
             + "[" + PREFIX_CONDITION + "CONDITION] " + "\n"
             + "Example: " + COMMAND_WORD + " 1/2 "
             + PREFIX_DATE + "21092023 1800 "
-            + PREFIX_CONDITION + "Cold";
+            + PREFIX_CONDITION + "Cold"
+            + PREFIX_MEDICATION + "Ibuprofen";
 
     public static final String MESSAGE_EDIT_RECORD_SUCCESS = "Edited record: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -114,9 +117,16 @@ public class EditRecordCommand extends Command {
 
         DateTime updatedDateTime = editRecordDescriptor.getDateTime().orElse(recordToEdit.getDateTime());
         List<Condition> updatedConditions = editRecordDescriptor.getConditions().orElse(recordToEdit.getConditions());
+<<<<<<< HEAD
         Path filePath = editRecordDescriptor.getFilePath().orElse(recordToEdit.getFilePath());
 
         return new Record(updatedDateTime, updatedConditions, filePath, patientIndex.getZeroBased());
+=======
+        List<Medication> updatedMedications = editRecordDescriptor.getMedications()
+                .orElse(recordToEdit.getMedications());
+
+        return new Record(updatedDateTime, updatedConditions, updatedMedications);
+>>>>>>> origin/master
     }
 
     private static Person createdEditedPerson(Person personToEdit, UniqueRecordList records) {
@@ -164,28 +174,40 @@ public class EditRecordCommand extends Command {
     public static class EditRecordDescriptor {
         private DateTime dateTime;
         private List<Condition> conditions;
+<<<<<<< HEAD
         private Path filePath;
         private Integer patientIndex;
+=======
+        private List<Medication> medications;
+>>>>>>> origin/master
 
         public EditRecordDescriptor() {
         }
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code conditionss} is used internally.
+         * Defensive copies of {@code conditions} and {@code medications} are used internally.
          */
         public EditRecordDescriptor(EditRecordCommand.EditRecordDescriptor toCopy) {
             setDateTime(toCopy.dateTime);
             setConditions(toCopy.conditions);
+<<<<<<< HEAD
             setFilePath(toCopy.filePath);
             setPatientIndex(toCopy.patientIndex);
+=======
+            setMedications(toCopy.medications);
+>>>>>>> origin/master
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
+<<<<<<< HEAD
             return CollectionUtil.isAnyNonNull(dateTime, conditions, filePath);
+=======
+            return CollectionUtil.isAnyNonNull(dateTime, conditions, medications);
+>>>>>>> origin/master
         }
 
         public void setDateTime(DateTime dateTime) {
@@ -229,6 +251,21 @@ public class EditRecordCommand extends Command {
         public Optional<List<Condition>> getConditions() {
             return (conditions != null) ? Optional.of(Collections.unmodifiableList(conditions)) : Optional.empty();
         }
+        /**
+         * Sets {@code medications} to this record's {@code medications}.
+         * A defensive copy of {@code medications} is used internally.
+         */
+        public void setMedications(List<Medication> medications) {
+            this.medications = (medications != null) ? new ArrayList<>(medications) : null;
+        }
+        /**
+         * Returns an unmodifiable medication list, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code medications} is null.
+         */
+        public Optional<List<Medication>> getMedications() {
+            return (medications != null) ? Optional.of(Collections.unmodifiableList(medications)) : Optional.empty();
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -245,8 +282,12 @@ public class EditRecordCommand extends Command {
                 (EditRecordCommand.EditRecordDescriptor) other;
             return Objects.equals(dateTime, otherEditRecordDescriptor.dateTime)
                     && Objects.equals(conditions, otherEditRecordDescriptor.conditions)
+<<<<<<< HEAD
                     && Objects.equals(filePath, otherEditRecordDescriptor.filePath)
                     && Objects.equals(patientIndex, otherEditRecordDescriptor.patientIndex);
+=======
+                    && Objects.equals(medications, otherEditRecordDescriptor.medications);
+>>>>>>> origin/master
         }
 
         @Override
@@ -255,7 +296,11 @@ public class EditRecordCommand extends Command {
                     .add("dateTime", dateTime)
                     .add("filePath", filePath)
                     .add("conditions", conditions)
+<<<<<<< HEAD
                     .add("patientIndex", patientIndex)
+=======
+                    .add("medications", medications)
+>>>>>>> origin/master
                     .toString();
         }
     }

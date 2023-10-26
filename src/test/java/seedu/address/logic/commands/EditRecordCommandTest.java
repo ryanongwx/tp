@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_FIRST_REC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CONDITION_DIARRHEA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_SLEEP_STUDY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_THYROID_CHECK;
@@ -35,18 +37,17 @@ public class EditRecordCommandTest {
         UniqueRecordList uniqueRecordList = personToEdit.getRecords();
         Record recordToEdit = uniqueRecordList.getRecordList().get(INDEX_FIRST_RECORD.getZeroBased());
         Record editedRecord = new RecordBuilder(recordToEdit)
-            .withDateTime(VALID_DATETIME_THYROID_CHECK)
-            .withConditions(VALID_CONDITION_DIARRHEA).withPersonIndex(0).build();
-
+                .withDateTime(VALID_DATETIME_THYROID_CHECK)
+                .withConditions(VALID_CONDITION_DIARRHEA).withPersonIndex(0).build();
 
         Person editedPerson = new PersonBuilder(personToEdit).withRecords(uniqueRecordList).build();
         EditRecordCommand.EditRecordDescriptor descriptor = new EditRecordDescriptorBuilder(recordToEdit)
-            .withDateTime(VALID_DATETIME_THYROID_CHECK)
-            .withConditions(VALID_CONDITION_DIARRHEA).build();
+                .withDateTime(VALID_DATETIME_THYROID_CHECK)
+                .withConditions(VALID_CONDITION_DIARRHEA).build();
         EditRecordCommand editRecordCommand = new EditRecordCommand(INDEX_FIRST_PERSON, INDEX_FIRST_RECORD, descriptor);
 
         String expectedMessage = String.format(EditRecordCommand.MESSAGE_EDIT_RECORD_SUCCESS,
-            Messages.format(editedRecord, editedPerson));
+                Messages.format(editedRecord, editedPerson));
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         assertCommandSuccess(editRecordCommand, model, expectedMessage, expectedModel);
@@ -58,16 +59,16 @@ public class EditRecordCommandTest {
         UniqueRecordList uniqueRecordList = firstPerson.getRecords();
         Record recordToEdit = uniqueRecordList.getRecordList().get(INDEX_FIRST_RECORD.getZeroBased());
         Record editedRecord = new RecordBuilder(recordToEdit)
-            .withDateTime(VALID_DATETIME_THYROID_CHECK).build();
+                .withDateTime(VALID_DATETIME_THYROID_CHECK).build();
 
         PersonBuilder personInList = new PersonBuilder(firstPerson);
         Person editedPerson = personInList.withRecords(uniqueRecordList).build();
         EditRecordCommand.EditRecordDescriptor descriptor = new EditRecordDescriptorBuilder()
-            .withDateTime(VALID_DATETIME_THYROID_CHECK).build();
+                .withDateTime(VALID_DATETIME_THYROID_CHECK).build();
         EditRecordCommand editRecordCommand = new EditRecordCommand(INDEX_FIRST_PERSON, INDEX_FIRST_RECORD, descriptor);
 
         String expectedMessage = String.format(EditRecordCommand.MESSAGE_EDIT_RECORD_SUCCESS, Messages.format(
-            editedRecord, editedPerson));
+                editedRecord, editedPerson));
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         assertCommandSuccess(editRecordCommand, model, expectedMessage, expectedModel);
@@ -76,8 +77,7 @@ public class EditRecordCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_failure() {
         EditRecordCommand editRecordCommand = new EditRecordCommand(INDEX_FIRST_PERSON, INDEX_FIRST_RECORD,
-            new EditRecordCommand.EditRecordDescriptor());
-
+                new EditRecordCommand.EditRecordDescriptor());
 
         assertCommandFailure(editRecordCommand, model, EditRecordCommand.MESSAGE_DUPLICATE_RECORD);
     }
@@ -90,13 +90,13 @@ public class EditRecordCommandTest {
         UniqueRecordList uniqueRecordList = personInFilteredList.getRecords();
         Record recordToEdit = uniqueRecordList.getRecordList().get(INDEX_FIRST_RECORD.getZeroBased());
         Record editedRecord = new RecordBuilder(recordToEdit).withDateTime(VALID_DATETIME_SLEEP_STUDY)
-            .withPersonIndex(0).build();
+                .withPersonIndex(0).build();
         Person editedPerson = new PersonBuilder(personInFilteredList).withRecords(uniqueRecordList).build();
 
         EditRecordCommand editRecordCommand = new EditRecordCommand(INDEX_FIRST_PERSON, INDEX_FIRST_RECORD,
-            new EditRecordDescriptorBuilder().withDateTime(VALID_DATETIME_SLEEP_STUDY).withPatientIndex(0).build());
+                new EditRecordDescriptorBuilder().withDateTime(VALID_DATETIME_SLEEP_STUDY).withPatientIndex(0).build());
         String expectedMessage = String.format(EditRecordCommand.MESSAGE_EDIT_RECORD_SUCCESS,
-            Messages.format(editedRecord, editedPerson));
+                Messages.format(editedRecord, editedPerson));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
@@ -122,7 +122,7 @@ public class EditRecordCommandTest {
         UniqueRecordList uniqueRecordList = personInList.getRecords();
         Record firstRecord = uniqueRecordList.getRecordList().get(INDEX_FIRST_RECORD.getZeroBased());
         EditRecordCommand editRecordCommand = new EditRecordCommand(INDEX_FIRST_PERSON, INDEX_FIRST_RECORD,
-            new EditRecordDescriptorBuilder(firstRecord).build());
+                new EditRecordDescriptorBuilder(firstRecord).build());
 
         assertCommandFailure(editRecordCommand, model, EditRecordCommand.MESSAGE_DUPLICATE_RECORD);
     }
@@ -130,11 +130,35 @@ public class EditRecordCommandTest {
     @Test
     public void execute_invalidRecordIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromZeroBased(model.getFilteredPersonList().get(
-            INDEX_FIRST_PERSON.getZeroBased()).getRecords().getRecordList().size());
+                INDEX_FIRST_PERSON.getZeroBased()).getRecords().getRecordList().size());
         EditRecordCommand.EditRecordDescriptor descriptor = new EditRecordDescriptorBuilder()
-            .withDateTime(VALID_DATETIME_THYROID_CHECK).build();
+                .withDateTime(VALID_DATETIME_THYROID_CHECK).build();
         EditRecordCommand editRecordCommand = new EditRecordCommand(INDEX_FIRST_PERSON, outOfBoundIndex, descriptor);
 
         assertCommandFailure(editRecordCommand, model, Messages.MESSAGE_INVALID_RECORD_DISPLAYED_INDEX);
     }
+
+    @Test
+    public void execute_invalidPersonIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        EditRecordCommand.EditRecordDescriptor descriptor = new EditRecordDescriptorBuilder()
+                .withDateTime(VALID_DATETIME_THYROID_CHECK).build();
+        EditRecordCommand editRecordCommand = new EditRecordCommand(outOfBoundIndex, INDEX_FIRST_RECORD, descriptor);
+
+        assertCommandFailure(editRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void toStringTest() {
+        EditRecordCommand.EditRecordDescriptor editedFirstRecord = new EditRecordDescriptorBuilder(DESC_FIRST_REC)
+                .withDateTime(VALID_DATETIME_THYROID_CHECK).build();
+        EditRecordCommand editRecordCommand = new EditRecordCommand(INDEX_FIRST_PERSON,
+                INDEX_FIRST_RECORD, editedFirstRecord);
+        String expected = EditRecordCommand.class.getCanonicalName() + "{patientIndex=" + INDEX_FIRST_PERSON + ", "
+                + "recordIndex=" + INDEX_FIRST_RECORD + ", "
+                + "editRecordDescriptor=" + editedFirstRecord + "}";
+
+        assertEquals(expected, editRecordCommand.toString());
+    }
+
 }

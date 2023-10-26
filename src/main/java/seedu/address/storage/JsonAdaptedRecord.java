@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.record.Condition;
+import seedu.address.model.record.Medication;
 import seedu.address.model.record.Record;
 import seedu.address.model.shared.DateTime;
 
@@ -22,23 +23,39 @@ public class JsonAdaptedRecord {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Record's %s field is missing!";
     private final String dateTime;
     private final List<JsonAdaptedCondition> conditions = new ArrayList<>();
+<<<<<<< HEAD
     private final String filePath;
     private final Integer personIndex;
+=======
+    private final List<JsonAdaptedMedication> medications = new ArrayList<>();
+
+>>>>>>> origin/master
 
     /**
      * Constructs a {@code JsonAdoptedRecord} with the given record details.
      */
     @JsonCreator
     public JsonAdaptedRecord(@JsonProperty("dateTime") String dateTime,
+<<<<<<< HEAD
             @JsonProperty("condition") List<JsonAdaptedCondition> conditions,
             @JsonProperty("filePath") String filePath,
             @JsonProperty("personIndex") Integer personIndex) {
+=======
+                             @JsonProperty("condition") List<JsonAdaptedCondition> conditions,
+                             @JsonProperty("medication") List<JsonAdaptedMedication> medications) {
+>>>>>>> origin/master
         this.dateTime = dateTime;
         if (conditions != null) {
             this.conditions.addAll(conditions);
         }
+<<<<<<< HEAD
         this.filePath = filePath;
         this.personIndex = personIndex;
+=======
+        if (medications != null) {
+            this.medications.addAll(medications);
+        }
+>>>>>>> origin/master
     }
 
     /**
@@ -51,6 +68,9 @@ public class JsonAdaptedRecord {
         this.conditions.addAll(source.getConditions().stream()
                 .map(JsonAdaptedCondition::new)
                 .collect(Collectors.toList()));
+        this.medications.addAll(source.getMedications().stream()
+                .map(JsonAdaptedMedication::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -62,10 +82,7 @@ public class JsonAdaptedRecord {
      */
     public Record toModelType() throws IllegalValueException {
         final List<Condition> conditionsList = new ArrayList<>();
-        if (conditions == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Condition.class.getSimpleName()));
-        }
+        final List<Medication> medicationsList = new ArrayList<>();
 
         for (JsonAdaptedCondition condition : conditions) {
             if (condition == null) {
@@ -73,6 +90,14 @@ public class JsonAdaptedRecord {
                         Condition.class.getSimpleName()));
             }
             conditionsList.add(condition.toModelType());
+        }
+
+        for (JsonAdaptedMedication medication : medications) {
+            if (medication == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        Medication.class.getSimpleName()));
+            }
+            medicationsList.add(medication.toModelType());
         }
 
         if (dateTime == null) {
@@ -83,11 +108,16 @@ public class JsonAdaptedRecord {
         final DateTime modelDateTime = new DateTime(dateTime);
 
         final List<Condition> modelConditions = new ArrayList<>(conditionsList);
+<<<<<<< HEAD
         if (filePath == null) {
             return new Record(modelDateTime, modelConditions, null, personIndex);
         } else {
             Path modelFilePath = Paths.get(filePath);
             return new Record(modelDateTime, modelConditions, modelFilePath, personIndex);
         }
+=======
+        final List<Medication> modelMedications = new ArrayList<>(medicationsList);
+        return new Record(modelDateTime, modelConditions, modelMedications);
+>>>>>>> origin/master
     }
 }

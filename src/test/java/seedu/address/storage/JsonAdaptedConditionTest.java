@@ -8,19 +8,15 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.record.Condition;
 public class JsonAdaptedConditionTest {
-    private static final String INVALID_CONDITION = "Cold+";
-
-    private static final String INVALID_CONDITION2 = "";
-
+    private static final String INVALID_CONDITION = "";
+    private static final String INVALID_CONDITION2 = "Fever+";
     private static final Condition VALID_CONDITION = new Condition("Allergic Reaction");
-
 
     @Test
     public void toModelType_validRecordDetails_returnsCondition() throws Exception {
         JsonAdaptedCondition condition = new JsonAdaptedCondition(VALID_CONDITION);
         assertEquals(VALID_CONDITION, condition.toModelType());
     }
-
     @Test
     public void toModelType_invalidCondition_throwsIllegalArgumentException() {
         JsonAdaptedCondition condition = new JsonAdaptedCondition(INVALID_CONDITION);
