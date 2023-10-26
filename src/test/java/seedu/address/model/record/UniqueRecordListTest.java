@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalRecords.ALLERGIC_REACTION;
-import static seedu.address.testutil.TypicalRecords.FEVER;
+import static seedu.address.testutil.TypicalRecords.ALLERGIC_REACTION2;
+import static seedu.address.testutil.TypicalRecords.FEVER0;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -27,61 +27,64 @@ public class UniqueRecordListTest {
 
     @Test
     public void contains_recordNotInList_returnsFalse() {
-        assertFalse(uniqueRecordList.contains(FEVER));
+        assertFalse(uniqueRecordList.contains(FEVER0));
     }
+
     @Test
     public void contains_recordInList_returnsTrue() {
-        uniqueRecordList.add(FEVER);
-        assertTrue(uniqueRecordList.contains(FEVER));
+        uniqueRecordList.add(FEVER0);
+        assertTrue(uniqueRecordList.contains(FEVER0));
     }
+
     @Test
     public void add_nullRecord_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueRecordList.add(null));
     }
+
     @Test
     public void add_duplicateRecord_throwsDuplicateRecordException() {
-        uniqueRecordList.add(FEVER);
-        assertThrows(DuplicateRecordException.class, () -> uniqueRecordList.add(FEVER));
+        uniqueRecordList.add(FEVER0);
+        assertThrows(DuplicateRecordException.class, () -> uniqueRecordList.add(FEVER0));
     }
 
     @Test
     public void setPerson_nullTargetRecord_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueRecordList.setRecord(null, FEVER));
+        assertThrows(NullPointerException.class, () -> uniqueRecordList.setRecord(null, FEVER0));
     }
 
     @Test
     public void setPerson_nullEditedRecord_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueRecordList.setRecord(FEVER, null));
+        assertThrows(NullPointerException.class, () -> uniqueRecordList.setRecord(FEVER0, null));
     }
 
     @Test
     public void setPerson_targetPersonNotInList_throwsRecordNotFoundException() {
-        assertThrows(RecordNotFoundException.class, () -> uniqueRecordList.setRecord(FEVER, FEVER));
+        assertThrows(RecordNotFoundException.class, () -> uniqueRecordList.setRecord(FEVER0, FEVER0));
     }
 
     @Test
     public void setRecord_editedRecordIsSameRecord_success() {
-        uniqueRecordList.add(FEVER);
-        uniqueRecordList.setRecord(FEVER, FEVER);
+        uniqueRecordList.add(FEVER0);
+        uniqueRecordList.setRecord(FEVER0, FEVER0);
         UniqueRecordList expectedUniqueRecordList = new UniqueRecordList();
-        expectedUniqueRecordList.add(FEVER);
+        expectedUniqueRecordList.add(FEVER0);
         assertEquals(expectedUniqueRecordList, uniqueRecordList);
     }
 
     @Test
     public void setRecord_editedRecordIsDifferentRecord_success() {
-        uniqueRecordList.add(FEVER);
-        uniqueRecordList.setRecord(FEVER, ALLERGIC_REACTION);
+        uniqueRecordList.add(FEVER0);
+        uniqueRecordList.setRecord(FEVER0, ALLERGIC_REACTION2);
         UniqueRecordList expectedUniqueRecordList = new UniqueRecordList();
-        expectedUniqueRecordList.add(ALLERGIC_REACTION);
+        expectedUniqueRecordList.add(ALLERGIC_REACTION2);
         assertEquals(expectedUniqueRecordList, uniqueRecordList);
     }
 
     @Test
     public void setPerson_editedRecordIsTheSame_throwsDuplicateRecordException() {
-        uniqueRecordList.add(FEVER);
-        uniqueRecordList.add(ALLERGIC_REACTION);
-        assertThrows(DuplicateRecordException.class, () -> uniqueRecordList.setRecord(FEVER, ALLERGIC_REACTION));
+        uniqueRecordList.add(FEVER0);
+        uniqueRecordList.add(ALLERGIC_REACTION2);
+        assertThrows(DuplicateRecordException.class, () -> uniqueRecordList.setRecord(FEVER0, ALLERGIC_REACTION2));
     }
 
     @Test
@@ -91,13 +94,13 @@ public class UniqueRecordListTest {
 
     @Test
     public void remove_recordDoesNotExist_throwsRecordNotFoundException() {
-        assertThrows(RecordNotFoundException.class, () -> uniqueRecordList.remove(FEVER));
+        assertThrows(RecordNotFoundException.class, () -> uniqueRecordList.remove(FEVER0));
     }
 
     @Test
     public void remove_existingRecord_removesRecord() {
-        uniqueRecordList.add(FEVER);
-        uniqueRecordList.remove(FEVER);
+        uniqueRecordList.add(FEVER0);
+        uniqueRecordList.remove(FEVER0);
         UniqueRecordList expectedUniqueRecordList = new UniqueRecordList();
         assertEquals(expectedUniqueRecordList, uniqueRecordList);
     }
@@ -109,9 +112,9 @@ public class UniqueRecordListTest {
 
     @Test
     public void setRecords_uniqueRecordList_replacesOwnListWithProvidedUniqueRecordList() {
-        uniqueRecordList.add(FEVER);
+        uniqueRecordList.add(FEVER0);
         UniqueRecordList expectedUniqueRecordList = new UniqueRecordList();
-        expectedUniqueRecordList.add(ALLERGIC_REACTION);
+        expectedUniqueRecordList.add(ALLERGIC_REACTION2);
         uniqueRecordList.setRecords(expectedUniqueRecordList);
         assertEquals(expectedUniqueRecordList, uniqueRecordList);
     }
@@ -123,24 +126,24 @@ public class UniqueRecordListTest {
 
     @Test
     public void setPersons_list_replacesOwnListWithProvidedList() {
-        uniqueRecordList.add(FEVER);
-        List<Record> recordList = Collections.singletonList(FEVER);
+        uniqueRecordList.add(FEVER0);
+        List<Record> recordList = Collections.singletonList(FEVER0);
         uniqueRecordList.setRecords(recordList);
         UniqueRecordList expectedUniqueRecordList = new UniqueRecordList();
-        expectedUniqueRecordList.add(FEVER);
+        expectedUniqueRecordList.add(FEVER0);
         assertEquals(expectedUniqueRecordList, uniqueRecordList);
     }
 
     @Test
     public void setRecords_listWithDuplicateRecords_throwsDuplicateRecordException() {
-        List<Record> listWithDuplicateRecords = Arrays.asList(FEVER, FEVER);
+        List<Record> listWithDuplicateRecords = Arrays.asList(FEVER0, FEVER0);
         assertThrows(DuplicateRecordException.class, () -> uniqueRecordList.setRecords(listWithDuplicateRecords));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueRecordList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> uniqueRecordList
+            .asUnmodifiableObservableList().remove(0));
     }
 
     @Test

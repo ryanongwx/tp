@@ -17,14 +17,14 @@ public class RecordTest {
             new Condition("Cold")));
     private List<Medication> validMedications = new ArrayList<>(Arrays.asList(new Medication("Tylenol"),
             new Medication("Ibuprofen")));
-    private Record record = new Record(new DateTime("09-10-2023 1800"), validConditions, validMedications);
+    private Record record = new Record(new DateTime("09-10-2023 1800"), validConditions, validMedications, null, null);
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Record(null, null, null));
-        assertThrows(NullPointerException.class, () -> new Record(new DateTime("09-10-2023 1800"),
-                null, null));
-
-        assertThrows(NullPointerException.class, () -> new Record(null, validConditions, validMedications));
+        assertThrows(NullPointerException.class, () -> new Record(null, null, null, null, null));
+        assertThrows(NullPointerException.class, () ->
+            new Record(new DateTime("09-10-2023 1800"), null, null, null, null));
+        List<Condition> validConditions = new ArrayList<>(Arrays.asList(new Condition("Fever"), new Condition("Cold")));
+        assertThrows(NullPointerException.class, () -> new Record(null, validConditions, null, null, null));
     }
 
     @Test

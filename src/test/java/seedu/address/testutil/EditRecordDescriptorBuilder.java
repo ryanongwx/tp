@@ -44,6 +44,14 @@ public class EditRecordDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code patientIndex} of the {@code EditRecordDescriptor} that we are building.
+     */
+    public EditRecordDescriptorBuilder withPatientIndex(Integer patientIndex) {
+        descriptor.setPatientIndex(patientIndex);
+        return this;
+    }
+
+    /**
      * Parses the {@code conditions} into a {@code ArrayList<Condition>} and set it to the {@code EditRecordDescriptor}
      * that we are building.
      */

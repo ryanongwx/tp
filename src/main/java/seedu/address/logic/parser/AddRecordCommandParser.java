@@ -38,12 +38,13 @@ public class AddRecordCommandParser implements Parser<AddRecordCommand> {
         List<Condition> conditions = ParserUtil.parseConditions(argMultimap.getAllValues(PREFIX_CONDITION));
         List<Medication> medications = ParserUtil.parseMedications(argMultimap.getAllValues(PREFIX_MEDICATION));
 
-        Record record = new Record(dateTime, conditions, medications);
+        Record record = new Record(dateTime, conditions, medications, null, index.getZeroBased());
         return new AddRecordCommand(index, record);
     }
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * Returns true if none of the prefixes contains empty {@code Optional} values
+     * in the given
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

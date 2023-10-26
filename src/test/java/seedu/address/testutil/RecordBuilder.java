@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +20,17 @@ public class RecordBuilder {
 
     private DateTime dateTime;
 
+    private Path filePath;
+
+    private Integer personIndex;
+
     /**
      * Creates a {@code RecordBuilder} with the default details.
      */
     public RecordBuilder() {
         conditions = new ArrayList<>();
         dateTime = new DateTime("09-10-2023 1800");
+
     }
 
     /**
@@ -33,6 +39,8 @@ public class RecordBuilder {
     public RecordBuilder(Record recordToCopy) {
         conditions = recordToCopy.getConditions();
         dateTime = recordToCopy.getDateTime();
+        filePath = recordToCopy.getFilePath();
+        personIndex = recordToCopy.getPersonIndex();
         medications = recordToCopy.getMedications();
     }
 
@@ -62,11 +70,26 @@ public class RecordBuilder {
     }
 
     /**
+     * Sets the {@code filePath} of the {@code Record} that we are building.
+     */
+    public RecordBuilder withFilePath(Path filePath) {
+        this.filePath = filePath;
+        return this;
+    }
+
+    /**
+     * Sets the {@code personIndex} of the {@code Record} that we are building.
+     */
+    public RecordBuilder withPersonIndex(Integer personIndex) {
+        this.personIndex = personIndex;
+        return this;
+    }
+
+    /**
      * Builds a new record
      */
     public Record build() {
-        return new Record(dateTime, conditions, medications);
+        return new Record(dateTime, conditions, medications, filePath, personIndex);
     }
-
 
 }

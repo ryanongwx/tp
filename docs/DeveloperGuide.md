@@ -159,6 +159,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+<<<<<<< HEAD
 ### Records feature
 
 #### General Implementation Details
@@ -199,6 +200,67 @@ Step 3. After `AddRecordCommand` is created, `AddRecordCommand#execute()` is exe
 
 
 
+=======
+<<<<<<< HEAD
+### editpatient Feature
+
+The proposed editpatient mechanism is facilitated by `EditCommand`. It receives an `PATIENTINDEX` and the `FIELD` and `NEWVALUE`, and then it edits the
+specified field of the specific Patient at that index in the `AddressBook`. Additionally, the following classes, methods and UI component
+are implemented:
+
+* `EditCommandParser` - Read the command information and create a EditCommand with the specified `PATIENTINDEX`, `FIELD` and `NEWVALUE`.
+* `EditPersonDescriptor` - This class in EditCommand Stores the details to edit the patient with. The specified non-empty field value will replace the
+corresponding field value of the person.
+* `ModelManager#setPerson(Person,Person)`, `AddressBook#SetPerson(Person,Person)`, `UniquePersonList#setPerson(Person,Person)`
+  - Sets the target person in the AddressBook with the edited person.
+
+
+This newly implemented `EditCommandParser` class will then be used in the `AddressBookParser#parseCommand(String)` 
+and return the `EditCommand` with the `PATIENTINDEX` and the `EditPersonDescriptor` as parameters.
+The `EditCommand#execute(Model)` method will then update the current state of the `Model` according to the edit.
+
+Given below is an example usage scenario and how the editpatient mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized
+with the sample data.
+
+Step 2. The user execute `editpatient 1/name/Josh` command to edit name of the 1st person in the Medbook to **Josh**.
+The `editpatient` command calls `Model#setPerson(Person, Person)` to edit the Person in the model, which then calls `AddressBook#SetPerson(Person,Person)`,
+which in turn calls `UniquePersonList#setPerson(Person)` to set the target person in the uniquePersonList with the edited person.
+
+<box type="info" seamless>
+
+**Note:** If a command fails its execution, it will not call `Model#setPerson(Person,Person)`, so the Medbook will not
+edit the `Person` in the UniquePersonList.
+
+</box>
+
+Step 3. The `Model` then calls `AddressBook#setPerson(Person,Person)` to update the Person in the `AddressBook`. 
+
+Step 4. The `AddressBook` then calls `UniquePersonList#(Person,Person)` to set the target person 
+in the uniquePersonList with the edited person in the UniquePersonList.
+
+Step 5. The newly updated AddressBook will then be shown.
+
+The following sequence diagram shows how the editpatient operation works:
+
+**Will be done soon**
+
+#### Design considerations:
+
+**Aspect: How editpatient executes:**
+
+* **Alternative 1 (current choice):**  Create a defensive copy of the Person and then editing it, then replace the original person with the edited person.
+
+    * Pros: Allows for more complex operations and functionalities in the future, like tracking edit histories. This immutability maintains integrity of the data.
+    * Cons: Introduces added complexity and potential performance overhead.
+
+* **Alternative 2:** Edit the person directly in the AddressBook.
+    * Pros: Direct and straightforward implementation.
+    * Cons: May not be flexible if there are future requirements to retain edit history or additional patient properties.
+    
+=======
+>>>>>>> master
 ### Appointments feature
 
 #### General Implementation Details
@@ -241,6 +303,7 @@ The following sequence diagram shows how an `Appointment` is added:
 - **Alternative 2:** Each `Person` contains a `UniqueAppointmentList` with all the appointments he is scheduled with.
   - Pros: Easy to retrieve all the appointments scheduled with a single `Person`.
   - Cons: Difficult to retrieve all appointments to view.
+>>>>>>> 13e989c10059ef4202007dc494d08ef2537912ca
 
 ### \[Proposed\] Undo/redo feature
 
@@ -428,6 +491,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
+
 | Priority | As a …​     | I want to …​                                                                                               | So that I can…​                                                   |
 | -------- | ----------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `* * *`  | user        | _add_ a patient’s medical records and contact details                                                      | keep track of them efficiently                                    |
@@ -459,9 +523,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 _{More to be added}_
 
+
 ### Use cases
 
-(For all use cases below, the **System** is the `MedBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MedBook` and the **Actor** is the `user`, unless
+specified otherwise)
 
 **Use case: UC01 - Viewing help**
 

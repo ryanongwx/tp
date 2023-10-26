@@ -53,12 +53,10 @@ public class ParserUtil {
     public static Index parsePatientIndex(String oneBasedIndexes) throws ParseException {
         // Check if input matches the format of two numbers separated by a slash
         if (!oneBasedIndexes.matches("\\d+/\\d+")) {
-            System.out.println("invalid input");
             throw new ParseException(MESSAGE_INVALID_INPUT);
         }
         String trimmedIndex = oneBasedIndexes.split("/")[0].trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            System.out.println("invalid patient index 0");
             throw new ParseException(MESSAGE_INVALID_PATIENT_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
@@ -72,7 +70,6 @@ public class ParserUtil {
     public static Index parseRecordIndex(String oneBasedIndexes) throws ParseException {
         String trimmedIndex = oneBasedIndexes.split("/")[1].trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            System.out.println("invalid record index 0");
             throw new ParseException(MESSAGE_INVALID_RECORD_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
