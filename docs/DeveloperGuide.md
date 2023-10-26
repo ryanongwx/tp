@@ -159,6 +159,46 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Records feature
+
+#### General Implementation Details
+
+<puml src="diagrams/RecordClassDiagram.puml"/>
+ 
+A `Record` object is composed of classes that represent the various attributes available in each `Record`. To enforce uniqueness between records, all records are stored in a `UniqueRecordList`.
+
+The related attributes of a `Record` are:
+- `DateTime`: The date and time of the patient's visit to the clinic
+- `List<Condition>`: The list of conditions the patient has
+- `List<Medication>`: The list of medications that the doctor prescribes to the patient
+
+#### Add a Record
+
+##### Overview
+
+The `addrecord` command adds a new `Record` object to the patient in MedBook.
+
+#### Implementation
+
+Step 1. `AddRecordCommandParser` first parses the user input and verifies all necessary parameters are present in the user input and are valid. 
+Step 2. A `Record` object is created and passed as a parameter of `AddRecordCommand` object's constructor. 
+Step 3. After `AddRecordCommand` is created, `AddRecordCommand#execute()` is executed, which adds a new `Record` to the `UniqueRecordList` that belongs to each patient.
+
+<puml src="diagrams/AddRecordSequenceDiagram.puml" width="450" />
+
+#### Design Consideration
+
+**Aspect: Structure of Appointment class:**
+
+- **Alternative 1 (current choice):** Each `Person` contains a `UniqueRecordList` with all the medical records of the patient from the past until now.
+    - Pros: Easy to retrieve all the records of a single `Person`.
+    - Cons: Difficult to retrieve all the records of every `Person` in the `UniquePersonList` to view.
+- **Alternative 2:** `Model` contains a `UniqueRecordList` which contains all records of every patient. Each `Record` then contains the `Person` it is scheduled with.
+    - Pros: Easy to retrieve all records to view.
+    - Cons: Difficult to retrieve all the records associated with a single `Person`.
+
+
+
 ### Appointments feature
 
 #### General Implementation Details
