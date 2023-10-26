@@ -246,6 +246,64 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### View feature
+
+#### Implementation
+
+The proposed view mechanism is facilitated by `ViewCommand`. It receives an `PATIENTINDEX`, and then it updates the
+`records` and `personBeingViewed` in the `AddressBook`. Additionally, the following classes, methods and UI component 
+are implemented:
+
+* `ViewCommandParser` - Read the command information and create a ViewCommand with the specified `PATIENTINDEX`.
+* `AddressBook#setRecords(Person)` - Assign value to the `records` and `personBeingViewed`.
+* `AddressBook#getRecordList()` - return the `records`.
+* `AddressBook#getPersonBeingViewed()` - return the `personBeingViewed`.
+* `RecordCard` - a UI component that holds the information of single record.
+* `RecordListPanel` - a UI component that holds a place at the Main Window and stores a list of `RecordCard`.
+
+The newly implemented methods in `AddressBook` are exposed in the `Model` interface as `Model#updateRecords(Person)`, 
+`Model#getRecordList()` and `Model#getPersonBeingViewed()`. The get methods are also exposed in `Logic` interface as
+`Logic#getRecordList()`, and `Logic#getPersonBeingViewed()`.
+
+Given below is an example usage scenario and how the view mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized 
+with the sample data. The `MainWindow` calls `Logic#getRecordList()`, and `Logic#getPersonBeingViewed()` so that 
+`recordListPanel` and `personBeingViewedPanel` can safely occupy their destined places.  
+
+Step 2. The user execute `view 1` command to view the medical records of the 1st person in the Medbook. 
+The `view` command calls `Model#updateRecords(Person)`.
+
+<box type="info" seamless>
+
+**Note:** If a command fails its execution, it will not call `Model#updateRecrods(Person)`, so the Medbook will not
+update the `record` and `personBeingViewed` variable.
+
+</box>
+
+Step 3. The `Model` then calls `AddressBook#setRecords(Person)` to update the variable in the `AddressBook`. The medical 
+records of the patient is displayed at the left column in the `recordListPanel`. The `personBeingViewedPanel` contains
+the person card of the patient.
+
+The following sequence diagram shows how the undo operation works:
+
+<puml src="diagrams/ViewSequenceDiagram.puml" alt="ViewSequenceDiagram" />
+
+#### Design considerations:
+
+**Aspect: How view executes:**
+
+* **Alternative 1 (current choice):** Saves the `records` as `UniqueRecordList` and `personBeingViewed` 
+as `UniquePersonList`.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Saves the `records` as `UniqueRecordList` and `personBeingViewed`as `Person`.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: A lot of extra work need to be done (e.g. need to have an empty person object and need to make it as a node
+before passing into the `personBeingViewedPanel`).
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
