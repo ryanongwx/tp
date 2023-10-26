@@ -17,10 +17,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.testutil.TypicalAppointments.COLONOSCOPY;
 import static seedu.address.testutil.TypicalAppointments.EYE_EXAM;
 import static seedu.address.testutil.TypicalAppointments.VACCINATION;
-import static seedu.address.testutil.TypicalRecords.ALLERGIC_REACTION;
-import static seedu.address.testutil.TypicalRecords.FEVER_AND_COLD;
-import static seedu.address.testutil.TypicalRecords.HEADACHE;
-import static seedu.address.testutil.TypicalRecords.STOMACHACHE;
+import static seedu.address.testutil.TypicalRecords.ALLERGIC_REACTION2;
+import static seedu.address.testutil.TypicalRecords.FEVER0;
+import static seedu.address.testutil.TypicalRecords.FEVER_AND_COLD1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,7 +40,7 @@ public class TypicalPersons {
             .withAge(20)
             .withBloodType("AB+")
             .withAllergies("Chocolate")
-            .withRecords(FEVER_AND_COLD, ALLERGIC_REACTION)
+            .withRecords(FEVER0)
             .withAppointments(EYE_EXAM)
             .withIsPinned(true).build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
@@ -51,7 +50,7 @@ public class TypicalPersons {
             .withAge(15)
             .withBloodType("B-")
             .withAllergies("Pollen", "Soil")
-            .withRecords(HEADACHE, ALLERGIC_REACTION)
+            .withRecords(FEVER_AND_COLD1)
             .withAppointments(VACCINATION)
             .withIsPinned(false)
             .build();
@@ -62,7 +61,7 @@ public class TypicalPersons {
             .withAge(24)
             .withBloodType("AB-")
             .withAllergies("Dogs")
-            .withRecords(STOMACHACHE)
+            .withRecords(ALLERGIC_REACTION2)
             .withAppointments(COLONOSCOPY)
             .withIsPinned(false)
             .build();
@@ -104,7 +103,6 @@ public class TypicalPersons {
             .withGender("M")
             .withAge(30)
             .withBloodType("A+")
-            .withRecords(HEADACHE)
             .withIsPinned(true).build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller")
             .withEmail("hans@example.com")
@@ -112,7 +110,6 @@ public class TypicalPersons {
             .withGender("M")
             .withAge(33)
             .withBloodType("B+")
-            .withRecords(HEADACHE)
             .withIsPinned(false).build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}

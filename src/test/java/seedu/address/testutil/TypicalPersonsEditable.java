@@ -17,10 +17,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.testutil.TypicalAppointments.COLONOSCOPY;
 import static seedu.address.testutil.TypicalAppointments.EYE_EXAM;
 import static seedu.address.testutil.TypicalAppointments.VACCINATION;
-import static seedu.address.testutil.TypicalRecords.ALLERGIC_REACTION;
-import static seedu.address.testutil.TypicalRecords.FEVER_AND_COLD;
-import static seedu.address.testutil.TypicalRecords.HEADACHE;
-import static seedu.address.testutil.TypicalRecords.STOMACHACHE;
+import static seedu.address.testutil.TypicalRecords.ALLERGIC_REACTION2;
+import static seedu.address.testutil.TypicalRecords.FEVER0;
+import static seedu.address.testutil.TypicalRecords.FEVER_AND_COLD1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +29,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Person} objects to be used in
+ * tests.
  */
 public class TypicalPersonsEditable {
 
@@ -41,9 +41,10 @@ public class TypicalPersonsEditable {
             .withAge(20)
             .withBloodType("AB+")
             .withAllergies("Chocolate")
-            .withRecords(FEVER_AND_COLD, ALLERGIC_REACTION)
+            .withRecords(FEVER0)
             .withAppointments(EYE_EXAM)
             .withIsPinned(true).build();
+
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com")
             .withPhone("98765432")
@@ -51,10 +52,11 @@ public class TypicalPersonsEditable {
             .withAge(15)
             .withBloodType("B-")
             .withAllergies("Pollen", "Soil")
-            .withRecords(HEADACHE, ALLERGIC_REACTION)
+            .withRecords(FEVER_AND_COLD1)
             .withAppointments(VACCINATION)
             .withIsPinned(false)
             .build();
+
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
             .withEmail("heinz@example.com")
             .withPhone("95352563")
@@ -62,10 +64,11 @@ public class TypicalPersonsEditable {
             .withAge(24)
             .withBloodType("AB-")
             .withAllergies("Dogs")
-            .withRecords(STOMACHACHE)
+            .withRecords(ALLERGIC_REACTION2)
             .withAppointments(COLONOSCOPY)
             .withIsPinned(false)
             .build();
+
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
             .withEmail("cornelia@example.com")
             .withPhone("87652533")
@@ -74,6 +77,7 @@ public class TypicalPersonsEditable {
             .withBloodType("AB+")
             .withAllergies("Cats")
             .withIsPinned(false).build();
+
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
             .withPhone("9482224")
             .withEmail("werner@example.com")
@@ -82,6 +86,7 @@ public class TypicalPersonsEditable {
             .withBloodType("A-")
             .withAllergies("Light")
             .withIsPinned(false).build();
+
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
             .withEmail("lydia@example.com")
             .withPhone("9482427")
@@ -89,6 +94,7 @@ public class TypicalPersonsEditable {
             .withAge(29)
             .withBloodType("B+")
             .withIsPinned(false).build();
+
     public static final Person GEORGE = new PersonBuilder().withName("George Best")
             .withEmail("anna@example.com")
             .withPhone("9482442")
@@ -97,25 +103,6 @@ public class TypicalPersonsEditable {
             .withBloodType("O+")
             .withIsPinned(false).build();
 
-    // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier")
-            .withEmail("stefan@example.com")
-            .withPhone("8482424")
-            .withGender("M")
-            .withAge(30)
-            .withBloodType("A+")
-            .withRecords(HEADACHE)
-            .withIsPinned(true).build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller")
-            .withEmail("hans@example.com")
-            .withPhone("8482131")
-            .withGender("M")
-            .withAge(33)
-            .withBloodType("B+")
-            .withRecords(HEADACHE)
-            .withIsPinned(false).build();
-
-    // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY)
             .withEmail(VALID_EMAIL_AMY)
             .withPhone(VALID_PHONE_AMY)
@@ -124,6 +111,7 @@ public class TypicalPersonsEditable {
             .withBloodType(VALID_BLOODTYPE_AMY)
             .withAllergies(VALID_ALLERGY_DUST)
             .build();
+
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB)
             .withEmail(VALID_EMAIL_BOB)
             .withPhone(VALID_PHONE_BOB)
@@ -140,7 +128,7 @@ public class TypicalPersonsEditable {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
+    public static AddressBook getTypicalAddressBookEditable() {
         AddressBook ab = new AddressBook();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
@@ -152,4 +140,3 @@ public class TypicalPersonsEditable {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }
-

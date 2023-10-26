@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 
 import java.util.List;
 
@@ -25,10 +26,12 @@ public class AddRecordCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient record to the address book.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_DATE + "DATE "
-            + PREFIX_CONDITION + "CONDITION " + "\n"
+            + PREFIX_CONDITION + "CONDITION "
+            + PREFIX_MEDICATION + "MEDICATION " + "\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE + "18-09-2023 1800 "
-            + PREFIX_CONDITION + "Fever";
+            + PREFIX_CONDITION + "Fever"
+            + PREFIX_MEDICATION + "Tylenol";
 
     public static final String MESSAGE_SUCCESS = "New record added: %1$s";
 
