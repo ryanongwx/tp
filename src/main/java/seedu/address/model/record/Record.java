@@ -16,16 +16,18 @@ import seedu.address.model.shared.DateTime;
 public class Record {
 
     private final List<Condition> conditions = new ArrayList<>();
+    private final List<Medication> medications = new ArrayList<>();
     private final DateTime dateTime;
 
     /**
      * Constructs a record object
      */
 
-    public Record(DateTime dateTime, List<Condition> conditions) {
+    public Record(DateTime dateTime, List<Condition> conditions, List<Medication> medications) {
         requireAllNonNull(dateTime, conditions);
         this.dateTime = dateTime;
         this.conditions.addAll(conditions);
+        this.medications.addAll(medications);
     }
 
     public DateTime getDateTime() {
@@ -35,10 +37,13 @@ public class Record {
     public List<Condition> getConditions() {
         return Collections.unmodifiableList(conditions);
     }
+    public List<Medication> getMedications() {
+        return Collections.unmodifiableList(medications);
+    }
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(dateTime, conditions);
+        return Objects.hash(dateTime, conditions, medications);
     }
     @Override
     public boolean equals(Object other) {
@@ -53,13 +58,15 @@ public class Record {
 
         Record otherRecord = (Record) other;
         return dateTime.equals(otherRecord.dateTime)
-                && conditions.equals(otherRecord.conditions);
+                && conditions.equals(otherRecord.conditions)
+                && medications.equals(otherRecord.medications);
     }
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("dateTime", dateTime)
                 .add("conditions", conditions)
+                .add("medications", medications)
                 .toString();
     }
 

@@ -12,11 +12,13 @@
       "records": [
         {
           "dateTime": "09-09-2023 1800",
-          "conditions": ["Fever", "Cold"]
+          "conditions": ["Fever", "Cold"],
+          "medications": ["Tylenol"]
         },
         {
           "dateTime": "23-10-2022 1130",
-          "conditions": ["Allergic Reaction"]
+          "conditions": ["Allergic Reaction"],
+          "medications": ["Cetirizine"]
         }
       ],
       "appointments": [
@@ -38,11 +40,13 @@
       "records": [
         {
           "dateTime": "24-12-2023 1200",
-          "conditions": ["Headache"]
+          "conditions": ["Headache"],
+          "medications": ["Tylenol"]
         },
         {
           "dateTime": "23-10-2022 1130",
-          "conditions": ["Allergic Reaction"]
+          "conditions": ["Allergic Reaction"],
+          "medications": ["Cetirizine"]
         }
       ],
       "appointments": [
@@ -64,7 +68,8 @@
       "records": [
         {
           "dateTime": "20-03-2023 1500",
-          "conditions": ["Stomachache"]
+          "conditions": ["Stomachache"],
+          "medications": ["Pepto-Bismol"]
         }
       ],
       "appointments": [

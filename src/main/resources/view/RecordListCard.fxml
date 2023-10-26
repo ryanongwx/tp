@@ -31,6 +31,7 @@
                 </VBox>
             </HBox>
             <Label fx:id="condition" styleClass="cell_small_label" text="\$condition"/>
+            <Label fx:id="medication" styleClass="cell_small_label" text ="\$medication"/>
         </VBox>
     </GridPane>
 </HBox>
