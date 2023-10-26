@@ -64,11 +64,7 @@ public class Record {
         Model model = ModelManager.getInstance();
         EditRecordCommand.EditRecordDescriptor editRecordDescriptor = new EditRecordCommand.EditRecordDescriptor();
         editRecordDescriptor.setFilePath(filePath);
-        Command command = new EditRecordCommand(Index.fromZeroBased(personIndex),
-                Index.fromZeroBased(displayedIndex - 1),
-                editRecordDescriptor);
         try {
-            command.execute(model);
             Storage storage = StorageManager.getInstance();
             storage.saveAddressBook(model.getAddressBook());
         } catch (Exception c) {

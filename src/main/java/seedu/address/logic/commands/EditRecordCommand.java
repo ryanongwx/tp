@@ -241,8 +241,7 @@ public class EditRecordCommand extends Command {
                 return false;
             }
 
-            EditRecordCommand.EditRecordDescriptor otherEditRecordDescriptor =
-                (EditRecordCommand.EditRecordDescriptor) other;
+            EditRecordCommand.EditRecordDescriptor otherEditRecordDescriptor = (EditRecordCommand.EditRecordDescriptor) other;
             return Objects.equals(dateTime, otherEditRecordDescriptor.dateTime)
                     && Objects.equals(conditions, otherEditRecordDescriptor.conditions)
                     && Objects.equals(filePath, otherEditRecordDescriptor.filePath)
