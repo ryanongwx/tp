@@ -4,16 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a condition a patient. Recorded inside a Record object.
+ * Represents a condition of a patient. Recorded inside a Record object.
  */
 public class Condition {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Condition should be alphamnumeric";
+            "Condition should be alphanumeric";
 
-    public static final String VALIDATION_REGEX1 = "\\w+\\s\\w+";
-    public static final String VALIDATION_REGEX2 = "\\w+";
-
+    public static final String VALIDATION_REGEX = "[a-zA-Z0-9- ]+";
 
     public final String condition;
 
@@ -29,7 +27,7 @@ public class Condition {
     }
 
     public static boolean isValidCondition(String test) {
-        return test.matches(VALIDATION_REGEX1) || test.matches(VALIDATION_REGEX2);
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

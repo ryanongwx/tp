@@ -6,9 +6,11 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -20,6 +22,8 @@ import seedu.address.model.person.BloodType;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Phone;
+import seedu.address.model.record.Condition;
+import seedu.address.model.record.Medication;
 import seedu.address.model.shared.Name;
 
 
@@ -31,6 +35,8 @@ public class ParserUtilTest {
     private static final String INVALID_AGE = " ";
     private static final String INVALID_BLOODTYPE = "D";
     private static final String INVALID_ALLERGY = "#dust";
+    private static final String INVALID_CONDITION = "Fever*";
+    private static final String INVALID_MEDICATION = "Tylenol+";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_EMAIL = "rachel@example.com";
@@ -41,6 +47,9 @@ public class ParserUtilTest {
     private static final String VALID_BLOODTYPE = "A+";
     private static final String VALID_ALLERGY_1 = "Nuts";
     private static final String VALID_ALLERGY_2 = "Coconut";
+    private static final String VALID_CONDITION = "Fever";
+    private static final String VALID_MEDICATION = "Tylenol";
+
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -248,5 +257,72 @@ public class ParserUtilTest {
                 new Allergy(VALID_ALLERGY_2)));
 
         assertEquals(expectedAllergySet, actualAllergySet);
+    }
+    @Test
+    public void parseCondition_validCondition_returnsCondition() throws Exception {
+        Condition expectedCondition = new Condition(VALID_CONDITION);
+        assertEquals(expectedCondition, ParserUtil.parseCondition(VALID_CONDITION));
+    }
+    @Test
+    public void parseCondition_validValueWithWhitespace_returnsTrimmedCondition() throws Exception {
+        String conditionWithWhitespace = WHITESPACE + VALID_CONDITION + WHITESPACE;
+        Condition expectedCondition = new Condition(VALID_CONDITION);
+        assertEquals(expectedCondition, ParserUtil.parseCondition(conditionWithWhitespace));
+    }
+    @Test
+    public void parseCondition_withInvalidCondition_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCondition(INVALID_CONDITION));
+    }
+
+    @Test
+    public void parseMedication_validMedication_returnsMedication() throws Exception {
+        Medication expectedMedication = new Medication(VALID_MEDICATION);
+        assertEquals(expectedMedication, ParserUtil.parseMedication(VALID_MEDICATION));
+    }
+    @Test
+    public void parseCondition_withNullCondition_throwsParseException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCondition(null));
+    }
+    @Test
+    public void parseConditions_listWithValidConditions_returnsConditionsList() throws Exception {
+        List<Condition> conditionList = ParserUtil.parseConditions(Arrays.asList(VALID_CONDITION));
+        List<Condition> expectedConditionList = new ArrayList<>(Arrays.asList(new Condition(VALID_CONDITION)));
+
+        assertEquals(expectedConditionList, conditionList);
+    }
+    @Test
+    public void parseConditions_listWithInvalidCondition_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseConditions(Arrays.asList(VALID_CONDITION,
+                INVALID_CONDITION)));
+    }
+    @Test
+    public void parseMedication_validValueWithWhitespace_returnsTrimmedMedication() throws Exception {
+        String medicationWithWhitespace = WHITESPACE + VALID_MEDICATION + WHITESPACE;
+        Medication expectedMedication = new Medication(VALID_MEDICATION);
+        assertEquals(expectedMedication, ParserUtil.parseMedication(medicationWithWhitespace));
+    }
+
+    @Test
+    public void parseMedication_withInvalidMedication_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMedication(INVALID_MEDICATION));
+    }
+
+    @Test
+    public void parseMedication_withNullMedication_throwsParseException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMedication(null));
+    }
+
+    @Test
+    public void parseMedications_listWithValidMedications_returnsMedicationsList() throws Exception {
+        List<Medication> medicationList = ParserUtil.parseMedications(Arrays.asList(VALID_MEDICATION));
+        List<Medication> expectedMedicationList = new ArrayList<>(Arrays.asList(new Medication(VALID_MEDICATION)));
+
+        assertEquals(expectedMedicationList, medicationList);
+    }
+
+    @Test
+    public void parseMedications_listWithInvalidMedications_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMedications(Arrays.asList(VALID_MEDICATION,
+                INVALID_MEDICATION)));
     }
 }
