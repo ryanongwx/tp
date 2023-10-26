@@ -296,7 +296,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                   | *search* for specific patients using keywords such as patient’s name or medical record                     | easily search for and locate specific patients in the app         |
 | `* * *`  | user                                   | see the app populated with sample data                                                                     | easily see how the app will look when it is in use                |
 | `* * *`  | new user                                   | access a “help” page to view the app’s functionalities                                                     | learn how to use the application effectively                      |
-| `* * *`  | new user                                   | *clear all* current data                                                                                   | get rid of sample/experimental data I used for exploring the app  |
+| `* * *`  | new user                                   | *clear all* current
+data                                                                                   | get rid of sample/experimental data I used for exploring the app  |
 | `* * *`  | user                                   | exit the application and save the address book automatically                                               |                                                                   |
 | `* *`    | busy user | *pin* a specific patient                                                                                   | remember to contact them                                          |
 | `* *`    | user                                   | import my patient details into the app                                                                     | efficiently manage my existing patient information                |
@@ -311,17 +312,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                                   | set access permissions(password protected)                                                                 | allow only authorized personnel to view or modify patient details |
 | `*`      | user                                   | print a patient’s medical record directly from the app                                                     | facilitate physical record keeping and sharing of information     |
 | `*`      | expert user                                   | create reminders for my patients to follow up                                                              | make sure that patients remember their follow up appointment      |
-| `*`      | expert user                                   | record patients who didn’t show up                                                                         | to keep track of patients who tend to miss appointment dates      |
-| `*`      | expert user                                   | export patient data to a CSV file or other common formats                                                  | easily share or transfer data between different systems           |
-| `*`      | busy user | reminders for upcoming patient appointments                                                                | remember to attend all the consultations                          |
-| `*`      | busy user | blacklist certain patients                                                                                 | remove absurd patients                                            |
+| `*`      | expert user                                   | record patients who didn’t show
+up                                                                         | to keep track of
+patients who tend to miss appointment dates      |
+| `*`      | expert user                                   | export patient data to a CSV file or
+other common formats                                                  | easily share or transfer
+data between different systems           |
+| `*`      | busy user | reminders for upcoming patient
+appointments                                                                | remember to attend all
+the consultations                          |
+| `*`      | busy user | blacklist certain
+patients                                                                                 | remove
+absurd patients                                            |
 
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `MedBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MedBook` and the **Actor** is the `user`, unless
+specified otherwise)
 
 **Use case: UC01 - Viewing help**
 
