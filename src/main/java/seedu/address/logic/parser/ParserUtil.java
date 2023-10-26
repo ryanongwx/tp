@@ -18,6 +18,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Phone;
 import seedu.address.model.record.Condition;
+import seedu.address.model.record.Medication;
 import seedu.address.model.shared.DateTime;
 import seedu.address.model.shared.Name;
 
@@ -52,12 +53,10 @@ public class ParserUtil {
     public static Index parsePatientIndex(String oneBasedIndexes) throws ParseException {
         // Check if input matches the format of two numbers separated by a slash
         if (!oneBasedIndexes.matches("\\d+/\\d+")) {
-            System.out.println("invalid input");
             throw new ParseException(MESSAGE_INVALID_INPUT);
         }
         String trimmedIndex = oneBasedIndexes.split("/")[0].trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            System.out.println("invalid patient index 0");
             throw new ParseException(MESSAGE_INVALID_PATIENT_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
@@ -71,7 +70,6 @@ public class ParserUtil {
     public static Index parseRecordIndex(String oneBasedIndexes) throws ParseException {
         String trimmedIndex = oneBasedIndexes.split("/")[1].trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            System.out.println("invalid record index 0");
             throw new ParseException(MESSAGE_INVALID_RECORD_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
@@ -247,5 +245,35 @@ public class ParserUtil {
             conditionsList.add(parseCondition(condition));
         }
         return conditionsList;
+    }
+
+    /**
+     * Parses a {@code String medication} into an {@code Medication}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code medication} is invalid.
+     */
+    public static Medication parseMedication(String medication) throws ParseException {
+        requireNonNull(medication);
+        String trimmedMedication = medication.trim();
+        if (!Medication.isValidMedication(trimmedMedication)) {
+            throw new ParseException(Medication.MESSAGE_CONSTRAINTS);
+        }
+        return new Medication(trimmedMedication);
+    }
+
+    /**
+     * Parses a {@code Collection<String> medications} into an {@code List<Medication>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code medication} is invalid.
+     */
+    public static List<Medication> parseMedications(Collection<String> medications) throws ParseException {
+        requireNonNull(medications);
+        final List<Medication> medicationList = new ArrayList<>();
+        for (String medication : medications) {
+            medicationList.add(parseMedication(medication));
+        }
+        return medicationList;
     }
 }
