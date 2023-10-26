@@ -159,6 +159,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+<<<<<<< HEAD
 ### editpatient Feature
 
 The proposed editpatient mechanism is facilitated by `EditCommand`. It receives an `PATIENTINDEX` and the `FIELD` and `NEWVALUE`, and then it edits the
@@ -216,6 +217,7 @@ The following sequence diagram shows how the editpatient operation works:
     * Pros: Direct and straightforward implementation.
     * Cons: May not be flexible if there are future requirements to retain edit history or additional patient properties.
     
+=======
 ### Appointments feature
 
 #### General Implementation Details
@@ -258,6 +260,7 @@ The following sequence diagram shows how an `Appointment` is added:
 - **Alternative 2:** Each `Person` contains a `UniqueAppointmentList` with all the appointments he is scheduled with.
   - Pros: Easy to retrieve all the appointments scheduled with a single `Person`.
   - Cons: Difficult to retrieve all appointments to view.
+>>>>>>> 13e989c10059ef4202007dc494d08ef2537912ca
 
 ### \[Proposed\] Undo/redo feature
 
@@ -405,100 +408,6 @@ as `UniquePersonList`.
     * Cons: A lot of extra work need to be done (e.g. need to have an empty person object and need to make it as a node
 before passing into the `personBeingViewedPanel`).
 
-Certainly! Here is a portion that you can add to your developer guide to explain the encryption/decryption feature:
-
----
-
-### [Implemented] Encryption/Decryption Feature
-
-#### Implementation
-
-MedBook ensures the privacy and safety of user data by encrypting the data before saving it to the hard disk. The data is then decrypted when loaded back into the application upon restart. The implementation of this feature is transparent to the user, providing a seamless experience.
-
-#### How it works
-
-##### Encryption
-
-When a command that changes the data is executed, MedBook automatically triggers the encryption process before saving the data to the disk. The process is as follows:
-
-1. The data, which is in the form of an object, is converted to a JSON string.
-2. The JSON string is then encrypted using Advanced Encryption Standard (AES) in Cipher Block Chaining (CBC) mode with PKCS5 padding.
-3. The encrypted string is saved to the data file.
-
-The encryption key is securely managed to ensure that only MedBook can decrypt the data.
-
-##### Decryption
-
-When MedBook is started, it attempts to load the data from the disk. The process is as follows:
-
-1. MedBook reads the encrypted string from the data file.
-2. The encrypted string is decrypted using the same AES algorithm and key.
-3. The decrypted JSON string is converted back into an object, and the data is loaded into the application.
-
-#### Design Considerations
-
-##### Aspect: Choice of Encryption Algorithm
-
-- **Alternative 1 (chosen)**: Use AES in CBC mode with PKCS5 padding.
-  - *Pros*: Strong encryption that is widely recognized and trusted.
-  - *Cons*: May be computationally expensive for very large datasets.
-
-- **Alternative 2**: Use a lighter encryption algorithm.
-  - *Pros*: Faster encryption and decryption times, which might be noticeable for very large datasets.
-  - *Cons*: Potentially less secure, depending on the algorithm chosen.
-
-
-### Attaching Files to Patient Records
-
-This section provides an overview of the 'Attach Files' feature, which is already implemented in our application. This feature enables users to attach files to specific patient records, enhancing the user experience and functionality of the application.
-
-#### Implementation Details
-
-The 'Attach Files' feature has been implemented by extending the `Record` class to include a `filePath` attribute, which stores the path to the attached file on the local computer. Each patient can have multiple records, but each record is limited to one attachment.
-
-##### Record Class
-
-```java
-public class Record {
-    // Other attributes
-    private String filePath;
-
-    // Constructors, getters, and setters
-}
-```
-
-The `Record` class includes:
-
-- `filePath`: A `String` that stores the path to the attached file.
-
-##### User Interface
-
-A 'Attach File' button is present in the record card on the specific patient's view page. The workflow for attaching a file is as follows:
-
-1. User clicks the 'Attach File' button.
-2. A file explorer window opens, allowing the user to navigate and select the desired file.
-3. Upon file selection, the application retrieves the file's path and updates the `filePath` attribute of the corresponding `Record` object.
-4. The updated record, including the file path, is then saved to the address book.
-
-##### Opening Attached Files
-
-Clicking on the displayed file path in the patient's record card triggers the application to:
-
-1. Retrieve the file path from the `filePath` attribute of the `Record` object.
-2. Attempt to open the file using the default program associated with the file type on the user's computer.
-3. If the file is inaccessible (moved or deleted), an error message is displayed to the user.
-
-#### Design Considerations
-
-##### Attach Files Implementation
-
-**Current Implementation**: Using CUI instead of CLI.
-
-- Pros:
-  - Easy to navigate and learn.
-  - More efficient as compared to typing in absolute file paths
-- Cons:
-  - Not particularly suited for fast typers
 
 ### \[Proposed\] Data archiving
 
