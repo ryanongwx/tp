@@ -17,7 +17,7 @@ end box
 [-> LogicManager : execute("addrecord 1 d/27-10-2023...")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("addrecord 1 d/27-10-2023...") d/20-10-2020...")
+LogicManager -> AddressBookParser : parseCommand("addrecord 1 d/27-10-2023...")
 activate AddressBookParser
 
 create AddRecordCommandParser
