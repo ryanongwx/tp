@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -52,12 +53,13 @@ public class EditRecordCommand extends Command {
     private final EditRecordCommand.EditRecordDescriptor editRecordDescriptor;
 
     /**
-     * @param patientIndex index of the person in the filtered person list to edit
-     * @param recordIndex index of the record of the targeted patient
+     * @param patientIndex         index of the person in the filtered person list
+     *                             to edit
+     * @param recordIndex          index of the record of the targeted patient
      * @param editRecordDescriptor details to edit the record with
      */
     public EditRecordCommand(Index patientIndex, Index recordIndex,
-                             EditRecordCommand.EditRecordDescriptor editRecordDescriptor) {
+            EditRecordCommand.EditRecordDescriptor editRecordDescriptor) {
         requireNonNull(patientIndex);
         requireNonNull(recordIndex);
         requireNonNull(editRecordDescriptor);
@@ -88,7 +90,7 @@ public class EditRecordCommand extends Command {
         Record recordToEdit = lastShownRecordList.get(recordIndex.getZeroBased());
         Record editedRecord = createEditedRecord(recordToEdit, editRecordDescriptor);
 
-        if (!recordToEdit.equals(editedRecord) && uniqueRecordList.contains(editedRecord)) {
+        if (recordToEdit.equals(editedRecord) && uniqueRecordList.contains(editedRecord)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECORD);
         }
 
@@ -109,16 +111,18 @@ public class EditRecordCommand extends Command {
      * Creates and returns a {@code Record} with the details of {@code recordToEdit}
      * edited with {@code editRecordDescriptor}.
      */
-    private static Record createEditedRecord(Record recordToEdit,
-                                             EditRecordCommand.EditRecordDescriptor editRecordDescriptor) {
+    private Record createEditedRecord(Record recordToEdit,
+            EditRecordCommand.EditRecordDescriptor editRecordDescriptor) {
         assert recordToEdit != null;
 
         DateTime updatedDateTime = editRecordDescriptor.getDateTime().orElse(recordToEdit.getDateTime());
         List<Condition> updatedConditions = editRecordDescriptor.getConditions().orElse(recordToEdit.getConditions());
+        Path filePath = editRecordDescriptor.getFilePath().orElse(recordToEdit.getFilePath());
         List<Medication> updatedMedications = editRecordDescriptor.getMedications()
                 .orElse(recordToEdit.getMedications());
 
-        return new Record(updatedDateTime, updatedConditions, updatedMedications);
+        return new Record(updatedDateTime, updatedConditions,
+            updatedMedications, filePath, patientIndex.getZeroBased());
     }
 
     private static Person createdEditedPerson(Person personToEdit, UniqueRecordList records) {
@@ -159,15 +163,19 @@ public class EditRecordCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the record with. Each non-empty field value will replace the
+     * Stores the details to edit the record with. Each non-empty field value will
+     * replace the
      * corresponding field value of the record.
      */
     public static class EditRecordDescriptor {
         private DateTime dateTime;
         private List<Condition> conditions;
+        private Path filePath;
+        private Integer patientIndex;
         private List<Medication> medications;
 
-        public EditRecordDescriptor() {}
+        public EditRecordDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -176,6 +184,8 @@ public class EditRecordCommand extends Command {
         public EditRecordDescriptor(EditRecordCommand.EditRecordDescriptor toCopy) {
             setDateTime(toCopy.dateTime);
             setConditions(toCopy.conditions);
+            setFilePath(toCopy.filePath);
+            setPatientIndex(toCopy.patientIndex);
             setMedications(toCopy.medications);
         }
 
@@ -183,11 +193,27 @@ public class EditRecordCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(dateTime, conditions, medications);
+            return CollectionUtil.isAnyNonNull(dateTime, conditions, filePath, medications);
         }
 
         public void setDateTime(DateTime dateTime) {
             this.dateTime = dateTime;
+        }
+
+        public void setFilePath(Path filePath) {
+            this.filePath = filePath;
+        }
+
+        public Optional<Path> getFilePath() {
+            return Optional.ofNullable(filePath);
+        }
+
+        public Optional<Integer> getPatientIndex() {
+            return Optional.ofNullable(patientIndex);
+        }
+
+        public void setPatientIndex(Integer patientIndex) {
+            this.patientIndex = patientIndex;
         }
 
         public Optional<DateTime> getDateTime() {
@@ -203,7 +229,8 @@ public class EditRecordCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable condition list, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable condition list, which throws
+         * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code conditions} is null.
          */
@@ -238,9 +265,11 @@ public class EditRecordCommand extends Command {
             }
 
             EditRecordCommand.EditRecordDescriptor otherEditRecordDescriptor =
-                    (EditRecordCommand.EditRecordDescriptor) other;
+                (EditRecordCommand.EditRecordDescriptor) other;
             return Objects.equals(dateTime, otherEditRecordDescriptor.dateTime)
                     && Objects.equals(conditions, otherEditRecordDescriptor.conditions)
+                    && Objects.equals(filePath, otherEditRecordDescriptor.filePath)
+                    && Objects.equals(patientIndex, otherEditRecordDescriptor.patientIndex)
                     && Objects.equals(medications, otherEditRecordDescriptor.medications);
         }
 
@@ -250,6 +279,8 @@ public class EditRecordCommand extends Command {
                     .add("dateTime", dateTime)
                     .add("conditions", conditions)
                     .add("medications", medications)
+                    .add("filePath", filePath)
+                    .add("patientIndex", patientIndex)
                     .toString();
         }
     }

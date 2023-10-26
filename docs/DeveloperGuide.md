@@ -388,6 +388,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
+
 | Priority | As a …​     | I want to …​                                                                                               | So that I can…​                                                   |
 | -------- | ----------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `* * *`  | user        | _add_ a patient’s medical records and contact details                                                      | keep track of them efficiently                                    |
@@ -419,9 +420,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 _{More to be added}_
 
+
 ### Use cases
 
-(For all use cases below, the **System** is the `MedBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MedBook` and the **Actor** is the `user`, unless
+specified otherwise)
 
 **Use case: UC01 - Viewing help**
 
