@@ -117,16 +117,11 @@ public class EditRecordCommand extends Command {
 
         DateTime updatedDateTime = editRecordDescriptor.getDateTime().orElse(recordToEdit.getDateTime());
         List<Condition> updatedConditions = editRecordDescriptor.getConditions().orElse(recordToEdit.getConditions());
-<<<<<<< HEAD
         Path filePath = editRecordDescriptor.getFilePath().orElse(recordToEdit.getFilePath());
-
-        return new Record(updatedDateTime, updatedConditions, filePath, patientIndex.getZeroBased());
-=======
         List<Medication> updatedMedications = editRecordDescriptor.getMedications()
                 .orElse(recordToEdit.getMedications());
 
-        return new Record(updatedDateTime, updatedConditions, updatedMedications);
->>>>>>> origin/master
+        return new Record(updatedDateTime, updatedConditions, updatedMedications, filePath, patientIndex.getZeroBased());
     }
 
     private static Person createdEditedPerson(Person personToEdit, UniqueRecordList records) {
@@ -174,12 +169,9 @@ public class EditRecordCommand extends Command {
     public static class EditRecordDescriptor {
         private DateTime dateTime;
         private List<Condition> conditions;
-<<<<<<< HEAD
         private Path filePath;
         private Integer patientIndex;
-=======
         private List<Medication> medications;
->>>>>>> origin/master
 
         public EditRecordDescriptor() {
         }
@@ -191,23 +183,16 @@ public class EditRecordCommand extends Command {
         public EditRecordDescriptor(EditRecordCommand.EditRecordDescriptor toCopy) {
             setDateTime(toCopy.dateTime);
             setConditions(toCopy.conditions);
-<<<<<<< HEAD
             setFilePath(toCopy.filePath);
             setPatientIndex(toCopy.patientIndex);
-=======
             setMedications(toCopy.medications);
->>>>>>> origin/master
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-<<<<<<< HEAD
-            return CollectionUtil.isAnyNonNull(dateTime, conditions, filePath);
-=======
-            return CollectionUtil.isAnyNonNull(dateTime, conditions, medications);
->>>>>>> origin/master
+            return CollectionUtil.isAnyNonNull(dateTime, conditions, filePath, medications);
         }
 
         public void setDateTime(DateTime dateTime) {
@@ -282,12 +267,9 @@ public class EditRecordCommand extends Command {
                 (EditRecordCommand.EditRecordDescriptor) other;
             return Objects.equals(dateTime, otherEditRecordDescriptor.dateTime)
                     && Objects.equals(conditions, otherEditRecordDescriptor.conditions)
-<<<<<<< HEAD
                     && Objects.equals(filePath, otherEditRecordDescriptor.filePath)
-                    && Objects.equals(patientIndex, otherEditRecordDescriptor.patientIndex);
-=======
+                    && Objects.equals(patientIndex, otherEditRecordDescriptor.patientIndex)
                     && Objects.equals(medications, otherEditRecordDescriptor.medications);
->>>>>>> origin/master
         }
 
         @Override
@@ -295,12 +277,9 @@ public class EditRecordCommand extends Command {
             return new ToStringBuilder(this)
                     .add("dateTime", dateTime)
                     .add("filePath", filePath)
-                    .add("conditions", conditions)
-<<<<<<< HEAD
-                    .add("patientIndex", patientIndex)
-=======
                     .add("medications", medications)
->>>>>>> origin/master
+                    .add("conditions", conditions)
+                    .add("patientIndex", patientIndex)
                     .toString();
         }
     }

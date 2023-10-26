@@ -22,12 +22,8 @@ import seedu.address.model.shared.DateTime;
 public class AddRecordCommandParser implements Parser<AddRecordCommand> {
     @Override
     public AddRecordCommand parse(String userInput) throws ParseException {
-<<<<<<< HEAD
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_DATE, PREFIX_CONDITION);
-=======
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(userInput, PREFIX_DATE, PREFIX_CONDITION, PREFIX_MEDICATION);
->>>>>>> origin/master
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_CONDITION, PREFIX_MEDICATION)
                 || argMultimap.getPreamble().isEmpty()) {
@@ -42,11 +38,7 @@ public class AddRecordCommandParser implements Parser<AddRecordCommand> {
         List<Condition> conditions = ParserUtil.parseConditions(argMultimap.getAllValues(PREFIX_CONDITION));
         List<Medication> medications = ParserUtil.parseMedications(argMultimap.getAllValues(PREFIX_MEDICATION));
 
-<<<<<<< HEAD
-        Record record = new Record(dateTime, conditions, null, index.getZeroBased());
-=======
-        Record record = new Record(dateTime, conditions, medications);
->>>>>>> origin/master
+        Record record = new Record(dateTime, conditions, medications, null, index.getZeroBased());
         return new AddRecordCommand(index, record);
     }
 

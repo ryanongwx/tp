@@ -23,39 +23,29 @@ public class JsonAdaptedRecord {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Record's %s field is missing!";
     private final String dateTime;
     private final List<JsonAdaptedCondition> conditions = new ArrayList<>();
-<<<<<<< HEAD
     private final String filePath;
     private final Integer personIndex;
-=======
     private final List<JsonAdaptedMedication> medications = new ArrayList<>();
 
->>>>>>> origin/master
 
     /**
      * Constructs a {@code JsonAdoptedRecord} with the given record details.
      */
     @JsonCreator
     public JsonAdaptedRecord(@JsonProperty("dateTime") String dateTime,
-<<<<<<< HEAD
             @JsonProperty("condition") List<JsonAdaptedCondition> conditions,
+            @JsonProperty("medication") List<JsonAdaptedMedication> medications,
             @JsonProperty("filePath") String filePath,
             @JsonProperty("personIndex") Integer personIndex) {
-=======
-                             @JsonProperty("condition") List<JsonAdaptedCondition> conditions,
-                             @JsonProperty("medication") List<JsonAdaptedMedication> medications) {
->>>>>>> origin/master
         this.dateTime = dateTime;
         if (conditions != null) {
             this.conditions.addAll(conditions);
         }
-<<<<<<< HEAD
         this.filePath = filePath;
         this.personIndex = personIndex;
-=======
         if (medications != null) {
             this.medications.addAll(medications);
         }
->>>>>>> origin/master
     }
 
     /**
@@ -106,18 +96,14 @@ public class JsonAdaptedRecord {
         }
 
         final DateTime modelDateTime = new DateTime(dateTime);
-
+        final List<Medication> modelMedications = new ArrayList<>(medicationsList);
         final List<Condition> modelConditions = new ArrayList<>(conditionsList);
-<<<<<<< HEAD
         if (filePath == null) {
-            return new Record(modelDateTime, modelConditions, null, personIndex);
+            return new Record(modelDateTime, modelConditions, modelMedications, null, personIndex);
         } else {
             Path modelFilePath = Paths.get(filePath);
-            return new Record(modelDateTime, modelConditions, modelFilePath, personIndex);
+            return new Record(modelDateTime, modelConditions, modelMedications, modelFilePath, personIndex);
         }
-=======
-        final List<Medication> modelMedications = new ArrayList<>(medicationsList);
-        return new Record(modelDateTime, modelConditions, modelMedications);
->>>>>>> origin/master
+        
     }
 }
