@@ -48,7 +48,8 @@ public class JsonAdaptedRecordTest {
         invalidCondition.add(null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Condition.class.getSimpleName());
-        JsonAdaptedRecord record = new JsonAdaptedRecord(VALID_DATETIME, invalidCondition, VALID_MEDICATIONS, null, null);
+        JsonAdaptedRecord record = new JsonAdaptedRecord(VALID_DATETIME,
+            invalidCondition, VALID_MEDICATIONS, null, null);
         assertThrows(IllegalValueException.class, expectedMessage, record::toModelType);
     }
 
@@ -58,7 +59,8 @@ public class JsonAdaptedRecordTest {
         invalidMedications.add(null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Medication.class.getSimpleName());
-        JsonAdaptedRecord record = new JsonAdaptedRecord(VALID_DATETIME, VALID_CONDITIONS, invalidMedications, null, null);
+        JsonAdaptedRecord record = new JsonAdaptedRecord(VALID_DATETIME,
+            VALID_CONDITIONS, invalidMedications, null, null);
         assertThrows(IllegalValueException.class, expectedMessage, record::toModelType);
     }
 }

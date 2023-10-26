@@ -121,7 +121,8 @@ public class EditRecordCommand extends Command {
         List<Medication> updatedMedications = editRecordDescriptor.getMedications()
                 .orElse(recordToEdit.getMedications());
 
-        return new Record(updatedDateTime, updatedConditions, updatedMedications, filePath, patientIndex.getZeroBased());
+        return new Record(updatedDateTime, updatedConditions,
+            updatedMedications, filePath, patientIndex.getZeroBased());
     }
 
     private static Person createdEditedPerson(Person personToEdit, UniqueRecordList records) {

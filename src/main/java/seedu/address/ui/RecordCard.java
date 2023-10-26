@@ -31,9 +31,10 @@ public class RecordCard extends UiPart<Region> {
     private Label condition;
     @FXML
     private Hyperlink filePathLabel;
+    @FXML
+    private Label medication;
 
     private int displayedIndex;
-    private Label medication;
 
     /**
      * Creates a {@code RecordCard} with the given {@code Record} and index to

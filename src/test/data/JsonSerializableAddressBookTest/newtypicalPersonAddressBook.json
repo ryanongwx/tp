@@ -8,15 +8,20 @@
       "bloodType": "AB+",
       "gender": "F",
       "age": 20,
-      "allergies": ["Chocolate"],
+      "allergies": [
+        "Chocolate"
+      ],
       "records": [
         {
-          "dateTime": "09-09-2023 1800",
-          "conditions": ["Fever", "Cold"]
-        },
-        {
-          "dateTime": "23-10-2022 1130",
-          "conditions": ["Allergic Reaction"]
+          "dateTime": "09-10-2023 1800",
+          "conditions": [
+            "Fever"
+          ],
+          "medications": [
+            "Tylenol"
+          ],
+          "filename": null,
+          "personIndex": 0
         }
       ],
       "appointments": [
@@ -34,15 +39,22 @@
       "bloodType": "B-",
       "gender": "M",
       "age": 15,
-      "allergies": ["Pollen", "Soil"],
+      "allergies": [
+        "Pollen",
+        "Soil"
+      ],
       "records": [
         {
-          "dateTime": "24-12-2023 1200",
-          "conditions": ["Headache"]
-        },
-        {
-          "dateTime": "23-10-2022 1130",
-          "conditions": ["Allergic Reaction"]
+          "dateTime": "09-09-2023 1800",
+          "conditions": [
+            "Fever",
+            "Cold"
+          ],
+          "medications": [
+            "Tylenol"
+          ],
+          "filename": null,
+          "personIndex": 1
         }
       ],
       "appointments": [
@@ -60,11 +72,20 @@
       "bloodType": "AB-",
       "gender": "M",
       "age": 24,
-      "allergies": ["Dogs"],
+      "allergies": [
+        "Dogs"
+      ],
       "records": [
         {
-          "dateTime": "20-03-2023 1500",
-          "conditions": ["Stomachache"]
+          "dateTime": "23-10-2022 1130",
+          "conditions": [
+            "Allergic Reaction"
+          ],
+          "medications": [
+            "Pepto-Bismol"
+          ],
+          "filename": null,
+          "personIndex": 2
         }
       ],
       "appointments": [
@@ -82,7 +103,9 @@
       "bloodType": "AB+",
       "gender": "M",
       "age": 26,
-      "allergies": ["Cats"],
+      "allergies": [
+        "Cats"
+      ],
       "records": [],
       "appointments": [],
       "isPinned": false
@@ -94,7 +117,9 @@
       "bloodType": "A-",
       "gender": "F",
       "age": 27,
-      "allergies": ["Light"],
+      "allergies": [
+        "Light"
+      ],
       "records": [],
       "appointments": [],
       "isPinned": false

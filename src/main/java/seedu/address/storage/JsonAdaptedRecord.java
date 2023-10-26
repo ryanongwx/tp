@@ -104,6 +104,5 @@ public class JsonAdaptedRecord {
             Path modelFilePath = Paths.get(filePath);
             return new Record(modelDateTime, modelConditions, modelMedications, modelFilePath, personIndex);
         }
-        
     }
 }

@@ -8,9 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.EditRecordCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -67,11 +65,7 @@ public class Record {
         Model model = ModelManager.getInstance();
         EditRecordCommand.EditRecordDescriptor editRecordDescriptor = new EditRecordCommand.EditRecordDescriptor();
         editRecordDescriptor.setFilePath(filePath);
-        Command command = new EditRecordCommand(Index.fromZeroBased(personIndex),
-                Index.fromZeroBased(displayedIndex - 1),
-                editRecordDescriptor);
         try {
-            command.execute(model);
             Storage storage = StorageManager.getInstance();
             storage.saveAddressBook(model.getAddressBook());
         } catch (Exception c) {
