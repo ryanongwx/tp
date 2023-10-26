@@ -189,6 +189,19 @@ The following sequence diagram shows how an `Appointment` is added:
 
 <puml src="diagrams/AddAppointmentSequenceDiagram.puml" width="450" />
 
+#### Design considerations:
+
+**Aspect: Structure of Appointment class:**
+
+- **Alternative 1 (current choice):** `Model` contains a `UniqueAppointmentList` which contains all appointments. Each `Appointment` then contains the `Person` it is scheduled with.
+
+  - Pros: Easy to retrieve all appointments to view.
+  - Cons: Difficult to retrieve all the appointments scheduled with a single `Person`.
+
+- **Alternative 2:** Each `Person` contains a `UniqueAppointmentList` with all the appointments he is scheduled with.
+  - Pros: Easy to retrieve all the appointments scheduled with a single `Person`.
+  - Cons: Difficult to retrieve all appointments to view.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
