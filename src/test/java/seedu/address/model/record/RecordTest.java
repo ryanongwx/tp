@@ -1,6 +1,8 @@
 package seedu.address.model.record;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalRecords.FEVER;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,5 +22,16 @@ public class RecordTest {
         List<Medication> validMedications = new ArrayList<>(Arrays.asList(new Medication("Tylenol"),
                 new Medication("Ibuprofen")));
         assertThrows(NullPointerException.class, () -> new Record(null, validConditions, validMedications));
+    }
+
+    @Test
+    public void toString_success() {
+        String expected = Record.class.getCanonicalName()
+                + "{dateTime=" + FEVER.getDateTime()
+                + ", conditions=" + FEVER.getConditions()
+                + ", medications=" + FEVER.getMedications()
+                + "}";
+
+        assertEquals(expected, FEVER.toString());
     }
 }

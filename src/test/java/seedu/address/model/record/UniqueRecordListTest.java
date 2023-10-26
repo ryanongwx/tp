@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.record.exceptions.DuplicateRecordException;
 import seedu.address.model.record.exceptions.RecordNotFoundException;
 
@@ -145,6 +146,11 @@ public class UniqueRecordListTest {
     @Test
     public void toStringMethod() {
         assertEquals(uniqueRecordList.asUnmodifiableObservableList().toString(), uniqueRecordList.toString());
+    }
+    @Test
+    public void equals() {
+        assertTrue(uniqueRecordList.equals(uniqueRecordList));
+        assertFalse(uniqueRecordList.equals(new UniquePersonList()));
     }
 
 }
