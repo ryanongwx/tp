@@ -1,9 +1,11 @@
 package seedu.address.testutil;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.record.Condition;
+import seedu.address.model.record.Medication;
 import seedu.address.model.record.Record;
 import seedu.address.model.shared.DateTime;
 import seedu.address.model.util.SampleDataUtil;
@@ -14,8 +16,13 @@ import seedu.address.model.util.SampleDataUtil;
 public class RecordBuilder {
 
     private List<Condition> conditions;
+    private List<Medication> medications;
 
     private DateTime dateTime;
+
+    private Path filePath;
+
+    private Integer personIndex;
 
     /**
      * Creates a {@code RecordBuilder} with the default details.
@@ -23,6 +30,7 @@ public class RecordBuilder {
     public RecordBuilder() {
         conditions = new ArrayList<>();
         dateTime = new DateTime("09-10-2023 1800");
+
     }
 
     /**
@@ -31,14 +39,25 @@ public class RecordBuilder {
     public RecordBuilder(Record recordToCopy) {
         conditions = recordToCopy.getConditions();
         dateTime = recordToCopy.getDateTime();
+        filePath = recordToCopy.getFilePath();
+        personIndex = recordToCopy.getPersonIndex();
+        medications = recordToCopy.getMedications();
     }
 
     /**
      * Parses the {@code conditions} into a {@code List<Condition>}
      * and set it to the {@code Record} that we are building.
      */
-    public RecordBuilder withConditions(String ... conditions) {
+    public RecordBuilder withConditions(String... conditions) {
         this.conditions = SampleDataUtil.getConditionList(conditions);
+        return this;
+    }
+    /**
+     * Parses the {@code medications} into a {@code List<Medication>}
+     * and set it to the {@code Record} that we are building.
+     */
+    public RecordBuilder withMedications(String... medications) {
+        this.medications = SampleDataUtil.getMedicationList(medications);
         return this;
     }
 
@@ -51,11 +70,26 @@ public class RecordBuilder {
     }
 
     /**
+     * Sets the {@code filePath} of the {@code Record} that we are building.
+     */
+    public RecordBuilder withFilePath(Path filePath) {
+        this.filePath = filePath;
+        return this;
+    }
+
+    /**
+     * Sets the {@code personIndex} of the {@code Record} that we are building.
+     */
+    public RecordBuilder withPersonIndex(Integer personIndex) {
+        this.personIndex = personIndex;
+        return this;
+    }
+
+    /**
      * Builds a new record
      */
     public Record build() {
-        return new Record(dateTime, conditions);
+        return new Record(dateTime, conditions, medications, filePath, personIndex);
     }
-
 
 }

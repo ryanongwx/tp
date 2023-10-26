@@ -17,38 +17,39 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.record.Condition;
+import seedu.address.model.record.Medication;
 import seedu.address.model.record.Record;
 import seedu.address.model.record.UniqueRecordList;
 import seedu.address.model.shared.DateTime;
 import seedu.address.model.shared.Name;
-
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
-        return new Person[] {
+        return new Person[]{
             new Person(new Name("Alex Yeoh"), new Email("alexyeoh@example.com"), new Phone("87438807"),
                         new Gender("M"), new Age(12), new BloodType("A+"), getAllergySet("Peanuts"),
-                getRecordList(new Record(new DateTime("01-01-2001 1200"), getConditionList("Fever"))),
+                getRecordList(new Record(new DateTime("01-01-2001 1200"), getConditionList("Fever"),
+                        getMedicationList("Tylenol"), null, 0)),
                     getAppointmentList(new Appointment(new Name("Eye Exam"), new DateTime("01-01-2001 1200"))),
                     true),
             new Person(new Name("Bernice Yu"), new Email("berniceyu@example.com"), new Phone("99272758"),
-                        new Gender("F"), new Age(31), new BloodType("B+"), getAllergySet("Dust", "Peanuts"),
-                new UniqueRecordList(), new UniqueAppointmentList(), false),
+                    new Gender("F"), new Age(31), new BloodType("B+"), getAllergySet("Dust", "Peanuts"),
+                    new UniqueRecordList(), new UniqueAppointmentList(), false),
             new Person(new Name("Charlotte Oliveiro"), new Email("charlotte@example.com"), new Phone("93210283"),
-                        new Gender("F"), new Age(12), new BloodType("AB+"), getAllergySet("Dust"),
-                new UniqueRecordList(), new UniqueAppointmentList(), false),
+                    new Gender("F"), new Age(12), new BloodType("AB+"), getAllergySet("Dust"),
+                    new UniqueRecordList(), new UniqueAppointmentList(), false),
             new Person(new Name("David Li"), new Email("lidavid@example.com"), new Phone("91031282"),
-                new Gender("M"), new Age(33), new BloodType("O-"),
-                getAllergySet("Pollen"), new UniqueRecordList(), new UniqueAppointmentList(), false),
+                    new Gender("M"), new Age(33), new BloodType("O-"),
+                    getAllergySet("Pollen"), new UniqueRecordList(), new UniqueAppointmentList(), false),
             new Person(new Name("Irfan Ibrahim"), new Email("irfan@example.com"), new Phone("92492021"),
-                new Gender("M"), new Age(21), new BloodType("B-"),
-                getAllergySet("Fur"), new UniqueRecordList(), new UniqueAppointmentList(), false),
+                    new Gender("M"), new Age(21), new BloodType("B-"),
+                    getAllergySet("Fur"), new UniqueRecordList(), new UniqueAppointmentList(), false),
             new Person(new Name("Roy Balakrishnan"), new Email("royb@example.com"), new Phone("92624417"),
-                new Gender("M"), new Age(24), new BloodType("B+"),
-                getAllergySet("Grass"), new UniqueRecordList(), new UniqueAppointmentList(), false),
+                    new Gender("M"), new Age(24), new BloodType("B+"),
+                    getAllergySet("Grass"), new UniqueRecordList(), new UniqueAppointmentList(), false)
         };
     }
 
@@ -72,9 +73,17 @@ public class SampleDataUtil {
     /**
      * Returns a list of conditions containing the list of strings given.
      */
-    public static List<Condition> getConditionList(String ... strings) {
+    public static List<Condition> getConditionList(String... strings) {
         return Arrays.stream(strings)
                 .map(Condition::new)
+                .collect(Collectors.toList());
+    }
+    /**
+     * Returns a list of medications containing the list of strings given.
+     */
+    public static List<Medication> getMedicationList(String... strings) {
+        return Arrays.stream(strings)
+                .map(Medication::new)
                 .collect(Collectors.toList());
     }
 
@@ -83,6 +92,7 @@ public class SampleDataUtil {
         recordList.setRecords(Arrays.asList(records));
         return recordList;
     }
+
     public static UniqueAppointmentList getAppointmentList(Appointment... appointments) {
         UniqueAppointmentList appointmentList = new UniqueAppointmentList();
         appointmentList.setAppointments(Arrays.asList(appointments));

@@ -33,7 +33,8 @@ public class RecordListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Record} using a {@code RecordCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Record} using
+     * a {@code RecordCard}.
      */
     class RecordListViewCell extends ListCell<Record> {
         @Override

@@ -1,9 +1,13 @@
 package seedu.address.model.person;
 
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.model.shared.Name;
 
 public class AgeTest {
     @Test
@@ -22,6 +26,14 @@ public class AgeTest {
     public void isValidAge() {
         // null tag name
         assertThrows(NullPointerException.class, () -> Age.isValidAge(null));
+    }
+    @Test
+    public void equals() {
+        Age age = new Age(18);
+        assertTrue(age.equals(age));
+        assertTrue(age.equals(new Age(18)));
+        assertFalse(age.equals(new Age(20)));
+        assertFalse(age.equals(new Name("Alice Pauline")));
     }
 
 }
