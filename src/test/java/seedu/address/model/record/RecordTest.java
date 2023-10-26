@@ -17,7 +17,8 @@ public class RecordTest {
             new Condition("Cold")));
     private List<Medication> validMedications = new ArrayList<>(Arrays.asList(new Medication("Tylenol"),
             new Medication("Ibuprofen")));
-    private Record record = new Record(new DateTime("09-10-2023 1800"), validConditions, validMedications, null, null);
+    private Record record = new Record(new DateTime("09-10-2023 1800"), validConditions, validMedications,
+            null, 1);
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Record(null, null, null, null, null));
@@ -33,6 +34,8 @@ public class RecordTest {
                 + "{dateTime=" + record.getDateTime()
                 + ", conditions=" + record.getConditions()
                 + ", medications=" + record.getMedications()
+                + ", filePath=" + record.getFilePath()
+                + ", personIndex=" + record.getPersonIndex()
                 + "}";
 
         assertEquals(expected, record.toString());
