@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_FIRST_REC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CONDITION_DIARRHEA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_THYROID_CHECK;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -166,6 +168,18 @@ public class EditRecordCommandTest {
         EditRecordCommand editRecordCommand = new EditRecordCommand(outOfBoundIndex, INDEX_FIRST_RECORD, descriptor);
 
         assertCommandFailure(editRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+    @Test
+    public void toStringTest() {
+        EditRecordCommand.EditRecordDescriptor editedFirstRecord =
+                new EditRecordDescriptorBuilder(DESC_FIRST_REC).withDateTime(VALID_DATETIME_THYROID_CHECK).build();
+        EditRecordCommand editRecordCommand = new EditRecordCommand(INDEX_FIRST_PERSON,
+                INDEX_FIRST_RECORD, editedFirstRecord);
+        String expected = EditRecordCommand.class.getCanonicalName() + "{patientIndex=" + INDEX_FIRST_PERSON + ", "
+                + "recordIndex=" + INDEX_FIRST_RECORD + ", "
+                + "editRecordDescriptor=" + editedFirstRecord + "}";
+
+        assertEquals(expected, editRecordCommand.toString());
     }
 
 }

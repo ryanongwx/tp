@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.record.Condition;
+import seedu.address.model.record.Medication;
 import seedu.address.model.record.Record;
 import seedu.address.model.shared.DateTime;
 import seedu.address.model.util.SampleDataUtil;
@@ -14,6 +15,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class RecordBuilder {
 
     private List<Condition> conditions;
+    private List<Medication> medications;
 
     private DateTime dateTime;
 
@@ -31,14 +33,23 @@ public class RecordBuilder {
     public RecordBuilder(Record recordToCopy) {
         conditions = recordToCopy.getConditions();
         dateTime = recordToCopy.getDateTime();
+        medications = recordToCopy.getMedications();
     }
 
     /**
      * Parses the {@code conditions} into a {@code List<Condition>}
      * and set it to the {@code Record} that we are building.
      */
-    public RecordBuilder withConditions(String ... conditions) {
+    public RecordBuilder withConditions(String... conditions) {
         this.conditions = SampleDataUtil.getConditionList(conditions);
+        return this;
+    }
+    /**
+     * Parses the {@code medications} into a {@code List<Medication>}
+     * and set it to the {@code Record} that we are building.
+     */
+    public RecordBuilder withMedications(String... medications) {
+        this.medications = SampleDataUtil.getMedicationList(medications);
         return this;
     }
 
@@ -54,7 +65,7 @@ public class RecordBuilder {
      * Builds a new record
      */
     public Record build() {
-        return new Record(dateTime, conditions);
+        return new Record(dateTime, conditions, medications);
     }
 
 

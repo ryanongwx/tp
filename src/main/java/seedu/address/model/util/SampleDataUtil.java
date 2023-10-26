@@ -17,6 +17,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.record.Condition;
+import seedu.address.model.record.Medication;
 import seedu.address.model.record.Record;
 import seedu.address.model.record.UniqueRecordList;
 import seedu.address.model.shared.DateTime;
@@ -31,7 +32,8 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Email("alexyeoh@example.com"), new Phone("87438807"),
                         new Gender("M"), new Age(12), new BloodType("A+"), getAllergySet("Peanuts"),
-                getRecordList(new Record(new DateTime("01-01-2001 1200"), getConditionList("Fever"))),
+                getRecordList(new Record(new DateTime("01-01-2001 1200"), getConditionList("Fever"),
+                        getMedicationList("Tylenol"))),
                     getAppointmentList(new Appointment(new Name("Eye Exam"), new DateTime("01-01-2001 1200"))),
                     true),
             new Person(new Name("Bernice Yu"), new Email("berniceyu@example.com"), new Phone("99272758"),
@@ -72,9 +74,17 @@ public class SampleDataUtil {
     /**
      * Returns a list of conditions containing the list of strings given.
      */
-    public static List<Condition> getConditionList(String ... strings) {
+    public static List<Condition> getConditionList(String... strings) {
         return Arrays.stream(strings)
                 .map(Condition::new)
+                .collect(Collectors.toList());
+    }
+    /**
+     * Returns a list of medications containing the list of strings given.
+     */
+    public static List<Medication> getMedicationList(String... strings) {
+        return Arrays.stream(strings)
+                .map(Medication::new)
                 .collect(Collectors.toList());
     }
 
