@@ -103,6 +103,7 @@ public class EditRecordCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateRecordList(editedPerson);
         return new CommandResult(String.format(MESSAGE_EDIT_RECORD_SUCCESS,
                 Messages.format(editedRecord, personToEdit)));
     }
