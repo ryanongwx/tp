@@ -55,10 +55,13 @@
                 <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
             </padding>
         </HBox>
-        <Label fx:id="addPatient" alignment="BASELINE_RIGHT" text="Label" textFill="WHITE" wrapText="true">
+        <Label fx:id="addPatient" text="Label" textFill="WHITE" wrapText="true">
           <HBox.margin>
             <Insets right="10.0" />
           </HBox.margin>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
         </Label>
         <Label fx:id="editPatient" text="Label" textFill="WHITE" wrapText="true">
                <VBox.margin>
