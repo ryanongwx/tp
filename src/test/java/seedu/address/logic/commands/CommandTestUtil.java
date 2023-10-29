@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -37,6 +38,8 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NRIC_AMY = "T0000000A";
+    public static final String VALID_NRIC_BOB = "S0000000A";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -58,13 +61,16 @@ public class CommandTestUtil {
     public static final String VALID_CONDITION_HEAT_STROKE = "Heat stroke";
     public static final String VALID_MEDICATION_DIARRHEA = "Loperamide";
     public static final String VALID_MEDICATION_HEAT_STROKE = "Phenobarbital";
-    public static final Appointment VALID_APPOINTMENT_THYROID_CHECK =
-            new Appointment(new Name(VALID_NAME_THYROID_CHECK), new DateTime(VALID_DATETIME_THYROID_CHECK));
-    public static final Appointment VALID_APPOINTMENT_SLEEP_STUDY = new Appointment(new Name(VALID_NAME_SLEEP_STUDY),
+    public static final Appointment VALID_APPOINTMENT_THYROID_CHECK = new Appointment(
+            new Name(VALID_NAME_THYROID_CHECK), new DateTime(VALID_DATETIME_THYROID_CHECK));
+    public static final Appointment VALID_APPOINTMENT_SLEEP_STUDY = new Appointment(
+            new Name(VALID_NAME_SLEEP_STUDY),
             new DateTime(VALID_DATETIME_SLEEP_STUDY));
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String NRIC_DESC_AMY = " " + PREFIX_NRIC + VALID_NRIC_AMY;
+    public static final String NRIC_DESC_BOB = " " + PREFIX_NRIC + VALID_NRIC_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -88,6 +94,7 @@ public class CommandTestUtil {
     public static final String MEDICATION_DESC_DIARRHEA = " " + PREFIX_MEDICATION + VALID_MEDICATION_DIARRHEA;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + "A123456*A"; // '*' not allowed in NRIC
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "A"; // 'A' not allowed in gender
@@ -113,11 +120,11 @@ public class CommandTestUtil {
     public static final EditRecordCommand.EditRecordDescriptor DESC_SECOND_REC;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withNric(VALID_NRIC_AMY)
                 .withEmail(VALID_EMAIL_AMY).withPhone(VALID_PHONE_AMY).withGender(VALID_GENDER_AMY)
                 .withAge(VALID_AGE_AMY).withBloodType(VALID_BLOODTYPE_AMY)
                 .withAllergies(VALID_ALLERGY_DUST).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).withNric(VALID_NRIC_BOB)
                 .withEmail(VALID_EMAIL_BOB).withPhone(VALID_PHONE_BOB).withGender(VALID_GENDER_BOB)
                 .withAge(VALID_AGE_BOB).withBloodType(VALID_BLOODTYPE_BOB)
                 .withAllergies(VALID_ALLERGY_DUST, VALID_ALLERGY_PEANUTS).build();

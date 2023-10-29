@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -81,7 +80,7 @@ public class EditRecordCommand extends Command {
         Person personToEdit = lastShownPersonList.get(patientIndex.getZeroBased());
 
         UniqueRecordList uniqueRecordList = personToEdit.getRecords();
-        List<Record> lastShownRecordList = uniqueRecordList.getRecordList();
+        List<Record> lastShownRecordList = uniqueRecordList.asUnmodifiableObservableList();
 
         if (recordIndex.getZeroBased() >= lastShownRecordList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_RECORD_DISPLAYED_INDEX);
@@ -94,15 +93,16 @@ public class EditRecordCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_RECORD);
         }
 
-        uniqueRecordList.setRecord(recordToEdit, editedRecord);
-        Person editedPerson = createdEditedPerson(personToEdit, uniqueRecordList);
+        UniqueRecordList newList = new UniqueRecordList();
+        newList.setRecords(uniqueRecordList);
+        newList.setRecord(recordToEdit, editedRecord);
+        Person editedPerson = createdEditedPerson(personToEdit, newList);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(EditCommand.MESSAGE_DUPLICATE_PERSON);
         }
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateRecordList(editedPerson);
         return new CommandResult(String.format(MESSAGE_EDIT_RECORD_SUCCESS,
                 Messages.format(editedRecord, personToEdit)));
@@ -123,16 +123,16 @@ public class EditRecordCommand extends Command {
                 .orElse(recordToEdit.getMedications());
 
         return new Record(updatedDateTime, updatedConditions,
-            updatedMedications, filePath, patientIndex.getZeroBased());
+                updatedMedications, filePath, patientIndex.getZeroBased());
     }
 
     private static Person createdEditedPerson(Person personToEdit, UniqueRecordList records) {
         assert personToEdit != null;
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getEmail(),
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getNric(), personToEdit.getEmail(),
                 personToEdit.getPhone(), personToEdit.getGender(),
                 personToEdit.getAge(), personToEdit.getBloodType(),
-                personToEdit.getAllergies(), records,
-                personToEdit.getAppointments(), personToEdit.isPinned());
+                personToEdit.getAllergies(), records, personToEdit.getAppointments(),
+                personToEdit.isPinned());
 
         return editedPerson;
     }
@@ -180,7 +180,8 @@ public class EditRecordCommand extends Command {
 
         /**
          * Copy constructor.
-         * Defensive copies of {@code conditions} and {@code medications} are used internally.
+         * Defensive copies of {@code conditions} and {@code medications} are used
+         * internally.
          */
         public EditRecordDescriptor(EditRecordCommand.EditRecordDescriptor toCopy) {
             setDateTime(toCopy.dateTime);
@@ -238,6 +239,7 @@ public class EditRecordCommand extends Command {
         public Optional<List<Condition>> getConditions() {
             return (conditions != null) ? Optional.of(Collections.unmodifiableList(conditions)) : Optional.empty();
         }
+
         /**
          * Sets {@code medications} to this record's {@code medications}.
          * A defensive copy of {@code medications} is used internally.
@@ -245,8 +247,10 @@ public class EditRecordCommand extends Command {
         public void setMedications(List<Medication> medications) {
             this.medications = (medications != null) ? new ArrayList<>(medications) : null;
         }
+
         /**
-         * Returns an unmodifiable medication list, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable medication list, which throws
+         * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code medications} is null.
          */
@@ -266,7 +270,7 @@ public class EditRecordCommand extends Command {
             }
 
             EditRecordCommand.EditRecordDescriptor otherEditRecordDescriptor =
-                (EditRecordCommand.EditRecordDescriptor) other;
+                    (EditRecordCommand.EditRecordDescriptor) other;
             return Objects.equals(dateTime, otherEditRecordDescriptor.dateTime)
                     && Objects.equals(conditions, otherEditRecordDescriptor.conditions)
                     && Objects.equals(filePath, otherEditRecordDescriptor.filePath)

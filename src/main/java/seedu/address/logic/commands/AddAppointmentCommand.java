@@ -65,9 +65,9 @@ public class AddAppointmentCommand extends Command {
         newAppointmentList.setAppointments(oldPerson.getAppointments());
         newAppointmentList.add(toAdd);
 
-        Person newPerson = new Person(oldPerson.getName(), oldPerson.getEmail(), oldPerson.getPhone(),
-                oldPerson.getGender(), oldPerson.getAge(), oldPerson.getBloodType(), oldPerson.getAllergies(),
-                oldPerson.getRecords(), newAppointmentList, oldPerson.isPinned());
+        Person newPerson = new Person(oldPerson.getName(), oldPerson.getNric(), oldPerson.getEmail(),
+                oldPerson.getPhone(), oldPerson.getGender(), oldPerson.getAge(), oldPerson.getBloodType(),
+                oldPerson.getAllergies(), oldPerson.getRecords(), newAppointmentList, oldPerson.isPinned());
 
         model.setPerson(oldPerson, newPerson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd, newPerson)));

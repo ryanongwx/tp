@@ -39,6 +39,8 @@ public class Messages {
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
+                .append("; NRIC: ")
+                .append(person.getNric())
                 .append("; Email: ")
                 .append(person.getEmail())
                 .append("; Phone: ")
@@ -55,7 +57,7 @@ public class Messages {
     }
 
     /**
-     * Formats the {@code person} for display to the user.
+     * Formats the {@code appointment} for display to the user.
      */
     public static String format(Appointment appointment, Person person) {
         final StringBuilder builder = new StringBuilder();

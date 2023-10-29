@@ -60,9 +60,9 @@ public class AddRecordCommand extends Command {
         UniqueRecordList newRecords = new UniqueRecordList();
         newRecords.setRecords(personToAddRecord.getRecords());
         newRecords.add(record);
-        Person personWithAddedRecord = new Person(personToAddRecord.getName(), personToAddRecord.getEmail(),
-                personToAddRecord.getPhone(), personToAddRecord.getGender(), personToAddRecord.getAge(),
-                personToAddRecord.getBloodType(), personToAddRecord.getAllergies(),
+        Person personWithAddedRecord = new Person(personToAddRecord.getName(), personToAddRecord.getNric(),
+                personToAddRecord.getEmail(), personToAddRecord.getPhone(), personToAddRecord.getGender(),
+                personToAddRecord.getAge(), personToAddRecord.getBloodType(), personToAddRecord.getAllergies(),
                 newRecords, personToAddRecord.getAppointments(), personToAddRecord.isPinned());
 
         model.setPerson(personToAddRecord, personWithAddedRecord);

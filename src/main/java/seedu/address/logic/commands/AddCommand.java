@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -25,6 +26,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
+            + PREFIX_NRIC + "NRIC "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_GENDER + "GENDER "
@@ -33,6 +35,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_ALLERGIES + "ALLERGY]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
+            + PREFIX_NRIC + "S1234567A "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_GENDER + "M "
