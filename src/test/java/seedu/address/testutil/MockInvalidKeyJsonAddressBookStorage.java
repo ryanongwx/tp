@@ -2,11 +2,11 @@ package seedu.address.testutil;
 
 import java.nio.file.Path;
 import java.util.Base64;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import seedu.address.commons.util.JsonUtil;
 import seedu.address.storage.JsonAddressBookStorage;
 
 /**
@@ -29,7 +29,7 @@ public class MockInvalidKeyJsonAddressBookStorage extends JsonAddressBookStorage
      * @param filePath The path to the storage file.
      */
     public MockInvalidKeyJsonAddressBookStorage(Path filePath) {
-        super(filePath, new JsonUtil());
+        super(filePath);
     }
 
     /**
