@@ -79,7 +79,9 @@ public class Messages {
                 .append("; Conditions: ")
                 .append(record.getConditions())
                 .append("; Date & Time: ")
-                .append(record.getDateTime());
+                .append(record.getDateTime())
+                .append("; Medications: ")
+                .append(record.getMedications());
         return builder.toString();
     }
 }

@@ -30,7 +30,7 @@ public class AddRecordCommand extends Command {
             + PREFIX_MEDICATION + "MEDICATION " + "\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE + "18-09-2023 1800 "
-            + PREFIX_CONDITION + "Fever"
+            + PREFIX_CONDITION + "Fever "
             + PREFIX_MEDICATION + "Tylenol";
 
     public static final String MESSAGE_SUCCESS = "New record added: %1$s";
