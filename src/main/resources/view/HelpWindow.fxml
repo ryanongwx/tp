@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -55,40 +55,53 @@
                 <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
             </padding>
         </HBox>
-        <Label fx:id="addPatient" alignment="BASELINE_RIGHT" text="Label" textFill="WHITE">
+        <Label fx:id="addPatient" text="Label" textFill="WHITE" wrapText="true">
           <HBox.margin>
             <Insets right="10.0" />
           </HBox.margin>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
         </Label>
-        <Label fx:id="editPatient" text="Label" textFill="WHITE">
+        <Label fx:id="editPatient" text="Label" textFill="WHITE" wrapText="true">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
         </Label>
-        <Label fx:id="addRecord" text="Label" textFill="WHITE">
+        <Label fx:id="addRecord" text="Label" textFill="WHITE" wrapText="true">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
         </Label>
-        <Label fx:id="editRecord" text="Label" textFill="WHITE">
+        <Label fx:id="editRecord" text="Label" textFill="WHITE" wrapText="true">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
         </Label>
-        <Label fx:id="find" text="Label" textFill="WHITE">
+        <Label fx:id="find" text="Label" textFill="WHITE" wrapText="true">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
         </Label>
-        <Label fx:id="pinAndUnpin" text="Label" textFill="WHITE">
+        <Label fx:id="pin" text="Label" textFill="WHITE" wrapText="true">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
         </Label>
-        <Label fx:id="viewAndDelete" text="Label" textFill="WHITE">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
+        <Label fx:id="unpin" text="Label" textFill="white" wrapText="true">
+                <VBox.margin>
+                    <Insets top="10.0" />
+                </VBox.margin>
+        </Label>
+        <Label fx:id="view" text="Label" textFill="white" wrapText="true">
+                <VBox.margin>
+                    <Insets top="10.0" />
+                </VBox.margin>
+        </Label>
+        <Label fx:id="delete" text="Label" textFill="white">
+                <VBox.margin>
+                    <Insets top="10.0" />
+                </VBox.margin>
         </Label>
         <Label fx:id="list" text="Label" textFill="WHITE">
                <VBox.margin>
