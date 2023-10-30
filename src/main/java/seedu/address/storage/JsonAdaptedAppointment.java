@@ -23,7 +23,8 @@ class JsonAdaptedAppointment {
      * Constructs a {@code JsonAdaptedAppointment} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedAppointment(@JsonProperty("name") String name, @JsonProperty("dateTime") String dateTime) {
+    public JsonAdaptedAppointment(@JsonProperty("name") String name,
+            @JsonProperty("dateTime") String dateTime) {
         this.name = name;
         this.dateTime = dateTime;
     }

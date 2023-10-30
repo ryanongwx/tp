@@ -6,7 +6,6 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import seedu.address.commons.util.JsonUtil;
 import seedu.address.storage.JsonAddressBookStorage;
 
 /**
@@ -26,17 +25,19 @@ public class MockInvalidKeyJsonAddressBookStorage extends JsonAddressBookStorage
      * Constructs a new instance of {@code MockInvalidKeyJsonAddressBookStorage}
      * with the specified file path.
      *
-     * @param filePath The path to the storage file.
+     * @param filePath
+     *            The path to the storage file.
      */
     public MockInvalidKeyJsonAddressBookStorage(Path filePath) {
-        super(filePath, new JsonUtil());
+        super(filePath);
     }
 
     /**
      * Overrides the encryption method to use the mock secret key and initialization
      * vector.
      *
-     * @param value The string value to be encrypted.
+     * @param value
+     *            The string value to be encrypted.
      * @return The encrypted value as a Base64 encoded string, or {@code null} if an
      *         error occurs.
      */

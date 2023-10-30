@@ -2,8 +2,9 @@
   "persons": [
     {
       "name": "Hans Muster",
-      "phone": "9482424",
+      "nric": "S9999999A",
       "email": "invalid@email!3e",
+      "phone": "9482424",
       "gender": "M",
       "age": "18",
       "bloodType": "A+",

@@ -2,16 +2,20 @@
   "persons": [
     {
       "name": "Valid Person",
-      "phone": "9482424",
+      "nric": "S6789123A",
       "email": "hans@example.com",
+      "phone": "9482424",
       "gender": "M",
       "age": "18",
       "bloodType": "A+",
       "allergies": ["Peanuts"],
       "records": [
         {
-          "dateTime": "01-01-2001 1200",
-          "conditions": ["Fever"]
+          "dateTime": "09-10-2023 1800",
+          "conditions": ["Fever"],
+          "medications": ["Tylenol"],
+          "filename": null,
+          "personIndex": 0
         }
       ],
       "appointments": [
@@ -24,16 +28,20 @@
     },
     {
       "name": "Person With Invalid Phone Field",
-      "phone": "948asdf2424",
+      "nric": "S6789125A",
       "email": "hans@example.com",
+      "phone": "948asdf2424",
       "gender": "M",
       "age": "18",
       "bloodType": "A+",
       "allergies": ["Peanuts"],
       "records": [
         {
-          "dateTime": "01-01-2001 1200",
-          "conditions": ["Fever"]
+          "dateTime": "09-10-2023 1800",
+          "conditions": ["Fever"],
+          "medications": ["Tylenol"],
+          "filename": null,
+          "personIndex": 0
         }
       ],
       "appointments": [

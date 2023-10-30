@@ -28,7 +28,6 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
     private static final String SECRET_KEY = "Xp2s5v8y/B?E(H+M";
 
-    private JsonUtil jsonUtil;
     private Path filePath;
 
     /**
@@ -36,9 +35,8 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      *
      * @param filePath The path to the file.
      */
-    public JsonAddressBookStorage(Path filePath, JsonUtil jsonUtil) {
+    public JsonAddressBookStorage(Path filePath) {
         this.filePath = filePath;
-        this.jsonUtil = jsonUtil;
     }
 
     /**
