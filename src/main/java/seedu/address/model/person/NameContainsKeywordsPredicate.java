@@ -21,6 +21,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword)
                         ||
+                        StringUtil.containsWordIgnoreCase(person.getNric().nric, keyword)
+                        ||
                         StringUtil.containsWordIgnoreCase(person.getPhone().value, keyword)
                         ||
                         person.getAllergies().stream()
