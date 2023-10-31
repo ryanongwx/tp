@@ -31,6 +31,7 @@ public class ViewCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         expectedModel.setPerson(model.getFilteredPersonList().get(0), personToView);
+        expectedModel.updateRecordList(personToView);
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 
