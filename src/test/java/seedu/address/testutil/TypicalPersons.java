@@ -19,7 +19,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.testutil.TypicalAppointments.COLONOSCOPY;
 import static seedu.address.testutil.TypicalAppointments.EYE_EXAM;
 import static seedu.address.testutil.TypicalAppointments.VACCINATION;
-import static seedu.address.testutil.TypicalRecords.*;
+import static seedu.address.testutil.TypicalRecords.ALLERGIC_REACTION2;
+import static seedu.address.testutil.TypicalRecords.FEVER0;
+import static seedu.address.testutil.TypicalRecords.FEVER_AND_COLD0;
+import static seedu.address.testutil.TypicalRecords.FEVER_AND_COLD1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
