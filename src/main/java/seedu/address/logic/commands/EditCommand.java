@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -29,11 +30,11 @@ import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.record.UniqueRecordList;
 import seedu.address.model.shared.Name;
-
 
 /**
  * Edits the details of an existing person in the address book.
@@ -47,6 +48,7 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_NRIC + "NRIC] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_GENDER + "GENDER] "
@@ -65,7 +67,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -106,6 +108,7 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        Nric updatedNric = editPersonDescriptor.getNric().orElse(personToEdit.getNric());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
@@ -116,7 +119,7 @@ public class EditCommand extends Command {
         UniqueAppointmentList updatedAppointments = personToEdit.getAppointments();
         Boolean updatedisPinned = personToEdit.isPinned();
 
-        return new Person(updatedName, updatedEmail, updatedPhone, updatedGender,
+        return new Person(updatedName, updatedNric, updatedEmail, updatedPhone, updatedGender,
                 updatedAge, updatedBloodType, updatedAllergies, updatedRecords, updatedAppointments, updatedisPinned);
     }
 
@@ -145,11 +148,13 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
+     * Stores the details to edit the person with. Each non-empty field value will
+     * replace the
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
         private Name name;
+        private Nric nric;
         private Email email;
         private Phone phone;
         private Gender gender;
@@ -157,7 +162,8 @@ public class EditCommand extends Command {
         private BloodType bloodType;
         private Set<Allergy> allergies;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -165,6 +171,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
+            setNric(toCopy.nric);
             setEmail(toCopy.email);
             setPhone(toCopy.phone);
             setGender(toCopy.gender);
@@ -177,7 +184,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, email, phone, gender, age, bloodType, allergies);
+            return CollectionUtil.isAnyNonNull(name, nric, email, phone, gender, age, bloodType, allergies);
         }
 
         public Optional<Name> getName() {
@@ -186,6 +193,14 @@ public class EditCommand extends Command {
 
         public void setName(Name name) {
             this.name = name;
+        }
+
+        public Optional<Nric> getNric() {
+            return Optional.ofNullable(nric);
+        }
+
+        public void setNric(Nric nric) {
+            this.nric = nric;
         }
 
         public Optional<Phone> getPhone() {
@@ -229,7 +244,8 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable Allergy set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable Allergy set, which throws
+         * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code allergies} is null.
          */

@@ -39,6 +39,12 @@
             <Label fx:id="age" styleClass="cell_medium_label" text="\$age" prefWidth="25" />
             <Label fx:id="bloodType" styleClass="cell_medium_label" text="\$bloodType" prefWidth="30" />
           </HBox>
+          <HBox>
+          <padding>
+              <Insets left="20" bottom="5"/>
+            </padding>
+          <Label fx:id="nric" styleClass="cell_medium_label" text="\$nric" />
+          </HBox>
         </VBox>
         <VBox prefWidth="300">
           <Label text="Contacts" styleClass="cell_big_label" />
