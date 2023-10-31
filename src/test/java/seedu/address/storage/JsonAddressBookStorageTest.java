@@ -26,7 +26,6 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.testutil.MockInvalidKeyJsonAddressBookStorage;
-import seedu.address.testutil.MockJsonUtil;
 
 public class JsonAddressBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
@@ -40,7 +39,7 @@ public class JsonAddressBookStorageTest {
     }
 
     private java.util.Optional<ReadOnlyAddressBook> readAddressBook(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath), new JsonUtil())
+        return new JsonAddressBookStorage(Paths.get(filePath))
                 .readAddressBook(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -84,7 +83,7 @@ public class JsonAddressBookStorageTest {
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         AddressBook original = getTypicalAddressBook();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath, new JsonUtil());
+        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
 
         // Save in new file and read back
         jsonAddressBookStorage.saveAddressBook(original, filePath);
@@ -116,7 +115,7 @@ public class JsonAddressBookStorageTest {
      */
     private void saveAddressBook(ReadOnlyAddressBook addressBook, String filePath) {
         try {
-            new JsonAddressBookStorage(Paths.get(filePath), new JsonUtil())
+            new JsonAddressBookStorage(Paths.get(filePath))
                     .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
@@ -132,7 +131,7 @@ public class JsonAddressBookStorageTest {
     public void saveAndRead_encryptionDecryption_success() throws Exception {
         Path filePath = testFolder.resolve("TempEncryptedAddressBook.json");
         AddressBook original = getTypicalAddressBook();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath, new JsonUtil());
+        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
 
         // Save in new file
         jsonAddressBookStorage.saveAddressBook(original, filePath);
@@ -156,7 +155,7 @@ public class JsonAddressBookStorageTest {
         String corruptedData = Base64.getEncoder().encodeToString("corrupted data".getBytes(StandardCharsets.UTF_8));
         Files.write(filePath, corruptedData.getBytes(StandardCharsets.UTF_8));
 
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath, new JsonUtil());
+        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
         assertThrows(DataLoadingException.class, () -> jsonAddressBookStorage.readAddressBook(filePath));
     }
 
@@ -172,7 +171,7 @@ public class JsonAddressBookStorageTest {
     public void readAddressBook_jsonDeserializationReturnsNull_returnsEmptyOptional() throws DataLoadingException {
         // Create an instance of JsonAddressBookStorage with MockJsonUtil
         Path testFilePath = Paths.get("path_to_some_test_file_with_encrypted_content");
-        JsonAddressBookStorage storage = new JsonAddressBookStorage(testFilePath, new MockJsonUtil());
+        JsonAddressBookStorage storage = new JsonAddressBookStorage(testFilePath);
 
         // Ensure the file exists with some encrypted content
         // (Note: This step might require you to actually have some encrypted data in

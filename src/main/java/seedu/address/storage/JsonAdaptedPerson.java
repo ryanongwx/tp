@@ -17,6 +17,7 @@ import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.record.UniqueRecordList;
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
+    private final String nric;
     private final String phone;
     private final String email;
     private final String gender;
@@ -44,8 +46,9 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("gender") String gender,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("nric") String nric,
+            @JsonProperty("email") String email, @JsonProperty("phone") String phone,
+            @JsonProperty("gender") String gender,
             @JsonProperty("age") Integer age, @JsonProperty("bloodType") String bloodType,
             @JsonProperty("allergies") List<JsonAdaptedAllergy> allergies,
             @JsonProperty("records") List<JsonAdaptedRecord> records,
@@ -53,6 +56,7 @@ class JsonAdaptedPerson {
             @JsonProperty("isPinned") Boolean isPinned) {
 
         this.name = name;
+        this.nric = nric;
         this.phone = phone;
         this.email = email;
         this.gender = gender;
@@ -75,6 +79,7 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
+        nric = source.getNric().nric;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         gender = source.getGender().gender;
@@ -88,15 +93,16 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedRecord::new)
                 .collect(Collectors.toList()));
         appointments.addAll(source.getAppointments().asUnmodifiableObservableList().stream()
-            .map(JsonAdaptedAppointment::new)
-                .collect(Collectors.toList()));
+                .map(JsonAdaptedAppointment::new).collect(Collectors.toList()));
         isPinned = source.isPinned();
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's
+     * {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
         final List<Allergy> allergiesList = new ArrayList<>();
@@ -116,6 +122,15 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
+
+        if (nric == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, seedu.address.model.person.Nric.class.getSimpleName()));
+        }
+        if (!Nric.isValidNric(nric)) {
+            throw new IllegalValueException(seedu.address.model.person.Nric.MESSAGE_CONSTRAINTS);
+        }
+        final Nric modelNric = new Nric(nric);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -166,8 +181,7 @@ class JsonAdaptedPerson {
             modelAppointments.add(appointment);
         }
 
-
-        return new Person(modelName, modelEmail, modelPhone, modelGender,
+        return new Person(modelName, modelNric, modelEmail, modelPhone, modelGender,
                 modelAge, modelBloodType, modelAllergies, modelRecords, modelAppointments, isPinned);
     }
 }

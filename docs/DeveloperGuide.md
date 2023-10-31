@@ -159,6 +159,101 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Records feature
+
+#### General Implementation Details
+
+<puml src="diagrams/RecordClassDiagram.puml"/>
+ 
+A `Record` object is composed of classes that represent the various attributes available in each `Record`. To enforce uniqueness between records, all records are stored in a `UniqueRecordList`.
+
+The related attributes of a `Record` are:
+
+- `DateTime`: The date and time of the patient's visit to the clinic
+- `List<Condition>`: The list of conditions the patient has
+- `List<Medication>`: The list of medications that the doctor prescribes to the patient
+
+#### Add a Record
+
+##### Overview
+
+The `addrecord` command adds a new `Record` object to the patient in MedBook.
+
+#### Implementation
+
+Step 1. `AddRecordCommandParser` first parses the user input and verifies all necessary parameters are present in the user input and are valid.
+Step 2. A `Record` object is created and passed as a parameter of `AddRecordCommand` object's constructor.
+Step 3. After `AddRecordCommand` is created, `AddRecordCommand#execute()` is executed, which adds a new `Record` to the `UniqueRecordList` that belongs to each patient.
+
+<puml src="diagrams/AddRecordSequenceDiagram.puml" width="450" />
+
+#### Design Consideration
+
+**Aspect: Structure of Appointment class:**
+
+- **Alternative 1 (current choice):** Each `Person` contains a `UniqueRecordList` with all the medical records of the patient from the past until now.
+  - Pros: Easy to retrieve all the records of a single `Person`.
+  - Cons: Difficult to retrieve all the records of every `Person` in the `UniquePersonList` to view.
+- **Alternative 2:** `Model` contains a `UniqueRecordList` which contains all records of every patient. Each `Record` then contains the `Person` it is scheduled with.
+  - Pros: Easy to retrieve all records to view.
+  - Cons: Difficult to retrieve all the records associated with a single `Person`.
+
+### editpatient Feature
+
+The proposed editpatient mechanism is facilitated by `EditCommand`. It receives an `PATIENTINDEX` and the `FIELD` and `NEWVALUE`, and then it edits the
+specified field of the specific Patient at that index in the `AddressBook`. Additionally, the following classes, methods and UI component
+are implemented:
+
+- `EditCommandParser` - Read the command information and create a EditCommand with the specified `PATIENTINDEX`, `FIELD` and `NEWVALUE`.
+- `EditPersonDescriptor` - This class in EditCommand Stores the details to edit the patient with. The specified non-empty field value will replace the
+  corresponding field value of the person.
+- `ModelManager#setPerson(Person,Person)`, `AddressBook#SetPerson(Person,Person)`, `UniquePersonList#setPerson(Person,Person)`
+  - Sets the target person in the AddressBook with the edited person.
+
+This newly implemented `EditCommandParser` class will then be used in the `AddressBookParser#parseCommand(String)`
+and return the `EditCommand` with the `PATIENTINDEX` and the `EditPersonDescriptor` as parameters.
+The `EditCommand#execute(Model)` method will then update the current state of the `Model` according to the edit.
+
+Given below is an example usage scenario and how the editpatient mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized
+with the sample data.
+
+Step 2. The user execute `editpatient 1/name/Josh` command to edit name of the 1st person in the Medbook to **Josh**.
+The `editpatient` command calls `Model#setPerson(Person, Person)` to edit the Person in the model, which then calls `AddressBook#SetPerson(Person,Person)`,
+which in turn calls `UniquePersonList#setPerson(Person)` to set the target person in the uniquePersonList with the edited person.
+
+<box type="info" seamless>
+
+**Note:** If a command fails its execution, it will not call `Model#setPerson(Person,Person)`, so the Medbook will not
+edit the `Person` in the UniquePersonList.
+
+</box>
+
+Step 3. The `Model` then calls `AddressBook#setPerson(Person,Person)` to update the Person in the `AddressBook`.
+
+Step 4. The `AddressBook` then calls `UniquePersonList#(Person,Person)` to set the target person
+in the uniquePersonList with the edited person in the UniquePersonList.
+
+Step 5. The newly updated AddressBook will then be shown.
+
+The following sequence diagram shows how the editpatient operation works:
+
+**Will be done soon**
+
+#### Design considerations:
+
+**Aspect: How editpatient executes:**
+
+- **Alternative 1 (current choice):** Create a defensive copy of the Person and then editing it, then replace the original person with the edited person.
+
+  - Pros: Allows for more complex operations and functionalities in the future, like tracking edit histories. This immutability maintains integrity of the data.
+  - Cons: Introduces added complexity and potential performance overhead.
+
+- **Alternative 2:** Edit the person directly in the AddressBook.
+  - Pros: Direct and straightforward implementation.
+  - Cons: May not be flexible if there are future requirements to retain edit history or additional patient properties.
+
 ### Appointments feature
 
 #### General Implementation Details
@@ -193,10 +288,12 @@ The following sequence diagram shows how an `Appointment` is added:
 
 **Aspect: Structure of Appointment class:**
 
-- **Alternative 1 (current choice):** `Model` contains a `UniqueAppointmentList` which contains all appointments. Each `Appointment` then contains the `Person` it is scheduled with.
+- **Alternative 1 (current choice):** `Model` contains a `UniqueAppointmentList` which contains all appointments. Each `Appointment` then contains the `NRIC` of the patient it is scheduled with.
 
   - Pros: Easy to retrieve all appointments to view.
-  - Cons: Difficult to retrieve all the appointments scheduled with a single `Person`.
+  - Cons:
+    - Difficult to retrieve all the appointments scheduled with a single `Person`.
+    - If the `NRIC` is updated through `editpatient`, it is not automatically updated in the `Appointment`.
 
 - **Alternative 2:** Each `Person` contains a `UniqueAppointmentList` with all the appointments he is scheduled with.
   - Pros: Easy to retrieve all the appointments scheduled with a single `Person`.
@@ -296,27 +393,27 @@ _{more aspects and alternatives to be added}_
 #### Implementation
 
 The proposed view mechanism is facilitated by `ViewCommand`. It receives an `PATIENTINDEX`, and then it updates the
-`records` and `personBeingViewed` in the `AddressBook`. Additionally, the following classes, methods and UI component 
+`records` and `personBeingViewed` in the `AddressBook`. Additionally, the following classes, methods and UI component
 are implemented:
 
-* `ViewCommandParser` - Read the command information and create a ViewCommand with the specified `PATIENTINDEX`.
-* `AddressBook#setRecords(Person)` - Assign value to the `records` and `personBeingViewed`.
-* `AddressBook#getRecordList()` - return the `records`.
-* `AddressBook#getPersonBeingViewed()` - return the `personBeingViewed`.
-* `RecordCard` - a UI component that holds the information of single record.
-* `RecordListPanel` - a UI component that holds a place at the Main Window and stores a list of `RecordCard`.
+- `ViewCommandParser` - Read the command information and create a ViewCommand with the specified `PATIENTINDEX`.
+- `AddressBook#setRecords(Person)` - Assign value to the `records` and `personBeingViewed`.
+- `AddressBook#getRecordList()` - return the `records`.
+- `AddressBook#getPersonBeingViewed()` - return the `personBeingViewed`.
+- `RecordCard` - a UI component that holds the information of single record.
+- `RecordListPanel` - a UI component that holds a place at the Main Window and stores a list of `RecordCard`.
 
-The newly implemented methods in `AddressBook` are exposed in the `Model` interface as `Model#updateRecords(Person)`, 
+The newly implemented methods in `AddressBook` are exposed in the `Model` interface as `Model#updateRecords(Person)`,
 `Model#getRecordList()` and `Model#getPersonBeingViewed()`. The get methods are also exposed in `Logic` interface as
 `Logic#getRecordList()`, and `Logic#getPersonBeingViewed()`.
 
 Given below is an example usage scenario and how the view mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `AddressBook` will be initialized 
-with the sample data. The `MainWindow` calls `Logic#getRecordList()`, and `Logic#getPersonBeingViewed()` so that 
-`recordListPanel` and `personBeingViewedPanel` can safely occupy their destined places.  
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialized
+with the sample data. The `MainWindow` calls `Logic#getRecordList()`, and `Logic#getPersonBeingViewed()` so that
+`recordListPanel` and `personBeingViewedPanel` can safely occupy their destined places.
 
-Step 2. The user execute `view 1` command to view the medical records of the 1st person in the Medbook. 
+Step 2. The user execute `view 1` command to view the medical records of the 1st person in the Medbook.
 The `view` command calls `Model#updateRecords(Person)`.
 
 <box type="info" seamless>
@@ -326,7 +423,7 @@ update the `record` and `personBeingViewed` variable.
 
 </box>
 
-Step 3. The `Model` then calls `AddressBook#setRecords(Person)` to update the variable in the `AddressBook`. The medical 
+Step 3. The `Model` then calls `AddressBook#setRecords(Person)` to update the variable in the `AddressBook`. The medical
 records of the patient is displayed at the left column in the `recordListPanel`. The `personBeingViewedPanel` contains
 the person card of the patient.
 
@@ -338,16 +435,110 @@ The following sequence diagram shows how the undo operation works:
 
 **Aspect: How view executes:**
 
-* **Alternative 1 (current choice):** Saves the `records` as `UniqueRecordList` and `personBeingViewed` 
-as `UniquePersonList`.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+- **Alternative 1 (current choice):** Saves the `records` as `UniqueRecordList` and `personBeingViewed`
+  as `UniquePersonList`.
+  _ Pros: Easy to implement.
+  _ Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Saves the `records` as `UniqueRecordList` and `personBeingViewed`as `Person`.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: A lot of extra work need to be done (e.g. need to have an empty person object and need to make it as a node
-before passing into the `personBeingViewedPanel`).
+- **Alternative 2:** Saves the `records` as `UniqueRecordList` and `personBeingViewed`as `Person`.
+  _ Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  _ Cons: A lot of extra work need to be done (e.g. need to have an empty person object and need to make it as a node
+  before passing into the `personBeingViewedPanel`).
 
+Certainly! Here is a portion that you can add to your developer guide to explain the encryption/decryption feature:
+
+---
+
+### [Implemented] Encryption/Decryption Feature
+
+#### Implementation
+
+MedBook ensures the privacy and safety of user data by encrypting the data before saving it to the hard disk. The data is then decrypted when loaded back into the application upon restart. The implementation of this feature is transparent to the user, providing a seamless experience.
+
+#### How it works
+
+##### Encryption
+
+When a command that changes the data is executed, MedBook automatically triggers the encryption process before saving the data to the disk. The process is as follows:
+
+1. The data, which is in the form of an object, is converted to a JSON string.
+2. The JSON string is then encrypted using Advanced Encryption Standard (AES) in Cipher Block Chaining (CBC) mode with PKCS5 padding.
+3. The encrypted string is saved to the data file.
+
+The encryption key is securely managed to ensure that only MedBook can decrypt the data.
+
+##### Decryption
+
+When MedBook is started, it attempts to load the data from the disk. The process is as follows:
+
+1. MedBook reads the encrypted string from the data file.
+2. The encrypted string is decrypted using the same AES algorithm and key.
+3. The decrypted JSON string is converted back into an object, and the data is loaded into the application.
+
+#### Design Considerations
+
+##### Aspect: Choice of Encryption Algorithm
+
+- **Alternative 1 (chosen)**: Use AES in CBC mode with PKCS5 padding.
+
+  - _Pros_: Strong encryption that is widely recognized and trusted.
+  - _Cons_: May be computationally expensive for very large datasets.
+
+- **Alternative 2**: Use a lighter encryption algorithm.
+  - _Pros_: Faster encryption and decryption times, which might be noticeable for very large datasets.
+  - _Cons_: Potentially less secure, depending on the algorithm chosen.
+
+### Attaching Files to Patient Records
+
+This section provides an overview of the 'Attach Files' feature, which is already implemented in our application. This feature enables users to attach files to specific patient records, enhancing the user experience and functionality of the application.
+
+#### Implementation Details
+
+The 'Attach Files' feature has been implemented by extending the `Record` class to include a `filePath` attribute, which stores the path to the attached file on the local computer. Each patient can have multiple records, but each record is limited to one attachment.
+
+##### Record Class
+
+```java
+public class Record {
+    // Other attributes
+    private String filePath;
+
+    // Constructors, getters, and setters
+}
+```
+
+The `Record` class includes:
+
+- `filePath`: A `String` that stores the path to the attached file.
+
+##### User Interface
+
+A 'Attach File' button is present in the record card on the specific patient's view page. The workflow for attaching a file is as follows:
+
+1. User clicks the 'Attach File' button.
+2. A file explorer window opens, allowing the user to navigate and select the desired file.
+3. Upon file selection, the application retrieves the file's path and updates the `filePath` attribute of the corresponding `Record` object.
+4. The updated record, including the file path, is then saved to the address book.
+
+##### Opening Attached Files
+
+Clicking on the displayed file path in the patient's record card triggers the application to:
+
+1. Retrieve the file path from the `filePath` attribute of the `Record` object.
+2. Attempt to open the file using the default program associated with the file type on the user's computer.
+3. If the file is inaccessible (moved or deleted), an error message is displayed to the user.
+
+#### Design Considerations
+
+##### Attach Files Implementation
+
+**Current Implementation**: Using CUI instead of CLI.
+
+- Pros:
+  - Easy to navigate and learn.
+  - More efficient as compared to typing in absolute file paths
+- Cons:
+  - Not particularly suited for fast typers
 
 ### \[Proposed\] Data archiving
 
@@ -388,7 +579,6 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-
 | Priority | As a …​     | I want to …​                                                                                               | So that I can…​                                                   |
 | -------- | ----------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `* * *`  | user        | _add_ a patient’s medical records and contact details                                                      | keep track of them efficiently                                    |
@@ -419,7 +609,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | busy user   | blacklist certain patients                                                                                 | remove absurd patients                                            |
 
 _{More to be added}_
-
 
 ### Use cases
 

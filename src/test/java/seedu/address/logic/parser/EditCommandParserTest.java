@@ -1,4 +1,5 @@
 package seedu.address.logic.parser;
+
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.AGE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ALLERGY_DESC_DUST;
@@ -54,8 +55,8 @@ public class EditCommandParserTest {
 
     private static final String ALLERGY_EMPTY = " " + PREFIX_ALLERGIES;
 
-    private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+    private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            EditCommand.MESSAGE_USAGE);
 
     private EditCommandParser parser = new EditCommandParser();
 
@@ -83,7 +84,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 z/ string", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -99,7 +100,8 @@ public class EditCommandParserTest {
         // invalid email followed by valid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC + VALID_PHONE_AMY, Email.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code
+        // Person} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, "1" + ALLERGY_DESC_DUST + ALLERGY_DESC_PEANUTS + ALLERGY_EMPTY,
                 Allergy.MESSAGE_CONSTRAINTS);
@@ -110,7 +112,7 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_PHONE_AMY
-                        + VALID_GENDER_AMY + VALID_AGE_AMY + VALID_BLOODTYPE_AMY,
+                + VALID_GENDER_AMY + VALID_AGE_AMY + VALID_BLOODTYPE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -206,18 +208,21 @@ public class EditCommandParserTest {
 
         // multiple valid fields repeated
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + GENDER_DESC_AMY + EMAIL_DESC_AMY
-                + ALLERGY_DESC_DUST + PHONE_DESC_AMY + GENDER_DESC_AMY + EMAIL_DESC_AMY + ALLERGY_DESC_DUST
+                + ALLERGY_DESC_DUST + PHONE_DESC_AMY + GENDER_DESC_AMY + EMAIL_DESC_AMY
+                + ALLERGY_DESC_DUST
                 + PHONE_DESC_BOB + GENDER_DESC_AMY + EMAIL_DESC_BOB + ALLERGY_DESC_PEANUTS;
 
         assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_GENDER));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_GENDER));
 
         // multiple invalid values
         userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + INVALID_GENDER_DESC + INVALID_EMAIL_DESC
                 + INVALID_PHONE_DESC + INVALID_GENDER_DESC + INVALID_EMAIL_DESC;
 
         assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL, PREFIX_GENDER));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_GENDER));
     }
 
     @Test

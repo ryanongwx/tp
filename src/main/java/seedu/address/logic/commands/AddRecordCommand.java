@@ -30,7 +30,7 @@ public class AddRecordCommand extends Command {
             + PREFIX_MEDICATION + "MEDICATION " + "\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE + "18-09-2023 1800 "
-            + PREFIX_CONDITION + "Fever"
+            + PREFIX_CONDITION + "Fever "
             + PREFIX_MEDICATION + "Tylenol";
 
     public static final String MESSAGE_SUCCESS = "New record added: %1$s";
@@ -60,12 +60,13 @@ public class AddRecordCommand extends Command {
         UniqueRecordList newRecords = new UniqueRecordList();
         newRecords.setRecords(personToAddRecord.getRecords());
         newRecords.add(record);
-        Person personWithAddedRecord = new Person(personToAddRecord.getName(), personToAddRecord.getEmail(),
-                personToAddRecord.getPhone(), personToAddRecord.getGender(), personToAddRecord.getAge(),
-                personToAddRecord.getBloodType(), personToAddRecord.getAllergies(),
+        Person personWithAddedRecord = new Person(personToAddRecord.getName(), personToAddRecord.getNric(),
+                personToAddRecord.getEmail(), personToAddRecord.getPhone(), personToAddRecord.getGender(),
+                personToAddRecord.getAge(), personToAddRecord.getBloodType(), personToAddRecord.getAllergies(),
                 newRecords, personToAddRecord.getAppointments(), personToAddRecord.isPinned());
 
         model.setPerson(personToAddRecord, personWithAddedRecord);
+        model.updateRecordList(personWithAddedRecord);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(record, personWithAddedRecord)));
     }
