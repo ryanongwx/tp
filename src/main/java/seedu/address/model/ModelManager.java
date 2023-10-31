@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.record.Record;
 
@@ -22,6 +23,8 @@ public class ModelManager implements Model {
     private static ModelManager instance;
     private final AddressBook addressBook;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Appointment> filteredAppointments;
+    private final ObservableList<Appointment> fullAppointmentList;
     private final UserPrefs userPrefs;
 
     /**
@@ -35,6 +38,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
+        fullAppointmentList = this.addressBook.getFullAppointmentList();
         instance = this;
     }
 
@@ -146,6 +151,21 @@ public class ModelManager implements Model {
         FilteredList<Person> pinnedPersons = new FilteredList<>(this.addressBook.getPersonList());
         pinnedPersons.setPredicate(person -> person.isPinned());
         return pinnedPersons;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
+    }
+
+    @Override
+    public ObservableList<Appointment> getFullAppointmentList() {
+        return fullAppointmentList;
     }
 
     @Override

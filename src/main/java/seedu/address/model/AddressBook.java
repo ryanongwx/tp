@@ -7,6 +7,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.record.Record;
@@ -19,22 +21,32 @@ import seedu.address.model.record.UniqueRecordList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniquePersonList fullPersonList;
     private final UniquePersonList personBeingViewed;
     private final UniqueRecordList records;
+    private final UniqueAppointmentList appointments;
+    private final UniqueAppointmentList fullAppointmentList;
     /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     * The 'unusual' code block below is a non-static initialization block,
+     * sometimes used to avoid duplication
+     * between constructors. See
+     * https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+     * Note that non-static init blocks are not recommended to use. There are other
+     * ways to avoid duplication
+     * among constructors.
      */
     {
         persons = new UniquePersonList();
+        fullPersonList = new UniquePersonList();
         records = new UniqueRecordList();
+        appointments = new UniqueAppointmentList();
         personBeingViewed = new UniquePersonList();
+        fullAppointmentList = new UniqueAppointmentList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -67,13 +79,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        List<Person> fullList = newData.getPersonList();
+        setPersons(fullList);
+        fullPersonList.setPersons(fullList);
     }
 
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -89,9 +104,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given person {@code target} in the list with
+     * {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the address book.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -122,6 +139,25 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public ObservableList<Record> getRecordList() {
         return records.asUnmodifiableObservableList();
+    }
+
+    public ObservableList<Appointment> getAppointmentList() {
+        for (Person person : persons) {
+            for (Appointment appointment : person.getAppointments()) {
+                appointments.add(appointment);
+                System.out.println(appointment);
+            }
+        }
+        return appointments.asUnmodifiableObservableList();
+    }
+
+    public ObservableList<Appointment> getFullAppointmentList() {
+        for (Person person : fullPersonList) {
+            for (Appointment appointment : person.getAppointments()) {
+                fullAppointmentList.add(appointment);
+            }
+        }
+        return fullAppointmentList.asUnmodifiableObservableList();
     }
 
     public ObservableList<Person> getPersonBeingViewed() {

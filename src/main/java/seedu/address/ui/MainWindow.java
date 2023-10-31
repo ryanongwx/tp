@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private AppointmentsWindow appointmentsWindow;
     private PinnedPersonListPanel pinnedPersonListPanel;
     private RecordListPanel recordListPanel;
     private PersonListPanel personBeingViewedPanel;
@@ -70,6 +71,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        appointmentsWindow = new AppointmentsWindow(new Stage(), logic);
     }
 
     public Stage getPrimaryStage() {
@@ -82,6 +84,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     * 
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -136,7 +139,6 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
-
     /**
      * Sets the default size based on {@code guiSettings}.
      */
@@ -158,6 +160,19 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the appointments window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleAppointments() {
+        if (!appointmentsWindow.isShowing()) {
+            appointmentsWindow.show();
+            appointmentsWindow.fillInnerParts();
+        } else {
+            appointmentsWindow.focus();
         }
     }
 
@@ -194,6 +209,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowAppointments()) {
+                handleAppointments();
             }
 
             if (commandResult.isExit()) {
