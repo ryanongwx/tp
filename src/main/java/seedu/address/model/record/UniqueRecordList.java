@@ -38,6 +38,20 @@ public class UniqueRecordList implements Iterable<Record> {
     }
 
     /**
+     * Returns a record at a specified index.
+     */
+    public Record get(int index) {
+        return internalList.get(index);
+    }
+
+    /**
+     * Returns the size of the internalList
+     */
+    public int size() {
+        return internalList.size();
+    }
+
+    /**
      * Adds a record to the list
      */
     public void add(Record recordToAdd) {
