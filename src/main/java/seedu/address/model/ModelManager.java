@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private static ModelManager instance;
     private final AddressBook addressBook;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Record> filteredRecords;
     private final UserPrefs userPrefs;
 
     /**
@@ -35,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredRecords = new FilteredList<>(this.addressBook.getRecordList());
         instance = this;
     }
 
@@ -118,7 +120,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
@@ -152,11 +153,21 @@ public class ModelManager implements Model {
     public ObservableList<Record> getRecordList() {
         return this.addressBook.getRecordList();
     }
+    @Override
+    public ObservableList<Record> getFilteredRecordList() {
+        return filteredRecords;
+    }
 
     @Override
     public void updateRecordList(Person person) {
         requireNonNull(person);
         this.addressBook.setRecords(person);
+        updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
+    }
+    @Override
+    public void updateFilteredRecordList(Predicate<Record> predicate) {
+        requireNonNull(predicate);
+        filteredRecords.setPredicate(predicate);
     }
 
     @Override
@@ -178,6 +189,7 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && filteredRecords.equals(otherModelManager.filteredRecords);
     }
 }
