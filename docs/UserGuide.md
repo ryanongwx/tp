@@ -82,6 +82,8 @@ The application should open up similar to the image below.
 
 - `RECORDID`: refers to the unique record ID shown in the displayed **RECORDS** list of a specific patient. The ID **must be a positive integer** 1, 2, 3, …​ <br>
 
+- `APPOINTMENTID`: refers to the unique appointment ID shown in the displayed appointment list. The ID **must be a positive integer** 1, 2, 3, …​ <br>
+
 **Prefixes:**
 - `NAME`: n
 - `NRIC`: i
@@ -133,17 +135,31 @@ His email and phone number is **johndoe@gmail.com** and **12345678**, respective
 
 Adds a patient's medical record.
 
-Format: `addrecord PATIENTID d/DATETIME [c/CONDITIONS]... [m/MEDICATION]...`
+Format: `addrecord PATIENTID d/DATETIME c/CONDITIONS... m/MEDICATION...`
 
 - Adds a medical record to the patient with the corresponding `PATIENTID`. <br>
 
-- Constraints of each fied are as state in the **Constraints** section above.
+- Constraints of each fied are as state in the **Constraints** section above. <br>
 
 Examples:
 
 - `addrecord 3 d/18-09-2023 1800 c/Fever m/Paracetamol`
   Adds a record to the patient with the `PATIENTID` of `3`.
   The record says that the patient visited the clinic on September 18th, 2023 at 6PM with a Fever and was prescribed Paracetamol.
+
+### Adding an Appointment : `addappointment`
+
+Adds an appointment.
+
+Format: `addappointment PATIENTID n/APPOINTMENTNAME d/DATETIME`
+
+- Adds an appointment with patient with the corresponding `PATIENTID` to the **Appointments** list. <br>
+
+- Constraints of each fied are as state in the **Constraints** section above. <br>
+
+Examples:
+
+- `addappointment 2 n/Eye Examination d/10-10-2023 1800` adds an Eye Examination for the patient with the `PATIENTID` of `2`. The appointment is set for 10th October 2023 at 6:00pm.
 
 ### Listing all patients : `list`
 
@@ -178,20 +194,20 @@ Displays all the medical appointments in a separate window.
 
 Format: `viewappointment`
 
-- The medical records of the patient with the corresponding `PATIENTID` will be displayed on screen in the **RECORDS** list. <br>
+- The appointments of all the patients in the patients list will be displayed on a new window in the **APPOINTMENTS** list. <br>
 
-- Information about the patient will be displayed in the **PATIENT BEING VIEWED** section. <br>
+- The **description**, **date and time**, and **NRIC** of the patient involved in appointment will be displaye in the **APPOINTMENTS** list. <br>
 
-Examples:
+- The **description** of appointments will also appear on the calendar at the corresponding **date** . <br>
+**note**: Only a maximum of **two** appointments will be displayed on the calendar per date. Only the **first two** appointments according to the **APPOINTMENTS** list will be displayed.
 
-- `view 2` displays the medical records of the patient with the `PATIENTID` of `2`. The displayed records will be in the `RECORDS` list and patient information will be in the `PATIENT BEING VIEWED` section.
 ---
 
 ### Editing detail of a patient : `editpatient`
 
 Edits the detail of an existing patient in MedBook.
 
-Format: `editpatient PATIENTID [FIELD/NEWVALUE]...`
+Format: `editpatient PATIENTID FIELD/NEWVALUE...`
 
 - Edits the patient at the specified `PATIENTID`. <br>
 
@@ -216,7 +232,7 @@ Examples:
 
 Edits a record of an existing patient in MedBook.
 
-Format: `editrecord PATIENTID/RECORDID [FIELD/NEWVALUE]...`
+Format: `editrecord PATIENTID/RECORDID FIELD/NEWVALUE...`
 
 - Edits a record at the specific `RECORDID` of the patient at the specified `PATIENTID`. <br>
 
@@ -274,7 +290,7 @@ Format: `searchrecord KEYWORD...`
 
 - The search is not case-sensitive. e.g **Penicillin** will match **penicillin**. <br>
 
-- A record's conditions and medications will be searched. <br>
+- A record's details will be searched. <br>
 
 - Records matching at least one keyword will be returned. <br>
 
@@ -285,6 +301,8 @@ Examples:
 - `searchrecord Penicillin` returns a list of records with **Penicillin** in their details. <br>
 
 - `searchrecord Fever Cough` will return records with **Fever** or **Cough** in their details. <br>
+
+- `searchrecord 19-10-2023 1200` will return records with date **19-10-2023 1200** in their details. <br>
 
 ### Deleting a patient : `delete`
 
@@ -310,6 +328,18 @@ Examples:
 
 - `deleterecord 2/1` deletes the 1st record of the 2nd patient in the patients list.
 
+### Deleting an appointment : `deleteappointment`
+
+Deletes an appointment from the **APPOINTMENTS** list.
+
+Format: `deleteappointment APPOINTMENTID`
+
+- Deletes the appointment at the specific `APPOINTMENTID` in the **APPOINTMENTS** list.
+
+Examples:
+
+- `deleteappointment 1` deletes the 1st appointment in the **APPOINTMENTS** list.
+
 ### Pinning a Patient : `pin`
 
 Pins the specified patient to the **Pinned Patient** list.
@@ -333,20 +363,6 @@ Format: `unpin PATIENTID`
 Examples:
 
 - `unpin 2` unpins the patient with the `PATIENTID` of `2` as per the **Pinned Patient** list.
-
-### Adding an Appointment : `addappointment`
-
-Adds an appointment.
-
-Format: `addappointment PATIENTID n/APPOINTMENTNAME d/DATETIME`
-
-- Adds an appointment with patient with the corresponding `PATIENTID` to the **Appointments** list. <br>
-
-- Constraints of each fied are as state in the **Constraints** section above. <br>
-
-Examples:
-
-- `addappointment 2 n/Eye Examination d/10-10-2023 1800` adds an Eye Examination for the patient with the `PATIENTID` of `2`. The appointment is set for 10th October 2023 at 6:00pm.
 
 ### Clearing all entries : `clear`
 
@@ -394,15 +410,21 @@ Do not make changes to the data file.
 
 | Action              | Format, Examples                                                                                                                       |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add Patient**     | `addpatient n/NAME e/EMAIL p/PHONE …​` <br> e.g., `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` |
-| **Add Record**      | `addrecord PATIENTID c/CONDITION... d/DATETIME [m/MEDICATION]...`<br> e.g., `addrecord 2 c/Fever d/10-10-2020 1900 m/Painkiller`       |
+| **Help**     | `help` |
+| **Add Patient**     | `addpatient n/NAME i/NRIC e/EMAIL p/PHONE …​` <br> e.g., `addpatient n/John Doe i/T1234567A e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` |
+| **Add Record**      | `addrecord PATIENTID d/DATETIME c/CONDITION... m/MEDICATION...`<br> e.g., `addrecord 2 d/10-10-2020 1900 c/Fever m/Painkiller`       |
 | **Add Appointment** | `addappointment PATIENTID n/APPOINTMENTNAME d/DATETIME`<br> e.g., `addappointment 2 n/Eye Exam d/10-10-2020 1900`                      |
 | **List**            | `list`                                                                                                                                 |
-| **View**            | `view PATIENTID`<br> e.g., `view 2`                                                                                                    |
-| **Edit Patient** | `editpatient PATIENTID/FIELD/NEWVALUE`<br> e.g.,`editpatient 1/email/johndoe_updated@gmail.com`                                        |
-| **Edit Record**  | `editrecord PATIENTID/RECORDID FIELD/NEWVALUE`<br> e.g.,`editrecord 1/1 d/25-10-2023 1200`                 |
-| **Search**          | `search [KEYWORDS]`<br> e.g., `find James Jake`                                                                                        |
-| **Delete**          | `delete PATIENTID`<br> e.g., `delete 3`                                                                                                |
+| **View Records**            | `view PATIENTID`<br> e.g., `view 2`                                                                                                    |
+| **View Appointments**            | `viewappointment`                                                                                                  |
+| **Edit Patient** | `editpatient PATIENTID FIELD/NEWVALUE...`<br> e.g.,`editpatient 1 e/johndoe_updated@gmail.com`                                        |
+| **Edit Record**  | `editrecord PATIENTID/RECORDID FIELD/NEWVALUE...`<br> e.g.,`editrecord 1/1 d/25-10-2023 1200`                 |
+
+| **Search Patients**          | `search KEYWORDS...`<br> e.g., `search James Jake`                                                                                        |
+| **Search Records**          | `searchrecord KEYWORDS...`<br> e.g., `searchrecord Headache`                                                                                        |
+| **Delete Patient**          | `delete PATIENTID`<br> e.g., `delete 3`                                                                                                |
+| **Delete Record**          | `deleterecord PATIENTID/RECORDID`<br> e.g., `delete 2/1`                                                                                             |
+| **Delete Appointment**          | `deleteappointment APPOINTMENTID`<br> e.g., `deleteappointment 1`                                                                             |
 | **Pin**             | `pin PATIENTID`<br> e.g., `pin 2`                                                                                                      |
 | **Unpin**           | `unpin PATIENTID`<br> e.g. `unpin 2`                                                                                                   |
 | **Clear**           | `clear`                                                                                                                                |
