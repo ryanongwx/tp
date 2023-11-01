@@ -15,7 +15,7 @@
 <?import javafx.scene.control.Label?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17"
     xmlns:fx="http://javafx.com/fxml/1"
-    title="Appointments">
+    title="Appointments" minWidth="1000" minHeight="800">
     <scene>
         <Scene>
             <stylesheets>
@@ -25,8 +25,8 @@
 
             <VBox>
                 <SplitPane dividerPositions="0.3" VBox.vgrow="ALWAYS">
-                    <VBox fx:id="appointmentList" styleClass="pane_with-border" minWidth="340"
-                        prefWidth="340" maxWidth="400"
+                    <VBox fx:id="appointmentList" styleClass="pane_with-border" minWidth="200"
+                        prefWidth="200" maxWidth="300"
                         VBox.vgrow="ALWAYS">
                         <Label text="APPOINTMENTS" styleClass="cell_big_label"
                             style="-fx-text-fill:#FFFF" />

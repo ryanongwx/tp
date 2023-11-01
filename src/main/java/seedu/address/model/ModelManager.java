@@ -24,7 +24,6 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointments;
-    private final ObservableList<Appointment> fullAppointmentList;
     private final UserPrefs userPrefs;
 
     /**
@@ -39,7 +38,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
-        fullAppointmentList = this.addressBook.getFullAppointmentList();
         instance = this;
     }
 
@@ -164,8 +162,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Appointment> getFullAppointmentList() {
-        return fullAppointmentList;
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
+    }
+
+    @Override
+    public void resetAppointmentList() {
+        this.addressBook.resetAppointmentList();
     }
 
     @Override

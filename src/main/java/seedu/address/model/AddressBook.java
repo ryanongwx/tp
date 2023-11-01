@@ -25,7 +25,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList personBeingViewed;
     private final UniqueRecordList records;
     private final UniqueAppointmentList appointments;
-    private final UniqueAppointmentList fullAppointmentList;
     /*
      * The 'unusual' code block below is a non-static initialization block,
      * sometimes used to avoid duplication
@@ -42,7 +41,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         records = new UniqueRecordList();
         appointments = new UniqueAppointmentList();
         personBeingViewed = new UniquePersonList();
-        fullAppointmentList = new UniqueAppointmentList();
     }
 
     public AddressBook() {
@@ -123,6 +121,48 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removePerson(Person key) {
         persons.remove(key);
     }
+
+    //// appointment-level operations
+
+    /**
+     * Returns true if a appointment with the same identity as {@code appointment}
+     * exists in
+     * the address book.
+     */
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return appointments.contains(appointment);
+    }
+
+    /**
+     * Adds an appointment to the address book.
+     * The appointment must not already exist in the address book.
+     */
+    public void addAppointment(Appointment a) {
+        appointments.add(a);
+    }
+
+    /**
+     * Replaces the given appointment {@code target} in the list with
+     * {@code editedAppointment}.
+     * {@code target} must exist in the address book.
+     * The appointment identity of {@code editedAppointment} must not be the same as
+     * another
+     * existing appointment in the address book.
+     */
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireNonNull(editedAppointment);
+
+        appointments.setAppointment(target, editedAppointment);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeAppointment(Appointment key) {
+        appointments.remove(key);
+    }
     //// util methods
 
     @Override
@@ -142,22 +182,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public ObservableList<Appointment> getAppointmentList() {
-        for (Person person : persons) {
-            for (Appointment appointment : person.getAppointments()) {
-                appointments.add(appointment);
-                System.out.println(appointment);
-            }
-        }
+        resetAppointmentList();
         return appointments.asUnmodifiableObservableList();
     }
 
-    public ObservableList<Appointment> getFullAppointmentList() {
-        for (Person person : fullPersonList) {
+    public void resetAppointmentList() {
+        UniqueAppointmentList newList = new UniqueAppointmentList();
+        for (Person person : persons) {
             for (Appointment appointment : person.getAppointments()) {
-                fullAppointmentList.add(appointment);
+                newList.add(appointment);
             }
         }
-        return fullAppointmentList.asUnmodifiableObservableList();
+        appointments.setAppointments(newList);
     }
 
     public ObservableList<Person> getPersonBeingViewed() {

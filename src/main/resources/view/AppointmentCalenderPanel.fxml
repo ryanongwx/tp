@@ -37,8 +37,9 @@
     </HBox>
 
     <HBox fx:id="navigationBox" spacing="10" alignment="CENTER">
-        <Button fx:id="prevMonthButton" text="Previous" onAction="#previousMonth" />
+        <Button fx:id="prevMonthButton" text="Previous" onAction="#previousMonth"
+            minWidth="100" />
 
-        <Button fx:id="nextMonthButton" text="Next" onAction="#nextMonth" />
+        <Button fx:id="nextMonthButton" text="Next" onAction="#nextMonth" minWidth="100" />
     </HBox>
 </VBox>

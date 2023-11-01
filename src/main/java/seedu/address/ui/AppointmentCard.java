@@ -32,6 +32,8 @@ public class AppointmentCard extends UiPart<Region> {
     @FXML
     private Label dateTime;
     @FXML
+    private Label nric;
+    @FXML
     private Label id;
 
     /**
@@ -44,5 +46,6 @@ public class AppointmentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(appointment.getName().fullName);
         dateTime.setText(appointment.getDateTime().toString());
+        nric.setText(appointment.getNric().nric);
     }
 }

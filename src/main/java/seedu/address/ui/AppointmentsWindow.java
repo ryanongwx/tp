@@ -1,8 +1,8 @@
 package seedu.address.ui;
 
-import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -44,17 +44,12 @@ public class AppointmentsWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        List<Appointment> filteredAppointments = logic.getFilteredAppointmentList();
+        ObservableList<Appointment> filteredAppointments = logic.getFilteredAppointmentList();
 
-        // Print the contents of the list
-        logger.info("Filtered Appointments:");
-        for (Appointment appointment : filteredAppointments) {
-            logger.info(appointment.toString());
-        }
-        appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
+        appointmentListPanel = new AppointmentListPanel(filteredAppointments);
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
-        appointmentCalenderPanel = new AppointmentCalenderPanel(logic.getFullAppointmentList());
+        appointmentCalenderPanel = new AppointmentCalenderPanel(filteredAppointments);
         appointmentCalenderPanelPlaceholder.getChildren().add(appointmentCalenderPanel.getRoot());
     }
 
@@ -105,15 +100,4 @@ public class AppointmentsWindow extends UiPart<Stage> {
     public void focus() {
         getRoot().requestFocus();
     }
-    // /**
-    // * Sets the default size based on {@code guiSettings}.
-    // */
-    // private void setWindowDefaultSize(GuiSettings guiSettings) {
-    // primaryStage.setHeight(guiSettings.getWindowHeight());
-    // primaryStage.setWidth(guiSettings.getWindowWidth());
-    // if (guiSettings.getWindowCoordinates() != null) {
-    // primaryStage.setX(guiSettings.getWindowCoordinates().getX());
-    // primaryStage.setY(guiSettings.getWindowCoordinates().getY());
-    // }
-    // }
 }

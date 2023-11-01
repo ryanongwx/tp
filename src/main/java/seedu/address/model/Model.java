@@ -16,6 +16,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -97,8 +100,15 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered appointment list */
     ObservableList<Appointment> getFilteredAppointmentList();
 
-    /** Returns an unmodifiable view of the full appointment list */
-    ObservableList<Appointment> getFullAppointmentList();
+    /**
+     * Updates the filter of the filtered person list to filter by the given
+     * {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+
+    void resetAppointmentList();
 
     ObservableList<Record> getRecordList();
 

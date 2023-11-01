@@ -12,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
@@ -43,6 +42,9 @@ public class AppointmentCalenderPanel extends UiPart<Region> {
         this.appointmentList = appointmentList;
         currentDate = LocalDate.now();
         populateMonth(currentDate);
+        this.appointmentList.addListener((javafx.collections.ListChangeListener.Change<? extends Appointment> c) -> {
+            populateMonth(currentDate);
+        });
     }
 
     /**
@@ -85,7 +87,8 @@ public class AppointmentCalenderPanel extends UiPart<Region> {
         calendarGrid.getChildren().clear(); // Clear the previous month's data
 
         // Print headers (days of the week)
-        DayOfWeek[] daysOfWeek = DayOfWeek.values();
+        DayOfWeek[] daysOfWeek = { DayOfWeek.SUNDAY, DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
+                DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY };
         for (int i = 0; i < daysOfWeek.length; i++) {
             Label label = new Label(daysOfWeek[i].toString().substring(0, 3));
             label.setAlignment(Pos.CENTER);
@@ -95,7 +98,7 @@ public class AppointmentCalenderPanel extends UiPart<Region> {
 
         // Determine the first day of the month
         LocalDate firstOfMonth = date.withDayOfMonth(1);
-        int dayOfWeek = (firstOfMonth.getDayOfWeek().getValue() + 6) % 7;
+        int dayOfWeek = firstOfMonth.getDayOfWeek().getValue() % 7;
 
         int rowOffset = dayOfWeek;
 
@@ -116,11 +119,13 @@ public class AppointmentCalenderPanel extends UiPart<Region> {
                 // This appointment belongs to the currently displayed month
 
                 int day = appointmentDate.getDayOfMonth();
-                int cellDayOfWeek = (firstOfMonth.getDayOfWeek().getValue() + day - 1) % 7;
+                System.out.println(appointment.getDateTime().toString() + day);
 
+                int cellDayOfWeek = (firstOfMonth.getDayOfWeek().getValue() + day - 1) % 7;
+                System.out.println(cellDayOfWeek);
                 // Find the label that corresponds to this day
                 for (Node node : calendarGrid.getChildren()) {
-                    if (GridPane.getRowIndex(node) == 1 + (day + cellDayOfWeek - 1) / 7
+                    if (GridPane.getRowIndex(node) == 1 + (day + rowOffset - 1) / 7
                             && GridPane.getColumnIndex(node) == cellDayOfWeek) {
                         VBox dateBox = (VBox) node;
                         if (dateBox.getChildren().size() < 3) { // Assuming 'n' is 3 for illustration

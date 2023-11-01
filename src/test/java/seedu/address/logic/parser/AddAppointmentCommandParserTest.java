@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_SLEEP_STUDY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_SLEEP_STUDY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_SLEEP_STUDY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -18,11 +19,12 @@ import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.shared.DateTime;
 import seedu.address.model.shared.Name;
+import seedu.address.model.shared.Nric;
 
 public class AddAppointmentCommandParserTest {
 
-    private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE);
+    private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            AddAppointmentCommand.MESSAGE_USAGE);
     private AddAppointmentCommandParser parser = new AddAppointmentCommandParser();
 
     @Test
@@ -41,11 +43,11 @@ public class AddAppointmentCommandParserTest {
     public void parse_invalidPreamble_failure() {
         // negative index
         assertParseFailure(parser, "-5" + NAME_DESC_SLEEP_STUDY + DATETIME_DESC_SLEEP_STUDY,
-                            MESSAGE_INVALID_FORMAT);
+                MESSAGE_INVALID_FORMAT);
 
         // zero index
         assertParseFailure(parser, "0" + NAME_DESC_SLEEP_STUDY + DATETIME_DESC_SLEEP_STUDY,
-                            MESSAGE_INVALID_FORMAT);
+                MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -72,7 +74,7 @@ public class AddAppointmentCommandParserTest {
         String userInput = targetIndex.getOneBased() + NAME_DESC_SLEEP_STUDY + DATETIME_DESC_SLEEP_STUDY;
 
         Appointment appointment = new Appointment(new Name(VALID_NAME_SLEEP_STUDY),
-                new DateTime(VALID_DATETIME_SLEEP_STUDY));
+                new DateTime(VALID_DATETIME_SLEEP_STUDY), null);
 
         AddAppointmentCommand expectedCommand = new AddAppointmentCommand(targetIndex, appointment);
 
