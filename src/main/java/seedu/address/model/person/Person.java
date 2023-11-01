@@ -14,6 +14,7 @@ import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.record.Record;
 import seedu.address.model.record.UniqueRecordList;
 import seedu.address.model.shared.Name;
+import seedu.address.model.shared.Nric;
 
 /**
  * Represents a Person in the address book.

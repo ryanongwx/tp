@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_THYROID_CHECK;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -38,10 +37,13 @@ public class AddAppointmentCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Appointment validAppointment = new AppointmentBuilder().build();
-        AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, validAppointment);
 
         Person personToAddAppointment = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Appointment validAppointment = new AppointmentBuilder().withNric(personToAddAppointment.getNric().toString())
+                .build();
+
+        AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, validAppointment);
+
         UniqueAppointmentList newAppointmentList = new UniqueAppointmentList();
         newAppointmentList.setAppointments(personToAddAppointment.getAppointments());
         newAppointmentList.add(validAppointment);
@@ -69,10 +71,12 @@ public class AddAppointmentCommandTest {
     @Test
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        Appointment validAppointment = new AppointmentBuilder().withName(VALID_NAME_THYROID_CHECK).build();
+        Person personToAddAppointment = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Appointment validAppointment = new AppointmentBuilder().withNric(personToAddAppointment.getNric().toString())
+                .build();
+
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, validAppointment);
 
-        Person personToAddAppointment = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         UniqueAppointmentList newAppointmentList = new UniqueAppointmentList();
         newAppointmentList.setAppointments(personToAddAppointment.getAppointments());
         newAppointmentList.add(validAppointment);
@@ -104,7 +108,7 @@ public class AddAppointmentCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
+    public void execute_duplicateAppointmentUnfilteredList_failure() {
         Appointment appointment = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())
                 .getAppointments().asUnmodifiableObservableList().get(0);
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, appointment);
@@ -141,8 +145,8 @@ public class AddAppointmentCommandTest {
         Appointment appointment = new AppointmentBuilder().build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(targetIndex, appointment);
         String expected = new ToStringBuilder(addAppointmentCommand)
-                            .add("toAdd", appointment)
-                            .toString();
+                .add("toAdd", appointment)
+                .toString();
         assertEquals(expected, addAppointmentCommand.toString());
     }
 }

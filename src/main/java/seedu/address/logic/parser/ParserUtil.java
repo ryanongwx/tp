@@ -16,12 +16,12 @@ import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
-import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 import seedu.address.model.record.Condition;
 import seedu.address.model.record.Medication;
 import seedu.address.model.shared.DateTime;
 import seedu.address.model.shared.Name;
+import seedu.address.model.shared.Nric;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser

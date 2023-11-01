@@ -82,7 +82,6 @@ public class TypicalPersons {
             .withBloodType("AB+")
             .withAllergies("Dogs")
             .withRecords(ALLERGIC_REACTION2, FEVER0, FEVER_AND_COLD0, FEVER_AND_COLD1)
-            .withAppointments(EYE_EXAM)
             .withIsPinned(false)
             .build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
