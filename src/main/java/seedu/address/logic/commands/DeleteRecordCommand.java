@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -58,5 +59,28 @@ public class DeleteRecordCommand extends Command {
         model.updateRecordList(patientWithDeletedRecord);
         return new CommandResult(String.format(MESSAGE_DELETE_RECORD_SUCCESS,
                 Messages.format(targetRecord, targetPatient)));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+
+        if (!(other instanceof DeleteRecordCommand)) {
+            return false;
+        }
+
+        DeleteRecordCommand otherDeleteRecordCommand = (DeleteRecordCommand) other;
+        return this.targetPatientIndex.equals(otherDeleteRecordCommand.targetPatientIndex)
+                && this.targetRecordIndex.equals(otherDeleteRecordCommand.targetRecordIndex);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("targetPatientIndex", targetPatientIndex)
+                .add("targetRecordIndex", targetRecordIndex)
+                .toString();
     }
 }
