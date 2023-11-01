@@ -1,5 +1,6 @@
 package seedu.address.model.shared;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -57,5 +58,10 @@ public class DateTimeTest {
 
         // different values -> returns false
         assertFalse(dateTime.equals(new DateTime("22-10-2001 1900")));
+    }
+    @Test
+    public void toString_success() {
+        DateTime dateTime = new DateTime("21-10-2001 1900");
+        assertEquals(dateTime.toString(), "21-10-2001 1900");
     }
 }

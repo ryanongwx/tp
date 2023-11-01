@@ -22,7 +22,8 @@
       "appointments": [
         {
           "name": "Eye Exam",
-          "dateTime": "01-01-2001 1200"
+          "dateTime": "01-01-2001 1200",
+          "nric": "S1234567B"
         }
       ],
       "isPinned": true
@@ -48,7 +49,8 @@
       "appointments": [
         {
           "name": "Eye Exam",
-          "dateTime": "01-01-2001 1200"
+          "dateTime": "01-01-2001 1200",
+          "nric": "S1234567B"
         }
       ],
       "isPinned": true

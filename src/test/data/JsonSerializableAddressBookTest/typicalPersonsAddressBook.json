@@ -22,7 +22,8 @@
       "appointments": [
         {
           "name": "Eye Exam",
-          "dateTime": "01-01-2001 1200"
+          "dateTime": "01-01-2001 1200",
+          "nric": "S1234567B"
         }
       ],
       "isPinned": true
@@ -48,7 +49,8 @@
       "appointments": [
         {
           "name": "Vaccination",
-          "dateTime": "11-09-2001 1200"
+          "dateTime": "11-09-2001 1200",
+          "nric": "S1234567A"
         }
       ],
       "isPinned": false
@@ -74,9 +76,52 @@
       "appointments": [
         {
           "name": "Colonoscopy",
-          "dateTime": "21-12-2001 1200"
+          "dateTime": "21-12-2001 1200",
+          "nric": "T1234567A"
         }
       ],
+      "isPinned": false
+    },
+    {
+      "name": "Ben Kim",
+      "nric": "T9876543A",
+      "email": "bkim@example.com",
+      "phone": "95352563",
+      "bloodType": "AB+",
+      "gender": "M",
+      "age": 25,
+      "allergies": ["Dogs"],
+      "records": [
+        {
+          "dateTime": "23-10-2022 1130",
+          "conditions": ["Allergic Reaction"],
+          "medications": ["Pepto-Bismol"],
+          "filename": null,
+          "personIndex": 2
+        },
+        {
+          "dateTime": "09-10-2023 1800",
+          "conditions": ["Fever"],
+          "medications": ["Tylenol"],
+          "filename": null,
+          "personIndex": 0
+        },
+        {
+          "dateTime": "09-09-2023 1800",
+          "conditions": ["Fever", "Cold"],
+          "medications": ["Tylenol"],
+          "filename": null,
+          "personIndex": 0
+        },
+        {
+          "dateTime": "09-09-2023 1800",
+          "conditions": ["Fever", "Cold"],
+          "medications": ["Tylenol"],
+          "filename": null,
+          "personIndex": 1
+        }
+      ],
+      "appointments": [],
       "isPinned": false
     },
     {

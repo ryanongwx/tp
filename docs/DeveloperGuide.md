@@ -164,7 +164,7 @@ This section describes some noteworthy details on how certain features are imple
 #### General Implementation Details
 
 <puml src="diagrams/RecordClassDiagram.puml"/>
- 
+
 A `Record` object is composed of classes that represent the various attributes available in each `Record`. To enforce uniqueness between records, all records are stored in a `UniqueRecordList`.
 
 The related attributes of a `Record` are:

@@ -21,6 +21,7 @@ import static seedu.address.testutil.TypicalAppointments.EYE_EXAM;
 import static seedu.address.testutil.TypicalAppointments.VACCINATION;
 import static seedu.address.testutil.TypicalRecords.ALLERGIC_REACTION2;
 import static seedu.address.testutil.TypicalRecords.FEVER0;
+import static seedu.address.testutil.TypicalRecords.FEVER_AND_COLD0;
 import static seedu.address.testutil.TypicalRecords.FEVER_AND_COLD1;
 
 import java.util.ArrayList;
@@ -69,6 +70,18 @@ public class TypicalPersons {
             .withAllergies("Dogs")
             .withRecords(ALLERGIC_REACTION2)
             .withAppointments(COLONOSCOPY)
+            .withIsPinned(false)
+            .build();
+
+    public static final Person BEN = new PersonBuilder().withName("Ben Kim")
+            .withNric("T9876543A")
+            .withEmail("bkim@example.com")
+            .withPhone("95352563")
+            .withGender("M")
+            .withAge(25)
+            .withBloodType("AB+")
+            .withAllergies("Dogs")
+            .withRecords(ALLERGIC_REACTION2, FEVER0, FEVER_AND_COLD0, FEVER_AND_COLD1)
             .withIsPinned(false)
             .build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
@@ -161,6 +174,6 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, BEN, DANIEL, ELLE, FIONA, GEORGE));
     }
 }
