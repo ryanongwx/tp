@@ -120,7 +120,7 @@ public class MainWindow extends UiPart<Stage> {
         pinnedPersonListPanel = new PinnedPersonListPanel(logic.getPinnedPersonList());
         pinnedPersonListPanelPlaceholder.getChildren().add(pinnedPersonListPanel.getRoot());
 
-        recordListPanel = new RecordListPanel(logic.getRecordList());
+        recordListPanel = new RecordListPanel(logic.getFilteredRecordList());
         recordListPanelPlaceholder.getChildren().add(recordListPanel.getRoot());
 
         personBeingViewedPanel = new PersonListPanel(logic.getPersonBeingViewed());

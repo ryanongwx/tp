@@ -14,6 +14,7 @@ import seedu.address.model.record.Record;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Record> PREDICATE_SHOW_ALL_RECORDS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -95,7 +96,16 @@ public interface Model {
 
     ObservableList<Record> getRecordList();
 
+    /** Returns an unmodifiable view of the filtered record list */
+    ObservableList<Record> getFilteredRecordList();
+
     void updateRecordList(Person person);
+
+    /**
+     * Updates the filter of the filtered record list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredRecordList(Predicate<Record> predicate);
 
     ObservableList<Person> getPersonBeingViewed();
 

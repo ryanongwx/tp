@@ -82,6 +82,10 @@ public class LogicManager implements Logic {
         return model.getRecordList();
     }
 
+    public ObservableList<Record> getFilteredRecordList() {
+        return model.getFilteredRecordList();
+    }
+
     @Override
     public ObservableList<Person> getPersonBeingViewed() {
         return model.getPersonBeingViewed();
