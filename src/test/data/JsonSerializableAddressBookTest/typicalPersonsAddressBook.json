@@ -22,7 +22,8 @@
       "appointments": [
         {
           "name": "Eye Exam",
-          "dateTime": "01-01-2001 1200"
+          "dateTime": "01-01-2001 1200",
+          "nric": "S1234567B"
         }
       ],
       "isPinned": true
@@ -48,7 +49,8 @@
       "appointments": [
         {
           "name": "Vaccination",
-          "dateTime": "11-09-2001 1200"
+          "dateTime": "11-09-2001 1200",
+          "nric": "S1234567A"
         }
       ],
       "isPinned": false
@@ -74,7 +76,8 @@
       "appointments": [
         {
           "name": "Colonoscopy",
-          "dateTime": "21-12-2001 1200"
+          "dateTime": "21-12-2001 1200",
+          "nric": "T1234567A"
         }
       ],
       "isPinned": false
@@ -118,12 +121,7 @@
           "personIndex": 1
         }
       ],
-      "appointments": [
-        {
-          "name": "Eye Exam",
-          "dateTime": "01-01-2001 1200"
-        }
-      ],
+      "appointments": [],
       "isPinned": false
     },
     {

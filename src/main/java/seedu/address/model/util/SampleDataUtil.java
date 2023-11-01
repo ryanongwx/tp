@@ -14,7 +14,6 @@ import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
-import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.record.Condition;
@@ -23,6 +22,7 @@ import seedu.address.model.record.Record;
 import seedu.address.model.record.UniqueRecordList;
 import seedu.address.model.shared.DateTime;
 import seedu.address.model.shared.Name;
+import seedu.address.model.shared.Nric;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -38,7 +38,8 @@ public class SampleDataUtil {
                             getConditionList("Fever"),
                             getMedicationList("Tylenol"), null, 0)),
                     getAppointmentList(new Appointment(new Name("Eye Exam"),
-                            new DateTime("01-01-2001 1200"))),
+                            new DateTime("01-01-2001 1200"),
+                            new Nric("S1234569A"))),
                     true),
             new Person(new Name("Bernice Yu"), new Nric("T1234567A"),
                     new Email("berniceyu@example.com"), new Phone("99272758"),
