@@ -10,6 +10,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.person.Person;
 import seedu.address.model.shared.Nric;
 
@@ -28,7 +29,7 @@ public class DeleteAppointmentCommand extends Command {
 
     public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Deleted Appointment: %1$s";
 
-    public static final String MESSAGE_INVALID_NRIC = "The patient with the corresponding NRIC no longer exists";
+    public static final String MESSAGE_INVALID_NRIC = "The Patient with the corresponding NRIC no longer exists";
 
     private final Index targetIndex;
 
@@ -55,7 +56,18 @@ public class DeleteAppointmentCommand extends Command {
         if (personWithAppointment == null) {
             throw new CommandException(MESSAGE_INVALID_NRIC);
         }
-        personWithAppointment.getAppointments().remove(appointmentToDelete);
+        UniqueAppointmentList newList = new UniqueAppointmentList();
+        newList.setAppointments(personWithAppointment.getAppointments());
+        newList.remove(appointmentToDelete);
+
+        Person newPatient = new Person(personWithAppointment.getName(), personWithAppointment.getNric(),
+                personWithAppointment.getEmail(),
+                personWithAppointment.getPhone(), personWithAppointment.getGender(), personWithAppointment.getAge(),
+                personWithAppointment.getBloodType(),
+                personWithAppointment.getAllergies(), personWithAppointment.getRecords(), newList,
+                personWithAppointment.isPinned());
+
+        model.setPerson(personWithAppointment, newPatient);
         model.resetAppointmentList();
         return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS,
                 Messages.format(appointmentToDelete, personWithAppointment)));

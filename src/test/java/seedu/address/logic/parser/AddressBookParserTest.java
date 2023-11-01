@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -118,6 +119,13 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_deleteAppointment() throws Exception {
+        DeleteAppointmentCommand command = (DeleteAppointmentCommand) parser.parseCommand(
+                DeleteAppointmentCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteAppointmentCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
     public void parseCommand_view() throws Exception {
         ViewCommand viewCommand = (ViewCommand) parser.parseCommand(
                 ViewCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
@@ -126,8 +134,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE),
-                () -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
+                -> parser.parseCommand(""));
     }
 
     @Test

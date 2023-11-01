@@ -15,7 +15,7 @@ public class DeleteAppointmentCommandParser implements Parser<DeleteAppointmentC
      * Parses the given {@code String} of arguments in the context of the
      * DeleteAppointmentCommand
      * and returns a DeleteAppointmentCommand object for execution.
-     * 
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteAppointmentCommand parse(String args) throws ParseException {

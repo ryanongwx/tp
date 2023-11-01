@@ -21,7 +21,6 @@ import seedu.address.model.record.UniqueRecordList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniquePersonList fullPersonList;
     private final UniquePersonList personBeingViewed;
     private final UniqueRecordList records;
     private final UniqueAppointmentList appointments;
@@ -37,7 +36,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        fullPersonList = new UniquePersonList();
         records = new UniqueRecordList();
         appointments = new UniqueAppointmentList();
         personBeingViewed = new UniquePersonList();
@@ -79,7 +77,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         List<Person> fullList = newData.getPersonList();
         setPersons(fullList);
-        fullPersonList.setPersons(fullList);
     }
 
     //// person-level operations

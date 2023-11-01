@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.Collection;
@@ -28,15 +27,17 @@ import seedu.address.model.person.Allergy;
 public class EditCommandParser implements Parser<EditCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
+     * Parses the given {@code String} of arguments in the context of the
+     * EditCommand
      * and returns an EditCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @throws ParseException
+     *             if the user input does not conform the expected format
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_NRIC, PREFIX_EMAIL, PREFIX_PHONE,
-                        PREFIX_GENDER, PREFIX_AGE, PREFIX_BLOODTYPE, PREFIX_ALLERGIES);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_EMAIL, PREFIX_PHONE,
+                PREFIX_GENDER, PREFIX_AGE, PREFIX_BLOODTYPE, PREFIX_ALLERGIES);
 
         Index index;
 
@@ -46,16 +47,13 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_NRIC, PREFIX_EMAIL, PREFIX_PHONE,
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_EMAIL, PREFIX_PHONE,
                 PREFIX_GENDER, PREFIX_AGE, PREFIX_BLOODTYPE);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
-        }
-        if (argMultimap.getValue(PREFIX_NRIC).isPresent()) {
-            editPersonDescriptor.setNric(ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
@@ -82,8 +80,10 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> allergies} into a {@code Set<Allergy>} if {@code allergies} is non-empty.
-     * If {@code allergies} contain only one element which is an empty string, it will be parsed into a
+     * Parses {@code Collection<String> allergies} into a {@code Set<Allergy>} if
+     * {@code allergies} is non-empty.
+     * If {@code allergies} contain only one element which is an empty string, it
+     * will be parsed into a
      * {@code Set<Allergy>} containing zero allergies.
      */
     private Optional<Set<Allergy>> parseAllergiesForEdit(Collection<String> allergies) throws ParseException {
