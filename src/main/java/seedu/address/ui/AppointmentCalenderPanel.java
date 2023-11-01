@@ -35,7 +35,7 @@ public class AppointmentCalenderPanel extends UiPart<Region> {
 
     /**
      * Creates a {@code AppointmentCalender
-     *Panel} with the given {@code ObservableList}.
+     * Panel} with the given {@code ObservableList}.
      */
     public AppointmentCalenderPanel(ObservableList<Appointment> appointmentList) {
         super(FXML);
@@ -88,7 +88,7 @@ public class AppointmentCalenderPanel extends UiPart<Region> {
 
         // Print headers (days of the week)
         DayOfWeek[] daysOfWeek = { DayOfWeek.SUNDAY, DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
-                DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY };
+            DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY };
         for (int i = 0; i < daysOfWeek.length; i++) {
             Label label = new Label(daysOfWeek[i].toString().substring(0, 3));
             label.setAlignment(Pos.CENTER);

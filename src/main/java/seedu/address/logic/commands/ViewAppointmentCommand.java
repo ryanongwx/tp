@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 
 /**
- * 
+ * Opens the Appointments window.
  */
 public class ViewAppointmentCommand extends Command {
 

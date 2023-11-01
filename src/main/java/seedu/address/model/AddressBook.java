@@ -186,6 +186,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return appointments.asUnmodifiableObservableList();
     }
 
+    /**
+     * Resets the appointment list to include all appointments from all persons.
+     */
     public void resetAppointmentList() {
         UniqueAppointmentList newList = new UniqueAppointmentList();
         for (Person person : persons) {

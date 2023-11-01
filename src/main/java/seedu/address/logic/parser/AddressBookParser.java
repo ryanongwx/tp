@@ -61,54 +61,54 @@ public class AddressBookParser {
 
         switch (commandWord) {
 
-            case AddCommand.COMMAND_WORD:
-                return new AddCommandParser().parse(arguments);
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
 
-            case AddRecordCommand.COMMAND_WORD:
-                return new AddRecordCommandParser().parse(arguments);
+        case AddRecordCommand.COMMAND_WORD:
+            return new AddRecordCommandParser().parse(arguments);
 
-            case EditCommand.COMMAND_WORD:
-                return new EditCommandParser().parse(arguments);
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
 
-            case EditRecordCommand.COMMAND_WORD:
-                return new EditRecordCommandParser().parse(arguments);
+        case EditRecordCommand.COMMAND_WORD:
+            return new EditRecordCommandParser().parse(arguments);
 
-            case DeleteCommand.COMMAND_WORD:
-                return new DeleteCommandParser().parse(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
 
-            case PinCommand.COMMAND_WORD:
-                return new PinCommandParser().parse(arguments);
+        case PinCommand.COMMAND_WORD:
+            return new PinCommandParser().parse(arguments);
 
-            case UnpinCommand.COMMAND_WORD:
-                return new UnpinCommandParser().parse(arguments);
+        case UnpinCommand.COMMAND_WORD:
+            return new UnpinCommandParser().parse(arguments);
 
-            case AddAppointmentCommand.COMMAND_WORD:
-                return new AddAppointmentCommandParser().parse(arguments);
+        case AddAppointmentCommand.COMMAND_WORD:
+            return new AddAppointmentCommandParser().parse(arguments);
 
-            case ViewCommand.COMMAND_WORD:
-                return new ViewCommandParser().parse(arguments);
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
 
-            case ViewAppointmentCommand.COMMAND_WORD:
-                return new ViewAppointmentCommand();
+        case ViewAppointmentCommand.COMMAND_WORD:
+            return new ViewAppointmentCommand();
 
-            case FindCommand.COMMAND_WORD:
-                return new FindCommandParser().parse(arguments);
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
-            case FindRecordCommand.COMMAND_WORD:
-                return new FindRecordCommandParser().parse(arguments);
+        case FindRecordCommand.COMMAND_WORD:
+            return new FindRecordCommandParser().parse(arguments);
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-            default:
-                logger.finer("This user input caused a ParseException: " + userInput);
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        default:
+            logger.finer("This user input caused a ParseException: " + userInput);
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 

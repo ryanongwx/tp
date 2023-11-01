@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_SLEEP_STUDY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_SLEEP_STUDY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_SLEEP_STUDY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -19,7 +18,6 @@ import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.shared.DateTime;
 import seedu.address.model.shared.Name;
-import seedu.address.model.shared.Nric;
 
 public class AddAppointmentCommandParserTest {
 

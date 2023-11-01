@@ -55,7 +55,7 @@ public class AppointmentsWindow extends UiPart<Stage> {
 
     /**
      * Shows the appointment window.
-     * 
+     *
      * @throws IllegalStateException
      *                               <ul>
      *                               <li>
