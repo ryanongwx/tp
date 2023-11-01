@@ -7,6 +7,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.record.Record;
@@ -19,22 +21,30 @@ import seedu.address.model.record.UniqueRecordList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniquePersonList fullPersonList;
     private final UniquePersonList personBeingViewed;
     private final UniqueRecordList records;
+    private final UniqueAppointmentList appointments;
     /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     * The 'unusual' code block below is a non-static initialization block,
+     * sometimes used to avoid duplication
+     * between constructors. See
+     * https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+     * Note that non-static init blocks are not recommended to use. There are other
+     * ways to avoid duplication
+     * among constructors.
      */
     {
         persons = new UniquePersonList();
+        fullPersonList = new UniquePersonList();
         records = new UniqueRecordList();
+        appointments = new UniqueAppointmentList();
         personBeingViewed = new UniquePersonList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -67,13 +77,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        List<Person> fullList = newData.getPersonList();
+        setPersons(fullList);
+        fullPersonList.setPersons(fullList);
     }
 
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the address book.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -89,9 +102,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given person {@code target} in the list with
+     * {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the address book.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -105,6 +120,48 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    //// appointment-level operations
+
+    /**
+     * Returns true if a appointment with the same identity as {@code appointment}
+     * exists in
+     * the address book.
+     */
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return appointments.contains(appointment);
+    }
+
+    /**
+     * Adds an appointment to the address book.
+     * The appointment must not already exist in the address book.
+     */
+    public void addAppointment(Appointment a) {
+        appointments.add(a);
+    }
+
+    /**
+     * Replaces the given appointment {@code target} in the list with
+     * {@code editedAppointment}.
+     * {@code target} must exist in the address book.
+     * The appointment identity of {@code editedAppointment} must not be the same as
+     * another
+     * existing appointment in the address book.
+     */
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireNonNull(editedAppointment);
+
+        appointments.setAppointment(target, editedAppointment);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeAppointment(Appointment key) {
+        appointments.remove(key);
     }
     //// util methods
 
@@ -122,6 +179,24 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public ObservableList<Record> getRecordList() {
         return records.asUnmodifiableObservableList();
+    }
+
+    public ObservableList<Appointment> getAppointmentList() {
+        resetAppointmentList();
+        return appointments.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Resets the appointment list to include all appointments from all persons.
+     */
+    public void resetAppointmentList() {
+        UniqueAppointmentList newList = new UniqueAppointmentList();
+        for (Person person : persons) {
+            for (Appointment appointment : person.getAppointments()) {
+                newList.add(appointment);
+            }
+        }
+        appointments.setAppointments(newList);
     }
 
     public ObservableList<Person> getPersonBeingViewed() {

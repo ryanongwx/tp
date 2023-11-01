@@ -16,9 +16,9 @@ import seedu.address.model.person.Age;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
-import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 import seedu.address.model.shared.Name;
+import seedu.address.model.shared.Nric;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";

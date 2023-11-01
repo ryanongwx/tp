@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.record.Record;
 
@@ -22,6 +23,8 @@ public class ModelManager implements Model {
     private static ModelManager instance;
     private final AddressBook addressBook;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Appointment> filteredAppointments;
+    private final FilteredList<Record> filteredRecords;
     private final UserPrefs userPrefs;
 
     /**
@@ -35,6 +38,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
+        filteredRecords = new FilteredList<>(this.addressBook.getRecordList());
         instance = this;
     }
 
@@ -118,7 +123,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
@@ -148,15 +152,48 @@ public class ModelManager implements Model {
         return pinnedPersons;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
+    }
+
+    @Override
+    public void resetAppointmentList() {
+        this.addressBook.resetAppointmentList();
+    }
+
     @Override
     public ObservableList<Record> getRecordList() {
         return this.addressBook.getRecordList();
     }
 
     @Override
+    public ObservableList<Record> getFilteredRecordList() {
+        return filteredRecords;
+    }
+
+    @Override
     public void updateRecordList(Person person) {
         requireNonNull(person);
         this.addressBook.setRecords(person);
+        updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
+    }
+
+    @Override
+    public void updateFilteredRecordList(Predicate<Record> predicate) {
+        requireNonNull(predicate);
+        filteredRecords.setPredicate(predicate);
     }
 
     @Override
@@ -178,6 +215,7 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && filteredRecords.equals(otherModelManager.filteredRecords);
     }
 }
