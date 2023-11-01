@@ -83,6 +83,53 @@
       "isPinned": false
     },
     {
+      "name": "Ben Kim",
+      "nric": "T9876543A",
+      "email": "bkim@example.com",
+      "phone": "95352563",
+      "bloodType": "AB+",
+      "gender": "M",
+      "age": 25,
+      "allergies": ["Dogs"],
+      "records": [
+        {
+          "dateTime": "23-10-2022 1130",
+          "conditions": ["Allergic Reaction"],
+          "medications": ["Pepto-Bismol"],
+          "filename": null,
+          "personIndex": 2
+        },
+        {
+          "dateTime": "09-10-2023 1800",
+          "conditions": ["Fever"],
+          "medications": ["Tylenol"],
+          "filename": null,
+          "personIndex": 0
+        },
+        {
+          "dateTime": "09-09-2023 1800",
+          "conditions": ["Fever", "Cold"],
+          "medications": ["Tylenol"],
+          "filename": null,
+          "personIndex": 0
+        },
+        {
+          "dateTime": "09-09-2023 1800",
+          "conditions": ["Fever", "Cold"],
+          "medications": ["Tylenol"],
+          "filename": null,
+          "personIndex": 1
+        }
+      ],
+      "appointments": [
+        {
+          "name": "Eye Exam",
+          "dateTime": "01-01-2001 1200"
+        }
+      ],
+      "isPinned": false
+    },
+    {
       "name": "Daniel Meier",
       "nric": "S5678123A",
       "email": "cornelia@example.com",
