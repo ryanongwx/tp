@@ -91,7 +91,8 @@ public interface Model {
      * Updates the filter of the filtered person list to filter by the given
      * {@code predicate}.
      *
-     * @throws NullPointerException if {@code predicate} is null.
+     * @throws NullPointerException
+     *             if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
@@ -100,14 +101,6 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered appointment list */
     ObservableList<Appointment> getFilteredAppointmentList();
-
-    /**
-     * Updates the filter of the filtered person list to filter by the given
-     * {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 
     void resetAppointmentList();
 
@@ -119,8 +112,11 @@ public interface Model {
     void updateRecordList(Person person);
 
     /**
-     * Updates the filter of the filtered record list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
+     * Updates the filter of the filtered record list to filter by the given
+     * {@code predicate}.
+     * 
+     * @throws NullPointerException
+     *             if {@code predicate} is null.
      */
     void updateFilteredRecordList(Predicate<Record> predicate);
 

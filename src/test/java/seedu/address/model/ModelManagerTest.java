@@ -94,6 +94,11 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredAppointmentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredAppointmentList().remove(0));
+    }
+
+    @Test
     public void getPinnedPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getPinnedPersonList().remove(0));
     }

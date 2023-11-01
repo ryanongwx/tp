@@ -24,6 +24,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.PinCommand;
 import seedu.address.logic.commands.UnpinCommand;
+import seedu.address.logic.commands.ViewAppointmentCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
@@ -111,6 +112,12 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_viewAppointment() throws Exception {
+        assertTrue(parser.parseCommand(ViewAppointmentCommand.COMMAND_WORD) instanceof ViewAppointmentCommand);
+        assertTrue(parser.parseCommand(ViewAppointmentCommand.COMMAND_WORD + " 3") instanceof ViewAppointmentCommand);
+    }
+
+    @Test
     public void parseCommand_view() throws Exception {
         ViewCommand viewCommand = (ViewCommand) parser.parseCommand(
                 ViewCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
@@ -119,8 +126,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-                -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE),
+                () -> parser.parseCommand(""));
     }
 
     @Test
