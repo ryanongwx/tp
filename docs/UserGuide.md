@@ -30,9 +30,6 @@ Discover the power of Medbook:
 
 ---
 
-## Table of Contents
-<!-- * Table of Contents -->
-<page-nav-print />
 
 ## How to Navigate the User Guide
 
@@ -128,20 +125,20 @@ Here is a brief summary of GUI component of the main window of Medbook.
 
 ## Medbook Tutorial
 
-1. Launch the Medbook application. You may refer to [here](#quick-start-)
+1. Launch the Medbook application. You may refer to [here](#quick-start-).
    - Note on launch, Medbook will populate some sample data.
 
 2. Let us try invoking the help window. Type help in the command box and press Enter to execute it. 
 Please refer to the first section of [feature](#features) to have a more clear understanding of requirements of the parameters. 
 A similar help box as below should pop up.<br> <img src="images/HelpWindow.png" width="300"/>
-3. Now, let us try adding a new patient. In the command box, type in `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` and press Enter. A success message should be displayed.<br>
-<img src="images/AddPatientSuccess.png" width="500"/>
+3. Now, let us try adding a new patient. In the command box, type in `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` and press Enter. 
+A success message should be displayed.<br><img src="images/AddPatientSuccess.png" width="500"/>
 4. Try adding a few more patient to Medbook by yourself!
 5. Now, let us try adding a record to a patient. In the command box, type in `addrecord 3 d/18-09-2023 1800 c/Fever m/Paracetamol` and press Enter. 
-This will create a new medical record to the third patient shown in the middle column. A similar message output should be shown in the Message Display Box<br>
-<img src="images/AddRecordSuccess.png" width="500">
+This will create a new medical record to the third patient shown in the middle column. 
+A similar message output should be shown in the Message Display Box.<br> <img src="images/AddRecordSuccess.png" width="500">
 6. Try adding a few more records to patients in the Medbook by yourself!
-5. Let us view medical records of the first patient. Key in `view 1` to see all the records of the first patient.
+7. Let us view medical records of the first patient. Key in `view 1` to see all the records of the first patient.
 If you haven't added any medical records to the first patient, a similar **Record List** should be shown. 
 <br><img src="images/View.png" height="300"/>
 
