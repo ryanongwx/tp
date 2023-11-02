@@ -63,7 +63,7 @@ We're here to make your experience as user-friendly as possible. Let's get start
     - Navigate to the folder where you have stored the jar file using the cd command.
     - Enter java -jar medbook.jar and press Enter. This command will execute the application.<br> 
 <box type="info" seamless>
-      Please note that for Windows users, you can navigate to the folder where you house medBook. In the file address bar, click on the path to the current folder to highlight it. Type powershell and press enter. This will open a PowerShell window with the current folder as the working directory.
+      Please note that for Windows users, you can navigate to the folder where you house Medbook. In the file address bar, click on the path to the current folder to highlight it. Type powershell and press enter. This will open a PowerShell window with the current folder as the working directory.
 </box>
    
    **On Mac**:
@@ -117,7 +117,7 @@ Here is a brief summary of GUI component of the main window of Medbook.
 
 | **Name of component** | **Description**                                                           |
 |-----------------------|---------------------------------------------------------------------------|
-| Appointment card      | contains information of appointments including name, date and NRIC number |
+| Appointment card      | Contains information of appointments including name, date and NRIC number |
 | Appointment list      | Holds a list of Appointment card                                          |
 | Calendar              | A calendar that displays appointments at certain date                     |
 | Previous Button       | Shift the month shown in the calendar to previous month                   |
