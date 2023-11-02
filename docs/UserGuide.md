@@ -54,8 +54,8 @@ We're here to make your experience as user-friendly as possible. Let's get start
 
     - Create a folder with your preferred name (you can call it Medbook) where you would like to house the application.
     - Move the downloaded jar file to the folder as shown below.
-      - For Mac users:![Ui](images/MacUserDir)
-      - For Windows users:![Ui](images/WinUserDir)
+      - For Mac users:![Ui](images/MacUserDir.png)
+      - For Windows users:![Ui](images/WinUserDir.png)
 
 1. Run Medbook application
 
