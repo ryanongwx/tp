@@ -28,6 +28,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.shared.DateTime;
 import seedu.address.model.shared.Name;
+import seedu.address.model.shared.Nric;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditRecordDescriptorBuilder;
 
@@ -62,10 +63,10 @@ public class CommandTestUtil {
     public static final String VALID_MEDICATION_DIARRHEA = "Loperamide";
     public static final String VALID_MEDICATION_HEAT_STROKE = "Phenobarbital";
     public static final Appointment VALID_APPOINTMENT_THYROID_CHECK = new Appointment(
-            new Name(VALID_NAME_THYROID_CHECK), new DateTime(VALID_DATETIME_THYROID_CHECK));
+            new Name(VALID_NAME_THYROID_CHECK), new DateTime(VALID_DATETIME_THYROID_CHECK), new Nric(VALID_NRIC_AMY));
     public static final Appointment VALID_APPOINTMENT_SLEEP_STUDY = new Appointment(
             new Name(VALID_NAME_SLEEP_STUDY),
-            new DateTime(VALID_DATETIME_SLEEP_STUDY));
+            new DateTime(VALID_DATETIME_SLEEP_STUDY), new Nric(VALID_NRIC_BOB));
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
