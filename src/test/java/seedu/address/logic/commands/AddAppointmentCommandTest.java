@@ -132,7 +132,7 @@ public class AddAppointmentCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new HelpCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new AddAppointmentCommand(INDEX_SECOND_PERSON, eyeExam)));

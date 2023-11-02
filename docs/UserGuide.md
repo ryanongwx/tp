@@ -25,13 +25,13 @@ The table of contents can be used at the side to seamlessly jump between section
 
 1. Ensure you have Java `11` or above installed in your Computer.
    - [How do I check my version of Java?](#faq)
-1. Download the latest jar file (`medbook.jar`) from [here](https://github.com/AY2324S1-CS2103T-T12-4/tp/releases).
+2. Download the latest jar file (`medbook.jar`) from [here](https://github.com/AY2324S1-CS2103T-T12-4/tp/releases).
 
-1. Move the file to the folder you want to use as the _home folder_ for your MedBook.
+3. Move the file to the folder you want to use as the _home folder_ for your MedBook.
 
-1. Open a command terminal
+4. Open a command terminal
    - For Windows Users:
-     - Press the Windows icon and search for and open up`Powershell`
+     - Press the Windows icon and search for and open up`Powershell`.
    - For Mac Users:
      - Open a new Terminal window (Command + Space > type Terminal > Enter).
 
@@ -45,7 +45,7 @@ The application should open up similar to the image below.
 
    - `list` : Lists all patients.
 
-   - `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` : Adds a new patient named John Doe with basic information about the patient
+   - `addpatient n/John Doe i/T1234567A e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` : Adds a new patient named John Doe with important information about the patient
 
    - `delete 3` : Deletes the 3rd patient shown in the current list.
 
@@ -78,7 +78,29 @@ The application should open up similar to the image below.
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-- `PATIENTID` refers to the unique patient ID shown in the displayed patient list. The ID **must be a positive integer** 1, 2, 3, …​
+- **PATIENTID**: refers to the unique patient ID shown in the displayed patients list. The ID **must be a positive integer** 1, 2, 3, …​ <br>
+
+- **RECORDID**: refers to the unique record ID shown in the displayed **RECORDS** list of a specific patient. The ID **must be a positive integer** 1, 2, 3, …​ <br>
+
+- **APPOINTMENTID**: refers to the unique appointment ID shown in the displayed **APPOINTMENTS** list. The ID **must be a positive integer** 1, 2, 3, …​ <br>
+
+- **PINNEDID**: refers to the unique ID shown in the displayed **PINNED PATIENT** list. The ID **must be a positive integer** 1, 2, 3, …​ <br>
+
+### PARAMETERS
+
+| FIELD        | PREFIX | CONSTRAINTS                                                                                                      |
+|--------------|--------|------------------------------------------------------------------------------------------------------------------|
+| **NAME**     | n      | Up to 256 alphanumeric characters                                                                               |
+| **NRIC**     | i      | Starts with a letter, followed by seven digits, and ends with another letter (letters are not case-sensitive) |
+| **EMAIL**    | e      | Valid email format: **email@domain.com**                                                                      |
+| **GENDER**   | g      | Either **M** or **F**                                                                                         |
+| **PHONE**    | p      | Must be 8 digits                                                                                                |
+| **AGE**      | a      | Must be a positive integer                                                                                      |
+| **BLOODTYPE**| bt     | Must be one of **A-**, **A+**, **B-**, **B+**, **AB-**, **AB+**, **O-**, **O+**                             |
+| **ALLERGY**  | al     | Up to 256 alphanumeric characters                                                                               |
+| **DATE**     | d      | Must be in the form of 'dd-MM-yyyy HHmm'                                                                       |
+| **CONDITION**| c      | Up to 256 alphanumeric characters                                                                               |
+| **MEDICATION**| m     | Up to 256 alphanumeric characters                                                                               |
 
 ### Viewing help : `help`
 
@@ -90,57 +112,59 @@ Format: `help`
 
 Adds a patient's contact and medical details.
 
-Format: `addpatient n/NAME e/EMAIL p/PHONE g/GENDER a/AGE bt/BLOODTYPE [al/ALLERGIES]...`
+Format: `addpatient n/NAME e/EMAIL p/PHONE g/GENDER a/AGE bt/BLOODTYPE [al/ALLERGY]...`
 
-- Adds a patient with information including: `NAME`, `EMAIL`, `GENDER`, `PHONE`, `AGE`, `BLOODTYPE`, `ALLERGIES`
-
-Constraints
-
-- `NAME`: Up to 256 alphanumeric characters
-- `EMAIL`: Valid email format: `email@domain.com`
-- `GENDER`: Either `M` or `F`
-- `PHONE`: Must be 8 digits
-- `AGE`: Must be a positive integer
-- `BLOODTYPE`: Must be one of `A-`, `A+`, `B-`, `B+`, `AB-`, `AB+`, `O-`, `O+`
-- `ALLERGIES`: Up to 256 alphanumeric characters
+- Adds a patient with information including: **NAME**, **NRIC**, **EMAIL**, **GENDER**, **PHONE**, **AGE**, **BLOODTYPE**, **ALLERGY**.
 
 Examples:
 
-`addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin`
-Adds a patient named John Doe who is a Male, 26 years old, has AB+ Blood Type, and is allergic to Penicillin.
-His email and phone number is johndoe@gmail.com and 12345678, respectively.
+`addpatient n/John Doe i/T1234567A e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin`
+Adds a **Male** patient named **John Doe** whose NRIC is **T1234567A** , **26** years old, has **AB+** Blood Type, and is allergic to **Penicillin**.
+His email and phone number is **johndoe@gmail.com** and **12345678**, respectively.
 
 ### Adding Medical Records : `addrecord`
 
 Adds a patient's medical record.
 
-Format: `addrecord PATIENTID d/DATETIME c/CONDITIONS... [m/MEDICATION]...`
+Format: `addrecord PATIENTID d/DATETIME c/CONDITIONS... m/MEDICATION...`
 
-- Adds a medical record to the patient with the corresponding `PATIENTID`
+- Adds a medical record to the patient with the corresponding **PATIENTID**. <br>
 
-Constraints
-
-- `DATETIME`: Valid Date and Time format: `DD-MM-YYYY HHMM`
-- `CONDITION`: Up to 256 alphanumeric characters
-- `MEDICATION`: Up to 256 alphanumeric characters
+- Constraints of each fied are as stated in the **CONSTRAINTS** section above. <br>
 
 Examples:
 
 - `addrecord 3 d/18-09-2023 1800 c/Fever m/Paracetamol`
-  Adds a record to the patient with the `PATIENTID` of `3`.
-  The record says that the patient visited the clinic on September 18th, 2023 at 6PM with a Fever and was prescribed Paracetamol.
+  Adds a record to the patient with the **PATIENTID** of **3**.
+  The record says that the patient visited the clinic on **September 18th, 2023** at **6PM** with a **Fever** and was prescribed **Paracetamol**.
 
-### Listing all persons : `list`
+### Adding an Appointment : `addappointment`
+
+Adds an appointment.
+
+Format: `addappointment PATIENTID n/NAME d/DATETIME`
+
+- Adds an appointment to the patient with the corresponding **PATIENTID**.
+
+-The appointment will then appear in the **APPOINTMENTS** list with patient's **NRIC**. <br>
+
+- Constraints of each fied are as stated in the **CONSTRAINTS** section above. <br>
+
+Examples:
+
+- `addappointment 2 n/Eye Examination d/10-10-2023 1800` adds an **Eye Examination** to the **2nd patient** in the patients list. The appointment is set on **10th October 2023** at **6:00pm**.
+
+### Listing all patients : `list`
 
 Shows a list of all patients in the Medbook.
 
 Format: `list`
 
-- All patients in the Medbook will always be visible on the screen in the **MIDDLE** column.
+- **All** patients in the Medbook will always be visible on the screen in the **MIDDLE** column.
 
 Examples:
 
-- `list` lists all the patients in the `MIDDLE` column.
+- `list` lists all the patients in the **MIDDLE** column.
 
 ### View patient records : `view`
 
@@ -148,64 +172,119 @@ Displays the medical records of the specified patient in the **RECORDS** list
 
 Format: `view PATIENTID`
 
-- The medical records of the patient with the corresponding `PATIENTID` will be displayed on screen in the **RECORD** list.
-- Information about the patient will be displayed in the **PATIENT BEING VIEWED** section.
+- The medical records of the patient with the corresponding `PATIENTID` will be displayed on screen in the **RECORDS** list. <br>
+
+- Information about the patient will be displayed in the **PATIENT BEING VIEWED** section. <br>
 
 Examples:
 
-- `view 2` displays the medical records of the patient with the `PATIENTID` of `2`. The displayed records will be in the `RECORDS` list and patient information will be in the `PATIENT BEING VIEWED` section.
+- `view 2` displays the medical records of the **2nd patient** in the patients list. The displayed records will be in the **RECORDS** list and patient information will be in the **PATIENT BEING VIEWED** section.
+
+### View appointments : `viewappointment`
+
+Displays all the medical appointments in a separate window.
+
+Format: `viewappointment`
+
+- The appointments of all the patients in the patients list will be displayed on a new window in the **APPOINTMENTS** list. <br>
+
+- The **description**, **date and time**, and **NRIC** of the patient involved in appointment will be displaye in the **APPOINTMENTS** list. <br>
+
+- The **description** of appointments will also appear on the calendar at the corresponding **date** . <br>
+**note**: Only the **first two** appointments according to the **APPOINTMENTS** list will be displayed on the calendar per date.
 
 ### Editing detail of a patient : `editpatient`
 
-Edits an existing patient in MedBook.
+Edits the detail of an existing patient in MedBook.
 
-Format: `editpatient PATIENTID/FIELD/NEWVALUE`
+Format: `editpatient PATIENTID PREFIX/NEWVALUE...`
 
-- Edits the patient at the specified `PATIENTID`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
-- The `FIELD` must be provided.
-- Accepted `FIELD` : **name**, **email**, **phone**, **gender**, **age**, **blood**, **allergy**.
-- Existing values in the `FIELD` will be updated to the `NEWVALUE` input.
-- Constraints are as state in `addpatient` command.
+- Edits the patient at the specified `PATIENTID`. <br>
+
+- Acceptable fields : **name**, **email**, **phone**, **gender**, **age**, **bloodtype**, **allergy**. <br>
+**note**: NRIC can't be changed.
+
+- Existing values in the respective fields will be updated to the **NEWVALUE** input. <br>
+
+- Constraints of each fied are as stated in the **CONSTRAINTS** section above. <br>
 
 Examples:
 
-- `editdetail 1/email/johndoe_updated@gmail.com` Edits the email address of the 1st person to be `johndoe_updated@gmail.com`.
-- `editdetail 2/phone/92345678` Edits the name of the 2nd person to be `92345678`.
-- `editdetail 3/allergy/aspirin` Edits the allergy of the 3rd person to be `aspirin`.
+- `editdetail 1 e/johndoe_updated@gmail.com` Edits the email address of the 1st person to be **johndoe_updated@gmail.com**. <br>
+
+- `editdetail 2 p/92345678` Edits the name of the 2nd person to be **92345678**. <br>
+
+- `editdetail 3 al/aspirin` Edits the allergy of the 3rd person to be **aspirin**. <br>
+
+- `editdetail 2 p/92345678 al/aspirin` Edits the name and allergy of the 2nd person to be **92345678** and **aspirin** respectively. <br>
 
 ### Editing a record of a patient : `editrecord`
 
 Edits a record of an existing patient in MedBook.
 
-Format: `editrecord PATIENTID/RECORDID FIELD/NEWVALUE`
+Format: `editrecord PATIENTID/RECORDID PREFIX/NEWVALUE...`
 
-- Edits a record at the specific `RECORDID` of the patient at the specified `PATIENTID`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
-- The `FIELD` must be provided.
-- Accepted `FIELD` : **d** (for dateTime), **c** (for conditions).
-- Existing values in the `FIELD` will be updated to the `NEWVALUE` input.
-- Multiple editing of condition fields are allowed to represent a new set of conditions.
-- Contraints are as stated in `addrecord` command.
+- Edits a record at the specific **RECORDID** of the patient at the specified **PATIENTID**. <br>
+
+- Acceptable fields : **date** , **condition**, **medication**. <br>
+
+- Existing values in the field will be updated to the **NEWVALUE** input. <br>
+
+- Multiple entries of date fields are not allowed. <br>
+S
+- Multiple entries of condition/medication fields are allowed to represent a new set of conditions. <br>
+- Constraints of each fied are as stated in the **CONSTRAINTS** section above. <br>
 
 Examples:
 
-- `editrecord 1/1 d/25-10-2023 1200` Edits the dateTime of the 1st record of the 1st patient to be `25-10-2023 1200`.
-- `editrecord 1/1 c/Fever` Edits the conditions of the 1st record of the 1st patient to be `Fever`.
-- `editrecord 1/1 c/Headache c/Flu` Edits the conditions of the 1st  of the 1st patient to be `Headache, Flu`.
+- `editrecord 1/1 d/25-10-2023 1200` Edits the dateTime of the 1st record of the 1st patient to be **25-10-2023 1200**. <br>
 
-### Locating persons by keywords: `search`
+- `editrecord 1/1 c/Headache c/Flu` Edits the conditions of the 1st record of the 1st patient to be **Headache, Flu**. <br>
 
-Searches the patient with the corresponding `KEYWORD`
+- `editrecord 1/1 c/Headache m/Paracetamol` Edits the conditions and medications of the 1st  of the 1st patient to be **Headache** and **Paracetamol** respectively. <br>
+
+### Locating patients by keywords: `search`
+
+Searches the patient with the corresponding **KEYWORD**
 
 Format: `search KEYWORD...`
 
-- The search is case-insensitive. e.g `Penicillin` will match `penicillin`
-- A patient's name and details will be searched.
-- Patients matching at least one keyword will be returned.
-  e.g. `arm fracture` will return patients with `burnt arm` and `leg fracture`
+- The search is not case-sensitive. e.g **Penicillin** will match **penicillin**. <br>
+
+- A patient's name and details will be searched. <br>
+**note**: This does not include searching through the details of records.
+
+- Patients matching at least one keyword will be returned. <br>
+
+- Patients with detail that are not exactly the same as the `KEYWORD` searched will not appear. <br>
 
 Examples:
 
-- `search Penicillin` returns a list of patients with `Penicillin` in their details.
+- `search Alex` returns a list of patients with **Alex** in their details. <br>
+
+- `search Alex M` will return patients with **Alex** or **M** in their details.
+
+### Locating records by keywords: `searchrecord`
+
+Searches the record with the corresponding **KEYWORD**
+
+Format: `searchrecord KEYWORD...`
+
+- The search is not case-sensitive. e.g **Penicillin** will match **penicillin**. <br>
+
+- A record's details will be searched. <br>
+
+- Records matching at least one **KEYWORD** will be returned. <br>
+
+- Records with detail that are not exactly the same as the **KEYWORD** searched will not appear. <br>
+
+Examples:
+
+- `searchrecord Penicillin` returns a list of records with **Penicillin** in their details. <br>
+
+- `searchrecord Fever Cough` will return records with **Fever** or **Cough** in their details. <br>
+
+- `searchrecord 19-10-2023` will return records with date **19-10-2023** in their details. <br>
 
 ### Deleting a patient : `delete`
 
@@ -213,52 +292,59 @@ Deletes the specified patient.
 
 Format: `delete PATIENTID`
 
-- Deletes the patient at the specified `PATIENTID`.
+- Deletes the patient at the specified **PATIENTID**.
 
 Examples:
 
-- `delete 2` deletes the patient with the `PATIENTID` of `2` from the app.
+- `delete 2` deletes the **2nd patient** from the patients list.
+
+### Deleting a record : `deleterecord`
+
+Deletes the specified record of the patient.
+
+Format: `deleterecord PATIENTID/RECORDID`
+
+- Deletes the record at the specific **RECORDID** of the patient at the specified **PATIENTID**.
+
+Examples:
+
+- `deleterecord 2/1` deletes the **1st record** of the **2nd patient** in the patients list.
+
+### Deleting an appointment : `deleteappointment`
+
+Deletes an appointment from the **APPOINTMENTS** list.
+
+Format: `deleteappointment APPOINTMENTID`
+
+- Deletes the appointment at the specific **APPOINTMENTID** in the **APPOINTMENTS** list.
+
+Examples:
+
+- `deleteappointment 1` deletes the **1st appointment** in the **APPOINTMENTS** list.
 
 ### Pinning a Patient : `pin`
 
-Pins the specified patient to the **Pinned Patient** list.
+Pins the specified patient to the **PINNED PATIENT** list.
 
 Format: `pin PATIENTID`
 
-- The pinned patient will always be visible on screen in the **Pinned Patient** list.
+- The pinned patient will always be visible on screen in the **PINNED PATIENT** list.
 
 Examples:
 
-- `pin 2` pins the patient with the `PATIENTID` of `2` to the **Pinned Patient** list.
+- `pin 2` pins the **2nd patient** in the patients list to the **PINNED PATIENT** list.
 
 ### Unpinning a Patient : `unpin`
 
-Unpins the specified patient from the **Pinned Patient** list.
+Unpins the specified patient from the **PINNED PATIENT** list.
 
-Format: `unpin PATIENTID`
+Format: `unpin PINNEDID`
 
-- The `PATIENTID` for the unpin command corresponds to the ID as it appears in the **Pinned Patient** list.
-
-Examples:
-
-- `unpin 2` unpins the patient with the `PATIENTID` of `2` as per the **Pinned Patient** list.
-
-### Adding an Appointment : `addappointment`
-
-Adds an appointment.
-
-Format: `addappointment PATIENTID n/APPOINTMENTNAME d/DATETIME`
-
-- Adds an appointment with patient with the corresponding `PATIENTID` to the **Appointments** list.
-
-Constraints:
-
-- `DATETIME`: Must adhere to `DD-MM-YYYY HHMM` format
-- `APPOINTMENTNAME`: Up to 256 alphanumeric characters
+- Removes the patient at the specified **PINNEDID** from the **PINNED PATIENT** list.
 
 Examples:
 
-- `addappointment 2 n/Eye Examination d/10-10-2023 1800` adds an Eye Examination for the patient with the `PATIENTID` of `2`. The appointment is set for 10th October 2023 at 6:00pm.
+- `unpin 2` unpins the **2nd patient** in the **PINNED PATIENT** list.
 
 ### Clearing all entries : `clear`
 
@@ -306,17 +392,22 @@ Do not make changes to the data file.
 
 | Action              | Format, Examples                                                                                                                       |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add Patient**     | `addpatient n/NAME e/EMAIL p/PHONE …​` <br> e.g., `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` |
-| **Add Record**      | `addrecord PATIENTID c/CONDITION... d/DATETIME [m/MEDICATION]...`<br> e.g., `addrecord 2 c/Fever d/10-10-2020 1900 m/Painkiller`       |
+| **Help**     | `help` |
+| **Add Patient**     | `addpatient n/NAME i/NRIC e/EMAIL p/PHONE …​` <br> e.g., `addpatient n/John Doe i/T1234567A e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` |
+| **Add Record**      | `addrecord PATIENTID d/DATETIME c/CONDITION... m/MEDICATION...`<br> e.g., `addrecord 2 d/10-10-2020 1900 c/Fever m/Painkiller`       |
 | **Add Appointment** | `addappointment PATIENTID n/APPOINTMENTNAME d/DATETIME`<br> e.g., `addappointment 2 n/Eye Exam d/10-10-2020 1900`                      |
-| **List**            | `list`                                                                                                                                 |
-| **View**            | `view PATIENTID`<br> e.g., `view 2`                                                                                                    |
-| **Edit Patient** | `editpatient PATIENTID/FIELD/NEWVALUE`<br> e.g.,`editpatient 1/email/johndoe_updated@gmail.com`                                        |
-| **Edit Record**  | `editrecord PATIENTID/RECORDID FIELD/NEWVALUE`<br> e.g.,`editrecord 1/1 d/25-10-2023 1200`                 |
-| **Search**          | `search [KEYWORDS]`<br> e.g., `find James Jake`                                                                                        |
-| **Delete**          | `delete PATIENTID`<br> e.g., `delete 3`                                                                                                |
-| **Pin**             | `pin PATIENTID`<br> e.g., `pin 2`                                                                                                      |
-| **Unpin**           | `unpin PATIENTID`<br> e.g. `unpin 2`                                                                                                   |
-| **Clear**           | `clear`                                                                                                                                |
-| **Exit**            | `exit`                                                                                                                                 |
+| **List**            | `list`                                                                                                |
+| **View Records**            | `view PATIENTID`<br> e.g., `view 2`                                                           |
+| **View Appointments**            | `viewappointment`                                                                        |
+| **Edit Patient** | `editpatient PATIENTID PREFIX/NEWVALUE...`<br> e.g.,`editpatient 1 e/johndoe_updated@gmail.com`           |
+| **Edit Record**  | `editrecord PATIENTID/RECORDID PREFIX/NEWVALUE...`<br> e.g.,`editrecord 1/1 d/25-10-2023 1200`            |
+| **Search Patients**          | `search KEYWORDS...`<br> e.g., `search James`                                           |
+| **Search Records**          | `searchrecord KEYWORDS...`<br> e.g., `searchrecord Headache`                                  |
+| **Delete Patient**          | `delete PATIENTID`<br> e.g., `delete 3`                                                       |
+| **Delete Record**          | `deleterecord PATIENTID/RECORDID`<br> e.g., `delete 2/1`                                       |
+| **Delete Appointment**          | `deleteappointment APPOINTMENTID`<br> e.g., `deleteappointment 1`                         |
+| **Pin**             | `pin PATIENTID`<br> e.g., `pin 2`                                                                     |
+| **Unpin**           | `unpin PINNEDID`<br> e.g. `unpin 2`                                                                  |
+| **Clear**           | `clear`                                                                                               |
+| **Exit**            | `exit`                                                                                                |
 

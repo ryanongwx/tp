@@ -47,6 +47,7 @@ public class AddRecordCommand extends Command {
         this.index = index;
         this.record = record;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
 
