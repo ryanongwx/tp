@@ -56,23 +56,23 @@ We're here to make your experience as user-friendly as possible. Let's get start
 
 1. Run Medbook application
 
-    **On Windows**:
-    - Double-click medbook.jar to run the application.
-    - If the GUI doesn't show up, try the following operations.
-    - **Open PowerShell**: Search for "Powershell" in the Windows search bar and open it.
-    - Navigate to the folder where you have stored the jar file using the cd command.
-    - Enter java -jar medbook.jar and press Enter. This command will execute the application.<br> 
-<box type="info" seamless>
-      Please note that for Windows users, you can navigate to the folder where you house Medbook. In the file address bar, click on the path to the current folder to highlight it. Type powershell and press enter. This will open a PowerShell window with the current folder as the working directory.
-</box>
+    - **On Windows**:
+      - Double-click medbook.jar to run the application.
+      - If the GUI doesn't show up, try the following operations.
+      - **Open PowerShell**: Search for "Powershell" in the Windows search bar and open it.
+      - Navigate to the folder where you have stored the jar file using the cd command.
+      - Enter java -jar medbook.jar and press Enter. This command will execute the application.<br> 
+      <box type="info" seamless>
+        Please note that for Windows users, you can navigate to the folder where you house Medbook. In the file address bar, click on the path to the current folder to highlight it. Type powershell and press enter. This will open a PowerShell window with the current folder as the working directory.
+      </box>
    
-   **On Mac**:
-    - **Open Terminal**: You can find Terminal in the "Utilities" folder within the "Applications" folder. Or, you can use Spotlight Search by pressing Command + Spacebar and typing "Terminal."
-    - Navigate to the folder where you have stored the jar file using the cd command
-    - Run the Application: Enter java -jar medbook.jar and press Enter. This command will execute the application.<br>
-<box type="info" seamless>
-Please note that for Mac users,  in the Terminal on a Mac, you can also drag and drop the "medbook.jar" file directly into the Terminal window after typing `java -jar` to auto-fill the file path.
-</box>
+    - **On Mac**:
+      - **Open Terminal**: You can find Terminal in the "Utilities" folder within the "Applications" folder. Or, you can use Spotlight Search by pressing Command + Spacebar and typing "Terminal."
+      - Navigate to the folder where you have stored the jar file using the cd command
+      - Run the Application: Enter java -jar medbook.jar and press Enter. This command will execute the application.<br>
+      <box type="info" seamless>
+        Please note that for Mac users,  in the Terminal on a Mac, you can also drag and drop the "medbook.jar" file directly into the Terminal window after typing `java -jar` to auto-fill the file path.
+      </box>
 
 The application should open up similar to the image below.
 ![Ui](images/MedBookUi.png)
