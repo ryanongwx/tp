@@ -79,8 +79,8 @@ Please note that for Mac users,  in the Terminal on a Mac, you can also drag and
 
 The application should open up similar to the image below.
 ![Ui](images/MedBookUi.png)
-1. Learn more about navigating the GUI [here]().
-2. For new users, learn how to use Medbook [here]().
+1. Learn more about navigating the GUI [here](#navigating-the-graphical-user-interface-gui).
+2. For new users, learn how to use Medbook [here](#medbook-tutorial).
 3. For advanced users, view all the available features [here](#features).
 
 ## Glossary
@@ -89,13 +89,13 @@ The application should open up similar to the image below.
 
 Here are some description of the terms used throughout this user guide.
 
-| **Term**  | **Definition**                                                                                                                                                             |
-|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Parameter | A parameter allow you to customize the behavior of the command by providing specific values                                                                                |
-| Command   | A command is a textual input that users type into the command-line interface to communicate with the application                                                           |
-| GUI       | GUI is graphical user interface. It manages the interaction between user and the application and also gives a visual display of Medbook.                                   |
-| GUI component| GUI components are the interactive parts of the application that you can see and interact with. For more information of different GUI components. Please refer to [this]() |
-| CLI| CLI or Command Line Interface,  is a text-based way to interact with the application.                                                                                      |
+| **Term**      | **Definition**                                                                                                                                                                  |
+|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Parameter     | A parameter allow you to customize the behavior of the command by providing specific values                                                                                     |
+| Command       | A command is a textual input that users type into the command-line interface to communicate with the application                                                                |
+| GUI           | GUI is graphical user interface. It manages the interaction between user and the application and also gives a visual display of Medbook.                                        |
+| GUI component | GUI components are the interactive parts of the application that you can see and interact with. For more information of different GUI components. Please refer to below section |
+| CLI           | CLI or Command Line Interface,  is a text-based way to interact with the application.                                                                                           |
 
 ## Navigating the Graphical User Interface (GUI)
 
