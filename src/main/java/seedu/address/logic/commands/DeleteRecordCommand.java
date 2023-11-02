@@ -12,7 +12,8 @@ import seedu.address.model.record.Record;
 import seedu.address.model.record.UniqueRecordList;
 
 /**
- * Deletes a record identified using it's displayed patient index and record index from the address book.
+ * Deletes a record identified using it's displayed patient index and record
+ * index from the address book.
  */
 public class DeleteRecordCommand extends Command {
     public static final String COMMAND_WORD = "deleterecord";
@@ -34,6 +35,7 @@ public class DeleteRecordCommand extends Command {
         this.targetPatientIndex = targetPatientIndex;
         this.targetRecordIndex = targetRecordIndex;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
