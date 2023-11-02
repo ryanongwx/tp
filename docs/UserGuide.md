@@ -62,7 +62,7 @@ We're here to make your experience as user-friendly as possible. Let's get start
     **On Windows**:
     - Double-click medbook.jar to run the application.
     - If the GUI doesn't show up, try the following operations.
-    - **Open Command Prompt**: Search for "Command Prompt" in the Windows search bar and open it.
+    - **Open PowerShell**: Search for "Powershell" in the Windows search bar and open it.
     - Navigate to the folder where you have stored the jar file using the cd command.
     - Enter java -jar medbook.jar and press Enter. This command will execute the application.<br> 
 <box type="info" seamless>
@@ -118,13 +118,13 @@ Here is a brief summary of GUI component of the main window of Medbook.
 
 ![Appointment Window](images/ViewAppointmentWindow.png)
 
-| ** Name of component | **Description**                                                           |
-|----------------------|---------------------------------------------------------------------------|
-| Appointment card     | contains information of appointments including name, date and NRIC number |
-| Appointment list     | Holds a list of Appointment card                                          |
-| Calendar             | A calendar that displays appointments at certain date                     |
-| Previous Button      | Shift the month shown in the calendar to previous month                   |
-| Next Button          | Shift the month shown in the calendar to next month                       |
+| **Name of component** | **Description**                                                           |
+|-----------------------|---------------------------------------------------------------------------|
+| Appointment card      | contains information of appointments including name, date and NRIC number |
+| Appointment list      | Holds a list of Appointment card                                          |
+| Calendar              | A calendar that displays appointments at certain date                     |
+| Previous Button       | Shift the month shown in the calendar to previous month                   |
+| Next Button           | Shift the month shown in the calendar to next month                       |
 
 ## Medbook Tutorial
 
