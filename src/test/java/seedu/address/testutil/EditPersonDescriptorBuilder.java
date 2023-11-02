@@ -64,6 +64,15 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Nric} of the {@code EditPersonDescriptor} that we are
+     * building to null.
+     */
+    public EditPersonDescriptorBuilder withNullNric() {
+        descriptor.setNric(null);
+        return this;
+    }
+
+    /**
      * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are
      * building.
      */

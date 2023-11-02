@@ -163,12 +163,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
-        requireNonNull(predicate);
-        filteredAppointments.setPredicate(predicate);
-    }
-
-    @Override
     public void resetAppointmentList() {
         this.addressBook.resetAppointmentList();
     }
@@ -216,6 +210,7 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons)
+                && filteredAppointments.equals(otherModelManager.filteredAppointments)
                 && filteredRecords.equals(otherModelManager.filteredRecords);
     }
 }
