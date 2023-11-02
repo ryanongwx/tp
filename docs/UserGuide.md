@@ -101,7 +101,7 @@ Here are some description of the terms used throughout this user guide.
 
 ![Ui Component](images/UiComponent.png)
 
-Here is a brief summary of GUI component of Medbook.
+Here is a brief summary of GUI component of the main window of Medbook.
 
 | **Name of component**    | **Description**                                                                                             |
 |--------------------------|-------------------------------------------------------------------------------------------------------------|
@@ -116,6 +116,13 @@ Here is a brief summary of GUI component of Medbook.
 | Command Input Box        | Allow users to input commands                                                                               |
 
 
+![Appointment Window](images/ViewAppointmentWindow.png)
+
+| ** Name of component | **Description**                                                          |
+|----------------------|--------------------------------------------------------------------------|
+| Appointment card     | contains information of appointments including name, date and NRIC number |
+| Appointment list     | Holds a list of Appointment card                                         |
+| Calendar             | A calendar that displays the appointment                                 |
 
 ## Medbook Tutorial
 
