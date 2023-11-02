@@ -183,21 +183,21 @@ You may now have a basic understanding of this software. Try out the features in
 
 - **PINNEDID**: refers to the unique ID shown in the displayed **PINNED PATIENT** list. The ID **must be a positive integer** 1, 2, 3, …​ <br>
 
-### PARMETERS
+### PARAMETERS
 
- | FIELD          | PREFIX | CONSTRAINTS                                                                                                   |
- |----------------|--------|---------------------------------------------------------------------------------------------------------------|
- | **NAME**       | n      | Up to 256 alphanumeric characters                                                                             |
- | **NRIC**       | i      | starts with a letter, followed by seven digits, and ends with another letter (letters are not case-sensitive) |
- | **EMAIL**      | e      | Valid email format: **email@domain.com**                                                                      |
- | **GENDER**     | g      | Either **M** or **F**                                                                                         |
- | **PHONE**      | p      | Must be 8 digits                                                                                              |
- | **AGE**        | a      | Must be a positive integer                                                                                    |
- | **BLOODTYPE**  | bt     | Must be one of **A-**, **A+**, **B-**, **B+**, **AB-**, **AB+**, **O-**, **O+**                               |
- | **ALLERGY**    | al     | Up to 256 alphanumeric characters                                                                             |
- | **DATE**       | d      | Must be in the form of 'dd-MM-yyyy HHmm"                                                                      |
- | **CONDITION**  | c      | Up to 256 alphanumeric characters                                                                             |
- | **MEDICATION** | m      | Up to 256 alphanumeric characters                                                                             |
+| FIELD        | PREFIX | CONSTRAINTS                                                                                                      |
+|--------------|--------|------------------------------------------------------------------------------------------------------------------|
+| **NAME**     | n      | Up to 256 alphanumeric characters                                                                               |
+| **NRIC**     | i      | Starts with a letter, followed by seven digits, and ends with another letter (letters are not case-sensitive) |
+| **EMAIL**    | e      | Valid email format: **email@domain.com**                                                                      |
+| **GENDER**   | g      | Either **M** or **F**                                                                                         |
+| **PHONE**    | p      | Must be 8 digits                                                                                                |
+| **AGE**      | a      | Must be a positive integer                                                                                      |
+| **BLOODTYPE**| bt     | Must be one of **A-**, **A+**, **B-**, **B+**, **AB-**, **AB+**, **O-**, **O+**                             |
+| **ALLERGY**  | al     | Up to 256 alphanumeric characters                                                                               |
+| **DATE**     | d      | Must be in the form of 'dd-MM-yyyy HHmm'                                                                       |
+| **CONDITION**| c      | Up to 256 alphanumeric characters                                                                               |
+| **MEDICATION**| m     | Up to 256 alphanumeric characters                                                                               |
 
 ### Viewing help : `help`
 
