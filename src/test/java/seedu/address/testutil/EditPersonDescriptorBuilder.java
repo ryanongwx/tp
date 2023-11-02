@@ -11,6 +11,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.shared.Name;
+import seedu.address.model.shared.Nric;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -29,11 +30,13 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditPersonDescriptor} with fields containing
+     * {@code person}'s details
      */
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
+        descriptor.setNric(person.getNric());
         descriptor.setEmail(person.getEmail());
         descriptor.setPhone(person.getPhone());
         descriptor.setGender(person.getGender());
@@ -43,7 +46,8 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are
+     * building.
      */
     public EditPersonDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -51,7 +55,26 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Nric} of the {@code EditPersonDescriptor} that we are
+     * building.
+     */
+    public EditPersonDescriptorBuilder withNric(String nric) {
+        descriptor.setNric(new Nric(nric));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Nric} of the {@code EditPersonDescriptor} that we are
+     * building to null.
+     */
+    public EditPersonDescriptorBuilder withNullNric() {
+        descriptor.setNric(null);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are
+     * building.
      */
     public EditPersonDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
@@ -59,7 +82,8 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are
+     * building.
      */
     public EditPersonDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
@@ -67,7 +91,8 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Gender} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Gender} of the {@code EditPersonDescriptor} that we are
+     * building.
      */
     public EditPersonDescriptorBuilder withGender(String gender) {
         descriptor.setGender(new Gender(gender));
@@ -75,7 +100,8 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Age} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Age} of the {@code EditPersonDescriptor} that we are
+     * building.
      */
     public EditPersonDescriptorBuilder withAge(int age) {
         descriptor.setAge(new Age(age));
@@ -83,7 +109,8 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code BloodType} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code BloodType} of the {@code EditPersonDescriptor} that we are
+     * building.
      */
     public EditPersonDescriptorBuilder withBloodType(String bloodType) {
         descriptor.setBloodType(new BloodType(bloodType));
@@ -91,7 +118,8 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code allergies} into a {@code Set<Allergy>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code allergies} into a {@code Set<Allergy>} and set it to the
+     * {@code EditPersonDescriptor}
      * that we are building.
      */
     public EditPersonDescriptorBuilder withAllergies(String... allergies) {

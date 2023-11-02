@@ -12,9 +12,12 @@ import seedu.address.model.record.exceptions.DuplicateRecordException;
 import seedu.address.model.record.exceptions.RecordNotFoundException;
 
 /**
- * A list of records that enforces uniqueness between its elements and does not allow nulls.
- * A record is considered unique by comparing using {@code Record#equals(Object)}. As such, adding, updating, removal of
- * records uses Record#equals(Object) for equality so as to ensure that the record being added, updated, removed is
+ * A list of records that enforces uniqueness between its elements and does not
+ * allow nulls.
+ * A record is considered unique by comparing using
+ * {@code Record#equals(Object)}. As such, adding, updating, removal of
+ * records uses Record#equals(Object) for equality so as to ensure that the
+ * record being added, updated, removed is
  * unique in terms of identity in the UniqueRecordList.
  *
  * Supports a minimal set of list operations.
@@ -23,8 +26,8 @@ import seedu.address.model.record.exceptions.RecordNotFoundException;
  */
 public class UniqueRecordList implements Iterable<Record> {
     private final ObservableList<Record> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Record> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Record> internalUnmodifiableList = FXCollections
+            .unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent record as the given argument.
@@ -32,6 +35,20 @@ public class UniqueRecordList implements Iterable<Record> {
     public boolean contains(Record toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::equals);
+    }
+
+    /**
+     * Returns a record at a specified index.
+     */
+    public Record get(int index) {
+        return internalList.get(index);
+    }
+
+    /**
+     * Returns the size of the internalList
+     */
+    public int size() {
+        return internalList.size();
     }
 
     /**
@@ -48,7 +65,8 @@ public class UniqueRecordList implements Iterable<Record> {
     /**
      * Replaces the record {@code target} in the list with {@code editedRecord}.
      * {@code target} must exist in the list.
-     * The record identity of {@code editedRecord} must not be the same as another existing record in the list.
+     * The record identity of {@code editedRecord} must not be the same as another
+     * existing record in the list.
      */
 
     public void setRecord(Record target, Record editedRecord) {
@@ -77,13 +95,6 @@ public class UniqueRecordList implements Iterable<Record> {
         }
     }
 
-    /**
-     * @return the list of records
-     */
-    public ObservableList<Record> getRecordList() {
-        return this.internalList;
-    }
-
     public void setRecords(UniqueRecordList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -110,6 +121,7 @@ public class UniqueRecordList implements Iterable<Record> {
     public Iterator<Record> iterator() {
         return internalList.iterator();
     }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -124,14 +136,17 @@ public class UniqueRecordList implements Iterable<Record> {
         UniqueRecordList otherUniqueRecordList = (UniqueRecordList) other;
         return internalList.equals(otherUniqueRecordList.internalList);
     }
+
     @Override
     public int hashCode() {
         return internalList.hashCode();
     }
+
     @Override
     public String toString() {
         return internalList.toString();
     }
+
     /**
      * Returns true if {@code records} contains only unique records.
      */

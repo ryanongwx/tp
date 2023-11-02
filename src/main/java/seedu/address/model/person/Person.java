@@ -14,16 +14,18 @@ import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.record.Record;
 import seedu.address.model.record.UniqueRecordList;
 import seedu.address.model.shared.Name;
-
+import seedu.address.model.shared.Nric;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated,
+ * immutable.
  */
 public class Person {
 
     // Identity fields
     private final Name name;
+    private final Nric nric;
     private final Phone phone;
     private final Email email;
     private final Gender gender;
@@ -36,12 +38,15 @@ public class Person {
 
     /**
      * Constructs a Person
+     *
+     * @param nric2
      */
-    public Person(Name name, Email email, Phone phone, Gender gender, Age age,
-                  BloodType bloodType, Set<Allergy> allergies, UniqueRecordList records,
-                  UniqueAppointmentList appointments, boolean isPinned) {
-        requireAllNonNull(name, phone, email, gender, age, allergies, isPinned, appointments);
+    public Person(Name name, Nric nric, Email email, Phone phone, Gender gender, Age age,
+            BloodType bloodType, Set<Allergy> allergies, UniqueRecordList records, UniqueAppointmentList appointments,
+            boolean isPinned) {
+        requireAllNonNull(name, phone, email, gender, age, allergies, appointments, isPinned);
         this.name = name;
+        this.nric = nric;
         this.email = email;
         this.phone = phone;
         this.gender = gender;
@@ -55,6 +60,10 @@ public class Person {
 
     public Name getName() {
         return name;
+    }
+
+    public Nric getNric() {
+        return nric;
     }
 
     public Phone getPhone() {
@@ -94,7 +103,8 @@ public class Person {
     }
 
     /**
-     * Returns true if the same appointment as {@code appointment} exists in the person.
+     * Returns true if the same appointment as {@code appointment} exists in the
+     * person.
      */
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
@@ -102,7 +112,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same nric.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -111,7 +121,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getNric().equals(getNric());
     }
 
     /**
@@ -139,6 +149,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
+                && nric.equals(otherPerson.nric)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && gender.equals(otherPerson.gender)
@@ -160,6 +171,7 @@ public class Person {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
+                .add("nric", nric)
                 .add("email", email)
                 .add("phone", phone)
                 .add("gender", gender)
@@ -167,8 +179,8 @@ public class Person {
                 .add("bloodType", bloodType)
                 .add("allergies", allergies)
                 .add("records", records)
-                .add("isPinned", isPinned)
                 .add("appointments", appointments)
+                .add("isPinned", isPinned)
                 .toString();
     }
 }

@@ -21,9 +21,11 @@ import seedu.address.model.record.Condition;
 import seedu.address.model.record.Medication;
 import seedu.address.model.shared.DateTime;
 import seedu.address.model.shared.Name;
+import seedu.address.model.shared.Nric;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various *Parser
+ * classes.
  */
 public class ParserUtil {
 
@@ -33,9 +35,12 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_RECORD_INDEX = "Record index is not a non-zero unsigned integer.";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
+     * and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     *
+     * @throws ParseException if the specified index is invalid (not non-zero
+     *                        unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
@@ -46,9 +51,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code oneBasedIndexes} for edit record command into a patient's {@code Index}
+     * Parses {@code oneBasedIndexes} for edit record command into a patient's
+     * {@code Index}
      * and returns it. Leading and trailing whitespaces will be trimmed.
-     * @throws ParseException if the specified patient index is invalid (not non-zero unsigned integer).
+     *
+     * @throws ParseException if the specified patient index is invalid (not
+     *                        non-zero unsigned integer).
      */
     public static Index parsePatientIndex(String oneBasedIndexes) throws ParseException {
         // Check if input matches the format of two numbers separated by a slash
@@ -63,9 +71,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code oneBasedIndexes} for edit record command into a record's {@code Index}
+     * Parses {@code oneBasedIndexes} for edit record command into a record's
+     * {@code Index}
      * and returns it. Leading and trailing whitespaces will be trimmed.
-     * @throws ParseException if the specified patient index is invalid (not non-zero unsigned integer).
+     *
+     * @throws ParseException if the specified patient index is invalid (not
+     *                        non-zero unsigned integer).
      */
     public static Index parseRecordIndex(String oneBasedIndexes) throws ParseException {
         String trimmedIndex = oneBasedIndexes.split("/")[1].trim();
@@ -74,6 +85,7 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
+
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
@@ -87,6 +99,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String nric} into a {@code Nric}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code nric} is invalid.
+     */
+    public static Nric parseNric(String nric) throws ParseException {
+        requireNonNull(nric);
+        String trimmedNric = nric.trim();
+        if (!Nric.isValidNric(trimmedNric)) {
+            throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
+        }
+        return new Nric(trimmedNric.toUpperCase());
     }
 
     /**
@@ -186,7 +213,6 @@ public class ParserUtil {
         return allergiesSet;
     }
 
-
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
@@ -233,7 +259,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code Collection<String> condtions} into an {@code List<Condition>}.
+     * Parses a {@code Collection<String> condtions} into an
+     * {@code List<Condition>}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code condition} is invalid.
@@ -263,7 +290,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code Collection<String> medications} into an {@code List<Medication>}.
+     * Parses a {@code Collection<String> medications} into an
+     * {@code List<Medication>}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code medication} is invalid.

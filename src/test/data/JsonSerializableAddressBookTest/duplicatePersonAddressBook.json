@@ -3,35 +3,57 @@
   "persons": [
     {
       "name": "Alice Pauline",
-      "phone": "94351253",
+      "nric": "S1234567B",
       "email": "alice@example.com",
+      "phone": "94351253",
       "bloodType": "AB+",
       "gender": "F",
       "age": 20,
       "allergies": ["Chocolate"],
-      "isPinned": true,
+      "records": [
+        {
+          "dateTime": "09-10-2023 1800",
+          "conditions": ["Fever"],
+          "medications": ["Tylenol"],
+          "filename": null,
+          "personIndex": 0
+        }
+      ],
       "appointments": [
         {
           "name": "Eye Exam",
-          "dateTime": "01-01-2001 1200"
+          "dateTime": "01-01-2001 1200",
+          "nric": "S1234567B"
         }
-      ]
+      ],
+      "isPinned": true
     },
     {
       "name": "Alice Pauline",
-      "phone": "94351253",
+      "nric": "S1234567B",
       "email": "alice@example.com",
+      "phone": "94351253",
       "bloodType": "AB+",
       "gender": "F",
       "age": 20,
       "allergies": ["Chocolate"],
-      "isPinned": true,
+      "records": [
+        {
+          "dateTime": "09-10-2023 1800",
+          "conditions": ["Fever"],
+          "medications": ["Tylenol"],
+          "filename": null,
+          "personIndex": 0
+        }
+      ],
       "appointments": [
         {
           "name": "Eye Exam",
-          "dateTime": "01-01-2001 1200"
+          "dateTime": "01-01-2001 1200",
+          "nric": "S1234567B"
         }
-      ]
+      ],
+      "isPinned": true
     }
   ]
 }

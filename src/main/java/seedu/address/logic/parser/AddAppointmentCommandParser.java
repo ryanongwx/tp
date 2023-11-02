@@ -20,8 +20,10 @@ import seedu.address.model.shared.Name;
 public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddAppointmentCommand
+     * Parses the given {@code String} of arguments in the context of the
+     * AddAppointmentCommand
      * and returns an AddAppointmentCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddAppointmentCommand parse(String args) throws ParseException {
@@ -39,7 +41,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DATE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            AddAppointmentCommand.MESSAGE_USAGE));
+                    AddAppointmentCommand.MESSAGE_USAGE));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_DATE);
@@ -47,13 +49,14 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         DateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATE).get());
 
-        Appointment appointment = new Appointment(name, dateTime);
+        Appointment appointment = new Appointment(name, dateTime, null);
 
         return new AddAppointmentCommand(index, appointment);
     }
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * Returns true if none of the prefixes contains empty {@code Optional} values
+     * in the given
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

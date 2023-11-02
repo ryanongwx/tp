@@ -8,6 +8,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.shared.DateTime;
 import seedu.address.model.shared.Name;
+import seedu.address.model.shared.Nric;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -18,14 +19,17 @@ class JsonAdaptedAppointment {
 
     private final String name;
     private final String dateTime;
+    private final String nric;
 
     /**
      * Constructs a {@code JsonAdaptedAppointment} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedAppointment(@JsonProperty("name") String name, @JsonProperty("dateTime") String dateTime) {
+    public JsonAdaptedAppointment(@JsonProperty("name") String name,
+            @JsonProperty("dateTime") String dateTime, @JsonProperty("nric") String nric) {
         this.name = name;
         this.dateTime = dateTime;
+        this.nric = nric;
     }
 
     /**
@@ -34,12 +38,15 @@ class JsonAdaptedAppointment {
     public JsonAdaptedAppointment(Appointment source) {
         name = source.getName().fullName;
         dateTime = source.getDateTime().toString();
+        nric = source.getNric().toString();
     }
 
     /**
-     * Converts this Jackson-friendly adapted appointment object into the model's {@code Appointment} object.
+     * Converts this Jackson-friendly adapted appointment object into the model's
+     * {@code Appointment} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted appointment.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted appointment.
      */
     public Appointment toModelType() throws IllegalValueException {
         if (name == null) {
@@ -59,6 +66,14 @@ class JsonAdaptedAppointment {
         }
         final DateTime modelDateTime = new DateTime(dateTime);
 
-        return new Appointment(modelname, modelDateTime);
+        if (nric == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
+        }
+        if (!Nric.isValidNric(nric)) {
+            throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
+        }
+        final Nric modelNric = new Nric(nric);
+
+        return new Appointment(modelname, modelDateTime, modelNric);
     }
 }

@@ -17,9 +17,12 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_BLOODTYPE_DES
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GENDER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NRIC_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -37,6 +40,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -55,6 +59,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.shared.Name;
+import seedu.address.model.shared.Nric;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
@@ -65,24 +70,26 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(BOB).withAllergies(VALID_ALLERGY_DUST).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + EMAIL_DESC_BOB + PHONE_DESC_BOB
-                + GENDER_DESC_BOB + AGE_DESC_BOB + BLOODTYPE_DESC_BOB + ALLERGY_DESC_DUST,
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + NRIC_DESC_BOB
+                + EMAIL_DESC_BOB + PHONE_DESC_BOB
+                + GENDER_DESC_BOB + AGE_DESC_BOB + BLOODTYPE_DESC_BOB
+                + ALLERGY_DESC_DUST,
                 new AddCommand(expectedPerson));
-
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withAllergies(VALID_ALLERGY_DUST,
-                        VALID_ALLERGY_PEANUTS)
+                VALID_ALLERGY_PEANUTS)
                 .build();
         assertParseSuccess(parser,
-                NAME_DESC_BOB + EMAIL_DESC_BOB + PHONE_DESC_BOB + GENDER_DESC_BOB
-                        + AGE_DESC_BOB + BLOODTYPE_DESC_BOB + ALLERGY_DESC_DUST + ALLERGY_DESC_PEANUTS,
+                NAME_DESC_BOB + NRIC_DESC_BOB + EMAIL_DESC_BOB + PHONE_DESC_BOB + GENDER_DESC_BOB
+                        + AGE_DESC_BOB + BLOODTYPE_DESC_BOB + ALLERGY_DESC_DUST
+                        + ALLERGY_DESC_PEANUTS,
                 new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
-        String validExpectedPersonString = NAME_DESC_BOB + EMAIL_DESC_BOB + PHONE_DESC_BOB
+        String validExpectedPersonString = NAME_DESC_BOB + NRIC_DESC_BOB + EMAIL_DESC_BOB + PHONE_DESC_BOB
                 + GENDER_DESC_BOB + AGE_DESC_BOB + BLOODTYPE_DESC_BOB + ALLERGY_DESC_DUST;
 
         // multiple names
@@ -111,10 +118,11 @@ public class AddCommandParserTest {
 
         // multiple fields repeated
         assertParseFailure(parser,
-                validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                validExpectedPersonString + NRIC_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                         + NAME_DESC_AMY + PREFIX_GENDER + PREFIX_AGE + PREFIX_BLOODTYPE
                         + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_EMAIL, PREFIX_PHONE,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_NRIC, PREFIX_EMAIL,
+                        PREFIX_PHONE,
                         PREFIX_GENDER, PREFIX_AGE, PREFIX_BLOODTYPE));
 
         // invalid value followed by valid value
@@ -174,7 +182,7 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withAllergies().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY + PHONE_DESC_AMY
+        assertParseSuccess(parser, NAME_DESC_AMY + NRIC_DESC_AMY + EMAIL_DESC_AMY + PHONE_DESC_AMY
                 + GENDER_DESC_AMY + AGE_DESC_AMY + BLOODTYPE_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
@@ -185,78 +193,99 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + GENDER_DESC_BOB + AGE_DESC_BOB + BLOODTYPE_DESC_BOB,
+                + GENDER_DESC_BOB + AGE_DESC_BOB + BLOODTYPE_DESC_BOB,
                 expectedMessage);
 
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB + EMAIL_DESC_BOB + VALID_PHONE_BOB
-                        + GENDER_DESC_BOB + AGE_DESC_BOB + BLOODTYPE_DESC_BOB,
+                + GENDER_DESC_BOB + AGE_DESC_BOB + BLOODTYPE_DESC_BOB,
                 expectedMessage);
 
         // missing email prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_EMAIL_BOB + PHONE_DESC_BOB
-                        + GENDER_DESC_BOB + AGE_DESC_BOB + BLOODTYPE_DESC_BOB,
+                + GENDER_DESC_BOB + AGE_DESC_BOB + BLOODTYPE_DESC_BOB,
                 expectedMessage);
 
         // missing gender prefix
         assertParseFailure(parser, NAME_DESC_BOB + EMAIL_DESC_BOB + PHONE_DESC_BOB
-                        + VALID_GENDER_BOB + AGE_DESC_BOB + BLOODTYPE_DESC_BOB,
+                + VALID_GENDER_BOB + AGE_DESC_BOB + BLOODTYPE_DESC_BOB,
                 expectedMessage);
 
         // missing age prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_EMAIL_BOB + PHONE_DESC_BOB
-                        + GENDER_DESC_BOB + VALID_AGE_BOB + BLOODTYPE_DESC_BOB,
+                + GENDER_DESC_BOB + VALID_AGE_BOB + BLOODTYPE_DESC_BOB,
                 expectedMessage);
 
         // missing bloodType prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_EMAIL_BOB + PHONE_DESC_BOB
-                        + GENDER_DESC_BOB + VALID_AGE_BOB + VALID_BLOODTYPE_BOB,
+                + GENDER_DESC_BOB + VALID_AGE_BOB + VALID_BLOODTYPE_BOB,
                 expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_EMAIL_BOB + VALID_PHONE_BOB
-                        + VALID_GENDER_BOB + VALID_AGE_BOB + VALID_BLOODTYPE_BOB,
+                + VALID_GENDER_BOB + VALID_AGE_BOB + VALID_BLOODTYPE_BOB,
                 expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + EMAIL_DESC_BOB + PHONE_DESC_BOB + GENDER_DESC_BOB
-                + AGE_DESC_BOB + BLOODTYPE_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                INVALID_NAME_DESC + NRIC_DESC_BOB + EMAIL_DESC_BOB + PHONE_DESC_BOB + GENDER_DESC_BOB
+                        + AGE_DESC_BOB + BLOODTYPE_DESC_BOB,
+                Name.MESSAGE_CONSTRAINTS);
+
+        // invalid nric
+        assertParseFailure(parser,
+                NAME_DESC_BOB + INVALID_NRIC_DESC + EMAIL_DESC_BOB + PHONE_DESC_BOB + GENDER_DESC_BOB
+                        + AGE_DESC_BOB + BLOODTYPE_DESC_BOB,
+                Nric.MESSAGE_CONSTRAINTS);
 
         // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + EMAIL_DESC_BOB + INVALID_PHONE_DESC + GENDER_DESC_BOB
-                + AGE_DESC_BOB + BLOODTYPE_DESC_BOB, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                NAME_DESC_BOB + NRIC_DESC_BOB + EMAIL_DESC_BOB + INVALID_PHONE_DESC + GENDER_DESC_BOB
+                        + AGE_DESC_BOB + BLOODTYPE_DESC_BOB,
+                Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_EMAIL_DESC + PHONE_DESC_BOB + GENDER_DESC_BOB
-                + AGE_DESC_BOB + BLOODTYPE_DESC_BOB, Email.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                NAME_DESC_BOB + NRIC_DESC_BOB + INVALID_EMAIL_DESC + PHONE_DESC_BOB + GENDER_DESC_BOB
+                        + AGE_DESC_BOB + BLOODTYPE_DESC_BOB,
+                Email.MESSAGE_CONSTRAINTS);
 
         // invalid gender
-        assertParseFailure(parser, NAME_DESC_BOB + EMAIL_DESC_BOB + PHONE_DESC_BOB + INVALID_GENDER_DESC
-                + AGE_DESC_BOB + BLOODTYPE_DESC_BOB, Gender.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                NAME_DESC_BOB + NRIC_DESC_BOB + EMAIL_DESC_BOB + PHONE_DESC_BOB + INVALID_GENDER_DESC
+                        + AGE_DESC_BOB + BLOODTYPE_DESC_BOB,
+                Gender.MESSAGE_CONSTRAINTS);
 
         // invalid age
-        assertParseFailure(parser, NAME_DESC_BOB + EMAIL_DESC_BOB + PHONE_DESC_BOB + GENDER_DESC_BOB
-                + INVALID_AGE_DESC + BLOODTYPE_DESC_BOB, Age.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                NAME_DESC_BOB + NRIC_DESC_BOB + EMAIL_DESC_BOB + PHONE_DESC_BOB + GENDER_DESC_BOB
+                        + INVALID_AGE_DESC + BLOODTYPE_DESC_BOB,
+                Age.MESSAGE_CONSTRAINTS);
 
         // invalid bloodType
-        assertParseFailure(parser, NAME_DESC_BOB + EMAIL_DESC_BOB + PHONE_DESC_BOB + GENDER_DESC_BOB
-                + AGE_DESC_BOB + INVALID_BLOODTYPE_DESC, BloodType.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                NAME_DESC_BOB + NRIC_DESC_BOB + EMAIL_DESC_BOB + PHONE_DESC_BOB + GENDER_DESC_BOB
+                        + AGE_DESC_BOB + INVALID_BLOODTYPE_DESC,
+                BloodType.MESSAGE_CONSTRAINTS);
 
         // invalid Allergy
-        assertParseFailure(parser, NAME_DESC_BOB + EMAIL_DESC_BOB + PHONE_DESC_BOB + GENDER_DESC_BOB
-                + AGE_DESC_BOB + BLOODTYPE_DESC_BOB + INVALID_ALLERGY_DESC, Allergy.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,
+                NAME_DESC_BOB + NRIC_DESC_BOB + EMAIL_DESC_BOB + PHONE_DESC_BOB + GENDER_DESC_BOB
+                        + AGE_DESC_BOB + BLOODTYPE_DESC_BOB + INVALID_ALLERGY_DESC,
+                Allergy.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + EMAIL_DESC_BOB + PHONE_DESC_BOB
-                        + INVALID_GENDER_DESC + AGE_DESC_BOB + BLOODTYPE_DESC_BOB,
+        assertParseFailure(parser, INVALID_NAME_DESC + NRIC_DESC_BOB + EMAIL_DESC_BOB + PHONE_DESC_BOB
+                + INVALID_GENDER_DESC + AGE_DESC_BOB + BLOODTYPE_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + EMAIL_DESC_BOB + PHONE_DESC_BOB
-                + GENDER_DESC_BOB + AGE_DESC_BOB + BLOODTYPE_DESC_BOB,
+        assertParseFailure(parser,
+                PREAMBLE_NON_EMPTY + NAME_DESC_BOB + NRIC_DESC_BOB + EMAIL_DESC_BOB + PHONE_DESC_BOB
+                        + GENDER_DESC_BOB + AGE_DESC_BOB + BLOODTYPE_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

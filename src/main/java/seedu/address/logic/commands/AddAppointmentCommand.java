@@ -14,6 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.person.Person;
+import seedu.address.model.shared.Nric;
 
 /**
  * Adds an appointment to the address book.
@@ -29,7 +30,6 @@ public class AddAppointmentCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Eye Examination "
             + PREFIX_DATE + "18-09-2023 1800 ";
-
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the address book";
@@ -56,21 +56,25 @@ public class AddAppointmentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person oldPerson = lastShownList.get(index.getZeroBased());
-        if (oldPerson.hasAppointment(toAdd)) {
+        Person patient = lastShownList.get(index.getZeroBased());
+        Nric patientId = patient.getNric();
+        Appointment newAppointment = new Appointment(toAdd.getName(), toAdd.getDateTime(), patientId);
+        if (patient.hasAppointment(newAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
         UniqueAppointmentList newAppointmentList = new UniqueAppointmentList();
-        newAppointmentList.setAppointments(oldPerson.getAppointments());
-        newAppointmentList.add(toAdd);
+        newAppointmentList.setAppointments(patient.getAppointments());
+        newAppointmentList.add(newAppointment);
 
-        Person newPerson = new Person(oldPerson.getName(), oldPerson.getEmail(), oldPerson.getPhone(),
-                oldPerson.getGender(), oldPerson.getAge(), oldPerson.getBloodType(), oldPerson.getAllergies(),
-                oldPerson.getRecords(), newAppointmentList, oldPerson.isPinned());
+        Person newPatient = new Person(patient.getName(), patient.getNric(), patient.getEmail(),
+                patient.getPhone(), patient.getGender(), patient.getAge(), patient.getBloodType(),
+                patient.getAllergies(), patient.getRecords(), newAppointmentList, patient.isPinned());
 
-        model.setPerson(oldPerson, newPerson);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd, newPerson)));
+        model.setPerson(patient, newPatient);
+
+        model.resetAppointmentList();
+        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(newAppointment, newPatient)));
     }
 
     @Override

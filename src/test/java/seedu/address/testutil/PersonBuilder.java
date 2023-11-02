@@ -15,6 +15,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.record.Record;
 import seedu.address.model.record.UniqueRecordList;
 import seedu.address.model.shared.Name;
+import seedu.address.model.shared.Nric;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -23,6 +24,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_NRIC = "Z1234567Z";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_GENDER = "F";
@@ -31,6 +33,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ALLERGY = "Ants";
 
     private Name name;
+    private Nric nric;
     private Email email;
     private Phone phone;
     private Gender gender;
@@ -46,6 +49,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
+        nric = new Nric(DEFAULT_NRIC);
         email = new Email(DEFAULT_EMAIL);
         phone = new Phone(DEFAULT_PHONE);
         gender = new Gender(DEFAULT_GENDER);
@@ -62,6 +66,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
+        nric = personToCopy.getNric();
         email = personToCopy.getEmail();
         phone = personToCopy.getPhone();
         gender = personToCopy.getGender();
@@ -71,7 +76,8 @@ public class PersonBuilder {
         records = new UniqueRecordList();
         records.setRecords(personToCopy.getRecords());
         appointments = new UniqueAppointmentList();
-        appointments.setAppointments(personToCopy.getAppointments());;
+        appointments.setAppointments(personToCopy.getAppointments());
+        ;
         isPinned = personToCopy.isPinned();
     }
 
@@ -80,6 +86,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Nric} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNric(String nric) {
+        this.nric = new Nric(nric);
         return this;
     }
 
@@ -124,9 +138,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code allergies} into a {@code Set<Allergy>} and set it to the {@code Person} that we are building.
+     * Parses the {@code allergies} into a {@code Set<Allergy>} and set it to the
+     * {@code Person} that we are building.
      */
-    public PersonBuilder withAllergies(String ... allergies) {
+    public PersonBuilder withAllergies(String... allergies) {
         this.allergies = SampleDataUtil.getAllergySet(allergies);
         return this;
     }
@@ -134,7 +149,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code records} of the {@code Person} that we are building.
      */
-    public PersonBuilder withRecords(Record ... records) {
+    public PersonBuilder withRecords(Record... records) {
         this.records = SampleDataUtil.getRecordList(records);
         return this;
     }
@@ -166,12 +181,12 @@ public class PersonBuilder {
     /**
      * Sets the {@code appointments} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAppointments(Appointment ... appointments) {
+    public PersonBuilder withAppointments(Appointment... appointments) {
         this.appointments = SampleDataUtil.getAppointmentList(appointments);
         return this;
     }
 
     public Person build() {
-        return new Person(name, email, phone, gender, age, bloodType, allergies, records, appointments, isPinned);
+        return new Person(name, nric, email, phone, gender, age, bloodType, allergies, records, appointments, isPinned);
     }
 }
