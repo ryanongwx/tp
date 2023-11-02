@@ -25,13 +25,13 @@ The table of contents can be used at the side to seamlessly jump between section
 
 1. Ensure you have Java `11` or above installed in your Computer.
    - [How do I check my version of Java?](#faq)
-1. Download the latest jar file (`medbook.jar`) from [here](https://github.com/AY2324S1-CS2103T-T12-4/tp/releases).
+2. Download the latest jar file (`medbook.jar`) from [here](https://github.com/AY2324S1-CS2103T-T12-4/tp/releases).
 
-1. Move the file to the folder you want to use as the _home folder_ for your MedBook.
+3. Move the file to the folder you want to use as the _home folder_ for your MedBook.
 
-1. Open a command terminal
+4. Open a command terminal
    - For Windows Users:
-     - Press the Windows icon and search for and open up`Powershell`
+     - Press the Windows icon and search for and open up`Powershell`.
    - For Mac Users:
      - Open a new Terminal window (Command + Space > type Terminal > Enter).
 
@@ -86,21 +86,21 @@ The application should open up similar to the image below.
 
 - **PINNEDID**: refers to the unique ID shown in the displayed **PINNED PATIENT** list. The ID **must be a positive integer** 1, 2, 3, …​ <br>
 
-### PARMETERS
+### PARAMETERS
 
- | FIELD | PREFIX | CONSTRAINTS |
- |----|----|----|
- |**NAME**| n | Up to 256 alphanumeric characters |
- |**NRIC**| i | starts with a letter, followed by seven digits, and ends with another letter (letters are not case-sensitve) |
- |**EMAIL**| e | Valid email format: **email@domain.com**
- |**GENDER**| g | Either **M** or **F**
- |**PHONE**| p | Must be 8 digits
- |**AGE**| a  | Must be a positive integer
- |**BLOODTYPE**| bt | Must be one of **A-**, **A+**, **B-**, **B+**, **AB-**, **AB+**, **O-**, **O+**|
- |**ALLERGY**| al | Up to 256 alphanumeric characters |
- |**DATE**| d | Must be in the form of 'dd-MM-yyyy HHmm" |
- |**CONDITION**| c | Up to 256 alphanumeric characters |
- |**MEDICATION**| m | Up to 256 alphanumeric characters |
+| FIELD        | PREFIX | CONSTRAINTS                                                                                                      |
+|--------------|--------|------------------------------------------------------------------------------------------------------------------|
+| **NAME**     | n      | Up to 256 alphanumeric characters                                                                               |
+| **NRIC**     | i      | Starts with a letter, followed by seven digits, and ends with another letter (letters are not case-sensitive) |
+| **EMAIL**    | e      | Valid email format: **email@domain.com**                                                                      |
+| **GENDER**   | g      | Either **M** or **F**                                                                                         |
+| **PHONE**    | p      | Must be 8 digits                                                                                                |
+| **AGE**      | a      | Must be a positive integer                                                                                      |
+| **BLOODTYPE**| bt     | Must be one of **A-**, **A+**, **B-**, **B+**, **AB-**, **AB+**, **O-**, **O+**                             |
+| **ALLERGY**  | al     | Up to 256 alphanumeric characters                                                                               |
+| **DATE**     | d      | Must be in the form of 'dd-MM-yyyy HHmm'                                                                       |
+| **CONDITION**| c      | Up to 256 alphanumeric characters                                                                               |
+| **MEDICATION**| m     | Up to 256 alphanumeric characters                                                                               |
 
 ### Viewing help : `help`
 
