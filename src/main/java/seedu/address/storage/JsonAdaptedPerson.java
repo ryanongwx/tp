@@ -17,11 +17,11 @@ import seedu.address.model.person.Allergy;
 import seedu.address.model.person.BloodType;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
-import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.record.UniqueRecordList;
 import seedu.address.model.shared.Name;
+import seedu.address.model.shared.Nric;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -125,10 +125,10 @@ class JsonAdaptedPerson {
 
         if (nric == null) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, seedu.address.model.person.Nric.class.getSimpleName()));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, seedu.address.model.shared.Nric.class.getSimpleName()));
         }
         if (!Nric.isValidNric(nric)) {
-            throw new IllegalValueException(seedu.address.model.person.Nric.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(seedu.address.model.shared.Nric.MESSAGE_CONSTRAINTS);
         }
         final Nric modelNric = new Nric(nric);
 

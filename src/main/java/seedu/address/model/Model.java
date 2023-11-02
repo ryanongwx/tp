@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.record.Record;
 
@@ -14,6 +15,10 @@ import seedu.address.model.record.Record;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Record> PREDICATE_SHOW_ALL_RECORDS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -86,16 +91,34 @@ public interface Model {
      * Updates the filter of the filtered person list to filter by the given
      * {@code predicate}.
      *
-     * @throws NullPointerException if {@code predicate} is null.
+     * @throws NullPointerException
+     *             if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /** Returns an unmodifiable view of the pinned person list */
     ObservableList<Person> getPinnedPersonList();
 
+    /** Returns an unmodifiable view of the filtered appointment list */
+    ObservableList<Appointment> getFilteredAppointmentList();
+
+    void resetAppointmentList();
+
     ObservableList<Record> getRecordList();
 
+    /** Returns an unmodifiable view of the filtered record list */
+    ObservableList<Record> getFilteredRecordList();
+
     void updateRecordList(Person person);
+
+    /**
+     * Updates the filter of the filtered record list to filter by the given
+     * {@code predicate}.
+     *
+     * @throws NullPointerException
+     *             if {@code predicate} is null.
+     */
+    void updateFilteredRecordList(Predicate<Record> predicate);
 
     ObservableList<Person> getPersonBeingViewed();
 

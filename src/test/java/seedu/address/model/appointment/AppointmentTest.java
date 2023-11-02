@@ -53,7 +53,7 @@ public class AppointmentTest {
     @Test
     public void toStringMethod() {
         String expected = Appointment.class.getCanonicalName() + "{name=" + EYE_EXAM.getName()
-                + ", dateTime=" + EYE_EXAM.getDateTime()
+                + ", dateTime=" + EYE_EXAM.getDateTime() + ", nric=" + EYE_EXAM.getNric()
                 + "}";
         assertEquals(expected, EYE_EXAM.toString());
     }
