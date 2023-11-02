@@ -101,7 +101,6 @@ The application should open up similar to the image below.
  |**DATE**| d | Must be in the form of 'dd-MM-yyyy HHmm" |
  |**CONDITION**| c | Up to 256 alphanumeric characters |
  |**MEDICATION**| m | Up to 256 alphanumeric characters |
- |**APPOINTMENTNAME**| n | Up to 256 alphanumeric characters |
 
 ### Viewing help : `help`
 
@@ -143,9 +142,11 @@ Examples:
 
 Adds an appointment.
 
-Format: `addappointment PATIENTID n/APPOINTMENTNAME d/DATETIME`
+Format: `addappointment PATIENTID n/NAME d/DATETIME`
 
-- Adds an appointment with patient with the corresponding **PATIENTID** to the **Appointments** list. <br>
+- Adds an appointment to the patient with the corresponding **PATIENTID**.
+
+-The appointment will then appear in the **APPOINTMENTS** list with patient's **NRIC**. <br>
 
 - Constraints of each fied are as stated in the **CONSTRAINTS** section above. <br>
 
@@ -230,7 +231,7 @@ Format: `editrecord PATIENTID/RECORDID PREFIX/NEWVALUE...`
 - Existing values in the field will be updated to the **NEWVALUE** input. <br>
 
 - Multiple entries of date fields are not allowed. <br>
-
+S
 - Multiple entries of condition/medication fields are allowed to represent a new set of conditions. <br>
 - Constraints of each fied are as stated in the **CONSTRAINTS** section above. <br>
 
