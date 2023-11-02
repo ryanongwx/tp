@@ -55,6 +55,7 @@ public class AddAppointmentCommandTest {
 
         ModelManager expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.resetAppointmentList();
 
         assertCommandSuccess(addAppointmentCommand, model, expectedMessage, expectedModel);
     }
@@ -89,6 +90,7 @@ public class AddAppointmentCommandTest {
         ModelManager expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.resetAppointmentList();
 
         assertCommandSuccess(addAppointmentCommand, model, expectedMessage, expectedModel);
     }

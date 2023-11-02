@@ -21,7 +21,6 @@ import seedu.address.model.record.UniqueRecordList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniquePersonList fullPersonList;
     private final UniquePersonList personBeingViewed;
     private final UniqueRecordList records;
     private final UniqueAppointmentList appointments;
@@ -37,7 +36,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        fullPersonList = new UniquePersonList();
         records = new UniqueRecordList();
         appointments = new UniqueAppointmentList();
         personBeingViewed = new UniquePersonList();
@@ -79,7 +77,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         List<Person> fullList = newData.getPersonList();
         setPersons(fullList);
-        fullPersonList.setPersons(fullList);
     }
 
     //// person-level operations
@@ -122,47 +119,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// appointment-level operations
-
-    /**
-     * Returns true if a appointment with the same identity as {@code appointment}
-     * exists in
-     * the address book.
-     */
-    public boolean hasAppointment(Appointment appointment) {
-        requireNonNull(appointment);
-        return appointments.contains(appointment);
-    }
-
-    /**
-     * Adds an appointment to the address book.
-     * The appointment must not already exist in the address book.
-     */
-    public void addAppointment(Appointment a) {
-        appointments.add(a);
-    }
-
-    /**
-     * Replaces the given appointment {@code target} in the list with
-     * {@code editedAppointment}.
-     * {@code target} must exist in the address book.
-     * The appointment identity of {@code editedAppointment} must not be the same as
-     * another
-     * existing appointment in the address book.
-     */
-    public void setAppointment(Appointment target, Appointment editedAppointment) {
-        requireNonNull(editedAppointment);
-
-        appointments.setAppointment(target, editedAppointment);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removeAppointment(Appointment key) {
-        appointments.remove(key);
-    }
     //// util methods
 
     @Override
