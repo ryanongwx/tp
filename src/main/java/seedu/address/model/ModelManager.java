@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.record.Record;
@@ -178,9 +180,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateRecordList(Person person) {
+    public void updateRecordList(Person person, Index index) {
         requireNonNull(person);
-        this.addressBook.setRecords(person);
+        this.addressBook.setRecords(person, index);
         updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
     }
 
@@ -193,6 +195,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getPersonBeingViewed() {
         return this.addressBook.getPersonBeingViewed();
+    }
+
+    @Override
+    public List<Index> getPatientIndex() {
+        return this.addressBook.getPatientIndex();
     }
 
     @Override

@@ -37,7 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private AppointmentsWindow appointmentsWindow;
     private PinnedPersonListPanel pinnedPersonListPanel;
     private RecordListPanel recordListPanel;
-    private PersonListPanel personBeingViewedPanel;
+    private PersonViewPanel personBeingViewedPanel;
     @FXML
     private StackPane commandBoxPlaceholder;
     @FXML
@@ -126,7 +126,7 @@ public class MainWindow extends UiPart<Stage> {
         recordListPanel = new RecordListPanel(logic.getFilteredRecordList());
         recordListPanelPlaceholder.getChildren().add(recordListPanel.getRoot());
 
-        personBeingViewedPanel = new PersonListPanel(logic.getPersonBeingViewed());
+        personBeingViewedPanel = new PersonViewPanel(logic.getPersonBeingViewed(), logic.getPatientIndex());
         personBeingViewedPanelPlaceholder.getChildren().add(personBeingViewedPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

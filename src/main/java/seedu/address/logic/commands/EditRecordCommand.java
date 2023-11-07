@@ -103,7 +103,7 @@ public class EditRecordCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateRecordList(editedPerson);
+        model.updateRecordList(editedPerson, this.patientIndex);
         return new CommandResult(String.format(MESSAGE_EDIT_RECORD_SUCCESS,
                 Messages.format(editedRecord, personToEdit)));
     }
