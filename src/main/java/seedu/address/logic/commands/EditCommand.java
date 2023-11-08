@@ -66,9 +66,9 @@ public class EditCommand extends Command {
 
     /**
      * @param index
-     *            of the person in the filtered person list to edit
+     *                             of the person in the filtered person list to edit
      * @param editPersonDescriptor
-     *            details to edit the person with
+     *                             details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
@@ -84,7 +84,8 @@ public class EditCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                    + ". Please ensure that it is within 1 and " + lastShownList.size() + ".");
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());

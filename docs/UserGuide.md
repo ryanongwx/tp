@@ -23,7 +23,7 @@ Discover the power of Medbook:
 
 - **Digitalize Your Clinic**: Effortlessly transition to a digital clinic with our user-friendly features.
 - **Optimized for Speed**: Medbook offers both a Command Line Interface (CLI) and an intuitive Graphical User Interface, making it ideal for fast typists like you.
-- **QuickStart**: New to Medbook? Click [here](#quick-start-) to start your journey.
+- **QuickStart**: New to Medbook? Click [here](#quick-start) to start your journey.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -36,7 +36,7 @@ Discover the power of Medbook:
 Welcome to the Medbook User Guide! Our goal is to empower you with the knowledge and confidence to make the most of Medbook's features.
 
 - **Effortless Navigation**: Use the table of contents for seamless navigation between sections.
-- **Quick Start for New Users**: If you're new to Medbook, start with the [Quick Start](#quick-start-) section to get up and running.
+- **Quick Start for New Users**: If you're new to Medbook, start with the [Quick Start](#quick-start) section to get up and running.
 - **Explore Features**: For those who have already set up Medbook, dive into the [Features](#features) section to discover all that our application has to offer.
 
 We're here to make your experience as user-friendly as possible. Let's get started!
@@ -125,7 +125,7 @@ Here is a brief summary of GUI component of the main window of Medbook.
 
 ## Medbook Tutorial
 
-1. Launch the Medbook application. You may refer to [here](#quick-start-).
+1. Launch the Medbook application. You may refer to [here](#quick-start).
    - Note on launch, Medbook will populate some sample data.
 
 2. Let us try invoking the help window. Type help in the command box and press Enter to execute it. 
@@ -304,13 +304,13 @@ Format: `editpatient PATIENTID PREFIX/NEWVALUE...`
 
 Examples:
 
-- `editdetail 1 e/johndoe_updated@gmail.com` Edits the email address of the 1st person to be **johndoe_updated@gmail.com**. <br>
+- `editpatient 1 e/johndoe_updated@gmail.com` Edits the email address of the 1st person to be **johndoe_updated@gmail.com**. <br>
 
-- `editdetail 2 p/92345678` Edits the name of the 2nd person to be **92345678**. <br>
+- `editpatient 2 p/92345678` Edits the name of the 2nd person to be **92345678**. <br>
 
-- `editdetail 3 al/aspirin` Edits the allergy of the 3rd person to be **aspirin**. <br>
+- `editpatient 3 al/aspirin` Edits the allergy of the 3rd person to be **aspirin**. <br>
 
-- `editdetail 2 p/92345678 al/aspirin` Edits the name and allergy of the 2nd person to be **92345678** and **aspirin** respectively. <br>
+- `editpatient 2 p/92345678 al/aspirin` Edits the name and allergy of the 2nd person to be **92345678** and **aspirin** respectively. <br>
 
 ### Editing a record of a patient : `editrecord`
 
@@ -440,11 +440,11 @@ Examples:
 
 - `unpin 2` unpins the **2nd patient** in the **PINNED PATIENT** list.
 
-### Clearing all entries : `clear`
+### Attaching files to a patient's record 
 
-Clears all entries from the medbook.
+Attach local files to a patient's record by clicking on the attach file button located within each record row.
 
-Format: `clear`
+Caution: Refrain from deleting/reloating the local file. If necessary, re-attach the new file after relocation/deletiion.
 
 ### Exiting the program : `exit`
 
@@ -454,15 +454,15 @@ Format: `exit`
 
 ### Saving the data
 
-MedBook data is securely encrypted and saved to the hard disk automatically after any command that changes the data. This ensures the privacy and safety of your data. When MedBook is restarted, the data is decrypted and loaded back into the application.
+MedBook data is saved to the hard disk automatically after any command that changes the data. This ensures the safety of your data. When MedBook is restarted, the data is loaded back into the application automatically.
 
 ### Editing the data file
 
-MedBook data are saved automatically as a JSON file [JAR file location]/data/medbook.json. As the data is encrypted, users will not be able edit this files to directly make changes to the data files. This also prevents unauthorised access of the system.
+MedBook data are saved automatically as a JSON file [JAR file location]/data/medbook.json. Advanced users will be able edit this files to directly make changes to the data files. 
 
 <box type="warning" seamless>
 Caution:
-Do not make changes to the data file.
+Only advanced users may make changes to the data file. Be careful as wrong data formatting may result in the application not working as intended.
 </box>
 
 ## FAQ

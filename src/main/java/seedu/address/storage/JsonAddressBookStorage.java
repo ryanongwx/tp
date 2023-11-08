@@ -6,12 +6,8 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Base64;
 import java.util.Optional;
 import java.util.logging.Logger;
-import javax.crypto.Cipher;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
@@ -24,9 +20,7 @@ import seedu.address.model.ReadOnlyAddressBook;
  */
 public class JsonAddressBookStorage implements AddressBookStorage {
 
-    protected static final String INIT_VECTOR = "a5s8d2e9w4z6x3c7";
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
-    private static final String SECRET_KEY = "Xp2s5v8y/B?E(H+M";
 
     private Path filePath;
 
@@ -37,51 +31,6 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      */
     public JsonAddressBookStorage(Path filePath) {
         this.filePath = filePath;
-    }
-
-    /**
-     * Encrypts the given string using AES encryption.
-     *
-     * @param value The string to be encrypted.
-     * @return The encrypted string.
-     */
-    protected String encrypt(String value) {
-        try {
-            IvParameterSpec iv = new IvParameterSpec(INIT_VECTOR.getBytes("UTF-8"));
-            SecretKeySpec skeySpec = new SecretKeySpec(SECRET_KEY.getBytes("UTF-8"), "AES");
-
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-            cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
-
-            byte[] encrypted = cipher.doFinal(value.getBytes());
-            return Base64.getEncoder().encodeToString(encrypted);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
-     * Decrypts the given encrypted string using AES decryption.
-     *
-     * @param encrypted The string to be decrypted.
-     * @return The decrypted string.
-     */
-    private String decrypt(String encrypted) {
-        try {
-            IvParameterSpec iv = new IvParameterSpec(INIT_VECTOR.getBytes("UTF-8"));
-            SecretKeySpec skeySpec = new SecretKeySpec(SECRET_KEY.getBytes("UTF-8"), "AES");
-
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
-            cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
-
-            byte[] original = cipher.doFinal(Base64.getDecoder().decode(encrypted));
-
-            return new String(original);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return null;
     }
 
     /**
@@ -121,11 +70,10 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         }
 
         try {
-            String encryptedData = new String(Files.readAllBytes(filePath), StandardCharsets.UTF_8);
-            String decryptedData = decrypt(encryptedData);
+            String data = new String(Files.readAllBytes(filePath), StandardCharsets.UTF_8);
 
             JsonSerializableAddressBook jsonAddressBook = JsonUtil.fromJsonString(
-                    decryptedData, JsonSerializableAddressBook.class);
+                    data, JsonSerializableAddressBook.class);
 
             if (jsonAddressBook == null) {
                 return Optional.empty();
@@ -162,9 +110,8 @@ public class JsonAddressBookStorage implements AddressBookStorage {
 
         FileUtil.createIfMissing(filePath);
         String jsonData = JsonUtil.toJsonString(new JsonSerializableAddressBook(addressBook));
-        String encryptedData = encrypt(jsonData);
 
-        Files.write(filePath, encryptedData.getBytes(StandardCharsets.UTF_8));
+        Files.write(filePath, jsonData.getBytes(StandardCharsets.UTF_8));
     }
 
 }
