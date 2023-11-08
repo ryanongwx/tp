@@ -11,10 +11,12 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
@@ -101,6 +103,11 @@ public class ModelManagerTest {
     @Test
     public void getPinnedPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getPinnedPersonList().remove(0));
+    }
+
+    @Test
+    public void nonNullArray() {
+        assertTrue(modelManager.getPatientIndex() != null);
     }
 
     @Test

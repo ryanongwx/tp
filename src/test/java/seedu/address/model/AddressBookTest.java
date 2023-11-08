@@ -6,9 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ALLERGY_PEANUTS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -18,6 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
@@ -91,6 +94,23 @@ public class AddressBookTest {
     public void toStringMethod() {
         String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList() + "}";
         assertEquals(expected, addressBook.toString());
+    }
+
+    @Test
+    public void indexUpdated() {
+        this.addressBook.setRecords(ALICE, INDEX_FIRST_PERSON);
+        assertEquals(INDEX_FIRST_PERSON, this.addressBook.getPatientIndex().get(0));
+    }
+
+    @Test
+    void correctSizeOfIndexZero() {
+        assertEquals(0, this.addressBook.getPatientIndex().size());
+    }
+
+    @Test
+    void correctSizeOfIndexOne() {
+        this.addressBook.setRecords(ALICE, INDEX_FIRST_PERSON);
+        assertEquals(1, this.addressBook.getPatientIndex().size());
     }
 
     /**
