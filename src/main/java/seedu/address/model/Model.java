@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -114,7 +115,7 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered record list */
     ObservableList<Record> getFilteredRecordList();
 
-    void updateRecordList(Person person);
+    void updateRecordList(Person person, Index index);
 
     /**
      * Updates the filter of the filtered record list to filter by the given
@@ -127,4 +128,5 @@ public interface Model {
 
     ObservableList<Person> getPersonBeingViewed();
 
+    List<Index> getPatientIndex();
 }

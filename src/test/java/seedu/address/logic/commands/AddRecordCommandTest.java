@@ -45,7 +45,7 @@ public class AddRecordCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(2), personWithAddedRecord);
-        expectedModel.updateRecordList(personWithAddedRecord);
+        expectedModel.updateRecordList(personWithAddedRecord, INDEX_THIRD_PERSON);
         assertCommandSuccess(addRecordCommand, model, expectedMessage, expectedModel);
     }
 
@@ -77,7 +77,7 @@ public class AddRecordCommandTest {
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
 
         expectedModel.setPerson(model.getFilteredPersonList().get(0), personWithAddedRecord);
-        expectedModel.updateRecordList(personWithAddedRecord);
+        expectedModel.updateRecordList(personWithAddedRecord, INDEX_FIRST_PERSON);
         assertCommandSuccess(addRecordCommand, model, expectedMessage, expectedModel);
 
     }

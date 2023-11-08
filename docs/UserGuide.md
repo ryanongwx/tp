@@ -105,10 +105,10 @@ Here is a brief summary of GUI component of the main window of Medbook.
 | Menu Bar                 | Contains the help and file drop down menu for Medbook                                                       |
 | Message Display Box      | Display the message of every command. Either can be an error message or success message                     |
 | Patient List             | Contains all the Patient cards stored in Medbook                                                            |
-| Patient information card | Contains information of the Patient including age, blood type, gender, contact information and allergies    |
-| Patient being viewed     | Contains the patient card of currently being viewed patient                                                 |
-| Medical record List      | Contains all the Record card of the patient currently being viewed                                          |
-| Record card              | Contains information of the medical record including appointment date, condition, and prescribed medication |
+| Patient Information card | Contains information of the Patient including age, blood type, gender, contact information and allergies    |
+| Patient Being viewed     | Contains the patient card of currently being viewed patient                                                 |
+| Medical Record List      | Contains all the Record card of the patient currently being viewed                                          |
+| Record Card              | Contains information of the medical record including appointment date, condition, and prescribed medication |
 | Pinned Patient List      | Contains all the patient cards after command pin                                                            |
 | Command Input Box        | Allow users to input commands                                                                               |
 
@@ -117,8 +117,8 @@ Here is a brief summary of GUI component of the main window of Medbook.
 
 | **Name of component** | **Description**                                                           |
 |-----------------------|---------------------------------------------------------------------------|
-| Appointment card      | Contains information of appointments including name, date and NRIC number |
-| Appointment list      | Holds a list of Appointment card                                          |
+| Appointment Card      | Contains information of appointments including name, date and NRIC number |
+| Appointment List      | Holds a list of Appointment card                                          |
 | Calendar              | A calendar that displays appointments at certain date                     |
 | Previous Button       | Shift the month shown in the calendar to previous month                   |
 | Next Button           | Shift the month shown in the calendar to next month                       |
@@ -130,17 +130,17 @@ Here is a brief summary of GUI component of the main window of Medbook.
 
 2. Let us try invoking the help window. Type help in the command box and press Enter to execute it. 
 Please refer to the first section of [feature](#features) to have a more clear understanding of requirements of the parameters. 
-A similar help box as below should pop up.<br> <img src="images/HelpWindow.png" width="300"/>
+A similar help box as below should pop up.<br> <img src="images/HelpWindow.png" width="500"/>
 3. Now, let us try adding a new patient. In the command box, type in `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` and press Enter. 
-A success message should be displayed.<br><img src="images/AddPatientSuccess.png" width="500"/>
+A success message should be displayed.<br><img src="images/AddPatientSuccess.png" width="800"/>
 4. Try adding a few more patient to Medbook by yourself!
 5. Now, let us try adding a record to a patient. In the command box, type in `addrecord 3 d/18-09-2023 1800 c/Fever m/Paracetamol` and press Enter. 
 This will create a new medical record to the third patient shown in the middle column. 
-A similar message output should be shown in the Message Display Box.<br> <img src="images/AddRecordSuccess.png" width="500">
+A similar message output should be shown in the Message Display Box.<br> <img src="images/AddRecordSuccess.png" width="800">
 6. Try adding a few more records to patients in the Medbook by yourself!
 7. Let us view medical records of the first patient. Key in `view 1` to see all the records of the first patient.
 If you haven't added any medical records to the first patient, a similar **Record List** should be shown. 
-<br><img src="images/View.png" height="300"/>
+<br><img src="images/View.png" height="500"/>
 
 You may now have a basic understanding of this software. Try out the features in the following section on your own and explore the potential of Medbook!
 
@@ -180,25 +180,27 @@ You may now have a basic understanding of this software. Try out the features in
 
 - **PINNEDID**: refers to the unique ID shown in the displayed **PINNED PATIENT** list. The ID **must be a positive integer** 1, 2, 3, …​ <br>
 
+</box>
+
 ### PARAMETERS
 
-| FIELD        | PREFIX | CONSTRAINTS                                                                                                      |
-|--------------|--------|------------------------------------------------------------------------------------------------------------------|
-| **NAME**     | n      | Up to 256 alphanumeric characters                                                                               |
+| FIELD        | PREFIX | CONSTRAINTS                                                                                                   |
+|--------------|--------|---------------------------------------------------------------------------------------------------------------|
+| **NAME**     | n      | Up to 256 alphanumeric characters                                                                             |
 | **NRIC**     | i      | Starts with a letter, followed by seven digits, and ends with another letter (letters are not case-sensitive) |
 | **EMAIL**    | e      | Valid email format: **email@domain.com**                                                                      |
 | **GENDER**   | g      | Either **M** or **F**                                                                                         |
-| **PHONE**    | p      | Must be 8 digits                                                                                                |
-| **AGE**      | a      | Must be a positive integer                                                                                      |
-| **BLOODTYPE**| bt     | Must be one of **A-**, **A+**, **B-**, **B+**, **AB-**, **AB+**, **O-**, **O+**                             |
-| **ALLERGY**  | al     | Up to 256 alphanumeric characters                                                                               |
-| **DATE**     | d      | Must be in the form of 'dd-MM-yyyy HHmm'                                                                       |
-| **CONDITION**| c      | Up to 256 alphanumeric characters                                                                               |
-| **MEDICATION**| m     | Up to 256 alphanumeric characters                                                                               |
+| **PHONE**    | p      | Must be 8 digits                                                                                              |
+| **AGE**      | a      | Must be a non-negative integer                                                                                |
+| **BLOODTYPE**| bt     | Must be one of **A-**, **A+**, **B-**, **B+**, **AB-**, **AB+**, **O-**, **O+**                               |
+| **ALLERGY**  | al     | Up to 256 alphanumeric characters                                                                             |
+| **DATE**     | d      | Must be in the form of 'dd-MM-yyyy HHmm'                                                                      |
+| **CONDITION**| c      | Up to 256 alphanumeric characters                                                                             |
+| **MEDICATION**| m     | Up to 256 alphanumeric characters                                                                             |
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 Format: `help`
 
@@ -224,7 +226,7 @@ Format: `addrecord PATIENTID d/DATETIME c/CONDITIONS... m/MEDICATIONS...`
 
 - Adds a medical record to the patient with the corresponding **PATIENTID**. <br>
 
-- Constraints of each fied are as stated in the **CONSTRAINTS** section above. <br>
+- Constraints of each field are as stated in the **CONSTRAINTS** section above. <br>
 
 - Duplicate entries for **CONDITIONS** and **MEDICATIONS** will be considered as one entry 
 
@@ -256,19 +258,23 @@ Shows a list of all patients in the Medbook.
 
 Format: `list`
 
-- **All** patients in the Medbook will always be visible on the screen in the **MIDDLE** column.
+- **All** patients in the Medbook will always be visible on the screen in the **Patient List**.
 
 Examples:
 
-- `list` lists all the patients in the **MIDDLE** column.
+- `list` lists all the patients in the **Patient List**.
+
+<box type="info" seamless>
+    The `list` command allows you to easily view all the patients in the Patient List. For instance, after you've used the `search` command to find specific patients using keywords, you can use the `list` command to gather all the patients conveniently! 
+</box>
 
 ### View patient records : `view`
 
-Displays the medical records of the specified patient in the **RECORDS** list
+Displays the medical records of the specified patient in the **Medical Record List**.
 
 Format: `view PATIENTID`
 
-- The medical records of the patient with the corresponding `PATIENTID` will be displayed on screen in the **RECORDS** list. <br>
+- The medical records of the patient with the corresponding `PATIENTID` will be displayed on screen in the **Medical Record List**. <br>
 
 - Information about the patient will be displayed in the **PATIENT BEING VIEWED** section. <br>
 
@@ -276,15 +282,19 @@ Examples:
 
 - `view 2` displays the medical records of the **2nd patient** in the patients list. The displayed records will be in the **RECORDS** list and patient information will be in the **PATIENT BEING VIEWED** section.
 
+<box type="info" seamless>
+    The PATIENT INDEX in the Patient Being Viewed section remains consistent after using the `find`, `list` or `delete` command. 
+</box>
+
 ### View appointments : `viewappointment`
 
 Displays all the medical appointments in a separate window.
 
 Format: `viewappointment`
 
-- The appointments of all the patients in the patients list will be displayed on a new window in the **APPOINTMENTS** list. <br>
+- The appointments of all the patients in the patients list will be displayed on a new window in the **Appointment List**. <br>
 
-- The **description**, **date and time**, and **NRIC** of the patient involved in appointment will be displaye in the **APPOINTMENTS** list. <br>
+- The **description**, **date and time**, and **NRIC** of the patient involved in appointment will be displayed in the **Appointment List**. <br>
 
 - The **description** of appointments will also appear on the calendar at the corresponding **date**. <br>
 **Note**: Only the **first two** appointments according to the **APPOINTMENTS** list will be displayed on the calendar per date.
@@ -302,7 +312,7 @@ Format: `editpatient PATIENTID PREFIX/NEWVALUE...`
 
 - Existing values in the respective fields will be updated to the **NEWVALUE** input. <br>
 
-- Constraints of each fied are as stated in the **CONSTRAINTS** section above. <br>
+- Constraints of each field are as stated in the **CONSTRAINTS** section above. <br>
 
 - Duplicate entries for **CONDITIONS** and **MEDICATIONS** will be considered as one entry
 
@@ -331,7 +341,7 @@ Format: `editrecord PATIENTID/RECORDID PREFIX/NEWVALUE...`
 - Multiple entries of date fields are not allowed. <br>
 S
 - Multiple entries of condition/medication fields are allowed to represent a new set of conditions. <br>
-- Constraints of each fied are as stated in the **CONSTRAINTS** section above. <br>
+- Constraints of each field are as stated in the **CONSTRAINTS** section above. <br>
 
 Examples:
 
@@ -448,9 +458,9 @@ Examples:
 
 ### Attaching files to a patient's record 
 
-Attach local files to a patient's record by clicking on the attach file button located within each record row.
+Attach local files to a patient's record by clicking on the attached file button located within each record row.
 
-Caution: Refrain from deleting/reloating the local file. If necessary, re-attach the new file after relocation/deletiion.
+Caution: Refrain from deleting/relocating the local file. If necessary, re-attach the new file after relocation/deletion.
 
 ### Exiting the program : `exit`
 
@@ -464,7 +474,7 @@ MedBook data is saved to the hard disk automatically after any command that chan
 
 ### Editing the data file
 
-MedBook data are saved automatically as a JSON file [JAR file location]/data/medbook.json. Advanced users will be able edit this files to directly make changes to the data files. 
+MedBook data are saved automatically as a JSON file [JAR file location]/data/medbook.json. Advanced users will be able to edit this files to directly make changes to the data files. 
 
 <box type="warning" seamless>
 Caution:

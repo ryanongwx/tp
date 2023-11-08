@@ -59,7 +59,7 @@ public class DeleteRecordCommand extends Command {
                 targetPatient.getBloodType(), targetPatient.getAllergies(), newRecordsList,
                 targetPatient.getAppointments(), targetPatient.isPinned());
         model.setPerson(targetPatient, patientWithDeletedRecord);
-        model.updateRecordList(patientWithDeletedRecord);
+        model.updateRecordList(patientWithDeletedRecord, targetPatientIndex);
         return new CommandResult(String.format(MESSAGE_DELETE_RECORD_SUCCESS,
                 Messages.format(targetRecord, targetPatient)));
     }
