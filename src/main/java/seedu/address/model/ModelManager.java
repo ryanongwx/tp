@@ -187,7 +187,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateRecordList(Person person, Index index) {
-        requireNonNull(person);
+        requireAllNonNull(person, index);
         this.addressBook.setRecords(person, index);
         updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
     }
