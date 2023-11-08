@@ -151,7 +151,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return records.asUnmodifiableObservableList();
     }
 
-    public List<Index> getPatientIndex() {return this.patientIndex;}
+    public List<Index> getPatientIndex() {
+        return this.patientIndex;
+    }
 
     public ObservableList<Appointment> getAppointmentList() {
         resetAppointmentList();

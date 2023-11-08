@@ -12,7 +12,10 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 
-public class PersonViewPanel extends UiPart<Region>{
+/**
+ * Panel containing the patient being viewed.
+ */
+public class PersonViewPanel extends UiPart<Region> {
 
     private static final String FXML = "ViewedPersonPanel.fxml";
 
@@ -23,7 +26,10 @@ public class PersonViewPanel extends UiPart<Region>{
     @FXML
     private ListView<Person> viewedPerson;
 
-    public PersonViewPanel(ObservableList<Person> personList, List<Index> patientIndex){
+    /**
+     * Creates a {@code PersonViewPanel} with the given {@code ObservableList}.
+     */
+    public PersonViewPanel(ObservableList<Person> personList, List<Index> patientIndex) {
         super(FXML);
         this.patientIndex = patientIndex;
         viewedPerson.setItems(personList);
