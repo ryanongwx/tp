@@ -25,7 +25,7 @@ public class ViewCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_VIEW_PERSON_SUCCESS = "View Person: %1$s";
+    public static final String MESSAGE_VIEW_PERSON_SUCCESS = "View Patient: %1$s";
 
     private final Index targetIndex;
 
@@ -49,9 +49,9 @@ public class ViewCommand extends Command {
                     + ". Please ensure that it is within 1 and " + lastShownList.size() + ".");
         }
 
-        Person personToView = lastShownList.get(targetIndex.getZeroBased());
-        model.updateRecordList(personToView, targetIndex);
-        return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(personToView)));
+        Person patientToView = lastShownList.get(targetIndex.getZeroBased());
+        model.updateRecordList(patientToView, targetIndex);
+        return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(patientToView)));
     }
 
     @Override
