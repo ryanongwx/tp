@@ -54,7 +54,8 @@ public class AddRecordCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         AddRecordCommand addRecordCommand = new AddRecordCommand(outOfBoundIndex, ALLERGIC_REACTION2);
 
-        assertCommandFailure(addRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(addRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                + ". Please ensure that it is within 1 and " + model.getFilteredPersonList().size() + ".");
     }
 
     @Test
@@ -91,7 +92,8 @@ public class AddRecordCommandTest {
 
         AddRecordCommand addRecordCommand = new AddRecordCommand(outOfBoundIndex, FEVER0);
 
-        assertCommandFailure(addRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(addRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                + ". Please ensure that it is within 1 and " + model.getFilteredPersonList().size() + ".");
     }
 
     @Test

@@ -7,19 +7,7 @@ pageNav: 3
 # MedBook Developer Guide
 ## Acknowledgements
 
-This project has benefited from the use of several third-party libraries, as well as ideas and code snippets from various sources. We express our gratitude to the creators and maintainers of these resources.
-
-### Java Cryptography Extension (JCE)
-
-The project utilizes the Java Cryptography Extension (JCE) for implementing encryption and decryption functionalities. Specific classes such as `Cipher`, `IvParameterSpec`, and `SecretKeySpec` have been used to perform cryptographic operations.
-
-- `javax.crypto.Cipher`: This class provides the functionality of a cryptographic cipher, used here for encryption and decryption.
-- `javax.crypto.spec.IvParameterSpec`: This class specifies an initialization vector (IV) to provide an additional parameter to algorithms.
-- `javax.crypto.spec.SecretKeySpec`: This class specifies a secret key in a provider-independent fashion.
-
-These classes are part of the Java Cryptography Extension (JCE) framework, which is included in the Java Standard Edition (Java SE) from Oracle. More information can be found on the [Official Oracle Documentation](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/javax/crypto/Cipher.html).
-
-We ensure that all used and redistributed libraries are credited appropriately, and we encourage users and developers to also adhere to the terms and conditions of each library's license.
+This project has not used any third-party libraries.
 
 ---
 
@@ -312,35 +300,6 @@ The following sequence diagram shows how the view operation works:
 - **Alternative 2**: Utilize `UniqueRecordList` for `records` and `Person` for `personBeingViewed`.
   - _Pros_: Reduced memory usage.
   - _Cons_: Increased complexity and required additional object manipulations.
-
----
-
-## Encryption/Decryption Feature
-
-### Implementation
-
-MedBook secures user data through automatic encryption before saving to disk and decryption upon loading.
-
-#### How it Works
-
-1. **Encryption**: Upon executing a data-altering command:
-   - Convert data object to JSON.
-   - Encrypt the JSON string using AES (CBC mode, PKCS5 padding).
-   - Save encrypted string to disk.
-2. **Decryption**: Upon application start:
-   - Read and decrypt the stored string.
-   - Convert the decrypted JSON back into a data object.
-
-### Design Considerations
-
-#### Choice of Encryption Algorithm
-
-- **Alternative 1**: (Chosen) Use AES in CBC mode with PKCS5 padding.
-  - _Pros_: Strong, trusted encryption.
-  - _Cons_: Potentially high computational cost for large datasets.
-- **Alternative 2**: Use a lighter encryption algorithm.
-  - _Pros_: Faster processing times.
-  - _Cons_: Potentially less secure.
 
 ---
 

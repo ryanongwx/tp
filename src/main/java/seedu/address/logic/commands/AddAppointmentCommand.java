@@ -53,7 +53,8 @@ public class AddAppointmentCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                    + ". Please ensure that it is within 1 and " + lastShownList.size() + ".");
         }
 
         Person patient = lastShownList.get(index.getZeroBased());
