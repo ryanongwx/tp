@@ -184,19 +184,19 @@ You may now have a basic understanding of this software. Try out the features in
 
 ### PARAMETERS
 
-| FIELD        | PREFIX | CONSTRAINTS                                                                                                      |
-|--------------|--------|------------------------------------------------------------------------------------------------------------------|
-| **NAME**     | n      | Up to 256 alphanumeric characters                                                                               |
+| FIELD        | PREFIX | CONSTRAINTS                                                                                                   |
+|--------------|--------|---------------------------------------------------------------------------------------------------------------|
+| **NAME**     | n      | Up to 256 alphanumeric characters                                                                             |
 | **NRIC**     | i      | Starts with a letter, followed by seven digits, and ends with another letter (letters are not case-sensitive) |
 | **EMAIL**    | e      | Valid email format: **email@domain.com**                                                                      |
 | **GENDER**   | g      | Either **M** or **F**                                                                                         |
-| **PHONE**    | p      | Must be 8 digits                                                                                                |
-| **AGE**      | a      | Must be a positive integer                                                                                      |
-| **BLOODTYPE**| bt     | Must be one of **A-**, **A+**, **B-**, **B+**, **AB-**, **AB+**, **O-**, **O+**                             |
-| **ALLERGY**  | al     | Up to 256 alphanumeric characters                                                                               |
-| **DATE**     | d      | Must be in the form of 'dd-MM-yyyy HHmm'                                                                       |
-| **CONDITION**| c      | Up to 256 alphanumeric characters                                                                               |
-| **MEDICATION**| m     | Up to 256 alphanumeric characters                                                                               |
+| **PHONE**    | p      | Must be 8 digits                                                                                              |
+| **AGE**      | a      | Must be a non-negative integer                                                                                |
+| **BLOODTYPE**| bt     | Must be one of **A-**, **A+**, **B-**, **B+**, **AB-**, **AB+**, **O-**, **O+**                               |
+| **ALLERGY**  | al     | Up to 256 alphanumeric characters                                                                             |
+| **DATE**     | d      | Must be in the form of 'dd-MM-yyyy HHmm'                                                                      |
+| **CONDITION**| c      | Up to 256 alphanumeric characters                                                                             |
+| **MEDICATION**| m     | Up to 256 alphanumeric characters                                                                             |
 
 ### Viewing help : `help`
 
@@ -226,7 +226,7 @@ Format: `addrecord PATIENTID d/DATETIME c/CONDITIONS... m/MEDICATIONS...`
 
 - Adds a medical record to the patient with the corresponding **PATIENTID**. <br>
 
-- Constraints of each flied are as stated in the **CONSTRAINTS** section above. <br>
+- Constraints of each field are as stated in the **CONSTRAINTS** section above. <br>
 
 - Duplicate entries for **CONDITIONS** and **MEDICATIONS** will be considered as one entry 
 
@@ -265,7 +265,7 @@ Examples:
 - `list` lists all the patients in the **PATIENT LIST**.
 
 <box type="info" seamless>
-    The `list` command allows you to easily access all the patients in the Patient List. For instance, after you've used the `search` command to find specific patients using keywords, you can use the `list` command to gather all the patients conveniently! 
+    The `list` command allows you to easily view all the patients in the Patient List. For instance, after you've used the `search` command to find specific patients using keywords, you can use the `list` command to gather all the patients conveniently! 
 </box>
 
 ### View patient records : `view`
@@ -294,7 +294,7 @@ Format: `viewappointment`
 
 - The appointments of all the patients in the patients list will be displayed on a new window in the **APPOINTMENTS** list. <br>
 
-- The **description**, **date and time**, and **NRIC** of the patient involved in appointment will be display in the **APPOINTMENTS** list. <br>
+- The **description**, **date and time**, and **NRIC** of the patient involved in appointment will be displayed in the **APPOINTMENT List**. <br>
 
 - The **description** of appointments will also appear on the calendar at the corresponding **date**. <br>
 **Note**: Only the **first two** appointments according to the **APPOINTMENTS** list will be displayed on the calendar per date.
@@ -312,7 +312,7 @@ Format: `editpatient PATIENTID PREFIX/NEWVALUE...`
 
 - Existing values in the respective fields will be updated to the **NEWVALUE** input. <br>
 
-- Constraints of each flied are as stated in the **CONSTRAINTS** section above. <br>
+- Constraints of each field are as stated in the **CONSTRAINTS** section above. <br>
 
 - Duplicate entries for **CONDITIONS** and **MEDICATIONS** will be considered as one entry
 
@@ -341,7 +341,7 @@ Format: `editrecord PATIENTID/RECORDID PREFIX/NEWVALUE...`
 - Multiple entries of date fields are not allowed. <br>
 S
 - Multiple entries of condition/medication fields are allowed to represent a new set of conditions. <br>
-- Constraints of each flied are as stated in the **CONSTRAINTS** section above. <br>
+- Constraints of each field are as stated in the **CONSTRAINTS** section above. <br>
 
 Examples:
 
@@ -458,9 +458,9 @@ Examples:
 
 ### Attaching files to a patient's record 
 
-Attach local files to a patient's record by clicking on the attach file button located within each record row.
+Attach local files to a patient's record by clicking on the attached file button located within each record row.
 
-Caution: Refrain from deleting/reloading the local file. If necessary, re-attach the new file after relocation/deletion.
+Caution: Refrain from deleting/relocating the local file. If necessary, re-attach the new file after relocation/deletion.
 
 ### Exiting the program : `exit`
 
