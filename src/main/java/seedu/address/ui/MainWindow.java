@@ -24,6 +24,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static MainWindow mainWindow;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -38,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private PinnedPersonListPanel pinnedPersonListPanel;
     private RecordListPanel recordListPanel;
     private PersonListPanel personBeingViewedPanel;
+
     @FXML
     private StackPane commandBoxPlaceholder;
     @FXML
@@ -72,6 +74,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         appointmentsWindow = new AppointmentsWindow(new Stage(), logic);
+        mainWindow = this;
     }
 
     public Stage getPrimaryStage() {
@@ -80,6 +83,14 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+    }
+
+    public static MainWindow getInstance() {
+        return mainWindow;
+    }
+
+    public void setResultDisplay(String s) {
+        resultDisplay.setFeedbackToUser(s);
     }
 
     /**

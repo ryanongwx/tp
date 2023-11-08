@@ -64,7 +64,8 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                + ". Please ensure that it is within 1 and " + model.getFilteredPersonList().size() + ".");
     }
 
     @Test
@@ -173,10 +174,10 @@ public class LogicManagerTest {
      * Storage component.
      *
      * @param e
-     *            the exception to be thrown by the Storage component
+     *                        the exception to be thrown by the Storage component
      * @param expectedMessage
-     *            the message expected inside exception thrown by the
-     *            Logic component
+     *                        the message expected inside exception thrown by the
+     *                        Logic component
      */
     private void assertCommandFailureForExceptionFromStorage(IOException e, String expectedMessage) {
         Path prefPath = temporaryFolder.resolve("ExceptionUserPrefs.json");

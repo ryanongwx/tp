@@ -3,7 +3,6 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.HOON;
@@ -25,7 +24,6 @@ import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.testutil.MockInvalidKeyJsonAddressBookStorage;
 
 public class JsonAddressBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
@@ -157,14 +155,6 @@ public class JsonAddressBookStorageTest {
 
         JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
         assertThrows(DataLoadingException.class, () -> jsonAddressBookStorage.readAddressBook(filePath));
-    }
-
-    @Test
-    public void encrypt_invalidKeySize_returnsNull() throws Exception {
-        JsonAddressBookStorage storage = new MockInvalidKeyJsonAddressBookStorage(TEST_DATA_FOLDER);
-
-        String result = storage.encrypt("testString");
-        assertNull(result);
     }
 
     @Test

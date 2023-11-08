@@ -31,6 +31,7 @@ public class ViewCommand extends Command {
 
     /**
      * Constructor for ViewCommand class
+     *
      * @param targetIndex the patient Index to view
      */
     public ViewCommand(Index targetIndex) {
@@ -44,7 +45,8 @@ public class ViewCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                    + ". Please ensure that it is within 1 and " + lastShownList.size() + ".");
         }
 
         Person personToView = lastShownList.get(targetIndex.getZeroBased());
