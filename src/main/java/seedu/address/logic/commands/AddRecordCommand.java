@@ -35,6 +35,8 @@ public class AddRecordCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New record added: %1$s";
 
+    public static final String MESSAGE_DUPLICATE_RECORDS = "This record already exists in the record of the patient.";
+
     private final Record record;
 
     private final Index index;
@@ -56,6 +58,10 @@ public class AddRecordCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
                     + ". Please ensure that it is within 1 and " + lastShownList.size() + ".");
+        }
+
+        if (model.hasRecord(record, index)) {
+            throw new CommandException(MESSAGE_DUPLICATE_RECORDS);
         }
 
         Person personToAddRecord = lastShownList.get(index.getZeroBased());

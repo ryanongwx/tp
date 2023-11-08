@@ -1,11 +1,13 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.UniqueAppointmentList;
@@ -68,7 +70,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.personBeingViewed.setPersons(beingViewed);
         this.records.setRecords(person.getRecords());
     }
-
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -88,6 +89,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
+    }
+
+    /**
+     * Returns true if the same record under the patient at {@code index} exists in the Medbook.
+     */
+    public boolean hasRecord(Record record, Index index) {
+        requireAllNonNull(record, index);
+        return persons.asUnmodifiableObservableList().get(index.getZeroBased()).getRecords().contains(record);
     }
 
     /**
