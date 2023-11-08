@@ -41,7 +41,7 @@ public class DeleteRecordCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(3), personWithDeletedRecord);
-        expectedModel.updateRecordList(personWithDeletedRecord);
+        expectedModel.updateRecordList(personWithDeletedRecord, fromZeroBased(3));
         assertCommandSuccess(deleteRecordCommand, model, expectedMessage, expectedModel);
     }
 

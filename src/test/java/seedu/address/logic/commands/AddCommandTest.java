@@ -10,12 +10,14 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -181,7 +183,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateRecordList(Person person) {
+        public void updateRecordList(Person person, Index index) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -198,6 +200,12 @@ public class AddCommandTest {
         @Override
         public void updateFilteredRecordList(Predicate<Record> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Index> getPatientIndex() {
+            // TODO Auto-generated method stub
+            throw new AssertionError("Unimplemented method 'getPatientIndex'");
         }
     }
 
