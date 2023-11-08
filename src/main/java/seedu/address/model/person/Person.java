@@ -38,8 +38,6 @@ public class Person {
 
     /**
      * Constructs a Person
-     *
-     * @param nric2
      */
     public Person(Name name, Nric nric, Email email, Phone phone, Gender gender, Age age,
             BloodType bloodType, Set<Allergy> allergies, UniqueRecordList records, UniqueAppointmentList appointments,

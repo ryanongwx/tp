@@ -220,11 +220,13 @@ His email and phone number is **johndoe@gmail.com** and **12345678**, respective
 
 Adds a patient's medical record.
 
-Format: `addrecord PATIENTID d/DATETIME c/CONDITIONS... m/MEDICATION...`
+Format: `addrecord PATIENTID d/DATETIME c/CONDITIONS... m/MEDICATIONS...`
 
 - Adds a medical record to the patient with the corresponding **PATIENTID**. <br>
 
 - Constraints of each fied are as stated in the **CONSTRAINTS** section above. <br>
+
+- Duplicate entries for **CONDITIONS** and **MEDICATIONS** will be considered as one entry 
 
 Examples:
 
@@ -284,8 +286,8 @@ Format: `viewappointment`
 
 - The **description**, **date and time**, and **NRIC** of the patient involved in appointment will be displaye in the **APPOINTMENTS** list. <br>
 
-- The **description** of appointments will also appear on the calendar at the corresponding **date** . <br>
-**note**: Only the **first two** appointments according to the **APPOINTMENTS** list will be displayed on the calendar per date.
+- The **description** of appointments will also appear on the calendar at the corresponding **date**. <br>
+**Note**: Only the **first two** appointments according to the **APPOINTMENTS** list will be displayed on the calendar per date.
 
 ### Editing detail of a patient : `editpatient`
 
@@ -301,6 +303,8 @@ Format: `editpatient PATIENTID PREFIX/NEWVALUE...`
 - Existing values in the respective fields will be updated to the **NEWVALUE** input. <br>
 
 - Constraints of each fied are as stated in the **CONSTRAINTS** section above. <br>
+
+- Duplicate entries for **CONDITIONS** and **MEDICATIONS** will be considered as one entry
 
 Examples:
 
@@ -360,7 +364,7 @@ Examples:
 
 ### Locating records by keywords: `searchrecord`
 
-Searches the record with the corresponding **KEYWORD**
+Searches the records of the patient that the user is currently viewing with the corresponding **KEYWORD**
 
 Format: `searchrecord KEYWORD...`
 
@@ -371,6 +375,8 @@ Format: `searchrecord KEYWORD...`
 - Records matching at least one **KEYWORD** will be returned. <br>
 
 - Records with detail that are not exactly the same as the **KEYWORD** searched will not appear. <br>
+
+- **IMPORTANT:** `view` command must precede `searchrecord` command. Otherwise `searchrecord` command would return 0 record.
 
 Examples:
 
