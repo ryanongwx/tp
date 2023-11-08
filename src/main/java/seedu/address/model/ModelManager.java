@@ -112,6 +112,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasRecord(Record record, Index index) {
+        requireAllNonNull(record, index);
+        return addressBook.hasRecord(record, index);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }

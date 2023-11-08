@@ -97,6 +97,13 @@ public class AddRecordCommandTest {
     }
 
     @Test
+    public void execute_duplicateRecord_throwsCommandException() {
+        Index validIndex = INDEX_FIRST_PERSON;
+        AddRecordCommand addrecordCommand = new AddRecordCommand(validIndex, FEVER0);
+        assertCommandFailure(addrecordCommand, model, AddRecordCommand.MESSAGE_DUPLICATE_RECORDS);
+    }
+
+    @Test
     public void equals() {
         AddRecordCommand addRecordCommand1 = new AddRecordCommand(INDEX_FIRST_PERSON, FEVER0);
         AddRecordCommand addRecordCommand2 = new AddRecordCommand(INDEX_FIRST_PERSON, FEVER0);

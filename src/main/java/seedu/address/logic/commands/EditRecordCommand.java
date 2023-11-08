@@ -90,7 +90,8 @@ public class EditRecordCommand extends Command {
         Record recordToEdit = lastShownRecordList.get(recordIndex.getZeroBased());
         Record editedRecord = createEditedRecord(recordToEdit, editRecordDescriptor);
 
-        if (recordToEdit.equals(editedRecord) && uniqueRecordList.contains(editedRecord)) {
+
+        if (recordToEdit.equals(editedRecord) || uniqueRecordList.contains(editedRecord)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECORD);
         }
 

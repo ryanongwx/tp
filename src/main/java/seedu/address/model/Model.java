@@ -67,6 +67,10 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if the same record exists under the patient in the Medbook
+     */
+    boolean hasRecord(Record record, Index index);
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */

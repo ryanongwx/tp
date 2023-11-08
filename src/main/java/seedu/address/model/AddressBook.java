@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +75,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.records.setRecords(person.getRecords());
     }
 
-
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -94,6 +94,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
+    }
+
+    /**
+     * Returns true if the same record under the patient at {@code index} exists in the Medbook.
+     */
+    public boolean hasRecord(Record record, Index index) {
+        requireAllNonNull(record, index);
+        return persons.asUnmodifiableObservableList().get(index.getZeroBased()).getRecords().contains(record);
     }
 
     /**
