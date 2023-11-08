@@ -258,11 +258,11 @@ Shows a list of all patients in the Medbook.
 
 Format: `list`
 
-- **All** patients in the Medbook will always be visible on the screen in the **PATIENT LIST**.
+- **All** patients in the Medbook will always be visible on the screen in the **Patient List**.
 
 Examples:
 
-- `list` lists all the patients in the **PATIENT LIST**.
+- `list` lists all the patients in the **Patient List**.
 
 <box type="info" seamless>
     The `list` command allows you to easily view all the patients in the Patient List. For instance, after you've used the `search` command to find specific patients using keywords, you can use the `list` command to gather all the patients conveniently! 
@@ -292,9 +292,9 @@ Displays all the medical appointments in a separate window.
 
 Format: `viewappointment`
 
-- The appointments of all the patients in the patients list will be displayed on a new window in the **APPOINTMENTS** list. <br>
+- The appointments of all the patients in the patients list will be displayed on a new window in the **Appointment List**. <br>
 
-- The **description**, **date and time**, and **NRIC** of the patient involved in appointment will be displayed in the **APPOINTMENT List**. <br>
+- The **description**, **date and time**, and **NRIC** of the patient involved in appointment will be displayed in the **Appointment List**. <br>
 
 - The **description** of appointments will also appear on the calendar at the corresponding **date**. <br>
 **Note**: Only the **first two** appointments according to the **APPOINTMENTS** list will be displayed on the calendar per date.
