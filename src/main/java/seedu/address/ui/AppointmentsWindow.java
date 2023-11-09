@@ -19,7 +19,7 @@ public class AppointmentsWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(AppointmentsWindow.class);
 
-    private Logic logic;
+    private ObservableList<Appointment> appointmentList;
 
     // Independent Ui parts residing in this Ui container
     private AppointmentListPanel appointmentListPanel;
@@ -35,21 +35,21 @@ public class AppointmentsWindow extends UiPart<Stage> {
      *
      * @param root Stage to use as the root of the AppointmentsWindow.
      */
-    public AppointmentsWindow(Stage root, Logic logic) {
+    public AppointmentsWindow(Stage root, ObservableList<Appointment> appointmentList) {
         super(FXML, root);
-        this.logic = logic;
+        this.appointmentList = appointmentList;
     }
 
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        ObservableList<Appointment> filteredAppointments = logic.getFilteredAppointmentList();
+        appointmentCalenderPanelPlaceholder.getChildren().clear();
 
-        appointmentListPanel = new AppointmentListPanel(filteredAppointments);
+        appointmentListPanel = new AppointmentListPanel(appointmentList);
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
-        appointmentCalenderPanel = new AppointmentCalenderPanel(filteredAppointments);
+        appointmentCalenderPanel = new AppointmentCalenderPanel(appointmentList);
         appointmentCalenderPanelPlaceholder.getChildren().add(appointmentCalenderPanel.getRoot());
     }
 
@@ -75,6 +75,7 @@ public class AppointmentsWindow extends UiPart<Stage> {
      *                               </ul>
      */
     public void show() {
+        fillInnerParts();
         logger.fine("Showing appointments window.");
         getRoot().show();
         getRoot().centerOnScreen();
