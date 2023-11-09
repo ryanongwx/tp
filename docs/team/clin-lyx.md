@@ -9,11 +9,11 @@ MedBook - Medbook streamlines patient management for healthcare professionals. I
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability to view patient's medical records.
+  * What it does: allows the user to view medical records of different patient.
+  * Justification: This feature improves the product significantly because a user can visualize the records.
+  * Highlights: This enhancement affects existing ui layout. The implementation was challenging as it required changes to existing commands, creation of new classes, formatting of the ui of medical record card and reformatting the overall ui layout.
+
 
 * **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
+    * Added documentation for intro and the features `list` and `view` [\#72]()
     * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
   * Developer Guide:
     * Added implementation details of the `delete` feature.
