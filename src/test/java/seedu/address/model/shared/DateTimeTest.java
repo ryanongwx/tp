@@ -25,7 +25,7 @@ public class DateTimeTest {
         // null DateTime
         assertThrows(NullPointerException.class, () -> DateTime.isValidDateTime(null));
 
-        // in21-10-2001 1900
+        // invalid DateTime
         assertFalse(DateTime.isValidDateTime("")); // empty string
         assertFalse(DateTime.isValidDateTime(" ")); // spaces only
         assertFalse(DateTime.isValidDateTime("^")); // only non-alphanumeric characters
@@ -33,11 +33,16 @@ public class DateTimeTest {
         assertFalse(DateTime.isValidDateTime("21-10-2001 1900*")); // contains non-alphanumeric characters
         assertFalse(DateTime.isValidDateTime("1900 21-10-2001")); // wrong format
         assertFalse(DateTime.isValidDateTime("21/10/2001 1900")); // wrong format
+        assertFalse(DateTime.isValidDateTime("21-10-2001 1900 1900")); // extra time
+        assertFalse(DateTime.isValidDateTime("32-10-2001 1900")); // invalid date
+        assertFalse(DateTime.isValidDateTime("29-02-2001 1900")); // invalid date
+        assertFalse(DateTime.isValidDateTime("29-02-2001 2400")); // invalid date
         assertFalse(DateTime.isValidDateTime("21-10-2001")); // missing time
         assertFalse(DateTime.isValidDateTime("1900")); // missing date
 
-        // 21-10-2001 1900
-        assertTrue(DateTime.isValidDateTime("21-10-2001 1900")); // alphabets only
+        // valid DateTime
+        assertTrue(DateTime.isValidDateTime("21-10-2001 1900"));
+        assertTrue(DateTime.isValidDateTime("29-02-2000 1900")); // leap year
     }
 
     @Test
@@ -59,6 +64,7 @@ public class DateTimeTest {
         // different values -> returns false
         assertFalse(dateTime.equals(new DateTime("22-10-2001 1900")));
     }
+
     @Test
     public void toString_success() {
         DateTime dateTime = new DateTime("21-10-2001 1900");

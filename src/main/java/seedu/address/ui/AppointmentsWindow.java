@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.Logic;
 import seedu.address.model.appointment.Appointment;
 
 /**
