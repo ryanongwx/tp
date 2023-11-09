@@ -39,6 +39,7 @@ public class DateTimeTest {
         assertFalse(DateTime.isValidDateTime("29-02-2001 2400")); // invalid date
         assertFalse(DateTime.isValidDateTime("21-10-2001")); // missing time
         assertFalse(DateTime.isValidDateTime("1900")); // missing date
+        assertFalse(DateTime.isValidDateTime("21-10--2001 1900")); // negative year
 
         // valid DateTime
         assertTrue(DateTime.isValidDateTime("21-10-2001 1900"));
