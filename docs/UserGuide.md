@@ -182,7 +182,7 @@ You may now have a basic understanding of this software. Try out the features in
 
 </box>
 
-### PARAMETERS
+### Parameters
 
 | FIELD          | PREFIX | CONSTRAINTS                                                                                                   |
 | -------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
@@ -194,7 +194,7 @@ You may now have a basic understanding of this software. Try out the features in
 | **AGE**        | a      | Must be a non-negative integer                                                                                |
 | **BLOODTYPE**  | bt     | Must be one of **A-**, **A+**, **B-**, **B+**, **AB-**, **AB+**, **O-**, **O+**                               |
 | **ALLERGY**    | al     | Up to 256 alphanumeric characters                                                                             |
-| **DATE**       | d      | Must be in the form of 'dd-MM-yyyy HHmm'                                                                      |
+| **DATETIME**   | d      | Must be in the form of 'dd-MM-yyyy HHmm'                                                                      |
 | **CONDITION**  | c      | Up to 256 alphanumeric characters                                                                             |
 | **MEDICATION** | m      | Up to 256 alphanumeric characters                                                                             |
 
@@ -217,6 +217,11 @@ Examples:
 `addpatient n/John Doe i/T1234567A e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin`
 Adds a **Male** patient named **John Doe** whose NRIC is **T1234567A** , **26** years old, has **AB+** Blood Type, and is allergic to **Penicillin**.
 His email and phone number is **johndoe@gmail.com** and **12345678**, respectively.
+
+<box type="info" seamless>
+Info:
+If the patient does not have an NRIC, eg. foreigners, a placeholder NRIC which is not valid such as `A1234567A` can be used.
+</box>
 
 ### Adding Medical Records : `addrecord`
 
@@ -460,7 +465,9 @@ Examples:
 
 Attach local files to a patient's record by clicking on the attached file button located within each record row.
 
+<box type="warning" seamless>
 Caution: Refrain from deleting/relocating the local file. If necessary, re-attach the new file after relocation/deletion.
+</box>
 
 ### Exiting the program : `exit`
 
@@ -474,11 +481,11 @@ MedBook data is saved to the hard disk automatically after any command that chan
 
 ### Editing the data file
 
-MedBook data are saved automatically as a JSON file [JAR file location]/data/medbook.json. Advanced users will be able to edit this files to directly make changes to the data files.
+MedBook data is saved automatically as a JSON file located in [JAR file location]/data/medbook.json. The file can be edited directly to make changes to MedBook data.
 
 <box type="warning" seamless>
 Caution:
-Only advanced users may make changes to the data file. Be careful as wrong data formatting may result in the application not working as intended.
+Only advanced users are encouraged to make changes to the data file as wrong data formatting may result in the application not working as intended.
 </box>
 
 ## FAQ

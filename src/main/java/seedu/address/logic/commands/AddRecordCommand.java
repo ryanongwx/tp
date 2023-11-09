@@ -25,7 +25,7 @@ public class AddRecordCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient record to the address book.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_DATE + "DATE "
+            + PREFIX_DATE + "DATETIME "
             + PREFIX_CONDITION + "CONDITION "
             + PREFIX_MEDICATION + "MEDICATION " + "\n"
             + "Example: " + COMMAND_WORD + " 1 "

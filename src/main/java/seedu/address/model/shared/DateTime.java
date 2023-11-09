@@ -6,15 +6,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents the date and time in which patient visits the doctor
  */
 public class DateTime {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Date should be in the form of 'dd-MM-yyyy HHmm";
+    public static final String MESSAGE_CONSTRAINTS = "Invalid DateTime. DateTime should be in the form of 'dd-MM-yyyy HHmm'";
 
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm")
+            .withResolverStyle(ResolverStyle.STRICT);
     public final LocalDateTime dateTime;
 
     /**
@@ -33,8 +34,8 @@ public class DateTime {
      */
     public static boolean isValidDateTime(String test) {
         try {
-            LocalDateTime.parse(test, FORMATTER);
-            return true;
+            LocalDateTime parsedDateTime = LocalDateTime.parse(test, FORMATTER);
+            return parsedDateTime.getYear() > 0;
         } catch (DateTimeParseException e) {
             return false;
         }

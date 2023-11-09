@@ -5,6 +5,7 @@ pageNav: 3
 ---
 
 # MedBook Developer Guide
+
 ## Acknowledgements
 
 This project has not used any third-party libraries.
@@ -146,6 +147,7 @@ Key functionalities include:
 </details>
 
 ---
+
 ## Common Classes
 
 Classes used by multiple components are housed in the `seedu.addressbook.commons` package.
@@ -189,11 +191,11 @@ The `addrecord` command integrates a new `Record` object with the patient's deta
 **Aspect: Structure of the Appointment class:**
 
 - **Alternative 1 (Current Choice)**: Each `Person` object holds a `UniqueRecordList`.
-   - *Pros*: Simplifies the retrieval of a person's records.
-   - *Cons*: Fetching records across all individuals can be cumbersome.
+  - _Pros_: Simplifies the retrieval of a person's records.
+  - _Cons_: Fetching records across all individuals can be cumbersome.
 - **Alternative 2**: The `Model` holds a `UniqueRecordList` for records of all patients.
-   - *Pros*: Convenient for displaying all records.
-   - *Cons*: Hard to fetch records associated with a specific `Person`.
+  - _Pros_: Convenient for displaying all records.
+  - _Cons_: Hard to fetch records associated with a specific `Person`.
 
 ### Edit Patient Feature
 
@@ -211,18 +213,18 @@ The `editpatient` mechanism is primarily handled by `EditCommand`.
 - `EditPersonDescriptor`: Holds editable patient details.
 - `ModelManager#setPerson(Person,Person)`, `AddressBook#SetPerson(Person,Person)`, `UniquePersonList#setPerson(Person,Person)`: Updates patient details.
 
-**Sequence Diagram**: *Pending Implementation*
+**Sequence Diagram**: _Pending Implementation_
 
 #### Design Considerations
 
 **Aspect: Edit Patient Execution:**
 
 - **Alternative 1 (Current Choice)**: Create a copy of the `Person`, edit, then replace.
-   - *Pros*: Future-proof, maintains data integrity.
-   - *Cons*: Adds complexity, potential performance issues.
+  - _Pros_: Future-proof, maintains data integrity.
+  - _Cons_: Adds complexity, potential performance issues.
 - **Alternative 2**: Directly edit the `Person` in the AddressBook.
-   - *Pros*: Straightforward.
-   - *Cons*: Limits future functionalities, potential data integrity issues.
+  - _Pros_: Straightforward.
+  - _Cons_: Limits future functionalities, potential data integrity issues.
 
 ### Appointments Feature
 
@@ -256,16 +258,17 @@ Uniqueness is enforced through a `UniqueAppointmentList`.
 **Aspect: Structure of the Appointment class:**
 
 - **Alternative 1 (Current Choice)**: `Model` holds a `UniqueAppointmentList`, each `Appointment` has a `Person`’s NRIC.
-   - *Pros*: Simplifies displaying all appointments.
-   - *Cons*: Hard to fetch a specific `Person`’s appointments, issues with NRIC updates.
+  - _Pros_: Simplifies displaying all appointments.
+  - _Cons_: Hard to fetch a specific `Person`’s appointments, issues with NRIC updates.
 - **Alternative 2**: Each `Person` holds their `UniqueAppointmentList`.
-   - *Pros*: Easy to retrieve a person's appointments.
-   - *Cons*: Fetching all appointments can be complex.
+  - _Pros_: Easy to retrieve a person's appointments.
+  - _Cons_: Fetching all appointments can be complex.
+
 ## View Feature
 
 ### Implementation
 
-The view mechanism is facilitated through `ViewCommand`, which takes a `PATIENTINDEX` as input and updates the `records` and `personBeingViewed` attributes in `AddressBook`. 
+The view mechanism is facilitated through `ViewCommand`, which takes a `PATIENTINDEX` as input and updates the `records` and `personBeingViewed` attributes in `AddressBook`.
 
 Key components implemented include:
 
@@ -280,7 +283,7 @@ These methods in `AddressBook` are exposed via the `Model` interface (`updateRec
 
 1. **Initialization**: Upon launch, `AddressBook` is populated with sample data. `MainWindow` invokes `getRecordList()` and `getPersonBeingViewed()` to initialize the `recordListPanel` and `personBeingViewedPanel`.
 
-2. **View Command**: User executes `view 1`, initiating a `Model#updateRecords(Person)` call. 
+2. **View Command**: User executes `view 1`, initiating a `Model#updateRecords(Person)` call.
 
    > **Note**: A failed command will not trigger a `Model#updateRecords(Person)` call, preventing any updates to `records` and `personBeingViewed`.
 
@@ -367,6 +370,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ## Use Cases
 
 ### UC01 - Viewing Help
+
 - **Actor**: User
 - **System**: MedBook
 - **Main Success Scenario (MSS)**:
@@ -375,6 +379,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - Use case ends.
 
 ### UC02 - Adding a Patient
+
 - **Actor**: User
 - **System**: MedBook
 - **Main Success Scenario (MSS)**:
@@ -389,6 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - Use case resumes at step 3.
 
 ### UC03 - Listing All Patients
+
 - **Actors**: User (typically a healthcare professional)
 - **Preconditions**: Patient list is displayed and has at least one patient entry.
 - **Main Success Scenario (MSS)**:
@@ -400,6 +406,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - Use case ends.
 
 ### UC04 - Editing a Patient
+
 - **Actor**: User
 - **System**: MedBook
 - **Main Success Scenario (MSS)**:
@@ -413,6 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - Use case ends.
 
 ### UC05 - Locating a Specific Patient
+
 - **Actor**: User
 - **System**: MedBook
 - **Main Success Scenario (MSS)**:
@@ -426,6 +434,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - Use case ends.
 
 ### UC06 - Delete a Patient
+
 - **Actor**: User
 - **System**: MedBook
 - **Main Success Scenario (MSS)**:
@@ -442,6 +451,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - Use case ends.
 
 ### UC07 - Pin a Patient
+
 - **Actor**: User
 - **System**: MedBook
 - **Main Success Scenario (MSS)**:
@@ -454,6 +464,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - Use case ends.
 
 ### UC08 - Searching for Patients
+
 - **Actor**: User
 - **System**: MedBook
 - **Main Success Scenario (MSS)**:
@@ -543,7 +554,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Adding to the glossary ensures that all potential users, regardless of their level of expertise, have a resource to refer to when they come across terms they are unfamiliar with. This helps in making the software more accessible and user-friendly.
 
-
 ---
 
 ## Documentation, Logging, Testing, Configuration, Dev-Ops
@@ -555,6 +565,7 @@ Adding to the glossary ensures that all potential users, regardless of their lev
 - [DevOps guide](DevOps.md)
 
 ---
+
 ## Appendix: Requirements
 
 ### Product Scope
@@ -571,17 +582,18 @@ Adding to the glossary ensures that all potential users, regardless of their lev
 - **Speed and Accessibility**: Designed to be significantly faster than conventional GUI applications, allowing users to execute commands and retrieve patient information in a matter of seconds.
 - **Command Line Efficiency**: Leverages the power of CLI to offer advanced users the ability to perform tasks in a more direct and efficient manner, while still maintaining accessibility for those who prefer graphical interfaces.
 
-
 ## Appendix: Instructions for Manual Testing
 
 ### Launch and Shutdown
 
 #### Initial Launch
+
 1. Download and place the jar file in an empty folder.
 2. Double-click the jar file.
    - Expected: GUI opens with sample contacts.
 
 #### Saving Window Preferences
+
 1. Resize and reposition the window, then close it.
 2. Reopen the application.
    - Expected: Window retains its size and position.
@@ -591,6 +603,7 @@ Adding to the glossary ensures that all potential users, regardless of their lev
 ### Deleting a Person
 
 #### When All Persons are Shown
+
 1. Prerequisites: Use `list` to show all persons.
 2. Test Case: `delete 1`
    - Expected: First contact deleted, details shown in status message.
@@ -604,6 +617,7 @@ Adding to the glossary ensures that all potential users, regardless of their lev
 ### Saving Data
 
 #### Dealing with Missing/Corrupted Data Files
+
 1. _[Provide instructions and expected behavior]_
 
 ---
@@ -611,6 +625,7 @@ Adding to the glossary ensures that all potential users, regardless of their lev
 ### Adding a New Patient
 
 #### Standard Procedure
+
 1. Test Case: `add John Doe; Age: 30; Address: 123 Main St`
    - Expected: New patient "John Doe" is added to the list, details are shown in status message.
 2. Test Case: `add; Age: 30; Address: 123 Main St`
@@ -623,6 +638,7 @@ Adding to the glossary ensures that all potential users, regardless of their lev
 ### Editing a Patient's Details
 
 #### When the Patient Exists
+
 1. Prerequisites: Ensure the patient list is displayed and contains the entry you wish to edit.
 2. Test Case: `edit 1; Age: 35`
    - Expected: Patient at index 1 has their age updated to 35. Details shown in status message.
@@ -634,6 +650,7 @@ Adding to the glossary ensures that all potential users, regardless of their lev
 ### Searching for Patients
 
 #### When There Are Matching Entries
+
 1. Prerequisites: Ensure the patient list contains entries that will match your search term.
 2. Test Case: `search John`
    - Expected: List of patients with "John" in their name or details is displayed.
@@ -643,6 +660,7 @@ Adding to the glossary ensures that all potential users, regardless of their lev
 ### Verifying Patient Data Integrity
 
 #### After Operations
+
 1. Prerequisites: Perform operations like adding, deleting, and editing patients.
 2. Navigate to the folder where data is stored and open the data file.
    - Expected: All changes should be accurately reflected in the data file.
@@ -652,6 +670,7 @@ Adding to the glossary ensures that all potential users, regardless of their lev
 ### Handling Invalid Commands
 
 #### Input Mistakes
+
 1. Test Case: `ad John Doe; Age: 30; Address: 123 Main St`
    - Expected: Error message displayed, suggesting the correct command format.
 2. Test Case: `delet 1`
@@ -660,3 +679,19 @@ Adding to the glossary ensures that all potential users, regardless of their lev
 ---
 
 These additional sections aim to cover more aspects of the application, providing a thorough guideline for manual testing. Each section outlines the prerequisites, the test cases, and the expected outcomes to guide testers through the process.
+
+## Appendix: Planned Enhancements
+
+### Additional Navigation in Appointment Calender
+
+#### Current Implementation
+
+The current version of the Appointment Calendar allows users to view appointments in a calendar format. Navigation through the calendar is limited to sequential month traversal using 'Next' and 'Previous' buttons. This implementation, while functional, can be cumbersome for users who wish to view appointments that are several months away from the current date.
+
+#### Proposed Enhancement
+
+We plan to enhance the calendar navigation by introducing a more efficient way for users to view appointments. The enhancement will allow users to:
+
+**Manual Selection of Month and Year**: A dropdown menu or a picker control will be integrated into the UI, enabling users to quickly jump to a specific month and year without sequentially navigating through each month.
+
+**`viewcalender MM YYYY` command**: For users who prefer typing through the CLI, we will implement a command that allows them to view the calendar for a specific month and year. Users will be able to enter a command in the format viewcalendar MM YYYY (e.g., viewcalendar 12 2023 to view December 2023), and the calendar will update to display the selected month and year.
