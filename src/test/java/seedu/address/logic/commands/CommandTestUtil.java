@@ -99,7 +99,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "A"; // 'A' not allowed in gender
-    public static final String INVALID_AGE_DESC = " " + PREFIX_AGE + "0"; // age must be more than 0
+    public static final String INVALID_AGE_DESC = " " + PREFIX_AGE + "-1"; // age must be more than or equal to 0
     public static final String INVALID_BLOODTYPE_DESC = " " + PREFIX_BLOODTYPE + "G"; // 'G' not allowed in bloodtype
     public static final String INVALID_ALLERGY_DESC = " " + PREFIX_ALLERGIES + "Peanuts*";
 

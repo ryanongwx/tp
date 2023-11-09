@@ -21,7 +21,8 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for UnpinCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * UnpinCommand.
  */
 public class UnpinCommandTest {
 
@@ -47,7 +48,8 @@ public class UnpinCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getPinnedPersonList().size() + 1);
         UnpinCommand unpinCommand = new UnpinCommand(outOfBoundIndex);
 
-        assertCommandFailure(unpinCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(unpinCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                + ". Please ensure that it is within 1 and " + model.getPinnedPersonList().size() + ".");
     }
 
     @Test

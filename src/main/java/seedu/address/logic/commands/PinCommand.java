@@ -37,7 +37,8 @@ public class PinCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                    + ". Please ensure that it is within 1 and " + lastShownList.size() + ".");
         }
 
         Person personToPin = lastShownList.get(targetIndex.getZeroBased());
@@ -71,4 +72,3 @@ public class PinCommand extends Command {
                 .toString();
     }
 }
-

@@ -66,7 +66,8 @@ public class AddAppointmentCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(outOfBoundIndex, validAppointment);
 
-        assertCommandFailure(addAppointmentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(addAppointmentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                + ". Please ensure that it is within 1 and " + model.getFilteredPersonList().size() + ".");
     }
 
     @Test
@@ -106,7 +107,8 @@ public class AddAppointmentCommandTest {
 
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(outOfBoundIndex, validAppointment);
 
-        assertCommandFailure(addAppointmentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(addAppointmentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                + ". Please ensure that it is within 1 and " + model.getFilteredPersonList().size() + ".");
     }
 
     @Test

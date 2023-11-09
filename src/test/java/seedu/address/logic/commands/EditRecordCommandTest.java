@@ -56,7 +56,7 @@ public class EditRecordCommandTest {
                 Messages.format(editedRecord, editedPerson));
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-        expectedModel.updateRecordList(editedPerson);
+        expectedModel.updateRecordList(editedPerson, INDEX_FIRST_PERSON);
 
         assertCommandSuccess(editRecordCommand, model, expectedMessage, expectedModel);
     }
@@ -83,7 +83,7 @@ public class EditRecordCommandTest {
                 editedRecord, editedPerson));
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-        expectedModel.updateRecordList(editedPerson);
+        expectedModel.updateRecordList(editedPerson, INDEX_FIRST_PERSON);
 
         assertCommandSuccess(editRecordCommand, model, expectedMessage, expectedModel);
     }
@@ -121,7 +121,7 @@ public class EditRecordCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-        expectedModel.updateRecordList(editedPerson);
+        expectedModel.updateRecordList(editedPerson, INDEX_FIRST_PERSON);
 
         assertCommandSuccess(editRecordCommand, model, expectedMessage, expectedModel);
     }
@@ -173,7 +173,8 @@ public class EditRecordCommandTest {
         EditRecordCommand editRecordCommand = new EditRecordCommand(outOfBoundIndex, INDEX_FIRST_RECORD,
                 descriptor);
 
-        assertCommandFailure(editRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+            + ". Please ensure that it is within 1 and " + model.getFilteredPersonList().size() + ".");
     }
 
     @Test
