@@ -41,8 +41,7 @@ public class DeleteRecordCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetPatientIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
-                    + ". Please ensure that it is within 1 and " + lastShownList.size() + ".");
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person targetPatient = lastShownList.get(targetPatientIndex.getZeroBased());
         UniqueRecordList newRecordsList = new UniqueRecordList();
