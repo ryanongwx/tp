@@ -22,7 +22,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.record.UniqueRecordList;
 import seedu.address.testutil.PersonBuilder;
 
-
 public class DeleteRecordCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -42,7 +41,7 @@ public class DeleteRecordCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(3), personWithDeletedRecord);
-        expectedModel.updateRecordList(personWithDeletedRecord);
+        expectedModel.updateRecordList(personWithDeletedRecord, fromZeroBased(3));
         assertCommandSuccess(deleteRecordCommand, model, expectedMessage, expectedModel);
     }
 
@@ -52,7 +51,8 @@ public class DeleteRecordCommandTest {
         Index validRecordIndex = fromOneBased(3);
         DeleteRecordCommand deleteRecordCommand = new DeleteRecordCommand(outOfBoundPatientIndex, validRecordIndex);
 
-        assertCommandFailure(deleteRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                + ". Please ensure that it is within 1 and " + model.getFilteredPersonList().size() + ".");
     }
 
     @Test

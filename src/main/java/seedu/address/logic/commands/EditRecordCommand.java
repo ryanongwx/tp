@@ -74,7 +74,8 @@ public class EditRecordCommand extends Command {
         List<Person> lastShownPersonList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownPersonList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                    + ". Please ensure that it is within 1 and " + lastShownPersonList.size() + ".");
         }
 
         Person personToEdit = lastShownPersonList.get(patientIndex.getZeroBased());
@@ -89,7 +90,8 @@ public class EditRecordCommand extends Command {
         Record recordToEdit = lastShownRecordList.get(recordIndex.getZeroBased());
         Record editedRecord = createEditedRecord(recordToEdit, editRecordDescriptor);
 
-        if (recordToEdit.equals(editedRecord) && uniqueRecordList.contains(editedRecord)) {
+
+        if (recordToEdit.equals(editedRecord) || uniqueRecordList.contains(editedRecord)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECORD);
         }
 
@@ -103,7 +105,7 @@ public class EditRecordCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateRecordList(editedPerson);
+        model.updateRecordList(editedPerson, this.patientIndex);
         return new CommandResult(String.format(MESSAGE_EDIT_RECORD_SUCCESS,
                 Messages.format(editedRecord, personToEdit)));
     }
@@ -270,7 +272,7 @@ public class EditRecordCommand extends Command {
             }
 
             EditRecordCommand.EditRecordDescriptor otherEditRecordDescriptor =
-                    (EditRecordCommand.EditRecordDescriptor) other;
+                (EditRecordCommand.EditRecordDescriptor) other;
             return Objects.equals(dateTime, otherEditRecordDescriptor.dateTime)
                     && Objects.equals(conditions, otherEditRecordDescriptor.conditions)
                     && Objects.equals(filePath, otherEditRecordDescriptor.filePath)

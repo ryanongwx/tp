@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.record.Record;
@@ -65,6 +67,10 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if the same record exists under the patient in the Medbook
+     */
+    boolean hasRecord(Record record, Index index);
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -109,7 +115,7 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered record list */
     ObservableList<Record> getFilteredRecordList();
 
-    void updateRecordList(Person person);
+    void updateRecordList(Person person, Index index);
 
     /**
      * Updates the filter of the filtered record list to filter by the given
@@ -122,4 +128,5 @@ public interface Model {
 
     ObservableList<Person> getPersonBeingViewed();
 
+    List<Index> getPatientIndex();
 }

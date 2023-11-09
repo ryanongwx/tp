@@ -45,7 +45,7 @@ public class AddRecordCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(2), personWithAddedRecord);
-        expectedModel.updateRecordList(personWithAddedRecord);
+        expectedModel.updateRecordList(personWithAddedRecord, INDEX_THIRD_PERSON);
         assertCommandSuccess(addRecordCommand, model, expectedMessage, expectedModel);
     }
 
@@ -54,7 +54,8 @@ public class AddRecordCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         AddRecordCommand addRecordCommand = new AddRecordCommand(outOfBoundIndex, ALLERGIC_REACTION2);
 
-        assertCommandFailure(addRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(addRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                + ". Please ensure that it is within 1 and " + model.getFilteredPersonList().size() + ".");
     }
 
     @Test
@@ -76,7 +77,7 @@ public class AddRecordCommandTest {
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
 
         expectedModel.setPerson(model.getFilteredPersonList().get(0), personWithAddedRecord);
-        expectedModel.updateRecordList(personWithAddedRecord);
+        expectedModel.updateRecordList(personWithAddedRecord, INDEX_FIRST_PERSON);
         assertCommandSuccess(addRecordCommand, model, expectedMessage, expectedModel);
 
     }
@@ -91,7 +92,15 @@ public class AddRecordCommandTest {
 
         AddRecordCommand addRecordCommand = new AddRecordCommand(outOfBoundIndex, FEVER0);
 
-        assertCommandFailure(addRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(addRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                + ". Please ensure that it is within 1 and " + model.getFilteredPersonList().size() + ".");
+    }
+
+    @Test
+    public void execute_duplicateRecord_throwsCommandException() {
+        Index validIndex = INDEX_FIRST_PERSON;
+        AddRecordCommand addrecordCommand = new AddRecordCommand(validIndex, FEVER0);
+        assertCommandFailure(addrecordCommand, model, AddRecordCommand.MESSAGE_DUPLICATE_RECORDS);
     }
 
     @Test

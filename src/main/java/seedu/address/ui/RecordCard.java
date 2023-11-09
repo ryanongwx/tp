@@ -35,6 +35,7 @@ public class RecordCard extends UiPart<Region> {
     private Label medication;
 
     private int displayedIndex;
+    private MainWindow mainWindow;
 
     /**
      * Creates a {@code RecordCard} with the given {@code Record} and index to
@@ -57,6 +58,7 @@ public class RecordCard extends UiPart<Region> {
         }
         this.displayedIndex = displayedIndex;
         medication.setText(record.getMedications().toString());
+        mainWindow = MainWindow.getInstance();
     }
 
     /**
@@ -73,7 +75,11 @@ public class RecordCard extends UiPart<Region> {
         if (file != null) {
             this.record.setFilePath(file.toPath(), displayedIndex);
             filePathLabel.setText(file.toPath().toString());
+            mainWindow.setResultDisplay("File successfully attached!");
+        } else {
+            mainWindow.setResultDisplay("No file chosen");
         }
+
     }
 
     /**
@@ -86,11 +92,17 @@ public class RecordCard extends UiPart<Region> {
         if (record.getFilePath() != null && Desktop.isDesktopSupported()) {
             try {
                 Desktop.getDesktop().open(record.getFilePath().toFile());
+                mainWindow.setResultDisplay("File successfully opened");
+            } catch (IllegalArgumentException e) {
+                // Handle the case where the file does not exist or is not valid.
+
+                mainWindow.setResultDisplay("There was an issue with the file: " + e.getMessage());
+                System.out.println("There was an issue with the file: " + e.getMessage());
             } catch (IOException e) {
-                // Handle the exception, perhaps show an error message to the user.
+                // Handle other I/O errors.
                 e.printStackTrace();
             }
         }
-
     }
+
 }

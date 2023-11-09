@@ -31,13 +31,12 @@ public class Record {
     /**
      * Constructs a record object
      */
-
     public Record(DateTime dateTime, List<Condition> conditions, List<Medication> medications, Path filePath,
             Integer personIndex) {
         requireAllNonNull(dateTime, conditions);
         this.dateTime = dateTime;
-        this.conditions.addAll(conditions);
-        this.medications.addAll(medications);
+        this.conditions.addAll(removeDuplicates(conditions));
+        this.medications.addAll(removeDuplicates(medications));
         this.filePath = filePath;
         this.personIndex = personIndex;
     }
@@ -71,6 +70,22 @@ public class Record {
         } catch (Exception c) {
             c.printStackTrace();
         }
+    }
+
+    /**
+     * Removes duplicate entries in record information.
+     */
+    public static <T> List<T> removeDuplicates(List<T> list) {
+        List<T> listToModify = new ArrayList<>(list);
+        for (int i = 0; i < listToModify.size() - 1; i++) {
+            for (int j = i + 1; j < listToModify.size(); j++) {
+                if (listToModify.get(i).equals(listToModify.get(j))) {
+                    listToModify.remove(j);
+                    j--;
+                }
+            }
+        }
+        return listToModify;
     }
 
     @Override

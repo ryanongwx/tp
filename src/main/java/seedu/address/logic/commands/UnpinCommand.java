@@ -12,7 +12,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Unpins the person identified using it's displayed index from the address book.
+ * Unpins the person identified using it's displayed index from the address
+ * book.
  */
 public class UnpinCommand extends Command {
 
@@ -37,7 +38,8 @@ public class UnpinCommand extends Command {
         List<Person> lastShownPinnedList = model.getPinnedPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownPinnedList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                    + ". Please ensure that it is within 1 and " + lastShownPinnedList.size() + ".");
         }
 
         Person personToUnpin = lastShownPinnedList.get(targetIndex.getZeroBased());
@@ -72,4 +74,3 @@ public class UnpinCommand extends Command {
                 .toString();
     }
 }
-

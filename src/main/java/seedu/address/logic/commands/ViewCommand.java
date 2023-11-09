@@ -25,12 +25,13 @@ public class ViewCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_VIEW_PERSON_SUCCESS = "View Person: %1$s";
+    public static final String MESSAGE_VIEW_PERSON_SUCCESS = "View Patient: %1$s";
 
     private final Index targetIndex;
 
     /**
      * Constructor for ViewCommand class
+     *
      * @param targetIndex the patient Index to view
      */
     public ViewCommand(Index targetIndex) {
@@ -44,12 +45,13 @@ public class ViewCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                    + ". Please ensure that it is within 1 and " + lastShownList.size() + ".");
         }
 
-        Person personToView = lastShownList.get(targetIndex.getZeroBased());
-        model.updateRecordList(personToView);
-        return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(personToView)));
+        Person patientToView = lastShownList.get(targetIndex.getZeroBased());
+        model.updateRecordList(patientToView, targetIndex);
+        return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(patientToView)));
     }
 
     @Override

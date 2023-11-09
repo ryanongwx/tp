@@ -1,11 +1,13 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.UniqueAppointmentList;
@@ -24,6 +26,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList personBeingViewed;
     private final UniqueRecordList records;
     private final UniqueAppointmentList appointments;
+    private List<Index> patientIndex;
     /*
      * The 'unusual' code block below is a non-static initialization block,
      * sometimes used to avoid duplication
@@ -39,6 +42,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         records = new UniqueRecordList();
         appointments = new UniqueAppointmentList();
         personBeingViewed = new UniquePersonList();
+        patientIndex = new ArrayList<>();
     }
 
     public AddressBook() {
@@ -62,9 +66,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
-    public void setRecords(Person person) {
+    public void setRecords(Person person, Index index) {
         ArrayList<Person> beingViewed = new ArrayList<>();
         beingViewed.add(person);
+        this.patientIndex.clear();
+        this.patientIndex.add(index);
         this.personBeingViewed.setPersons(beingViewed);
         this.records.setRecords(person.getRecords());
     }
@@ -88,6 +94,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
+    }
+
+    /**
+     * Returns true if the same record under the patient at {@code index} exists in the Medbook.
+     */
+    public boolean hasRecord(Record record, Index index) {
+        requireAllNonNull(record, index);
+        return persons.asUnmodifiableObservableList().get(index.getZeroBased()).getRecords().contains(record);
     }
 
     /**
@@ -135,6 +149,10 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public ObservableList<Record> getRecordList() {
         return records.asUnmodifiableObservableList();
+    }
+
+    public List<Index> getPatientIndex() {
+        return this.patientIndex;
     }
 
     public ObservableList<Appointment> getAppointmentList() {

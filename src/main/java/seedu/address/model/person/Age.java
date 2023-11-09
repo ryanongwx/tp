@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Age {
     public static final String MESSAGE_CONSTRAINTS =
-            "Age should only be a positive integer or 0";
+            "Age should only be a non-negative integer";
 
     public final Integer age;
 
@@ -28,7 +28,7 @@ public class Age {
      * Returns true if a given integer is a valid age.
      */
     public static boolean isValidAge(Integer test) {
-        return test > 0;
+        return test >= 0;
     }
 
     @Override

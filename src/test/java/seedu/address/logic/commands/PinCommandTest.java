@@ -22,12 +22,12 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for PinCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * PinCommand.
  */
 public class PinCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -48,8 +48,10 @@ public class PinCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         PinCommand pinCommand = new PinCommand(outOfBoundIndex);
 
-        assertCommandFailure(pinCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(pinCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                + ". Please ensure that it is within 1 and " + model.getFilteredPersonList().size() + ".");
     }
+
     @Test
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
@@ -65,6 +67,7 @@ public class PinCommandTest {
         expectedModel.setPerson(model.getFilteredPersonList().get(0), pinnedPerson);
         assertCommandSuccess(pinCommand, model, expectedMessage, expectedModel);
     }
+
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
@@ -75,9 +78,9 @@ public class PinCommandTest {
 
         PinCommand pinCommand = new PinCommand(outOfBoundIndex);
 
-        assertCommandFailure(pinCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(pinCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                + ". Please ensure that it is within 1 and " + model.getPinnedPersonList().size() + ".");
     }
-
 
     @Test
     public void equals() {

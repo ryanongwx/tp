@@ -31,7 +31,7 @@ public class ViewCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         expectedModel.setPerson(model.getFilteredPersonList().get(0), personToView);
-        expectedModel.updateRecordList(personToView);
+        expectedModel.updateRecordList(personToView, INDEX_FIRST_PERSON);
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 
@@ -40,7 +40,8 @@ public class ViewCommandTest {
         Index indexOutOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         ViewCommand viewCommand = new ViewCommand(indexOutOfBounds);
 
-        assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
+                + ". Please ensure that it is within 1 and " + model.getFilteredPersonList().size() + ".");
     }
 
     @Test
