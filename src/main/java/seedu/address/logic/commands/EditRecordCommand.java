@@ -74,8 +74,7 @@ public class EditRecordCommand extends Command {
         List<Person> lastShownPersonList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownPersonList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
-                    + ". Please ensure that it is within 1 and " + lastShownPersonList.size() + ".");
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToEdit = lastShownPersonList.get(patientIndex.getZeroBased());
@@ -89,7 +88,6 @@ public class EditRecordCommand extends Command {
 
         Record recordToEdit = lastShownRecordList.get(recordIndex.getZeroBased());
         Record editedRecord = createEditedRecord(recordToEdit, editRecordDescriptor);
-
 
         if (recordToEdit.equals(editedRecord) || uniqueRecordList.contains(editedRecord)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECORD);
