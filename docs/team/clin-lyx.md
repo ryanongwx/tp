@@ -12,17 +12,16 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to view patient's medical records.
   * What it does: allows the user to view medical records of different patient.
   * Justification: This feature improves the product significantly because a user can visualize the medical records.
-  * Highlights: This enhancement affects existing ui layout. The implementation was challenging as it required changes to existing commands, creation of new classes, formatting of the ui of medical record card and reformatting the overall ui layout.
-
+  * Highlights: This enhancement affects existing ui layout. The implementation was challenging as it required changes to existing commands, creation of new classes, formatting of the visuals of medical record card and reformatting the overall ui layout.
+  * Wrote tests for view feature to increase coverage from 78% to 87% (Pull requests [\#42]())
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=clin-lyx&breakdown=false&sort=groupTitle%20dsc&sortWithin=title&since=2023-09-22&timeframe=commit&mergegroup=&groupSelect=groupByRepos)
 
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Updated the Patient Card visual formatting(Pull request [\#35]())
+  * Updated the help page, containing basic information of available commands and making the helpWindow scrollable. (Pull request [\#80](), [\#81](), [\#92]())
+  * Solved the issue for view command displaying wrong patient index(Pull request [\#150]())
 
 * **Documentation**:
   * User Guide:
