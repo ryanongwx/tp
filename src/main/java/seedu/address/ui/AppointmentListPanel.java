@@ -47,5 +47,4 @@ public class AppointmentListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

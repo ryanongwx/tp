@@ -48,17 +48,8 @@
         </VBox>
         <VBox prefWidth="300">
           <Label styleClass="cell_big_label" text="Contacts" />
-          <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
-                  <VBox.margin>
-                     <Insets top="10.0" />
-                  </VBox.margin></Label>
-          <Label fx:id="email" styleClass="cell_small_label" text="\$email">
-                  <VBox.margin>
-                     <Insets top="5.0" />
-                  </VBox.margin></Label>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
+          <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
+          <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
         </VBox>
         <VBox prefWidth="300">
           <Label styleClass="cell_big_label" text="Allergies" />

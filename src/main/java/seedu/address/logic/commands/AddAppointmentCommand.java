@@ -26,7 +26,7 @@ public class AddAppointmentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to the address book.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_NAME + "NAME "
-            + PREFIX_DATE + "DATE\n"
+            + PREFIX_DATE + "DATETIME\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Eye Examination "
             + PREFIX_DATE + "18-09-2023 1800 ";
@@ -53,8 +53,7 @@ public class AddAppointmentCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
-                    + ". Please ensure that it is within 1 and " + lastShownList.size() + ".");
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person patient = lastShownList.get(index.getZeroBased());
