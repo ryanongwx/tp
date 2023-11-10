@@ -11,11 +11,9 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to view patient's medical records.
   * What it does: allows the user to view medical records of different patient.
-  * Justification: This feature improves the product significantly because a user can visualize the records.
+  * Justification: This feature improves the product significantly because a user can visualize the medical records.
   * Highlights: This enhancement affects existing ui layout. The implementation was challenging as it required changes to existing commands, creation of new classes, formatting of the ui of medical record card and reformatting the overall ui layout.
 
-
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=clin-lyx&breakdown=false&sort=groupTitle%20dsc&sortWithin=title&since=2023-09-22&timeframe=commit&mergegroup=&groupSelect=groupByRepos)
 
