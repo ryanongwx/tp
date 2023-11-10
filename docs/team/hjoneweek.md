@@ -17,7 +17,7 @@ title: "Hanjoo's Project Portfolio Page"
   - Allows doctors to add a medical record to a patient after visit. The record would include information about date and time of the visit, conditions of the patient, and prescribed medicine for the patient.
   - Created the parser class and the command class to execute the adding record command.
 
-* **New Feature 1**: Search Record
+* **New Feature 2**: Search Record
   - Allow doctors to search for the past records of the patient that they are currently viewing using keywords.
   - Created the parser class and the command class to execute the searching record command.
 
