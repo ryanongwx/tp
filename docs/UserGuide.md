@@ -233,7 +233,8 @@ Format: `addrecord PATIENTID d/DATETIME c/CONDITIONS... m/MEDICATIONS...`
 
 - Constraints of each field are as stated in the **CONSTRAINTS** section above. <br>
 
-- Duplicate entries for **CONDITIONS** and **MEDICATIONS** will be considered as one entry
+- Duplicate entries for **CONDITIONS** and **MEDICATIONS** are allowed and will be considered as separate entries.
+  * Therefore, `addrecord 1 d/10-11-2023 1800 c/Flu c/Flu m/Ibuprofen m/Ibuprofen` will store **[Flu, Flu]** and **[Ibuprofen, Ibuprofen]** for conditions and medications, respectively.
 
 Examples:
 
