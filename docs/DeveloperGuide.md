@@ -175,29 +175,101 @@ Uniqueness of records is maintained through the `UniqueRecordList`.
 #### Adding a Record
 
 ##### Overview
-
 The `addrecord` command integrates a new `Record` object with the patient's details in MedBook.
 
-#### Implementation Steps
+##### Related Classes and Methods
+- `AddRecordCommandParser#parse(String)`: Parses command input
+- `AddRecordCommand#execute(Model)`: Executes addrecord command
+- `UniqueRecordList#add(Record)`: Adds a `Record` in the `UniqueRecordList`.
+- `Model#updateRecordList(Person, Index)`, `AddressBook#setRecords(Person, Index)`, `UniqueRecordList#setRecords(UniqueRecordList)`: Updates record details with added record.
+- `Model#setPerson(Person, Person)`, `AddressBook#setPerson(Person, Person)`, `UniquePersonList#setPerson(Person, Person)`: Updates patient details.
+
+##### Implementation Steps
 
 1. **Parse User Input**: `AddRecordCommandParser` checks for necessary parameters and their validity.
-2. **Create Record Object**: A `Record` object is instantiated and handed over to the `AddRecordCommand`.
-3. **Execute Command**: `AddRecordCommand#execute()` adds the new `Record` to the patient's `UniqueRecordList`.
+2. **Create Record Object**: A `Record` object is instantiated during `AddRecordCommandParser#parse(String)` and handed over to the `AddRecordCommand`.
+3. **Execute Command**: `AddRecordCommand#execute(Model)` adds the new `Record` to the patient's `UniqueRecordList`.
 
 <puml src="diagrams/AddRecordSequenceDiagram.puml" width="450" />
 
-#### Design Considerations
+#### Deleting a Record
 
-**Aspect: Structure of the Appointment class:**
+##### Overview
+The `deleterecord` command deletes a specified record in `UniqueRecordList` of a patient.
 
-- **Alternative 1 (Current Choice)**: Each `Person` object holds a `UniqueRecordList`.
-  - _Pros_: Simplifies the retrieval of a person's records.
-  - _Cons_: Fetching records across all individuals can be cumbersome.
-- **Alternative 2**: The `Model` holds a `UniqueRecordList` for records of all patients.
-  - _Pros_: Convenient for displaying all records.
-  - _Cons_: Hard to fetch records associated with a specific `Person`.
+##### Related Classes and Methods
+- `DeleteRecordCommandParser#parse(String)`: Parses command input.
+- `DeleteRecordCommand#execute(Model)`: Executes deleterecord command.
+- `UniqueRecordList#remove(Record)`: Deletes a `Record` in the `UniqueRecordList`.
+- `Model#updateRecordList(Person, Index)`, `AddressBook#setRecords(Person, Index)`, `UniqueRecordList#setRecords(UniqueRecordList)`: Updates record details with deleted record.
+- `Model#setPerson(Person, Person)`, `AddressBook#setPerson(Person, Person)`, `UniquePersonList#setPerson(Person, Person)`: Updates patient details.
 
-### Edit Patient Feature
+##### Implementation Steps
+1. **Parse User Input**: `DeleteRecordCommandParser` checks for the validity of the patient and record indices.
+2. **CreateIndex Object**: Two `Index` objects, patient index and record index, are instantiated during `DeleteRecordCommandParser#parse(String)` and handed over to the `DeleteRecordCommand`.
+3. **Execute Command**: `DeleteRecordCommand#execute(Model)` deletes specified record of the specified patient and updates `UniqueRecordList` of that patient.
+
+<puml src="diagrams/DeleteRecordSequenceDiagram.puml" width="450" />
+
+
+#### Searching a Record
+
+##### Overview
+The `searchrecord` command filters `UniqueRecordList` of the currently viewing patient using one or more keywords.
+
+##### Related Classes and Methods
+- `FindRecordCommandParser#parse(String)`: Parses command input.
+- `FindRecordCommand#execute(Model)`: Executes searchrecord command.
+- `Model#updateFilteredRecordList(Predicate)`: Updates `UniqueRecordList` of the currently viewing patient.
+- `RecordContainsKeywordsPredicate#test(Record)`: Tests if `Record` contains keyword(s).
+
+##### Implementations Steps
+1. **Parse User Input**: `FindRecordCommandParser` checks for existence of the keyword(s) and creates an array of keywords.
+2. **Create Predicate Object**: A `RecordContainsKeywordsPredicate` object is instantiated during `FindRecordCommandParser#parse(String)` and handed over to the `FindRecordCommand`.
+3. **Execute Command**: `FindRecordCommand#execute(Model)` finds records containing keywords using `RecordContainsKeywordsPredicate#test(Record)` and updates `UniqueRecordList` of the currently viewing patient.
+
+<puml src="diagrams/FindRecordSequenceDiagram.puml" width="450" />
+
+
+### Patient Features
+
+A `Person` object encapsulates various attributes:
+
+- `Name`: Patient's first and last name (and middle name, if applicable)
+- `Nric`: Patient's NRIC
+- `Email`: Patient's email address
+- `Phone`: Patient's phone number
+- `Gender`: Patient's gender
+- `Age`: Patient's age
+- `BloodType`: Patient's blood type
+- `Set<Allergy>`: Patient's allergies
+- `UniqueRecordList`: Patient's records of past visits to the clinic.
+- `UniqueAppointmentList`: Patient's scheduled appointments.
+- `isPinned`: Patient's pin status.
+
+Uniqueness of person is maintained through the `UniquePersonList`.
+
+<puml src="diagrams/PersonClassDiagram.puml"/>
+
+#### Adding a Patient
+
+##### Overview
+The `addpatient` command integrates a new `Person` object with the patient's details in MedBook.
+
+##### Related Classes and Methods
+- `AddCommandParser#parse(String)`: Parses command input
+- `AddCommand#execute(Model)`: Executes addrecord command
+- `Model#addPerson(Person)`, `AddressBook#addPerson(Person)`, `UniquePersonList#add(Person)`: Adds a patient.
+
+##### Implementation Steps
+
+1. **Parse User Input**: `AddCommandParser` checks for necessary parameters and their validity.
+2. **Create Record Object**: A `Person` object is instantiated during `AddCommandParser#parse(String)` and handed over to the `AddCommand`.
+3. **Execute Command**: `AddRecordCommand#execute(Model)` adds the new `Person` to the `UniquePersonList` in the `AddressBook`.
+
+<puml src="diagrams/AddPatientSequenceDiagram.puml" width="450" />
+
+#### Editing Patient Details
 
 The `editpatient` mechanism is primarily handled by `EditCommand`.
 
@@ -211,7 +283,7 @@ The `editpatient` mechanism is primarily handled by `EditCommand`.
 
 - `EditCommandParser`: Parses command input.
 - `EditPersonDescriptor`: Holds editable patient details.
-- `ModelManager#setPerson(Person,Person)`, `AddressBook#SetPerson(Person,Person)`, `UniquePersonList#setPerson(Person,Person)`: Updates patient details.
+- `ModelManager#setPerson(Person,Person)`, `AddressBook#setPerson(Person,Person)`, `UniquePersonList#setPerson(Person,Person)`: Updates patient details.
 
 **Sequence Diagram**: _Pending Implementation_
 
