@@ -38,8 +38,7 @@ public class UnpinCommand extends Command {
         List<Person> lastShownPinnedList = model.getPinnedPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownPinnedList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
-                    + ". Please ensure that it is within 1 and " + lastShownPinnedList.size() + ".");
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToUnpin = lastShownPinnedList.get(targetIndex.getZeroBased());

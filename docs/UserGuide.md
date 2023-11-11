@@ -31,6 +31,11 @@ Discover the power of Medbook:
 <!-- * Table of Contents -->
 <page-nav-print />
 
+<<<<<<< HEAD
+=======
+---
+
+>>>>>>> master
 ## How to Navigate the User Guide
 
 Welcome to the Medbook User Guide! Our goal is to empower you with the knowledge and confidence to make the most of Medbook's features.
@@ -41,9 +46,13 @@ Welcome to the Medbook User Guide! Our goal is to empower you with the knowledge
 
 We're here to make your experience as user-friendly as possible. Let's get started!
 
+<<<<<<< HEAD
 <u>[Back to Top](#user-guide)</u>
 
 ## Quick start 
+=======
+## Quick start
+>>>>>>> master
 
 1. Ensure you have Java `11` or above installed in your Computer.
    - [How do I check my version of Java?](#faq)
@@ -51,33 +60,35 @@ We're here to make your experience as user-friendly as possible. Let's get start
 
 1. Move the jar file to the folder you want to store the data of the patients.
 
-    - Create a folder with your preferred name (you can call it Medbook) where you would like to house the application.
-    - Move the downloaded jar file to the folder as shown below.
-      - For Mac users:![Ui](images/MacUserDir.png)
-      - For Windows users:![Ui](images/WinUserDir.png)
+   - Create a folder with your preferred name (you can call it Medbook) where you would like to house the application.
+   - Move the downloaded jar file to the folder as shown below.
+     - For Mac users:![Ui](images/MacUserDir.png)
+     - For Windows users:![Ui](images/WinUserDir.png)
 
 1. Run Medbook application
 
-    - **On Windows**:
-      - Double-click medbook.jar to run the application.
-      - If the GUI doesn't show up, try the following operations.
-      - **Open PowerShell**: Search for "Powershell" in the Windows search bar and open it.
-      - Navigate to the folder where you have stored the jar file using the cd command.
-      - Enter java -jar medbook.jar and press Enter. This command will execute the application.<br> 
-      <box type="info" seamless>
-        Please note that for Windows users, you can navigate to the folder where you house Medbook. In the file address bar, click on the path to the current folder to highlight it. Type powershell and press enter. This will open a PowerShell window with the current folder as the working directory.
-      </box>
-   
-    - **On Mac**:
-      - **Open Terminal**: You can find Terminal in the "Utilities" folder within the "Applications" folder. Or, you can use Spotlight Search by pressing Command + Spacebar and typing "Terminal."
-      - Navigate to the folder where you have stored the jar file using the cd command
-      - Run the Application: Enter java -jar medbook.jar and press Enter. This command will execute the application.<br>
-      <box type="info" seamless>
-        Please note that for Mac users,  in the Terminal on a Mac, you can also drag and drop the "medbook.jar" file directly into the Terminal window after typing `java -jar` to auto-fill the file path.
-      </box>
+   - **On Windows**:
+
+     - Double-click medbook.jar to run the application.
+     - If the GUI doesn't show up, try the following operations.
+     - **Open PowerShell**: Search for "Powershell" in the Windows search bar and open it.
+     - Navigate to the folder where you have stored the jar file using the cd command.
+     - Enter java -jar medbook.jar and press Enter. This command will execute the application.<br>
+       <box type="info" seamless>
+       Please note that for Windows users, you can navigate to the folder where you house Medbook. In the file address bar, click on the path to the current folder to highlight it. Type powershell and press enter. This will open a PowerShell window with the current folder as the working directory.
+       </box>
+
+   - **On Mac**:
+     - **Open Terminal**: You can find Terminal in the "Utilities" folder within the "Applications" folder. Or, you can use Spotlight Search by pressing Command + Spacebar and typing "Terminal."
+     - Navigate to the folder where you have stored the jar file using the cd command
+     - Run the Application: Enter java -jar medbook.jar and press Enter. This command will execute the application.<br>
+       <box type="info" seamless>
+       Please note that for Mac users, in the Terminal on a Mac, you can also drag and drop the "medbook.jar" file directly into the Terminal window after typing `java -jar` to auto-fill the file path.
+       </box>
 
 The application should open up similar to the image below.
 ![Ui](images/MedBookUi.png)
+
 1. Learn more about navigating the GUI [here](#navigating-the-graphical-user-interface-gui).
 2. For new users, learn how to use Medbook [here](#medbook-tutorial).
 3. For advanced users, view all the available features [here](#features).
@@ -91,12 +102,12 @@ The application should open up similar to the image below.
 Here are some description of the terms used throughout this user guide.
 
 | **Term**      | **Definition**                                                                                                                                                                  |
-|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Parameter     | A parameter allow you to customize the behavior of the command by providing specific values                                                                                     |
 | Command       | A command is a textual input that users type into the command-line interface to communicate with the application                                                                |
 | GUI           | GUI is graphical user interface. It manages the interaction between user and the application and also gives a visual display of Medbook.                                        |
 | GUI component | GUI components are the interactive parts of the application that you can see and interact with. For more information of different GUI components. Please refer to below section |
-| CLI           | CLI or Command Line Interface,  is a text-based way to interact with the application.                                                                                           |
+| CLI           | CLI or Command Line Interface, is a text-based way to interact with the application.                                                                                            |
 
 <u>[Back to Top](#user-guide)</u>
 
@@ -107,7 +118,7 @@ Here are some description of the terms used throughout this user guide.
 Here is a brief summary of GUI component of the main window of Medbook.
 
 | **Name of component**    | **Description**                                                                                             |
-|--------------------------|-------------------------------------------------------------------------------------------------------------|
+| ------------------------ | ----------------------------------------------------------------------------------------------------------- |
 | Menu Bar                 | Contains the help and file drop down menu for Medbook                                                       |
 | Message Display Box      | Display the message of every command. Either can be an error message or success message                     |
 | Patient List             | Contains all the Patient cards stored in Medbook                                                            |
@@ -118,11 +129,10 @@ Here is a brief summary of GUI component of the main window of Medbook.
 | Pinned Patient List      | Contains all the patient cards after command pin                                                            |
 | Command Input Box        | Allow users to input commands                                                                               |
 
-
 ![Appointment Window](images/ViewAppointmentWindow.png)
 
 | **Name of component** | **Description**                                                           |
-|-----------------------|---------------------------------------------------------------------------|
+| --------------------- | ------------------------------------------------------------------------- |
 | Appointment Card      | Contains information of appointments including name, date and NRIC number |
 | Appointment List      | Holds a list of Appointment card                                          |
 | Calendar              | A calendar that displays appointments at certain date                     |
@@ -134,21 +144,22 @@ Here is a brief summary of GUI component of the main window of Medbook.
 ## Medbook Tutorial
 
 1. Launch the Medbook application. You may refer to [here](#quick-start).
+
    - Note on launch, Medbook will populate some sample data.
 
-2. Let us try invoking the help window. Type help in the command box and press Enter to execute it. 
-Please refer to the first section of [feature](#features) to have a more clear understanding of requirements of the parameters. 
-A similar help box as below should pop up.<br> <img src="images/HelpWindow.png" width="500"/>
-3. Now, let us try adding a new patient. In the command box, type in `addpatient n/John Doe i/A0000000B e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` and press Enter. 
-A success message should be displayed.<br><img src="images/AddPatientSuccess.png" width="800"/>
+2. Let us try invoking the help window. Type help in the command box and press Enter to execute it.
+   Please refer to the first section of [feature](#features) to have a more clear understanding of requirements of the parameters.
+   A similar help box as below should pop up.<br> <img src="images/HelpWindow.png" width="500"/>
+3. Now, let us try adding a new patient. In the command box, type in `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` and press Enter.
+   A success message should be displayed.<br><img src="images/AddPatientSuccess.png" width="800"/>
 4. Try adding a few more patient to Medbook by yourself!
-5. Now, let us try adding a record to a patient. In the command box, type in `addrecord 3 d/18-09-2023 1800 c/Fever m/Paracetamol` and press Enter. 
-This will create a new medical record to the third patient shown in the middle column. 
-A similar message output should be shown in the Message Display Box.<br> <img src="images/AddRecordSuccess.png" width="800">
+5. Now, let us try adding a record to a patient. In the command box, type in `addrecord 3 d/18-09-2023 1800 c/Fever m/Paracetamol` and press Enter.
+   This will create a new medical record to the third patient shown in the middle column.
+   A similar message output should be shown in the Message Display Box.<br> <img src="images/AddRecordSuccess.png" width="800">
 6. Try adding a few more records to patients in the Medbook by yourself!
 7. Let us view medical records of the first patient. Key in `view 1` to see all the records of the first patient.
-If you haven't added any medical records to the first patient, a similar **Record List** should be shown. 
-<br><img src="images/View.png" height="500"/>
+   If you haven't added any medical records to the first patient, a similar **Record List** should be shown.
+   <br><img src="images/View.png" height="500"/>
 
 You may now have a basic understanding of this software. Try out the features in the following section on your own and explore the potential of Medbook!
 
@@ -253,6 +264,11 @@ Examples:
 Adds a **Male** patient named **John Doe** whose NRIC is **T1234567A** , **26** years old, has **AB+** Blood Type, and is allergic to **Penicillin**.
 His email and phone number is **johndoe@gmail.com** and **12345678**, respectively.
 
+<box type="info" seamless>
+Info:
+If the patient does not have an NRIC, eg. foreigners, a placeholder NRIC which is not valid such as `A1234567A` can be used.
+</box>
+
 <u>[Back to Top](#user-guide)</u>
 
 ### Adding Medical Records : `addrecord`
@@ -265,7 +281,8 @@ Format: `addrecord PATIENTID d/DATETIME c/CONDITIONS... m/MEDICATIONS...`
 
 - Constraints of each field are as stated in the **CONSTRAINTS** section above. <br>
 
-- Duplicate entries for **CONDITIONS** and **MEDICATIONS** will be considered as one entry 
+- Duplicate entries for **CONDITIONS** and **MEDICATIONS** are allowed and will be considered as separate entries.
+  * Therefore, `addrecord 1 d/10-11-2023 1800 c/Flu c/Flu m/Ibuprofen m/Ibuprofen` will store **[Flu, Flu]** and **[Ibuprofen, Ibuprofen]** for conditions and medications, respectively.
 
 Examples:
 
@@ -342,11 +359,11 @@ Format: `viewappointment`
 - The **description**, **date and time**, and **NRIC** of the patient involved in appointment will be displayed in the **Appointment List**. <br>
 
 - The **description** of appointments will also appear on the calendar at the corresponding **date**. <br>
-**Note**: Only the **first two** appointments according to the **APPOINTMENTS** list will be displayed on the calendar per date.
+  **Note**: Only the **first two** appointments according to the **APPOINTMENTS** list will be displayed on the calendar per date.
 
 <u>[Back to Top](#user-guide)</u>
 
-### Editing detail of a patient : `editpatient`
+### Editing details of a patient : `editpatient`
 
 Edits the detail of an existing patient in MedBook.
 
@@ -355,7 +372,7 @@ Format: `editpatient PATIENTID PREFIX/NEWVALUE...`
 - Edits the patient at the specified `PATIENTID`. <br>
 
 - Acceptable fields : **name**, **email**, **phone**, **gender**, **age**, **bloodtype**, **allergy**. <br>
-**note**: NRIC can't be changed.
+  **note**: NRIC can't be changed.
 
 - Existing values in the respective fields will be updated to the **NEWVALUE** input. <br>
 
@@ -388,7 +405,7 @@ Format: `editrecord PATIENTID/RECORDID PREFIX/NEWVALUE...`
 - Existing values in the field will be updated to the **NEWVALUE** input. <br>
 
 - Multiple entries of date fields are not allowed. <br>
-S
+  S
 - Multiple entries of condition/medication fields are allowed to represent a new set of conditions. <br>
 - Constraints of each field are as stated in the **CONSTRAINTS** section above. <br>
 
@@ -398,7 +415,7 @@ Examples:
 
 - `editrecord 1/1 c/Headache c/Flu` Edits the conditions of the 1st record of the 1st patient to be **Headache, Flu**. <br>
 
-- `editrecord 1/1 c/Headache m/Paracetamol` Edits the conditions and medications of the 1st  of the 1st patient to be **Headache** and **Paracetamol** respectively. <br>
+- `editrecord 1/1 c/Headache m/Paracetamol` Edits the conditions and medications of the 1st of the 1st patient to be **Headache** and **Paracetamol** respectively. <br>
 
 <u>[Back to Top](#user-guide)</u>
 
@@ -411,7 +428,7 @@ Format: `search KEYWORD...`
 - The search is not case-sensitive. e.g **Penicillin** will match **penicillin**. <br>
 
 - A patient's name and details will be searched. <br>
-**note**: This does not include searching through the details of records.
+  **note**: This does not include searching through the details of records.
 
 - Patients matching at least one keyword will be returned. <br>
 
@@ -521,11 +538,13 @@ Examples:
 
 <u>[Back to Top](#user-guide)</u>
 
-### Attaching files to a patient's record 
+### Attaching files to a patient's record
 
 Attach local files to a patient's record by clicking on the attached file button located within each record row.
 
+<box type="warning" seamless>
 Caution: Refrain from deleting/relocating the local file. If necessary, re-attach the new file after relocation/deletion.
+</box>
 
 <u>[Back to Top](#user-guide)</u>
 
@@ -545,11 +564,11 @@ MedBook data is saved to the hard disk automatically after any command that chan
 
 ### Editing the data file
 
-MedBook data are saved automatically as a JSON file [JAR file location]/data/medbook.json. Advanced users will be able to edit this files to directly make changes to the data files. 
+MedBook data is saved automatically as a JSON file located in [JAR file location]/data/medbook.json. The file can be edited directly to make changes to MedBook data.
 
 <box type="warning" seamless>
 Caution:
-Only advanced users may make changes to the data file. Be careful as wrong data formatting may result in the application not working as intended.
+Only advanced users are encouraged to make changes to the data file as wrong data formatting may result in the application not working as intended.
 </box>
 
 <u>[Back to Top](#user-guide)</u>

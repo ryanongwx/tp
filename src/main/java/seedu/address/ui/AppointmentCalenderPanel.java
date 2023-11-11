@@ -67,11 +67,6 @@ public class AppointmentCalenderPanel extends UiPart<Region> {
     }
 
     @FXML
-    private void initialize() {
-
-    }
-
-    @FXML
     private void previousMonth() {
         currentDate = currentDate.minusMonths(1);
         populateMonth(currentDate);
@@ -85,6 +80,7 @@ public class AppointmentCalenderPanel extends UiPart<Region> {
 
     private void populateMonth(LocalDate date) {
         calendarGrid.getChildren().clear(); // Clear the previous month's data
+        currentMonthLabel.setText(date.getMonth() + " " + date.getYear());
 
         // Print headers (days of the week)
         DayOfWeek[] daysOfWeek = { DayOfWeek.SUNDAY, DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
@@ -119,10 +115,7 @@ public class AppointmentCalenderPanel extends UiPart<Region> {
                 // This appointment belongs to the currently displayed month
 
                 int day = appointmentDate.getDayOfMonth();
-                System.out.println(appointment.getDateTime().toString() + day);
-
                 int cellDayOfWeek = (firstOfMonth.getDayOfWeek().getValue() + day - 1) % 7;
-                System.out.println(cellDayOfWeek);
                 // Find the label that corresponds to this day
                 for (Node node : calendarGrid.getChildren()) {
                     if (GridPane.getRowIndex(node) == 1 + (day + rowOffset - 1) / 7
@@ -137,7 +130,6 @@ public class AppointmentCalenderPanel extends UiPart<Region> {
                     }
                 }
             }
-            currentMonthLabel.setText(date.getMonth() + " " + date.getYear());
         }
     }
 }

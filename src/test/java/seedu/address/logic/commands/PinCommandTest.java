@@ -48,8 +48,7 @@ public class PinCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         PinCommand pinCommand = new PinCommand(outOfBoundIndex);
 
-        assertCommandFailure(pinCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
-                + ". Please ensure that it is within 1 and " + model.getFilteredPersonList().size() + ".");
+        assertCommandFailure(pinCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -78,8 +77,7 @@ public class PinCommandTest {
 
         PinCommand pinCommand = new PinCommand(outOfBoundIndex);
 
-        assertCommandFailure(pinCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
-                + ". Please ensure that it is within 1 and " + model.getPinnedPersonList().size() + ".");
+        assertCommandFailure(pinCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
