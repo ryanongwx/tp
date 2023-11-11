@@ -72,7 +72,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        appointmentsWindow = new AppointmentsWindow(new Stage(), logic);
+        appointmentsWindow = new AppointmentsWindow(new Stage(), logic.getFilteredAppointmentList());
         mainWindow = this;
     }
 
@@ -180,7 +180,6 @@ public class MainWindow extends UiPart<Stage> {
     public void handleAppointments() {
         if (!appointmentsWindow.isShowing()) {
             appointmentsWindow.show();
-            appointmentsWindow.fillInnerParts();
         } else {
             appointmentsWindow.focus();
         }

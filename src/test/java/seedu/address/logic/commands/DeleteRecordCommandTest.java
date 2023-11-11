@@ -51,8 +51,7 @@ public class DeleteRecordCommandTest {
         Index validRecordIndex = fromOneBased(3);
         DeleteRecordCommand deleteRecordCommand = new DeleteRecordCommand(outOfBoundPatientIndex, validRecordIndex);
 
-        assertCommandFailure(deleteRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
-                + ". Please ensure that it is within 1 and " + model.getFilteredPersonList().size() + ".");
+        assertCommandFailure(deleteRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test

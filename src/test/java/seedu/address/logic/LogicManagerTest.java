@@ -65,8 +65,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
-                + ". Please ensure that it is within 1 and " + model.getFilteredPersonList().size() + ".");
+        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -106,6 +105,7 @@ public class LogicManagerTest {
     public void getPersonBeingViewed_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getPersonBeingViewed().remove(0));
     }
+
     @Test
     public void nonNullArray() {
         assertNotNull(logic.getPatientIndex());

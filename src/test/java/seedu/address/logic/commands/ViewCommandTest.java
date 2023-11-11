@@ -40,8 +40,7 @@ public class ViewCommandTest {
         Index indexOutOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         ViewCommand viewCommand = new ViewCommand(indexOutOfBounds);
 
-        assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
-                + ". Please ensure that it is within 1 and " + model.getFilteredPersonList().size() + ".");
+        assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test

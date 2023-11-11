@@ -173,8 +173,7 @@ public class EditRecordCommandTest {
         EditRecordCommand editRecordCommand = new EditRecordCommand(outOfBoundIndex, INDEX_FIRST_RECORD,
                 descriptor);
 
-        assertCommandFailure(editRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX
-            + ". Please ensure that it is within 1 and " + model.getFilteredPersonList().size() + ".");
+        assertCommandFailure(editRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test

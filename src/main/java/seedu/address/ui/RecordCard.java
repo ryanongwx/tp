@@ -97,7 +97,6 @@ public class RecordCard extends UiPart<Region> {
                 // Handle the case where the file does not exist or is not valid.
 
                 mainWindow.setResultDisplay("There was an issue with the file: " + e.getMessage());
-                System.out.println("There was an issue with the file: " + e.getMessage());
             } catch (IOException e) {
                 // Handle other I/O errors.
                 e.printStackTrace();
