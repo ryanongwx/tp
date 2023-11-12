@@ -50,7 +50,7 @@ LogicManager -> AddRecordCommand : execute(model)
 activate AddRecordCommand
 
 AddRecordCommand -> Model : setPerson(targetPerson, personWithAddedRecord)
-AddRecordCommand -> Model : updateRecordList(personWithAddedRecord, index)
+AddRecordCommand -> Model : updateRecordList(personWithAddedRecord)
 
 create CommandResult
 AddRecordCommand -> CommandResult
