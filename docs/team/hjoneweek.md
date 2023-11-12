@@ -21,6 +21,10 @@ title: "Hanjoo's Project Portfolio Page"
   - Allow doctors to search for the past records of the patient that they are currently viewing using keywords.
   - Created the parser class and the command class to execute the searching record command.
 
+* **New Feature 3** Delete Record
+  * Allow doctors to delete records of patients if necessary
+  * Created the parser class and the command class to execute the deleting record command.
+
 * **Project management**
 
 * **Documentation**
