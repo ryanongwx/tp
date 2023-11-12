@@ -712,6 +712,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a1. MedBook shows an error message.
     - Use case ends.
 
+### UC10 - Adding a Record under a Patient
+
+- **Actor**: User
+- **System**: MedBook
+- **Main Success Scenario (MSS)**:
+  1. User lists all the patients (UC03).
+  2. User requests to add a record under a patient.
+  3. MedBook returns a list of all past records and the added record of that patient and informs the user.
+  4. User views the list of the records of the patient.
+- **Extensions**:
+  - 2a. User gives a wrong command name.
+    - 2a1. MedBook displays a message: "Unknown Command".
+    - Use case ends.
+  - 2b. User gives an invalid index of the patient and/or invalid input in any field.
+    - 2b1. MedBook shows an error message.
+    - Use case ends.
+
+### UC11 - Deleting a Record under a Patient
+
+- **Actor**: User
+- **System**: MedBook
+- **Main Success Scenario (MSS)**:
+  1. User views a patient (UC09)
+  2. User requests to delete a record under a patient
+  3. MedBook returns a list of all the records except for the deleted record and informs the user.
+  4. User views the list of the records of the patient.
+- **Extension**:
+  - 2a. User gives a wrong command name.
+    - 2a1. MedBook displays a message: "Unknown Command".
+    - Use case ends.
+  - 2b. User gives an invalid index of the patient and/or record
+    - 2b1. MedBook shows an error message.
+    - Use case ends.
+
+### UC12 - Searching for Records
+
+- **Actor**: User
+- **System**: MedBook
+- **Main Success Scenario (MSS)**:
+  1. User views a patient (UC09)
+  2. User initiates a record search of the currently viewing patient using specific keywords.
+  3. MedBook performs a case-insensitive search.
+  4. MedBook returns a list of matching records.
+  5. User views the updated list.
+- **Extension**:
+  - 2a. User gives a wrong command name.
+    - 2a1. MedBook displays a message: "Unknown Command".
+    - Use case ends.
+  - 4a. No matches found.
+    - 4a1. MedBook displays a message: "No matches found."
+    - Use case ends.
+
 ### UC11 - Adding an Appointment
 
 - **Actor**: User
@@ -903,16 +955,22 @@ Adding to the glossary ensures that all potential users, regardless of their lev
 
 ### Adding a New Patient
 
-#### Standard Procedure
-
-1. Test Case: `add John Doe; Age: 30; Address: 123 Main St`
+1. Test Case: `addpatient n/John Doe i/T0000000Z e/johndoe@gmail.com p/98765432 g/M a/30 bt/AB+ al/Dust`
    - Expected: New patient "John Doe" is added to the list, details are shown in status message.
-2. Test Case: `add; Age: 30; Address: 123 Main St`
-   - Expected: Error message displayed, patient not added.
-3. Test Case: `add John Doe; Age: thirty; Address: 123 Main St`
-   - Expected: Error message displayed, patient not added.
-
----
+2. Test Case: `addpatien n/John Doe i/T0000000Z e/johndoe@gmail.com p/98765432 g/M a/30 bt/AB+ al/Dust`
+   - Expected: Error message displayed, patient not added due to unknown command.
+3. Test Case: `addpatient n/John Doe i/0000000 e/johndoe@gmail.com p/98765432 g/M a/30 bt/AB+ al/Dust`
+   - Expected: Error message displayed, patient not added due to incorrect format of NRIC
+4. Test Case: `addpatient n/John Doe i/T0000000Z e/johndoegmail.com p/98765432 g/M a/30 bt/AB+ al/Dust`
+   - Expected: Error message displayed, patient not added due to incorrect format of email.
+5. Test Case: `addpatient n/John Doe i/T0000000Z e/johndoe@gmail.com p/12 g/M a/30 bt/AB+ al/Dust`
+   - Expected: Error message displayed, patient not added due to incorrect format of phone number.
+6. Test Case: `addpatient n/John Doe i/T0000000Z e/johndoe@gmail.com p/98765432 g/T a/30 bt/AB+ al/Dust`
+   - Expected: Error message displayed, patient not added because gender can only be M or F.
+7. Test Case: `addpatient n/John Doe i/T0000000Z e/johndoe@gmail.com p/98765432 g/M a/-1 bt/AB+ al/Dust`
+   - Expected: Error message displayed, patient not added because age can only be nonnegative integer.
+8. Test Case: `addpatient n/John Doe i/T0000000Z e/johndoe@gmail.com p/98765432 g/M a/30 bt/AP al/Dust`
+   - Expected: Error message displayed, patient not added due to incorrect blood type.
 
 ### Editing a Patient's Details
 
@@ -945,6 +1003,82 @@ Adding to the glossary ensures that all potential users, regardless of their lev
    - Expected: Error message displayed, status bar unchanged.
 4. Other Test Cases: `view`, `view x` (where x > list size)
    - Expected: Error message displayed, status bar unchanged.
+
+---
+
+### Adding a Record under Patient
+
+1. Prerequisites: Ensure the patient list is displayed
+2. Test Case: `addrecord 1 d/12-11-2023 2200 c/Fever m/Ibuprofen`
+   - Expected: Adds the specified record to the first patient.
+3. Test Case: `addrecord x d/12-11-2023 2200 c/Fever m/Ibuprofen` (where x > size of patient list)
+   - Expected: Error message displayed
+4. Test Case: `addrecord 1 d/12112023 c/Fever m/Ibuprofen`
+   - Expected: Error message displayed suggesting date and time should in the form of dd-mm-yyyy hhmm
+5. Test Case: `addrecod 1 d/12-11-2023 2200 c/Fever m/Ibuprofen`
+   - Expected: Error message displayed due to unknown command.
+
+---
+
+### Deleting a Record under Patient
+
+1. Prerequisites: Ensure the patient list is displayed
+2. Test Case: `deleterecord 1/1`
+   - Expected: Deletes the first record of the first patient.
+3. Test Case: `deleterecord x/1` (where x > size of patient list)
+   - Expected: Error message displayed
+4. Test Case: `deleterecord 1/y` (where y > size of record list of the first patient)
+   - Expected: Error message displayed
+5. Test Case: `deletrecod 1/1`
+   - Expected: Error message displayed due to unknown command.
+
+---
+
+### Searching Records of the Currently Viewing Patient
+
+1. Prerequisites: The user is currently viewing a patient, and the record list of that patient is not empty.
+2. Test Case: `searchrecord Ibuprofen`
+   - Expected: List of records with "Ibuprofen" in the medications or details is displayed.
+3. Test Case: `searchreocrd Ibuprofen`
+   - Expected: Error message displayed due to unknown command.
+
+---
+
+### Adding a Record under Patient
+
+1. Prerequisites: Ensure the patient list is displayed
+2. Test Case: `addrecord 1 d/12-11-2023 2200 c/Fever m/Ibuprofen`
+   - Expected: Adds the specified record to the first patient.
+3. Test Case: `addrecord x d/12-11-2023 2200 c/Fever m/Ibuprofen` (where x > size of patient list)
+   - Expected: Error message displayed
+4. Test Case: `addrecord 1 d/12112023 c/Fever m/Ibuprofen`
+   - Expected: Error message displayed suggesting date and time should in the form of dd-mm-yyyy hhmm
+5. Test Case: `addrecod 1 d/12-11-2023 2200 c/Fever m/Ibuprofen`
+   - Expected: Error message displayed due to unknown command.
+
+---
+
+### Deleting a Record under Patient
+
+1. Prerequisites: Ensure the patient list is displayed
+2. Test Case: `deleterecord 1/1`
+   - Expected: Deletes the first record of the first patient.
+3. Test Case: `deleterecord x/1` (where x > size of patient list)
+   - Expected: Error message displayed
+4. Test Case: `deleterecord 1/y` (where y > size of record list of the first patient)
+   - Expected: Error message displayed
+5. Test Case: `deletrecod 1/1`
+   - Expected: Error message displayed due to unknown command.
+
+---
+
+### Searching Records of the Currently Viewing Patient
+
+1. Prerequisites: The user is currently viewing a patient, and the record list of that patient is not empty.
+2. Test Case: `searchrecord Ibuprofen`
+   - Expected: List of records with "Ibuprofen" in the medications or details is displayed.
+3. Test Case: `searchreocrd Ibuprofen`
+   - Expected: Error message displayed due to unknown command.
 
 ---
 
