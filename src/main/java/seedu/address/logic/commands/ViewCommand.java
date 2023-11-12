@@ -49,7 +49,7 @@ public class ViewCommand extends Command {
         }
 
         Person patientToView = lastShownList.get(targetIndex.getZeroBased());
-        model.updateRecordList(patientToView, targetIndex);
+        model.updateRecordList(patientToView);
         return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(patientToView)));
     }
 

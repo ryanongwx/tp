@@ -12,8 +12,7 @@ import java.time.format.ResolverStyle;
  * Represents the date and time in which patient visits the doctor
  */
 public class DateTime {
-    public static final String MESSAGE_CONSTRAINTS = "Invalid DateTime. DateTime should be in"
-            + " the format of 'dd-MM-yyyy HHmm'";
+    public static final String MESSAGE_CONSTRAINTS = "DateTime should be in the format of 'dd-MM-yyyy HHmm'";
 
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu HHmm")
             .withResolverStyle(ResolverStyle.STRICT);
