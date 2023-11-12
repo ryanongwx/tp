@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -102,11 +101,6 @@ public class ModelManagerTest {
     @Test
     public void getPinnedPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getPinnedPersonList().remove(0));
-    }
-
-    @Test
-    public void nonNullArray() {
-        assertNotNull(modelManager.getPatientIndex());
     }
 
     @Test

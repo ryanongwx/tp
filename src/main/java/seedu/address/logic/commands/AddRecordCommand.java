@@ -73,7 +73,7 @@ public class AddRecordCommand extends Command {
                 newRecords, personToAddRecord.getAppointments(), personToAddRecord.isPinned());
 
         model.setPerson(personToAddRecord, personWithAddedRecord);
-        model.updateRecordList(personWithAddedRecord, index);
+        model.updateRecordList(personWithAddedRecord);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(record, personWithAddedRecord)));
     }
