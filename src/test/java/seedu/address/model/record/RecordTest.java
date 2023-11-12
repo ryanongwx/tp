@@ -3,7 +3,6 @@ package seedu.address.model.record;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.record.Record.removeDuplicates;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -30,37 +29,6 @@ public class RecordTest {
             new Record(new DateTime("09-10-2023 1800"), null, null, null, null));
         List<Condition> validConditions = new ArrayList<>(Arrays.asList(new Condition("Fever"), new Condition("Cold")));
         assertThrows(NullPointerException.class, () -> new Record(null, validConditions, null, null, null));
-    }
-
-    @Test
-    public void removeDuplicates_noDuplicates() {
-        List<Condition> expectedConditions = new ArrayList<>(Arrays.asList(new Condition("Fever"),
-                new Condition("Cold")));
-        List<Medication> expectedMedications = new ArrayList<>(Arrays.asList(new Medication("Tylenol"),
-                new Medication("Ibuprofen")));
-
-        assertTrue(expectedConditions.equals(removeDuplicates(validConditions)));
-        assertTrue(expectedMedications.equals(removeDuplicates(validMedications)));
-    }
-
-    @Test
-    public void removeDuplicates_conditions_withDuplicates() {
-        List<Condition> validConditionsWithDuplicates = new ArrayList<>(Arrays.asList(new Condition("Flu"),
-                new Condition("Flu"), new Condition("Flu"), new Condition("Fever"), new Condition("Headache"),
-                new Condition("Fever")));
-
-        List<Condition> expectedConditions = new ArrayList<>(Arrays.asList(new Condition("Flu"),
-                new Condition("Fever"), new Condition("Headache")));
-
-        List<Medication> validMedicationsWithDuplicates = new ArrayList<>(Arrays.asList(new Medication("Tylenol"),
-                new Medication("Ibuprofen"), new Medication("Tylenol"), new Medication("Penicillin"),
-                new Medication("Ibuprofen")));
-
-        List<Medication> expectedMedications = new ArrayList<>(Arrays.asList(new Medication("Tylenol"),
-                new Medication("Ibuprofen"), new Medication("Penicillin")));
-
-        assertTrue(expectedConditions.equals(removeDuplicates(validConditionsWithDuplicates)));
-        assertTrue(expectedMedications.equals(removeDuplicates(validMedicationsWithDuplicates)));
     }
 
     @Test
