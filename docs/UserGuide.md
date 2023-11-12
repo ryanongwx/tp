@@ -32,6 +32,8 @@ Discover the power of Medbook:
 <!-- * Table of Contents -->
 <page-nav-print />
 
+---
+
 ## How to Navigate the User Guide
 
 Welcome to the Medbook User Guide! Our goal is to empower you with the knowledge and confidence to make the most of Medbook's features.
@@ -48,16 +50,17 @@ We're here to make your experience as user-friendly as possible. Let's get start
 
 1. Ensure you have Java `11` or above installed in your Computer.
    - [How do I check my version of Java?](#faq)
-1. Download the latest jar file (`medbook.jar`) from our [GitHub release](https://github.com/AY2324S1-CS2103T-T12-4/tp/releases).
 
-1. Move the jar file to the folder you want to store the data of the patients.
+2. Download the latest jar file (`medbook.jar`) from our [github release](https://github.com/AY2324S1-CS2103T-T12-4/tp/releases).
+
+3. Move the jar file to the folder you want to store the data of the patients.
 
    - Create a folder with your preferred name (you can call it Medbook) where you would like to house the application.
    - Move the downloaded jar file to the folder as shown below.
      - For Mac users:![Ui](images/MacUserDir.png)
      - For Windows users:![Ui](images/WinUserDir.png)
 
-1. Run Medbook application
+4. Run Medbook application
 
    - **On Windows**:
 
@@ -220,16 +223,16 @@ You may now have a basic understanding of this software. Try out the features in
 
 The **domain** name must: <br>
 
-- end with a domain label at least 2 characters long <br>
+1. end with a domain label at least 2 characters long <br>
 
-- have each domain label start and end with alphanumeric characters <br>
+2. have each domain label start and end with alphanumeric characters <br>
 
-- have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+3. have each domain label consist of alphanumeric characters, separated only by hyphens, if any. <br> <br>
 
 **Notes for allergy format:** <br>
 
-- Multiple words for an allergy must be seperated with hyphen.
-- Each word must be alphanumeric characters.
+1. When noting down allergies that consist of multiple words, they should be consolidated into a single word with each word's initial letter capitalized. <br>
+**Example:** Red Meat should be written as RedMeat.
 
 </box>
 
