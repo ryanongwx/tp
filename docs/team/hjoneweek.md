@@ -28,8 +28,9 @@ title: "Hanjoo's Project Portfolio Page"
 * **Project management**
 
 * **Documentation**
-  - User Guide 
-    - Added new sections explaining how to use the new features and commands I implemented, which are `addrecord` and `searchrecord` command. 
+  - User Guide
+    - Added new sections explaining how to use the new features and commands I implemented, which are `addrecord` and `searchrecord`
+    command. 
     - Modified `addpatient` command (originally `addperson` command)  section following to the updated attributes of the patient.
   - Developer Guide
     - Added implementation details for `addrecord` command.

@@ -31,10 +31,10 @@ Given below are my contributions to the project.
     * Created an activity diagram for view command.
 
 * **Community**:
-  * PRs reviewed: [\#23](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/23), [\#31](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/31), 
+  * PRs reviewed: [\#23](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/23), [\#31](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/31),
   [\#41](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/41), [\#54](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/54),
-  [\#61](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/61), [\#66](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/66), 
+  [\#61](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/61), [\#66](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/66),
   [\#70](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/70), [\#82](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/82),
-  [\#91](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/91), [\#93](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/93), 
+  [\#91](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/91), [\#93](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/93),
   [\#95](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/95), [\#149](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/149),
   [\#151](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/151)
