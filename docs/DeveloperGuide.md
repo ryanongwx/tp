@@ -283,7 +283,7 @@ The `deleterecord` command deletes a specified record in `UniqueRecordList` of a
 - `Model#updateRecordList(Person, Index)`, `AddressBook#setRecords(Person, Index)`, `UniqueRecordList#setRecords(UniqueRecordList)`: Updates record details with deleted record.
 - `Model#setPerson(Person, Person)`, `AddressBook#setPerson(Person, Person)`, `UniquePersonList#setPerson(Person, Person)`: Updates patient details.
 
-#### Implementation Steps
+##### Implementation Steps
 1. **Parse User Input**: `DeleteRecordCommandParser` checks for the validity of the patient and record indices.
 2. **CreateIndex Object**: Two `Index` objects, patient index and record index, are instantiated during `DeleteRecordCommandParser#parse(String)` and handed over to the `DeleteRecordCommand`.
 3. **Execute Command**: `DeleteRecordCommand#execute(Model)` deletes specified record of the specified patient and updates `UniqueRecordList` of that patient.
@@ -309,7 +309,7 @@ The `searchrecord` command filters `UniqueRecordList` of the currently viewing p
 
 <puml src="diagrams/FindRecordSequenceDiagram.puml" width="450" />
 
-#### Attach Files to Patient Records
+### Attaching Files to Patient Records
 
 #### Overview
 
