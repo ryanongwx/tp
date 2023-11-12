@@ -50,7 +50,7 @@ LogicManager -> DeleteRecordCommand : execute(model)
 activate DeleteRecordCommand
 
 DeleteRecordCommand -> Model : setPerson(targetPatient, patientWithDeletedRecord)
-DeleteRecordCommand -> Model : updateRecordList(patientWithDeletedRecord, index)
+DeleteRecordCommand -> Model : updateRecordList(patientWithDeletedRecord)
 
 create CommandResult
 DeleteRecordCommand -> CommandResult
