@@ -196,11 +196,11 @@ The `addpatient` command integrates a new `Person` object with the patient's det
 
 ### Editing Patient Details
 
-#### Overview 
+#### Overview
 
 The `editpatient` command in MedBook facilitates the modification of patient information by updating the fields of a `Person` object with new details.
 
-#### Related Classes and Methods 
+#### Related Classes and Methods
 
 - `EditCommandParser` : Interprets user input into an actionable command for editing patient details.
 - `EditPersonDescriptor` : Contains and tracks the patient details that are eligible for modification.
@@ -218,13 +218,13 @@ The `editpatient` command in MedBook facilitates the modification of patient inf
 #### Design Considerations
 
 **Alternative 1 (Current Choice)**: Implement an Edit-by-Cloning Strategy
-- Pros : 
+- Pros :
    - **Scalability:** By cloning the `Person` object before editing, the system is better equipped to handle future enhancements that may require complex transactional operations.
    - **Data Integrity:** This method ensures that the original `Person` object remains unaltered during the edit process, which reduces the risk of data corruption in the event of an operation failure.
 - Cons : Adds complexity, potential performance issues.
 
 **Alternative 2**: Modify the `Person` Object Directly in the AddressBook
-- Pros: 
+- Pros:
    - **Simplicity:** This straightforward approach requires less code, making it easier to implement and understand.
    - **Efficiency:** Operating directly on the `Person` object without cloning can be more performant, especially when dealing with simple edits that do not span multiple data fields.
 - Cons:
@@ -335,11 +335,11 @@ The `addrecord` command integrates a new `Record` object with the patient's deta
 
 ### Editing Patient's Record Details
 
-#### Overview 
+#### Overview
 
 The `editrecord` command in MedBook enables users to update the details of a `Record` object within a `Person` object with the updated record details provided.
 
-#### Related Classes and Methods 
+#### Related Classes and Methods
 
 - `EditRecordCommandParser` : Interprets user input into a command.
 - `EditRecordDescriptor` : Stores the details of the record that can be modified.
@@ -356,7 +356,7 @@ The `editrecord` command in MedBook enables users to update the details of a `Re
 
 #### Design Considerations
 
-Similar to editing patient, a clone is being created and modified, and then replace the original. 
+Similar to editing patient, a clone is being created and modified, and then replace the original.
 
 **Alternative 1 (Current Choice):** Clone the Record object, modify the clone, and then replace the original.
 
@@ -1124,7 +1124,7 @@ Adding to the glossary ensures that all potential users, regardless of their lev
    - Expected: Error message displayed suggesting date and time should in the form of "dd-mm-yyyy hhmm".
 8. Test Case: `editrecord 1/1 d/12-11-2023 2200 d/13-11-2023 2200`
    - Expected: Error message displayed suggesting multiple inputs of date are not allowed.
-   - 
+
 ---
 ### Deleting a Record under Patient
 
