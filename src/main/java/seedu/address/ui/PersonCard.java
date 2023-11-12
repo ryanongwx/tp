@@ -1,8 +1,6 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -64,19 +62,8 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         bloodType.setText(person.getBloodType().bloodType);
 
-        List<Label> allergyList = new ArrayList<>();
-
         person.getAllergies().stream()
                 .sorted(Comparator.comparing(allergy -> allergy.allergy))
-                .forEach(allergy -> allergyList.add(new Label(allergy.allergy + ", ")));
-
-        if (!allergyList.isEmpty()) {
-            Label label = allergyList.get(allergyList.size() - 1);
-            String text = label.getText();
-            text = text.substring(0, text.length() - 2);
-            label.setText(text);
-        }
-
-        allergyList.forEach(allergy -> allergies.getChildren().add(allergy));
+                .forEach(allergy -> allergies.getChildren().add(new Label(allergy.allergy + " ")));
     }
 }
