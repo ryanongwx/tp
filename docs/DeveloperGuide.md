@@ -699,7 +699,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 3a1. MedBook displays a message: "No matches found."
     - Use case ends.
 
-### UC09 - View Patient's Medical Records
+### UC10 - View Patient's Medical Records
 
 - **Actor**: User
 - **System**: MedBook
@@ -712,7 +712,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a1. MedBook shows an error message.
     - Use case ends.
 
-### UC10 - Adding an Appointment
+### UC11 - Adding an Appointment
 
 - **Actor**: User
 - **System**: MedBook
@@ -729,32 +729,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - Steps 3a1-3a3 are repeated until the appointment details entered is correct.
     - Use Case resumes from step 4.
 
-### UC11 - Deleting an Appointment
-
-- **Actor**: User
-- **System**: MedBook
-- **Preconditions**: There is at least one appointment.
-- **Main Success Scenario (MSS)**:
-  1. User requests to delete a new appointment.
-  2. MedBook prompts the user to enter the appointment's ID.
-  3. User enters the appointment's ID.
-  4. MedBook deletes the appointment from the list.
-- **Extensions**:
-  - 3a. MedBook detects an error in the entered APPOINTMENTID.
-    - 3a1. MedBook shows an error message.
-    - 3a2. MedBook requests for the correct APPOINTMENTID.
-    - 3a3. User enters new APPOINTMENTID.
-    - Steps 3a1-3a3 are repeated until the APPOINTMENTID entered is correct.
-    - Use Case resumes from step 4.
-
 ### UC12 - Viewing Appointments
 
 - **Actor**: User
 - **System**: MedBook
-- **Preconditions**: There is at least one appointment.
 - **Main Success Scenario (MSS)**:
   1. User requests to view appointments.
   2. MedBook shows the user all appointments
+
+### UC13 - Deleting an Appointment
+
+- **Actor**: User
+- **System**: MedBook
+- **Preconditions**: There is at least one appointment.
+- **Main Success Scenario (MSS)**:
+  1. User views all appointments (UC12).
+  2. User requests to delete a new appointment.
+  3. MedBook prompts the user to enter the appointment's ID.
+  4. User enters the appointment's ID.
+  5. MedBook deletes the appointment from the list.
+- **Extensions**:
+  - 4a. MedBook detects an error in the entered APPOINTMENTID.
+    - 3a1. MedBook shows an error message.
+    - 3a2. MedBook requests for the correct APPOINTMENTID.
+    - 3a3. User enters new APPOINTMENTID.
+    - Steps 3a1-3a3 are repeated until the APPOINTMENTID entered is correct.
+    - Use Case resumes from step 5.
 
 ---
 
@@ -948,21 +948,7 @@ Adding to the glossary ensures that all potential users, regardless of their lev
 
 ---
 
-### View Patient's Medical Records
-
-1. Prerequisites: Ensure the patient list is displayed and contains the entry you wish to edit.
-2. Test Case: `view 1`
-   - Expected: First contact deleted, details shown in status message.
-3. Test Case: `view 0`
-   - Expected: Error message displayed, status bar unchanged.
-4. Other Test Cases: `view`, `view x` (where x > list size)
-   - Expected: Error message displayed, status bar unchanged.
-
----
-
 ### Pinnning a Patient
-
-#### Pinning a patient while all patients are being shown
 
 1. Prerequisites: Ensure the patient list is displayed and contains the entry you wish to pin.
 2. Test Case: `pin 1`
@@ -974,8 +960,6 @@ Adding to the glossary ensures that all potential users, regardless of their lev
 
 ### Unpinnning a Patient
 
-#### Unpinning a patient
-
 1. Prerequisites: Ensure the **Pinned Patient List** contains the entry you wish to unpin.
 2. Test Case: `unpin 1`
    - Expected: Patient at index 1 of the **Pinned Patient List** is unpinned and no longer displayed in the **Pinned Patient List**. Details shown in status message.
@@ -986,14 +970,41 @@ Adding to the glossary ensures that all potential users, regardless of their lev
 
 ### Adding an Appointment
 
-#### Adding an appointment
+1. Prerequisites: Ensure the patient list is displayed and contains the entry you wish to add an appointment to.
+2. Test Case: `addappointment 1 n/Eye Exam d/18-10-2023 1900`
+   - Expected: New appointment, "Eye Exam" is added to the patient with index 1, details are shown in status message.
+3. Test Case: `addappointment x n/Eye Exam d/18-10-2023 1900` (where x > list size)
+   - Expected: Error message displayed, patient not added.
+4. Test Case: `addappointment 1 d/18-10-2023 1900`
+   - Expected: Error message displayed, patient not added.
+5. Test Case: `addappointment 1 n/Eye Exam`
+   - Expected: Error message displayed, patient not added.
+6. Test Case: `addappointment 1 n/Eye Exam d/18/10/2023 1900`
+   - Expected: Error message displayed, patient not added.
 
-1. Test Case: `addappointment`
-   - Expected: New patient "John Doe" is added to the list, details are shown in status message.
-2. Test Case: `add; Age: 30; Address: 123 Main St`
-   - Expected: Error message displayed, patient not added.
-3. Test Case: `add John Doe; Age: thirty; Address: 123 Main St`
-   - Expected: Error message displayed, patient not added.
+---
+
+### Deleting an Appointment
+
+1. Prerequisites: Ensure the appointment list is displayed and contains the entry you wish to delete.
+2. Test Case: `deleteappointment 1`
+   - Expected: Appointment with index 1 is deleted, details are shown in status message.
+3. Test Case: `deleteappointment x` (where x > list size)
+   - Expected: Error message displayed, appointment not deleted.
+
+---
+
+### Viewing Appointments
+
+#### Appointment Window is closed
+
+1. Test Case: `viewappointment`
+   - Expected: Appointment Window opens.
+
+#### Appointment Window is open but not in focus
+
+1. Test Case: `viewappointment`
+   - Expected: Appointment Window focuses.
 
 ### Verifying Patient Data Integrity
 
