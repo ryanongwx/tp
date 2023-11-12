@@ -1105,7 +1105,27 @@ Adding to the glossary ensures that all potential users, regardless of their lev
    - Expected: Error message displayed due to unknown command.
 
 ---
+### Editing a Patient's Record Details
 
+#### When the Patient Exists and Record Exists
+
+1. Prerequisites: Ensure the record list of the patient is displayed and contains the entry you wish to edit.
+2. Test Case: `editrecord 1/1 c/Fever`
+  - Expected: The record at index 1 of the Patient at index 1 has its conditions updated to only fever. Details shown in status message.
+3. Test Case: `editrecord 1/1 c/Fever m/Paracetamol`
+  - Expected: The record at index 1 of the Patient at index 1 has its conditions updated to only fever and medications to only Paracetamol. Details shown in status message.
+4. Test Case: `editrecord x/1 c/Fever` (where x > patient list size)
+  - Expected: Error message displayed, record's details unchanged.
+5. Test Case: `editrecord 1/x c/Fever` (where x > record list size)
+  - Expected: Error message displayed, record's details unchanged.
+6. Test Case: `edirecord 1/1 c/Fever`
+   - Expected: Error message displayed due to unknown command.
+7. Test Case: `editrecord 1/1 d/12112023`
+   - Expected: Error message displayed suggesting date and time should in the form of "dd-mm-yyyy hhmm".
+8. Test Case: `editrecord 1/1 d/12-11-2023 2200 d/13-11-2023 2200`
+   - Expected: Error message displayed suggesting multiple inputs of date are not allowed.
+   - 
+---
 ### Deleting a Record under Patient
 
 1. Prerequisites: Ensure the patient list is displayed
