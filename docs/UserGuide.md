@@ -32,11 +32,8 @@ Discover the power of Medbook:
 <!-- * Table of Contents -->
 <page-nav-print />
 
-<<<<<<< HEAD
 ---
 
-=======
->>>>>>> master
 ## How to Navigate the User Guide
 
 Welcome to the Medbook User Guide! Our goal is to empower you with the knowledge and confidence to make the most of Medbook's features.
@@ -53,11 +50,8 @@ We're here to make your experience as user-friendly as possible. Let's get start
 
 1. Ensure you have Java `11` or above installed in your Computer.
    - [How do I check my version of Java?](#faq)
-<<<<<<< HEAD
+
 2. Download the latest jar file (`medbook.jar`) from our [github release](https://github.com/AY2324S1-CS2103T-T12-4/tp/releases).
-=======
-1. Download the latest jar file (`medbook.jar`) from our [GitHub release](https://github.com/AY2324S1-CS2103T-T12-4/tp/releases).
->>>>>>> master
 
 3. Move the jar file to the folder you want to store the data of the patients.
 
