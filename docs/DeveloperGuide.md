@@ -244,6 +244,48 @@ The `search` command filters `FilteredPersonList` of the list of patients using 
 
 <puml src="diagrams/SearchSequenceDiagram.puml" width="450" />
 
+### Pinning a Patient
+
+#### Overview
+
+The `pin` command pins a patient to the **Pinned Patient List**
+
+#### Related Classes and Methods
+
+- `PinCommandParser#parse(String)`: Parses command input
+- `PinCommand#execute(Model)`: Executes `pin` command
+- `Model#setPerson(Person, Person)`, `AddressBook#setPerson(Person, Person)`, `UniquePersonList#setPerson(Person, Person)`: Updates the patient details
+- `PinnedPatientList`: UI component which displays all patients with `isPinned` set to `true`
+
+#### Implementations Steps
+
+1. **Parse User Input**: `PinCommandParser` checks for the validity of the patient index
+2. **Create Index Object**: An `Index` object is instantiated during `PinCommandParser#parse(String)` and passed over to the `PinCommand`
+3. **Execute Command**: `PinCommand#execute(Model)` sets the `isPinned` status of the patient to `true`
+
+<puml src="diagrams/PinSequenceDiagram.puml"/>
+
+### Unpinning a Patient
+
+#### Overview
+
+The `unpin` command unpins a patient from the **Pinned Patient List**
+
+#### Related Classes and Methods
+
+- `UnpinCommandParser#parse(String)`: Parses command input
+- `UnpinCommand#execute(Model)`: Executes `unpin` command
+- `Model#setPerson(Person, Person)`, `AddressBook#setPerson(Person, Person)`, `UniquePersonList#setPerson(Person, Person)`: Updates the patient details
+- `PinnedPatientList`: UI component which displays all patients with `isPinned` set to `true`
+
+#### Implementations Steps
+
+1. **Parse User Input**: `UnpinCommandParser` checks for the validity of the pinned patient index
+2. **Create Index Object**: An `Index` object is instantiated during `UnpinCommandParser#parse(String)` and passed over to the `UnpinCommand`
+3. **Execute Command**: `UnpinCommand#execute(Model)` sets the `isPinned` status of the patient to `false`
+
+<puml src="diagrams/UnpinSequenceDiagram.puml"/>
+
 ## Records Feature
 
 ### General Implementation Details
@@ -297,7 +339,7 @@ The `deleterecord` command deletes a specified record in `UniqueRecordList` of a
 ##### Implementation Steps
 
 1. **Parse User Input**: `DeleteRecordCommandParser` checks for the validity of the patient and record indices.
-2. **CreateIndex Object**: Two `Index` objects, patient index and record index, are instantiated during `DeleteRecordCommandParser#parse(String)` and handed over to the `DeleteRecordCommand`.
+2. **Create Index Object**: Two `Index` objects, patient index and record index, are instantiated during `DeleteRecordCommandParser#parse(String)` and handed over to the `DeleteRecordCommand`.
 3. **Execute Command**: `DeleteRecordCommand#execute(Model)` deletes specified record of the specified patient and updates `UniqueRecordList` of that patient.
 
 <puml src="diagrams/DeleteRecordSequenceDiagram.puml" width="450" />
@@ -399,7 +441,7 @@ The `addappointment` command adds a new `Appointment` to MedBook.
 
 1. **Parse User Input**: `AddAppointmentCommandParser` checks for necessary parameters and their validity.
 2. **Create Appointment Object**: An `Appointment` object is instantiated during `AddAppointmentCommandParser#parse(String)` and passed to the `AddAppointmentCommand`.
-3. **Execute Command**: `AddAppointmentCommand#execute(Model)` adds the new `Appointment` to the corresponding patient's `UniqueAppointmentList` and resets the `UniqueAppointmentList` of the `Model`.
+3. **Add Appointment**: `AddAppointmentCommand#execute(Model)` adds the new `Appointment` to the corresponding patient's `UniqueAppointmentList` and resets the `UniqueAppointmentList` of the `Model`.
 
 <puml src="diagrams/AddAppointmentSequenceDiagram.puml"/>
 
@@ -444,18 +486,18 @@ The `viewappointment` command opens/focuses the `AppointmentsWindow`.
 2. **Create Index Object**: An `Index` object is instantiated during `DeleteAppointmentCommandParser#parse(String)` and passed to the `DeleteAppointmentCommand`.
 3. **Execute Command**: `DeleteAppointmentCommand#execute(Model)` deletes the specified `Appointment` from the corresponding patient's `UniqueAppointmentList` and resets the `UniqueAppointmentList` of the `Model`.
 
-<puml src="diagrams/DeleteAppointmentSequenceDiagram.puml"/>
+<puml src="diagrams/ViewAppointmentSequenceDiagram.puml"/>
 
 ### Design Considerations
 
 **Aspect: Structure of the Appointment class:**
 
-- **Alternative 1 (Current Choice)**: `Model` holds a `UniqueAppointmentList`, each `Appointment` has a `Person`’s NRIC.
-  - _Pros_: Simplifies displaying all appointments.
-  - _Cons_: Hard to fetch a specific `Person`’s appointments, issues with NRIC updates.
-- **Alternative 2**: Each `Person` holds their `UniqueAppointmentList`.
-  - _Pros_: Easy to retrieve a person's appointments.
-  - _Cons_: Fetching all appointments can be complex.
+- **Alternative 1 (Current Choice)**: `Model` holds a `UniqueAppointmentList` consisting of all `Appointment` objects, each `Person` also has a `UniqueAppointmentList` consisting of all `Appointment` objects assigned to the person. Each `Appointment` object has the corresponding `Person` `NRIC` as a field.
+  - _Pros_: Operations like searching and filtering for all appointments are easier when a centralized list is available.
+  - _Cons_: Keeping the central `UniqueAppointmentList` in `Model` and individual lists in each `Person` synchronized can be challenging and might lead to data inconsistencies if not managed properly. Any change in an `Appointment` requires updates in two places, adding to the complexity and processing time.
+- **Alternative 2**: Each `Person` holds their own `UniqueAppointmentList` consisting of all `Appointment` objects assigned to the person.
+  - _Pros_: This approach simplifies the data model by avoiding the need for a centralized appointment list.
+  - _Cons_: Operations that require knowledge of all appointments, like finding available slots or generating reports, become more complex, as they need to aggregate data from each Person.
 
 ## View Feature
 
@@ -548,13 +590,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - **Actor**: User
 - **System**: MedBook
 - **Main Success Scenario (MSS)**:
-  1. User selects the option to add a new patient.
+  1. User requests to add a new patient.
   2. MedBook prompts the user to enter the patient's details.
   3. User enters the patient's details.
   4. MedBook validates the input and adds the patient to the list.
   5. MedBook confirms the addition to the user.
 - **Extensions**:
-  - 3a. User enters invalid patient details.
+  - 3a. MedBook detects an error in the entered patient's details.
     - 3a1. MedBook shows an error message and prompts the user to enter the details again.
     - Use case resumes at step 3.
 
@@ -580,7 +622,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   3. MedBook updates the patient entry.
   4. MedBook shows successful edit details.
 - **Extensions**:
-  - 2a. User gives an invalid input in any field.
+  - 2a. MedBook detects an error in the entered input.
     - 2a1. MedBook shows an error message.
     - Use case ends.
 
@@ -605,30 +647,47 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - **Main Success Scenario (MSS)**:
   1. User lists all patients (UC03).
   2. User requests to delete a specific patient.
-  3. MedBook confirms deletion with the user.
-  4. User confirms.
-  5. MedBook deletes the patient and informs the user.
+  3. MedBook prompts the user to enter the patient's ID.
+  4. MedBook deletes the patient.
 - **Extensions**:
-  - 2a. Given ID is invalid.
+  - 2a. MedBook detects an error in the entered ID.
     - 2a1. MedBook shows an error message.
-    - Use case ends.
-  - 3a. User cancels the deletion.
     - Use case ends.
 
 ### UC07 - Pin a Patient
 
 - **Actor**: User
 - **System**: MedBook
+- **Preconditions**: There is at least one patient.
 - **Main Success Scenario (MSS)**:
   1. User lists all patients (UC03).
   2. User requests to pin a specific patient.
-  3. MedBook pins the patient and informs the user.
+  3. MedBook pins the patient.
 - **Extensions**:
-  - 2a. Given ID is invalid.
+  - 2a. MedBook detects an error in the entered ID.
     - 2a1. MedBook shows an error message.
-    - Use case ends.
+    - 2a2. MedBook requests for the correct ID.
+    - 2a3. User enters new ID.
+    - Steps 2a1-2a3 are repeated until the ID entered is correct.
+    - Use case resumes from step 3.
 
-### UC08 - Searching for Patients
+### UC08 - Unpin a Patient
+
+- **Actor**: User
+- **System**: MedBook
+- **Preconditions**: There is at least one pinned patient.
+- **Main Success Scenario (MSS)**:
+  1. User requests to unpin a specific patient.
+  2. MedBook unpins the patient.
+- **Extensions**:
+  - 1a. MedBook detects an error in the entered PINNEDID.
+    - 1a1. MedBook shows an error message.
+    - 1a2. MedBook requests for the correct PINNEDID.
+    - 1a3. User enters new PINNEDID.
+    - Steps 1a1-1a3 are repeated until the PINNEDID entered is correct.
+    - Use Case resumes from step 2.
+
+### UC09 - Searching for Patients
 
 - **Actor**: User
 - **System**: MedBook
@@ -641,6 +700,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 3a. No matches found.
     - 3a1. MedBook displays a message: "No matches found."
     - Use case ends.
+
+### UC10 - Adding an Appointment
+
+- **Actor**: User
+- **System**: MedBook
+- **Main Success Scenario (MSS)**:
+  1. User requests to add a new appointment.
+  2. MedBook prompts the user to enter the appointment's details.
+  3. User enters the appointment's details.
+  4. MedBook adds the appointment to the list.
+- **Extensions**:
+  - 3a. MedBook detects an error in the entered appointement's details.
+    - 3a1. MedBook shows an error message.
+    - 3a2. MedBook requests for the correct appointment details.
+    - 3a3. User enters new appointment details.
+    - Steps 3a1-3a3 are repeated until the appointment details entered is correct.
+    - Use Case resumes from step 4.
+
+### UC11 - Deleting an Appointment
+
+- **Actor**: User
+- **System**: MedBook
+- **Preconditions**: There is at least one appointment.
+- **Main Success Scenario (MSS)**:
+  1. User requests to delete a new appointment.
+  2. MedBook prompts the user to enter the appointment's ID.
+  3. User enters the appointment's ID.
+  4. MedBook deletes the appointment from the list.
+- **Extensions**:
+  - 3a. MedBook detects an error in the entered APPOINTMENTID.
+    - 3a1. MedBook shows an error message.
+    - 3a2. MedBook requests for the correct APPOINTMENTID.
+    - 3a3. User enters new APPOINTMENTID.
+    - Steps 3a1-3a3 are repeated until the APPOINTMENTID entered is correct.
+    - Use Case resumes from step 4.
+
+### UC12 - Viewing Appointments
+
+- **Actor**: User
+- **System**: MedBook
+- **Preconditions**: There is at least one appointment.
+- **Main Success Scenario (MSS)**:
+  1. User requests to view appointments.
+  2. MedBook shows the user all appointments
 
 ---
 
@@ -821,6 +924,41 @@ Adding to the glossary ensures that all potential users, regardless of their lev
    - Expected: List of patients with "John" in their name or details is displayed.
 
 ---
+
+### Pinnning a Patient
+
+#### Pinning a patient while all patients are being shown
+
+1. Prerequisites: Ensure the patient list is displayed and contains the entry you wish to pin.
+2. Test Case: `pin 1`
+   - Expected: Patient at index 1 is pinned to the **Pinned Patient List**. Details shown in status message.
+3. Test Case: `pin x` (where x > list size)
+   - Expected: Error message displayed, **Pinned Patient List** unchanged.
+
+---
+
+### Unpinnning a Patient
+
+#### Unpinning a patient
+
+1. Prerequisites: Ensure the **Pinned Patient List** contains the entry you wish to unpin.
+2. Test Case: `unpin 1`
+   - Expected: Patient at index 1 of the **Pinned Patient List** is unpinned and no longer displayed in the **Pinned Patient List**. Details shown in status message.
+3. Test Case: `unpin x` (where x > list size)
+   - Expected: Error message displayed, **Pinned Patient List** unchanged.
+
+---
+
+### Adding an Appointment
+
+#### Adding an appointment
+
+1. Test Case: `addappointment`
+   - Expected: New patient "John Doe" is added to the list, details are shown in status message.
+2. Test Case: `add; Age: 30; Address: 123 Main St`
+   - Expected: Error message displayed, patient not added.
+3. Test Case: `add John Doe; Age: thirty; Address: 123 Main St`
+   - Expected: Error message displayed, patient not added.
 
 ### Verifying Patient Data Integrity
 

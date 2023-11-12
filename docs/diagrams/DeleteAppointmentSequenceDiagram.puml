@@ -5,8 +5,8 @@ skinparam ArrowFontStyle plain
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":DeleteRecordCommandParser" as DeleteRecordCommandParser LOGIC_COLOR
-participant "c:DeleteRecordCommand" as DeleteRecordCommand LOGIC_COLOR
+participant ":DeleteAppointmentCommandParser" as DeleteAppointmentCommandParser LOGIC_COLOR
+participant "c:DeleteAppointmentCommand" as DeleteAppointmentCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -14,53 +14,62 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("deleterecord 1/1")
+[-> LogicManager : execute("deleteappointment 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("deleterecord 1/1")
+LogicManager -> AddressBookParser : parseCommand("deleteappointment 1")
 activate AddressBookParser
 
-create DeleteRecordCommandParser
-AddressBookParser -> DeleteRecordCommandParser
-activate DeleteRecordCommandParser
+create DeleteAppointmentCommandParser
+AddressBookParser -> DeleteAppointmentCommandParser
+activate DeleteAppointmentCommandParser
 
-DeleteRecordCommandParser --> AddressBookParser
-deactivate DeleteRecordCommandParser
+DeleteAppointmentCommandParser --> AddressBookParser
+deactivate DeleteAppointmentCommandParser
 
-AddressBookParser -> DeleteRecordCommandParser : parse("1/1")
-activate DeleteRecordCommandParser
+AddressBookParser -> DeleteAppointmentCommandParser : parse("1")
+activate DeleteAppointmentCommandParser
 
-create DeleteRecordCommand
-DeleteRecordCommandParser -> DeleteRecordCommand
-activate DeleteRecordCommand
+create DeleteAppointmentCommand
+DeleteAppointmentCommandParser -> DeleteAppointmentCommand
+activate DeleteAppointmentCommand
 
-DeleteRecordCommand --> DeleteRecordCommandParser : c
-deactivate DeleteRecordCommand
+DeleteAppointmentCommand --> DeleteAppointmentCommandParser : c
+deactivate DeleteAppointmentCommand
 
-DeleteRecordCommandParser --> AddressBookParser : c
-deactivate DeleteRecordCommand
+DeleteAppointmentCommandParser --> AddressBookParser : c
+deactivate DeleteAppointmentCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteRecordCommandParser -[hidden]-> AddressBookParser
-destroy DeleteRecordCommandParser
+DeleteAppointmentCommandParser -[hidden]-> AddressBookParser
+destroy DeleteAppointmentCommandParser
 
 AddressBookParser --> LogicManager : c
 deactivate AddressBookParser
 
-LogicManager -> DeleteRecordCommand : execute(model)
-activate DeleteRecordCommand
+LogicManager -> DeleteAppointmentCommand : execute(model)
+activate DeleteAppointmentCommand
 
-DeleteRecordCommand -> Model : setPerson(targetPatient, patientWithDeletedRecord)
-DeleteRecordCommand -> Model : updateRecordList(patientWithDeletedRecord, index)
+DeleteAppointmentCommand -> Model : setPerson(targetPerson, newPerson)
+activate Model
+
+Model --> DeleteAppointmentCommand
+deactivate Model
+
+DeleteAppointmentCommand -> Model : resetAppointmentList()
+activate Model
+
+Model --> DeleteAppointmentCommand
+deactivate Model
 
 create CommandResult
-DeleteRecordCommand -> CommandResult
+DeleteAppointmentCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteRecordCommand
+CommandResult --> DeleteAppointmentCommand
 deactivate CommandResult
 
-DeleteRecordCommand --> LogicManager : result
-deactivate DeleteRecordCommand
+DeleteAppointmentCommand --> LogicManager : result
+deactivate DeleteAppointmentCommand
 
 
 [<--LogicManager
