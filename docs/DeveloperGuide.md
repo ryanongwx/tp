@@ -605,7 +605,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - **Actor**: User
 - **System**: MedBook
 - **Main Success Scenario (MSS)**:
-  1. User lists all the patients (UC03).
+  1. User views a patient (UC09)
   2. User requests to delete a record under a patient
   3. MedBook returns a list of all the records except for the deleted record and informs the user.
   4. User views the list of the records of the patient.
