@@ -31,11 +31,6 @@ Discover the power of Medbook:
 <!-- * Table of Contents -->
 <page-nav-print />
 
-<<<<<<< HEAD
-=======
----
-
->>>>>>> master
 ## How to Navigate the User Guide
 
 Welcome to the Medbook User Guide! Our goal is to empower you with the knowledge and confidence to make the most of Medbook's features.
@@ -46,13 +41,9 @@ Welcome to the Medbook User Guide! Our goal is to empower you with the knowledge
 
 We're here to make your experience as user-friendly as possible. Let's get started!
 
-<<<<<<< HEAD
 <u>[Back to Top](#user-guide)</u>
 
-## Quick start 
-=======
 ## Quick start
->>>>>>> master
 
 1. Ensure you have Java `11` or above installed in your Computer.
    - [How do I check my version of Java?](#faq)
