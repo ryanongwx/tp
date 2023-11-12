@@ -817,4 +817,4 @@ We plan to enhance the calendar navigation by introducing a more efficient way f
 
 **Accepting / in Name parameter**: Due to current constraints in the Parser which causes / to be parsed as tags, the "/" character cannot be entered into the name parameter. As such, users would currently not be able to enter "Muhammed Ali s/o Muhammed Ali". We would implement this feature in the future for even more accurate patient naming.
 
-**Patient Index Alignment**: The Patient Index will be aligned with the patient list, ensuring consistency with the displayed indices instead of using a One-Indexed list.
+**Patient Index Alignment**: The Patient Index in *Pinned Patient* and *Person Being Viewed* will be aligned with the patient list, ensuring consistency with the displayed indices instead of using a One-Indexed list.
