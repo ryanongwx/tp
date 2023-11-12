@@ -263,7 +263,13 @@ If the patient does not have an NRIC, eg. foreigners, a placeholder NRIC which i
 If the patient's name contains the "/" character, use the "-" character instead. For example, use "s-o" instead of "s/o".
 </box>
 
+Screenshots:
+
+![AddPatient Screenshots](images/screenshots/addPatient.png)
+![AddPatient Screenshots](images/screenshots/addPatient%20-%20after.png)
+
 <u>[Back to Top](#user-guide)</u>
+
 
 ### Adding Medical Records : `addrecord`
 
@@ -284,7 +290,13 @@ Examples:
   Adds a record to the patient with the **PATIENTID** of **3**.
   The record says that the patient visited the clinic on **September 18th, 2023** at **6PM** with a **Fever** and was prescribed **Paracetamol**.
 
+Screenshots:
+
+![AddRecord Screenshots](images/screenshots/addRecord.png)
+![AddRecord Screenshots](images/screenshots/addRecord%20-%20after.png)
+
 <u>[Back to Top](#user-guide)</u>
+
 
 ### Adding an Appointment : `addappointment`
 
@@ -301,6 +313,11 @@ Format: `addappointment PATIENTID n/NAME d/DATETIME`
 Examples:
 
 - `addappointment 2 n/Eye Examination d/10-10-2023 1800` adds an **Eye Examination** to the **2nd patient** in the patients list. The appointment is set on **10th October 2023** at **6:00pm**.
+
+Screenshots:
+
+![AddAppointment Screenshots](images/screenshots/addAppointment.png)
+![AddAppointment Screenshots](images/screenshots/addAppointment%20-%20after.png)
 
 <u>[Back to Top](#user-guide)</u>
 
@@ -340,6 +357,10 @@ Examples:
 <box type="info" seamless>
     The PATIENT INDEX in the Patient Being Viewed section remains 1, if you wish to quickly operate on the patient, please use search command to locate the patient with the patient's detail.
 </box>
+
+Screenshots:
+
+![View Screenshots](images/screenshots/view.png)
 
 <u>[Back to Top](#user-guide)</u>
 
@@ -384,6 +405,11 @@ Examples:
 - `editpatient 3 al/aspirin` Edits the allergy of the 3rd person to be **aspirin**. <br>
 
 - `editpatient 2 p/92345678 al/aspirin` Edits the name and allergy of the 2nd person to be **92345678** and **aspirin** respectively. <br>
+
+Screenshots:
+
+![EditPatient Screenshots](images/screenshots/editPatient.png)
+![EditPatient Screenshots](images/screenshots/editPatient%20-%20after.png)
 
 <u>[Back to Top](#user-guide)</u>
 
@@ -435,6 +461,11 @@ Examples:
 
 - `search Alex M` will return patients with **Alex** or **M** in their details.
 
+Screenshots:
+
+![Search Screenshots](images/screenshots/search.png)
+![Search Screenshots](images/screenshots/search%20-%20after.png)
+
 <u>[Back to Top](#user-guide)</u>
 
 ### Locating records by keywords: `searchrecord`
@@ -474,6 +505,11 @@ Format: `delete PATIENTID`
 Examples:
 
 - `delete 2` deletes the **2nd patient** from the patients list.
+
+Screenshots:
+
+![Delete Screenshots](images/screenshots/delete.png)
+![Delete Screenshots](images/screenshots/delete%20-%20after.png)
 
 <u>[Back to Top](#user-guide)</u>
 
@@ -517,6 +553,11 @@ Examples:
 
 - `pin 2` pins the **2nd patient** in the patients list to the **PINNED PATIENT** list.
 
+Screenshots:
+
+![Pin Screenshots](images/screenshots/pin.png)
+![Pin Screenshots](images/screenshots/pin%20-%20after.png)
+
 <u>[Back to Top](#user-guide)</u>
 
 ### Unpinning a Patient : `unpin`
@@ -540,6 +581,12 @@ Attach local files to a patient's record by clicking on the attached file button
 <box type="warning" seamless>
 Caution: Refrain from deleting/relocating the local file. If necessary, re-attach the new file after relocation/deletion.
 </box>
+
+Screenshots:
+
+![Attaching File Screenshots](images/screenshots/attachFile%20-%20buttonPress.png)
+![Attaching File Screenshots](images/screenshots/attachFile%20-%20selectFile.png)
+![Attaching File Screenshots](images/screenshots/attachFile%20-%20openFile.png)
 
 <u>[Back to Top](#user-guide)</u>
 
