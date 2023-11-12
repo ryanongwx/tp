@@ -405,7 +405,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a1. MedBook informs the user that the list is empty.
     - Use case ends.
 
-### UC04 - Editing a Patient
+### UC04 - Editing a Patient's Details
 
 - **Actor**: User
 - **System**: MedBook
@@ -413,7 +413,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   1. User lists all patients (UC03).
   2. User provides patient ID, detail field, and updated patient details.
   3. MedBook updates the patient entry.
-  4. MedBook shows successful edit details.
+  4. MedBook shows successful edited details.
 - **Extensions**:
   - 2a. User gives an invalid input in any field.
     - 2a1. MedBook shows an error message.
@@ -695,3 +695,43 @@ We plan to enhance the calendar navigation by introducing a more efficient way f
 **Manual Selection of Month and Year**: A dropdown menu or a picker control will be integrated into the UI, enabling users to quickly jump to a specific month and year without sequentially navigating through each month.
 
 **`viewcalender MM YYYY` command**: For users who prefer typing through the CLI, we will implement a command that allows them to view the calendar for a specific month and year. Users will be able to enter a command in the format viewcalendar MM YYYY (e.g., viewcalendar 12 2023 to view December 2023), and the calendar will update to display the selected month and year.
+
+
+## Appendix: Effort
+
+This appendix aims to provide evaluators with an insight into the total effort that went into the development of Medbook, a comprehensive desktop application for managing patient details and medical records in private clinics.
+
+### Effort Overview
+
+**Duration:** The project spanned approximately 2 months from initial conception to final release.
+**Team:** Consisted of 5 members.
+
+#### Technical Complexity and Challenges
+
+- **Data Security:** Implementing robust security measures such as data encryption to protect sensitive patient information was paramount and required extensive research and testing. (It was omitted due to constraints related to PE-Testing)
+- **Defensive Coding:** We enforced immutability of `Person`, `Record`, and `Appointment` to maintain data integrity.
+- **User Interface:** Crafting an intuitive GUI that also supported a CLI for efficiency demanded iterative design and usability testing.
+
+#### Effort Quantification
+
+- **Development:** The team invested over 300 hours in coding, with a focused effort on crafting intuitive and responsive GUI and CLI interfaces. This investment reflects our commitment to usability and accessibility, ensuring that both novice and experienced users can navigate the application with ease.
+
+- **Testing:** More than 100 hours were dedicated to a combination of manual and automated testing. This rigorous testing protocol was critical in validating the application's reliability and optimizing its performance across various user scenarios and system environments.
+
+- **Documentation:** We allocated 50 hours to developing thorough user documentation. This comprehensive guide is pivotal for facilitating a quick adoption of the application by new users and serves as a reliable reference for existing users to leverage the application's full potential.
+
+#### Reuse of Existing Solutions
+
+- **Library Reuse:** Utilized the JavaFX library for the GUI, which saved much effort for front-end development.
+
+#### Effort Comparison with Reference Projects:
+
+- **Compared to AB3:** the development of Medbook demanded considerably more effort, primarily due to its capability to manage multiple entity types such as patients, records, and appointments. This multifaceted approach contrasts with AB3's design, which is centered around handling a single entity type.
+Moreover, Medbook was built upon the AB3 architecture as a foundational base, necessitating a deep understanding of the existing complex framework. Even though certain features in Medbook were adapted from AB3 to suit our specific needs, significant effort was required to modify and extend these features. Tailoring pre-existing functionalities to fit into our more comprehensive application model involved intricate work, ensuring seamless integration and functionality within Medbook's broader scope.Achievements
+
+- Despite the high complexity, the team managed to deliver Medbook on schedule.
+- The application has passed all security audits without any major issues.
+- User feedback has been overwhelmingly positive, especially regarding the ease of use and performance of the application.
+
+#### Conclusion
+The successful development of Medbook is a testament to the well-coordinated effort, rigorous testing, and effective project management that adapted to challenges and complexity with innovative solutions and strategic planning.

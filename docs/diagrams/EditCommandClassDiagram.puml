@@ -1,0 +1,29 @@
+@startuml
+class EditCommand {
+  -editPersonDescriptor : EditPersonDescriptor
+  +EditCommand(editPersonDescriptor : EditPersonDescriptor)
+  +execute(model : Model) : CommandResult
+  +createEditedPerson(editPersonDescriptor : EditPersonDescriptor) : Person
+}
+
+class Command {
+  +execute()
+}
+
+class EditPersonDescriptor {
+  -name : Name
+  -nric : Nric
+  -email : Email
+  -phone : Phone
+  -gender : Gender
+  -age : Age
+  -bloodType : BloodType
+  -allergies : Set<Allergy>
+  +isAnyFieldEdited() : boolean
+  +setName(name : Name) : void
+  ' ... other setters and getters ...
+}
+
+EditCommand --|> Command
+EditCommand "1" *-- "1" EditPersonDescriptor : uses >
+@enduml
