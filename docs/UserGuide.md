@@ -289,7 +289,7 @@ Examples:
 - `view 2` displays the medical records of the **2nd patient** in the patients list. The displayed records will be in the **RECORDS** list and patient information will be in the **PATIENT BEING VIEWED** section.
 
 <box type="info" seamless>
-    The PATIENT INDEX in the Patient Being Viewed section remains consistent after using the `find`, `list` or `delete` command. 
+    The PATIENT INDEX in the Patient Being Viewed section remains 1, if you wish to quickly operate on the patient, please use search to locate the patient with the patient's detail.
 </box>
 
 ### View appointments : `viewappointment`

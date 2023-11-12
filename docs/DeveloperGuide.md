@@ -338,34 +338,25 @@ public class Record {
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​     | I want to …​                                                                                               | So that I can…​                                                   |
-| -------- | ----------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `* * *`  | user        | _add_ a patient’s medical records and contact details                                                      | keep track of them efficiently                                    |
-| `* * *`  | user        | _view_ a list of all the patients in the app                                                               | quickly see all my patients at once                               |
-| `* * *`  | user        | _delete_ a specific patient’s details from the ap                                                          | remove patients that are no longer relevant or needed             |
-| `* * *`  | user        | _edit_ an existing patient’s details in the app                                                            | keep the information accurate and up-to-date                      |
-| `* * *`  | user        | _search_ for specific patients using keywords such as patient’s name or medical record                     | easily search for and locate specific patients in the app         |
-| `* * *`  | user        | see the app populated with sample data                                                                     | easily see how the app will look when it is in use                |
-| `* * *`  | new user    | access a “help” page to view the app’s functionalities                                                     | learn how to use the application effectively                      |
-| `* * *`  | new user    | _clear all_ current data                                                                                   | get rid of sample/experimental data I used for exploring the app  |
-| `* * *`  | user        | exit the application and save the address book automatically                                               |                                                                   |
-| `* *`    | busy user   | _pin_ a specific patient                                                                                   | remember to contact them                                          |
-| `* *`    | user        | import my patient details into the app                                                                     | efficiently manage my existing patient information                |
-| `* * `   | user        | reorganize the address book in terms of appointment date/time and/or alphabetical order of patients’ names | have a sorted list to for other purposes                          |
-| `* *`    | user        | receive regular updates and bug fixes for the app                                                          | ensure that it remains functional and bug-free                    |
-| `* *`    | user        | attach files such as lab reports and prescription images to a patient's profile                            | maintain a comprehensive record of all patient information        |
-| `* *`    | user        | view a history log of all the changes made to a patient's record                                           | track updates and maintain a reliable record                      |
-| `* *`    | expert user | separate my patients into different categories                                                             | easily filter out my patients accordingly                         |
-| `* *`    | busy user   | clear the contacts related to a specific patient                                                           | remove them all at one go                                         |
-| `*`      | user        | view a daily schedule of patient appointments within the app                                               | prepare for my daily patient consultations                        |
-| `*`      | user        | reschedule or cancel appointments within the app                                                           | have flexibility in appointment dates                             |
-| `*`      | user        | set access permissions(password protected)                                                                 | allow only authorized personnel to view or modify patient details |
-| `*`      | user        | print a patient’s medical record directly from the app                                                     | facilitate physical record keeping and sharing of information     |
-| `*`      | expert user | create reminders for my patients to follow up                                                              | make sure that patients remember their follow up appointment      |
-| `*`      | expert user | record patients who didn’t show up                                                                         | to keep track of patients who tend to miss appointment dates      |
-| `*`      | expert user | export patient data to a CSV file or other common formats                                                  | easily share or transfer data between different systems           |
-| `*`      | busy user   | reminders for upcoming patient appointments                                                                | remember to attend all the consultations                          |
-| `*`      | busy user   | blacklist certain patients                                                                                 | remove absurd patients                                            |
+| Priority | As a …​   | I want to …​                                                                            | So that I can…​                                                  |
+|----------|-----------|-----------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| `* * *`  | user      | _add_ a patient's detail including age, gender, or blood type etc. to the app           | update the app with new patients                                 |
+| `* * *`  | user      | _add_ a patient’s medical records                                                       | keep track of them efficiently                                   |
+| `* * *`  | user      | _view_ a list of all the patients in the app                                            | quickly see all my patients at once                              |
+| `* * *`  | user      | _view_ a list of medical records of a patient                                           | quickly see all the medical records at once                      |
+| `* * *`  | user      | _edit_ an existing patient’s details in the app                                         | keep the information accurate and up-to-date                     |
+| `* * *`  | user      | _delete_ a specific patient from the app                                                | remove patients that are no longer relevant or needed            |
+| `* * *`  | user      | _edit_ an existing patient’s medical record in the app                                  | keep the records accurate and up-to-date                         |
+| `* * *`  | user      | _search_ for specific patients using keywords such as patient’s name or blood type etc. | easily search for and locate specific patients in the app        |
+| `* * *`  | new user  | see the app populated with sample data                                                  | easily see how the app will look when it is in use               |
+| `* * *`  | new user  | access a “help” page to view the app’s functionalities                                  | learn how to use the application effectively                     |
+| `* * *`  | user      | exit the application and save the address book automatically                            |                                                                  |
+| `* *`    | busy user | _pin_ a specific patient                                                                | remember to contact them                                         |
+| `* *`    | user      | receive regular updates and bug fixes for the app                                       | ensure that it remains functional and bug-free                   |
+| `* *`    | user      | attach files such as lab reports and prescription images to a patient's profile         | maintain a comprehensive record of all patient information       |
+| `* *`    | busy user | clear the contacts related to a specific patient                                        | remove them all at one go                                        |
+| `*`      | user      | view a daily schedule of patient appointments within the app                            | prepare for my daily patient consultations                       |
+| `*`      | user      | reschedule or cancel appointments within the app                                        | have flexibility in appointment dates                            |
 
 ## Use Cases
 
