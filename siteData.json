@@ -129,8 +129,11 @@
       "headings": {
         "user-guide": "User Guide",
         "streamline-patient-management-and-medical-records-with-just-a-few-taps": "Streamline Patient Management and Medical Records with Just a Few Taps!",
+        "table-of-contents": "Table of contents",
+        "head": "&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD",
         "how-to-navigate-the-user-guide": "How to Navigate the User Guide",
         "quick-start": "Quick start",
+        "quick-start-2": "Quick start",
         "glossary": "Glossary",
         "definitions": "Definitions",
         "navigating-the-graphical-user-interface-gui": "Navigating the Graphical User Interface (GUI)",
@@ -175,7 +178,14 @@
       "src": "team/adammangzijun.md",
       "title": "Adam's Project Portfolio Page",
       "headings": {
-        "project-medbook": "Project: MedBook"
+        "project-medbook": "Project: MedBook",
+        "overview": "Overview:",
+        "summary-of-contributions": "Summary of Contributions",
+        "contributions-to-team-based-tasks": "Contributions to Team-Based Tasks",
+        "contributions-beyond-the-project-team": "Contributions Beyond the Project Team",
+        "optional-contributions-to-the-developer-guide-extracts": "Optional Contributions to the Developer Guide (Extracts)",
+        "optional-contributions-to-the-user-guide-extracts": "Optional Contributions to the User Guide (Extracts)",
+        "project-effort-explanation": "Project Effort Explanation"
       },
       "headingKeywords": {}
     },
@@ -207,7 +217,7 @@
       "src": "team/ryanongwx.md",
       "title": "Ryan's Project Portfolio Page",
       "headings": {
-        "project-medbook": "Project: MedBook"
+        "project-medbook": "Project Medbook"
       },
       "headingKeywords": {}
     },
