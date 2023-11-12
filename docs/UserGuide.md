@@ -32,7 +32,6 @@ Discover the power of Medbook:
 <!-- * Table of Contents -->
 <page-nav-print />
 
-
 ## How to Navigate the User Guide
 
 Welcome to the Medbook User Guide! Our goal is to empower you with the knowledge and confidence to make the most of Medbook's features.
@@ -95,7 +94,7 @@ The application should open up similar to the image below.
 Here are some description of the terms used throughout this user guide.
 
 | **Term**      | **Definition**                                                                                                                                                                  |
-|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Parameter     | A parameter allow you to customize the behavior of the command by providing specific values                                                                                     |
 | Command       | A command is a textual input that users type into the command-line interface to communicate with the application                                                                |
 | GUI           | GUI is graphical user interface. It manages the interaction between user and the application and also gives a visual display of Medbook.                                        |
@@ -111,12 +110,12 @@ Here are some description of the terms used throughout this user guide.
 Here is a brief summary of GUI component of the main window of Medbook.
 
 | **Name of component**    | **Description**                                                                                             |
-|--------------------------|-------------------------------------------------------------------------------------------------------------|
+| ------------------------ | ----------------------------------------------------------------------------------------------------------- |
 | Menu Bar                 | Contains the help and file drop down menu for Medbook                                                       |
 | Message Display Box      | Display the message of every command. Either can be an error message or success message                     |
 | Patient List             | Contains all the Patient cards stored in Medbook                                                            |
 | Patient Information card | Contains information of the Patient including age, blood type, gender, contact information and allergies    |
-| Patient Being viewed     | Contains the patient card of currently being viewed patient                                                 |
+| Patient Being Viewed     | Contains the patient card of currently being viewed patient                                                 |
 | Medical Record List      | Contains all the Record card of the patient currently being viewed                                          |
 | Record Card              | Contains information of the medical record including appointment date, condition, and prescribed medication |
 | Pinned Patient List      | Contains all the patient cards after command pin                                                            |
@@ -125,7 +124,7 @@ Here is a brief summary of GUI component of the main window of Medbook.
 ![Appointment Window](images/ViewAppointmentWindow.png)
 
 | **Name of component** | **Description**                                                           |
-|-----------------------|---------------------------------------------------------------------------|
+| --------------------- | ------------------------------------------------------------------------- |
 | Appointment Card      | Contains information of appointments including name, date and NRIC number |
 | Appointment List      | Holds a list of Appointment card                                          |
 | Calendar              | A calendar that displays appointments at certain date                     |
@@ -197,25 +196,25 @@ You may now have a basic understanding of this software. Try out the features in
 
 ### Parameters
 
-| FIELD        | PREFIX | CONSTRAINTS                                                                                                   |
-|--------------|--------|---------------------------------------------------------------------------------------------------------------|
-| **NAME**     | n      | Alphanumeric characters, dashes and dots only                                                                            |
-| **NRIC**     | i      | Starts with a letter, followed by seven digits, and ends with another letter (letters are not case-sensitive) |
-| **EMAIL**    | e      | Emails should be of the format local-part@domain                                                              |
-| **GENDER**   | g      | Either **M** or **F**                                                                                         |
-| **PHONE**    | p      | Must be at least 3 digits long                                                                                |
-| **AGE**      | a      | Must be a non-negative integer                                                                                |
-| **BLOODTYPE**| bt     | Must be one of **A-**, **A+**, **B-**, **B+**, **AB-**, **AB+**, **O-**, **O+**                               |
-| **ALLERGY**  | al     | Alphanumeric characters only                                                                                       |
-| **DATE**     | d      | Must be in the form of 'dd-MM-yyyy HHmm'                                                                      |
-| **CONDITION**| c      | Alphanumeric characters only                                                                            |
-| **MEDICATION**| m     | Alphanumeric characters only                                                                            |
+| FIELD          | PREFIX | CONSTRAINTS                                                                                                   |
+| -------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
+| **NAME**       | n      | Alphanumeric characters, dashes, spaces and dots only                                                         |
+| **NRIC**       | i      | Starts with a letter, followed by seven digits, and ends with another letter (letters are not case-sensitive) |
+| **EMAIL**      | e      | Emails should be of the format local-part@domain                                                              |
+| **GENDER**     | g      | Either **M** or **F**                                                                                         |
+| **PHONE**      | p      | Must be at least 3 digits long                                                                                |
+| **AGE**        | a      | Must be a non-negative integer                                                                                |
+| **BLOODTYPE**  | bt     | Must be one of **A-**, **A+**, **B-**, **B+**, **AB-**, **AB+**, **O-**, **O+**                               |
+| **ALLERGY**    | al     | Alphanumeric characters only                                                                                  |
+| **DATE**       | d      | Must be in the form of 'dd-MM-yyyy HHmm'                                                                      |
+| **CONDITION**  | c      | Alphanumeric characters, dashes and spaces only                                                               |
+| **MEDICATION** | m      | Alphanumeric characters, dashes and spaces only                                                               |
 
 <box type="info" seamless>
 
 **Notes for email format:** <br>
 
-1. The **local-part** should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br>
+1. The **local-part** should only contain alphanumeric characters and these special characters, excluding the parentheses, (+\_.-). The local-part may not start or end with any special characters. <br>
 
 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. <br>
 
@@ -228,13 +227,13 @@ The **domain** name must: <br>
 - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
 **Notes for allergy format:** <br>
+
 - Multiple words for an allergy must be seperated with hyphen.
 - Each word must be alphanumeric characters.
 
 </box>
 
 <u>[Back to Top](#user-guide)</u>
-
 
 ### Viewing help : `help`
 
@@ -277,7 +276,7 @@ Format: `addrecord PATIENTID d/DATETIME c/CONDITIONS... m/MEDICATIONS...`
 - Constraints of each field are as stated in the **CONSTRAINTS** section above. <br>
 
 - Duplicate entries for **CONDITIONS** and **MEDICATIONS** are allowed and will be considered as separate entries.
-  * Therefore, `addrecord 1 d/10-11-2023 1800 c/Flu c/Flu m/Ibuprofen m/Ibuprofen` will store **[Flu, Flu]** and **[Ibuprofen, Ibuprofen]** for conditions and medications, respectively.
+  - Therefore, `addrecord 1 d/10-11-2023 1800 c/Flu c/Flu m/Ibuprofen m/Ibuprofen` will store **[Flu, Flu]** and **[Ibuprofen, Ibuprofen]** for conditions and medications, respectively.
 
 Examples:
 
@@ -332,11 +331,11 @@ Format: `view PATIENTID`
 
 - The medical records of the patient with the corresponding `PATIENTID` will be displayed on screen in the **Medical Record List**. <br>
 
-- Information about the patient will be displayed in the **PATIENT BEING VIEWED** section. <br>
+- Information about the patient will be displayed in the **Patient Being Viewed** section. <br>
 
 Examples:
 
-- `view 2` displays the medical records of the **2nd patient** in the patients list. The displayed records will be in the **RECORDS** list and patient information will be in the **PATIENT BEING VIEWED** section.
+- `view 2` displays the medical records of the **2nd patient** in the patients list. The displayed records will be in the **RECORDS** list and patient information will be in the **Patient Being Viewed** section.
 
 <box type="info" seamless>
     The PATIENT INDEX in the Patient Being Viewed section remains 1, if you wish to quickly operate on the patient, please use search command to locate the patient with the patient's detail.
@@ -354,8 +353,8 @@ Format: `viewappointment`
 
 - The **description**, **date and time**, and **NRIC** of the patient involved in appointment will be displayed in the **Appointment List**. <br>
 
-- The **description** of appointments will also appear on the calendar at the corresponding **date**. <br>
-  **Note**: Only the **first two** appointments according to the **APPOINTMENTS** list will be displayed on the calendar per date.
+- A truncated **description** of appointments will also appear on the calendar at the corresponding **date**. <br>
+  **Note**: Only the **first two** appointments according to the **Appointment List** will be displayed on the calendar per date.
 
 <u>[Back to Top](#user-guide)</u>
 
@@ -593,25 +592,24 @@ Only advanced users are encouraged to make changes to the data file as wrong dat
 
 ## Command summary
 
-
-| Action              | Format, Examples                                                                                                                       |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| **Help**     | `help` |
-| **Add Patient**     | `addpatient n/NAME i/NRIC e/EMAIL p/PHONE g/GENDER a/AGE bt/BLOODTYPE [al/ALLERGY]...​` <br> e.g., `addpatient n/John Doe i/T1234567A e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` |
-| **Add Record**      | `addrecord PATIENTID d/DATETIME c/CONDITION... m/MEDICATION...`<br> e.g., `addrecord 2 d/10-10-2020 1900 c/Fever m/Painkiller`       |
-| **Add Appointment** | `addappointment PATIENTID n/APPOINTMENTNAME d/DATETIME`<br> e.g., `addappointment 2 n/Eye Exam d/10-10-2020 1900`                      |
-| **List**            | `list`                                                                                                |
-| **View Records**            | `view PATIENTID`<br> e.g., `view 2`                                                           |
-| **View Appointments**            | `viewappointment`                                                                        |
-| **Edit Patient** | `editpatient PATIENTID PREFIX/NEWVALUE...`<br> e.g.,`editpatient 1 e/johndoe_updated@gmail.com`           |
-| **Edit Record**  | `editrecord PATIENTID/RECORDID PREFIX/NEWVALUE...`<br> e.g.,`editrecord 1/1 d/25-10-2023 1200`            |
-| **Search Patients**          | `search KEYWORDS...`<br> e.g., `search James`                                           |
-| **Search Records**          | `searchrecord KEYWORDS...`<br> e.g., `searchrecord Headache`                                  |
-| **Delete Patient**          | `delete PATIENTID`<br> e.g., `delete 3`                                                       |
-| **Delete Record**          | `deleterecord PATIENTID/RECORDID`<br> e.g., `delete 2/1`                                       |
-| **Delete Appointment**          | `deleteappointment APPOINTMENTID`<br> e.g., `deleteappointment 1`                         |
-| **Pin**             | `pin PATIENTID`<br> e.g., `pin 2`                                                                     |
-| **Unpin**           | `unpin PINNEDID`<br> e.g. `unpin 2`                                                                  |
-| **Exit**            | `exit`                                                                                                |
+| Action                 | Format, Examples                                                                                                                                                                                    |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Help**               | `help`                                                                                                                                                                                              |
+| **Add Patient**        | `addpatient n/NAME i/NRIC e/EMAIL p/PHONE g/GENDER a/AGE bt/BLOODTYPE [al/ALLERGY]...​` <br> e.g., `addpatient n/John Doe i/T1234567A e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` |
+| **Add Record**         | `addrecord PATIENTID d/DATETIME c/CONDITION... m/MEDICATION...`<br> e.g., `addrecord 2 d/10-10-2020 1900 c/Fever m/Painkiller`                                                                      |
+| **Add Appointment**    | `addappointment PATIENTID n/NAME d/DATETIME`<br> e.g., `addappointment 2 n/Eye Exam d/10-10-2020 1900`                                                                                              |
+| **List**               | `list`                                                                                                                                                                                              |
+| **View Records**       | `view PATIENTID`<br> e.g., `view 2`                                                                                                                                                                 |
+| **View Appointments**  | `viewappointment`                                                                                                                                                                                   |
+| **Edit Patient**       | `editpatient PATIENTID PREFIX/NEWVALUE...`<br> e.g.,`editpatient 1 e/johndoe_updated@gmail.com`                                                                                                     |
+| **Edit Record**        | `editrecord PATIENTID/RECORDID PREFIX/NEWVALUE...`<br> e.g.,`editrecord 1/1 d/25-10-2023 1200`                                                                                                      |
+| **Search Patients**    | `search KEYWORDS...`<br> e.g., `search James`                                                                                                                                                       |
+| **Search Records**     | `searchrecord KEYWORDS...`<br> e.g., `searchrecord Headache`                                                                                                                                        |
+| **Delete Patient**     | `delete PATIENTID`<br> e.g., `delete 3`                                                                                                                                                             |
+| **Delete Record**      | `deleterecord PATIENTID/RECORDID`<br> e.g., `delete 2/1`                                                                                                                                            |
+| **Delete Appointment** | `deleteappointment APPOINTMENTID`<br> e.g., `deleteappointment 1`                                                                                                                                   |
+| **Pin**                | `pin PATIENTID`<br> e.g., `pin 2`                                                                                                                                                                   |
+| **Unpin**              | `unpin PINNEDID`<br> e.g. `unpin 2`                                                                                                                                                                 |
+| **Exit**               | `exit`                                                                                                                                                                                              |
 
 <u>[Back to Top](#user-guide)</u>
