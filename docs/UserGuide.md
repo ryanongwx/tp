@@ -83,7 +83,7 @@ The application should open up similar to the image below.
 1. Learn more about navigating the GUI [here](#navigating-the-graphical-user-interface-gui).
 2. For new users, learn how to use Medbook [here](#medbook-tutorial).
 3. For advanced users, view all the available features [here](#features).
-    
+
 <u>[Back to Top](#user-guide)</u>
 
 ## Glossary
@@ -210,7 +210,7 @@ You may now have a basic understanding of this software. Try out the features in
 | **MEDICATION**| m     | Alphanumeric characters only                                                                            |
 
 <box type="info" seamless>
- 
+
 **Notes for email format:** <br>
 
 1. The **local-part** should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br>
@@ -227,7 +227,7 @@ The **domain** name must: <br>
 
 **Notes for allergy format:** <br>
 - Multiple words for an allergy must be seperated with hyphen.
-- Each word must be alphanumeric characters. 
+- Each word must be alphanumeric characters.
 
 </box>
 
@@ -316,7 +316,8 @@ Examples:
 - `list` lists all the patients in the **Patient List**.
 
 <box type="info" seamless>
-    The `list` command allows you to easily view all the patients in the Patient List. For instance, after you've used the `search` command to find specific patients using keywords, you can use the `list` command to gather all the patients conveniently! 
+    The `list` command allows you to easily view all the patients in the Patient List. For instance, after you've used the `search` command to find specific patients using keywords, you can use the `list` command to gather all
+  the patients conveniently! 
 </box>
 
 <u>[Back to Top](#user-guide)</u>
@@ -336,7 +337,7 @@ Examples:
 - `view 2` displays the medical records of the **2nd patient** in the patients list. The displayed records will be in the **RECORDS** list and patient information will be in the **PATIENT BEING VIEWED** section.
 
 <box type="info" seamless>
-    The PATIENT INDEX in the Patient Being Viewed section remains consistent after using the `find`, `list` or `delete` command. 
+    The PATIENT INDEX in the Patient Being Viewed section remains consistent after using the `find`, `list` or `delete` command.
 </box>
 
 <u>[Back to Top](#user-guide)</u>
