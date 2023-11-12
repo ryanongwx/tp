@@ -584,6 +584,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 3a1. MedBook displays a message: "No matches found."
     - Use case ends.
 
+### UC08 - Adding a Record under a Patient
+- **Actor**: User
+- **System**: MedBook
+- **Main Success Scenario (MSS)**:
+  1. User lists all the patients (UC03).
+  2. User requests to add a record under a patient.
+  3. MedBook returns a list of all past records and the added record of that patient and informs the user.
+  4. User views the list of the records of the patient.
+- **Extensions**:
+  - 2a. User gives an invalid index of the patient and/or invalid input in any field.
+    - 2a1. MedBook shows an error message.
+    - Use case ends.
+
+### UC09 - Deleting a Record under a Patient
+- **Actor**: User
+- **System**: MedBook
+- **Main Success Scenario (MSS)**:
+  1. User lists all the patients (UC03).
+  2. User requests to delete a record under a patient
+  3. MedBook returns a list of all the records except for the deleted record and informs the user.
+  4. User views the list of the records of the patient.
+- **Extension**:
+  - 2a. User gives an invalid index of the patient and/or record
+    - 2a1. MedBook shows an error message.
+    - Use case ends.
+
+### UC10 - Searching for Records
+- **Actor**: User
+- **System**: MedBook
+- **Main Success Scenario (MSS)**:
+  1. User views a patient (UC09)
+  2. User initiates a record search of the currently viewing patient using specific keywords.
+  3. MedBook performs a case-insensitive search.
+  4. MedBook returns a list of matching records.
+  5. User views the updated list.
+- **Extension**:
+    - 4a. No matches found.
+        - 4a1. MedBook displays a message: "No matches found."
+        - Use case ends.
 ---
 
 ## Non-Functional Requirements
