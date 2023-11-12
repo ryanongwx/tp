@@ -260,7 +260,7 @@ The `addrecord` command integrates a new `Record` object with the patient's deta
 - `AddRecordCommandParser#parse(String)`: Parses command input
 - `AddRecordCommand#execute(Model)`: Executes addrecord command
 - `UniqueRecordList#add(Record)`: Adds a `Record` in the `UniqueRecordList`.
-- `Model#updateRecordList(Person, Index)`, `AddressBook#setRecords(Person, Index)`, `UniqueRecordList#setRecords(UniqueRecordList)`: Updates record details with added record.
+- `Model#updateRecordList(Person)`, `AddressBook#setRecords(Person)`, `UniqueRecordList#setRecords(UniqueRecordList)`: Updates record details with added record.
 - `Model#setPerson(Person, Person)`, `AddressBook#setPerson(Person, Person)`, `UniquePersonList#setPerson(Person, Person)`: Updates patient details.
 
 #### Implementation Steps
@@ -280,16 +280,49 @@ The `deleterecord` command deletes a specified record in `UniqueRecordList` of a
 - `DeleteRecordCommandParser#parse(String)`: Parses command input.
 - `DeleteRecordCommand#execute(Model)`: Executes deleterecord command.
 - `UniqueRecordList#remove(Record)`: Deletes a `Record` in the `UniqueRecordList`.
-- `Model#updateRecordList(Person, Index)`, `AddressBook#setRecords(Person, Index)`, `UniqueRecordList#setRecords(UniqueRecordList)`: Updates record details with deleted record.
+- `Model#updateRecordList(Person)`, `AddressBook#setRecords(Person)`, `UniqueRecordList#setRecords(UniqueRecordList)`: Updates record details with deleted record.
 - `Model#setPerson(Person, Person)`, `AddressBook#setPerson(Person, Person)`, `UniquePersonList#setPerson(Person, Person)`: Updates patient details.
 
 ##### Implementation Steps
 1. **Parse User Input**: `DeleteRecordCommandParser` checks for the validity of the patient and record indices.
-2. **CreateIndex Object**: Two `Index` objects, patient index and record index, are instantiated during `DeleteRecordCommandParser#parse(String)` and handed over to the `DeleteRecordCommand`.
+2. **Create Index Object**: Two `Index` objects, patient index and record index, are instantiated during `DeleteRecordCommandParser#parse(String)` and handed over to the `DeleteRecordCommand`.
 3. **Execute Command**: `DeleteRecordCommand#execute(Model)` deletes specified record of the specified patient and updates `UniqueRecordList` of that patient.
 
 <puml src="diagrams/DeleteRecordSequenceDiagram.puml" width="450" />
 
+### View a patient's medical records
+
+#### Related class and methods
+- `ViewCommandParser#parse(String)`: Parses command input.
+- `ViewCommand#execute(model)`: Executes ViewCommand command.
+- `MainWindow`: A UI component that provides space for panels.
+- `RecordCard`: A UI component displaying a single record’s information.
+- `RecordListPanel`: A UI component housing a list of `RecordCard`s.
+- `AddressBook#setRecords(Person)`, `Model#updateRecordList(Person)`: update the record list.
+- `AddressBook#getRecordList()`, `Model#getRecordList()`, `Logic#getRecordList()`: get the record list of the patient currently being viewed.
+- `AddressBook#getPersonBeingViewed()`, `Model#getPersonBeingViewed()`, `Logic#getPersonBeingViewed()`: get the patient currently being viewed
+
+#### Implementation steps
+
+1. **Initialization**: Upon launch, `AddressBook` is populated with sample data. `MainWindow` invokes `Logic#getRecordList()` and `Logic#getPersonBeingViewed()` to initialize the `recordListPanel` and `personBeingViewedPanel`.
+2. **Parse User Input**: `ViewCommandParser` checks for validity of the patient index.
+3. **Create Index Object**: An `Index` object, target index, is instantiated during the `ViewCommandParser#parse(String)` and handed over to the `ViewCommand`.
+4. **Update and Display**: `ViewCommand#execute(Model)` invokes the `Model#updateRecordList(Person)` to update the record list of the specified patient. The record list of the specific patient is displayed.
+
+The following sequence diagram shows how the view operation works:
+
+<puml src="diagrams/ViewSequenceDiagram.puml" alt="ViewSequenceDiagram" />
+
+### Design Considerations
+
+#### How View Executes
+
+- **Alternative 1**: (Chosen) Utilize `UniqueRecordList` for `records` and `UniquePersonList` for `personBeingViewed`.
+    - _Pros_: Simpler implementation.
+    - _Cons_: Potential memory usage issues.
+- **Alternative 2**: Utilize `UniqueRecordList` for `records` and `Person` for `personBeingViewed`.
+    - _Pros_: Reduced memory usage.
+    - _Cons_: Increased complexity and required additional object manipulations.
 
 ### Searching a Record
 
@@ -399,42 +432,7 @@ Uniqueness is enforced through a `UniqueAppointmentList`.
   - _Pros_: Easy to retrieve a person's appointments.
   - _Cons_: Fetching all appointments can be complex.
 
-#### View a patient's medical records
 
-##### Related class and methods
-- `ViewCommandParser#parse(String)`: Parses command input to create a `ViewCommand` with the specified `PATIENTINDEX`.
-- `AddressBook`: Contains methods such as `setRecords(Person)`, `getRecordList()`, and `getPersonBeingViewed()`.
-- `RecordCard`: A UI component displaying a single record’s information.
-- `RecordListPanel`: A UI component housing a list of `RecordCard`s.
-
-These methods in `AddressBook` are exposed via the `Model` interface (`updateRecords(Person)`, `getRecordList()`, `getPersonBeingViewed()`), and their get variants are also available through the `Logic` interface.
-
-### Usage Scenario
-
-1. **Initialization**: Upon launch, `AddressBook` is populated with sample data. `MainWindow` invokes `getRecordList()` and `getPersonBeingViewed()` to initialize the `recordListPanel` and `personBeingViewedPanel`.
-
-2. **View Command**: User executes `view 1`, initiating a `Model#updateRecords(Person)` call.
-
-   > **Note**: A failed command will not trigger a `Model#updateRecords(Person)` call, preventing any updates to `records` and `personBeingViewed`.
-
-3. **Update and Display**: `Model` updates `AddressBook`’s variables, displaying the patient's medical records and personal card in their respective UI panels.
-
-The following sequence diagram shows how the view operation works:
-
-<puml src="diagrams/ViewSequenceDiagram.puml" alt="ViewSequenceDiagram" />
-
-### Design Considerations
-
-#### How View Executes
-
-- **Alternative 1**: (Chosen) Utilize `UniqueRecordList` for `records` and `UniquePersonList` for `personBeingViewed`.
-  - _Pros_: Simpler implementation.
-  - _Cons_: Potential memory usage issues.
-- **Alternative 2**: Utilize `UniqueRecordList` for `records` and `Person` for `personBeingViewed`.
-  - _Pros_: Reduced memory usage.
-  - _Cons_: Increased complexity and required additional object manipulations.
-
----
 
 ### User Stories
 
@@ -572,6 +570,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - **Extensions**:
   - 3a. No matches found.
     - 3a1. MedBook displays a message: "No matches found."
+    - Use case ends.
+
+### UC09 - View Medical Records
+
+- **Actor**: User
+- **System**: MedBook
+- **Main Success Scenario (MSS)**:
+  1. User lists all patients (UC03).
+  2. User requests to view a specific patient's records.
+  3. MedBook displays the medical records of the patient.
+- **Extensions**:
+  - 2a. Given ID is invalid.
+    - 2a1. MedBook shows an error message.
     - Use case ends.
 
 ---
