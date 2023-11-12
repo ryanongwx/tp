@@ -32,6 +32,8 @@ Discover the power of MedBook:
 <!-- * Table of Contents -->
 <page-nav-print />
 
+---
+
 ## How to Navigate the User Guide
 
 Welcome to the MedBook User Guide! Our goal is to empower you with the knowledge and confidence to make the most of MedBook's features.
@@ -47,17 +49,19 @@ We're here to make your experience as user-friendly as possible. Let's get start
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-   - [How do I check my version of Java?](#faq)
-1. Download the latest jar file (`medbook.jar`) from our [GitHub release](https://github.com/AY2324S1-CS2103T-T12-4/tp/releases).
 
-1. Move the jar file to the folder which you want to store the data of your patients in.
+   - [How do I check my version of Java?](#faq)
+
+2. Download the latest jar file (`medbook.jar`) from our [github release](https://github.com/AY2324S1-CS2103T-T12-4/tp/releases).
+
+3. Move the jar file to the folder which you want to store the data of your patients in.
 
    - Create a folder with your preferred name (you can call it MedBook) where you would like to house the application.
    - Move the downloaded jar file to the folder as shown below.
      - For Mac users:![Ui](images/MacUserDir.png)
      - For Windows users:![Ui](images/WinUserDir.png)
 
-1. Open Terminal
+4. Open Terminal
 
 - **On Windows**:
 
@@ -233,6 +237,11 @@ The **domain** name must: <br>
 - If the patient does not have an NRIC, eg. foreigners, a placeholder NRIC which is not valid such as `A1234567A` can be used instead.
   </box>
 
+1. When noting down allergies that consist of multiple words, they should be consolidated into a single word with each word's initial letter capitalized. <br>
+   **Example:** Red Meat should be written as RedMeat.
+
+</box>
+
 <u>[Back to Table Of Contents](#table-of-contents)</u>
 
 ### Viewing help : `help`
@@ -263,6 +272,11 @@ If the patient does not have an NRIC, eg. foreigners, a placeholder NRIC which i
 If the patient's name contains the "/" character, use the "-" character instead. For example, use "s-o" instead of "s/o".
 </box>
 
+Screenshots:
+
+![AddPatient Screenshots](images/screenshots/addPatient.png)
+![AddPatient Screenshots](images/screenshots/addPatient%20-%20after.png)
+
 <u>[Back to Table Of Contents](#table-of-contents)</u>
 
 ### Adding Medical Records : `addrecord`
@@ -282,6 +296,11 @@ Example:
   Adds a medical record to the patient with the `PATIENTID` of **3**.
   The patient visited the clinic on **September 18th, 2023** at **6:00PM** with a **Fever** and was prescribed **Paracetamol**.
 
+Screenshots:
+
+![AddRecord Screenshots](images/screenshots/addRecord.png)
+![AddRecord Screenshots](images/screenshots/addRecord%20-%20after.png)
+
 <u>[Back to Table Of Contents](#table-of-contents)</u>
 
 ### Adding an Appointment : `addappointment`
@@ -295,6 +314,11 @@ Format: `addappointment PATIENTID n/NAME d/DATETIME`
 Example:
 
 - `addappointment 2 n/Eye Examination d/10-10-2023 1800` Adds an `Eye Examination` to the patient with the `PATIENTID` of **2**. The appointment is schedueld for the **10th of October 2023** at **6:00PM**.
+
+Screenshots:
+
+![AddAppointment Screenshots](images/screenshots/addAppointment.png)
+![AddAppointment Screenshots](images/screenshots/addAppointment%20-%20after.png)
 
 <u>[Back to Table Of Contents](#table-of-contents)</u>
 
@@ -315,6 +339,10 @@ Examples:
 <box type="info" seamless>
     The PATIENTID in the Patient Being Viewed section will display **1**. If you wish to perform commands on the patient, use the PATIENTID displayed in the Patient List.
 </box>
+
+Screenshots:
+
+![View Screenshots](images/screenshots/view.png)
 
 <u>[Back to Table Of Contents](#table-of-contents)</u>
 
@@ -355,6 +383,11 @@ Examples:
 - `editpatient 3 al/aspirin` Edits the `ALLERGY` of the patient with the `PATIENTID` of **3** to**aspirin**. <br>
 
 - `editpatient 2 p/92345678 al/aspirin` Edits the `PHONE` and `ALLERGY` of the patient with the `PATIENTID` of **2** to **92345678** and **aspirin**, respectively. <br>
+
+Screenshots:
+
+![EditPatient Screenshots](images/screenshots/editPatient.png)
+![EditPatient Screenshots](images/screenshots/editPatient%20-%20after.png)
 
 <u>[Back to Table Of Contents](#table-of-contents)</u>
 
@@ -405,6 +438,11 @@ Format: `search KEYWORD [MOREKEYWORDS]...`
 - `search Alex` Will display patients with **Alex** in their details. <br>
 
 - `search Alex M` Will display patients with **Alex** or **M** in their details.
+
+Screenshots:
+
+![Search Screenshots](images/screenshots/search.png)
+![Search Screenshots](images/screenshots/search%20-%20after.png)
 
 <u>[Back to Table Of Contents](#table-of-contents)</u>
 
@@ -460,6 +498,11 @@ Example:
 
 - `delete 2` Deletes the patient with the `PATIENTID` of **2**.
 
+Screenshots:
+
+![Delete Screenshots](images/screenshots/delete.png)
+![Delete Screenshots](images/screenshots/delete%20-%20after.png)
+
 <u>[Back to Table Of Contents](#table-of-contents)</u>
 
 ### Deleting a record : `deleterecord`
@@ -498,9 +541,14 @@ Format: `pin PATIENTID`
 
 - Pins the patient with the corresponding `PATIENTID` to the **Pinned Patient List**.
 
-Examples:
+Example:
 
 - `pin 2` Pins the patient with the `PATIENTID` of **2** to the **Pinned Patient List**.
+
+Screenshots:
+
+![Pin Screenshots](images/screenshots/pin.png)
+![Pin Screenshots](images/screenshots/pin%20-%20after.png)
 
 <u>[Back to Table Of Contents](#table-of-contents)</u>
 
@@ -525,6 +573,12 @@ Attach local files to a patient's record by clicking on the **Attach** button lo
 <box type="warning" seamless>
 Caution: Refrain from deleting/relocating the local file. If necessary, re-attach the new file after relocation/deletion.
 </box>
+
+Screenshots:
+
+![Attaching File Screenshots](images/screenshots/attachFile%20-%20buttonPress.png)
+![Attaching File Screenshots](images/screenshots/attachFile%20-%20selectFile.png)
+![Attaching File Screenshots](images/screenshots/attachFile%20-%20openFile.png)
 
 <u>[Back to Table Of Contents](#table-of-contents)</u>
 

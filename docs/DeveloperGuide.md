@@ -196,32 +196,43 @@ The `addpatient` command integrates a new `Person` object with the patient's det
 
 ### Editing Patient Details
 
-The `editpatient` mechanism is primarily handled by `EditCommand`.
+#### Overview
 
-### Workflow
+The `editpatient` command in MedBook facilitates the modification of patient information by updating the fields of a `Person` object with new details.
+
+#### Related Classes and Methods
+
+- `EditCommandParser` : Interprets user input into an actionable command for editing patient details.
+- `EditPersonDescriptor` : Contains and tracks the patient details that are eligible for modification.
+- `EditCommand` : Implements the process of updating patient details as specified.
+- `ModelManager#setPerson(Person,Person)`, `AddressBook#setPerson(Person,Person)`, `UniquePersonList#setPerson(Person,Person)` : These methods work in harmony to accurately update the patient details within the system's records, reflecting the latest changes in the patient's profile.
+
+#### Implementation Steps
 
 1. **Initialization**: On startup, the `AddressBook` is populated with sample data.
-2. **Execution**: The user modifies a patient’s details using the `editpatient` command, triggering updates in the `Model` and `AddressBook`.
+2. **Execution**: The user modifies a patient’s details using the `editpatient` command, triggering updates in the `Model` and `AddressBook` objects.
 3. **Update**: The patient’s details are updated and the new AddressBook is displayed.
 
-**Related Classes and Methods:**
+<puml src="diagrams/EditPatientSequenceDiagram.puml" alt=”EditPatientSequenceDiagram” />
 
-- `EditCommandParser`: Parses command input.
-- `EditPersonDescriptor`: Holds editable patient details.
-- `ModelManager#setPerson(Person,Person)`, `AddressBook#setPerson(Person,Person)`, `UniquePersonList#setPerson(Person,Person)`: Updates patient details.
+#### Design Considerations
 
-**Sequence Diagram**: _Pending Implementation_
+**Alternative 1 (Current Choice)**: Implement an Edit-by-Cloning Strategy
+- Pros :
+   - **Scalability:** By cloning the `Person` object before editing, the system is better equipped to handle future enhancements that may require complex transactional operations.
+   - **Data Integrity:** This method ensures that the original `Person` object remains unaltered during the edit process, which reduces the risk of data corruption in the event of an operation failure.
+- Cons : Adds complexity, potential performance issues.
 
-### Design Considerations
+**Alternative 2**: Modify the `Person` Object Directly in the AddressBook
+- Pros:
+   - **Simplicity:** This straightforward approach requires less code, making it easier to implement and understand.
+   - **Efficiency:** Operating directly on the `Person` object without cloning can be more performant, especially when dealing with simple edits that do not span multiple data fields.
+- Cons:
+   - **Limited Flexibility:** Direct modification constrains the ability to extend the system with complex transactional features or undo/redo capabilities without significant refactoring.
+   - **Data Risk:** Without the safeguard of working on a cloned instance, there's a higher risk of inadvertently corrupting data during edit operations.
 
-**Aspect: Edit Patient Execution:**
+By considering these alternatives, the development team has chosen to prioritize a robust foundation for future development and data integrity, despite the trade-offs in complexity and potential impact on performance.
 
-- **Alternative 1 (Current Choice)**: Create a copy of the `Person`, edit, then replace.
-  - _Pros_: Future-proof, maintains data integrity.
-  - _Cons_: Adds complexity, potential performance issues.
-- **Alternative 2**: Directly edit the `Person` in the AddressBook.
-  - _Pros_: Straightforward.
-  - _Cons_: Limits future functionalities, potential data integrity issues.
 
 ### Searching a Patient
 
@@ -321,6 +332,53 @@ The `addrecord` command integrates a new `Record` object with the patient's deta
 3. **Execute Command**: `AddRecordCommand#execute(Model)` adds the new `Record` to the patient's `UniqueRecordList`.
 
 <puml src="diagrams/AddRecordSequenceDiagram.puml" width="450" />
+
+### Editing Patient's Record Details
+
+#### Overview
+
+The `editrecord` command in MedBook enables users to update the details of a `Record` object within a `Person` object with the updated record details provided.
+
+#### Related Classes and Methods
+
+- `EditRecordCommandParser` : Interprets user input into a command.
+- `EditRecordDescriptor` : Stores the details of the record that can be modified.
+- `EditRecordCommand` : Executes the update process for record details.
+- `ModelManager#setPerson(Person,Person)`, `AddressBook#setPerson(Person,Person)`, `UniquePersonList#setPerson(Person,Person)` : These methods collectively update the patient information in the database, ensuring the patient profile reflects the new record details accurately.
+
+#### Implementation Steps
+
+1. **Initialization**: On startup, the `AddressBook` is populated with sample data.
+2. **Execution**: The user modifies a patient’s record details using the `editrecord` command, triggering updates in the `Model` and `AddressBook` objects.
+3. **Update**: The patient’s details are updated and the new AddressBook is displayed.
+
+<puml src="diagrams/EditRecordSequenceDiagram.puml" alt=”EditRecordSequenceDiagram” />
+
+#### Design Considerations
+
+Similar to editing patient, a clone is being created and modified, and then replace the original.
+
+**Alternative 1 (Current Choice):** Clone the Record object, modify the clone, and then replace the original.
+
+- Pros:
+   -	**Data Integrity:** By working on a clone, we minimize the risk of corrupting the original data in case of an error during the update process.
+   -	**Undo/Redo Capability:** This approach allows for an easier implementation of undo/redo functionalities as we have distinct before and after states.
+   -	**Consistency:** It maintains a consistent methodology with the editpatient command, which uses a similar approach for updating patient details.
+
+- Cons:
+   -	**Performance Overhead:** Cloning objects can introduce a performance hit, especially if the record is large or if there are many fields to update.
+   -	**Complexity:** The codebase complexity increases due to the additional steps required to manage the cloning and replacement process.
+
+**Alternative 2:** Update the Record object directly within the AddressBook.
+
+- Pros:
+   -	**Performance:** This approach is more performant since it involves direct manipulation of the object without the need to create a copy.
+   -	**Simplicity:** The logic is more straightforward, as it doesn't involve cloning, making the code easier to understand and maintain.
+- Cons:
+   -	**Risk to Data Integrity:** Any errors during the update can corrupt the original data, as changes are made in place.
+   -	**Difficulty in Extending Functionality:** Future features such as undo/redo or real-time collaboration could be harder to implement as changes are not isolated.
+
+In conclusion, the decision to proceed with Alternative 1 was made to prioritize the application's long-term robustness and maintainability, accepting the trade-offs in performance and immediate simplicity for the sake of a safer and more extensible editing feature.
 
 ### Deleting a Record
 
@@ -610,7 +668,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a1. MedBook informs the user that the list is empty.
     - Use case ends.
 
-### UC04 - Editing a Patient
+### UC04 - Editing a Patient's Details
 
 - **Actor**: User
 - **System**: MedBook
@@ -618,7 +676,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   1. User lists all patients (UC03).
   2. User provides patient ID, detail field, and updated patient details.
   3. MedBook updates the patient entry.
-  4. MedBook shows successful edit details.
+  4. MedBook shows successful edited details.
 - **Extensions**:
   - 2a. MedBook detects an error in the entered input.
     - 2a1. MedBook shows an error message.
@@ -712,7 +770,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a1. MedBook shows an error message.
     - Use case ends.
 
-### UC10 - Adding a Record under a Patient
+### UC11 - Adding a Record under a Patient
 
 - **Actor**: User
 - **System**: MedBook
@@ -729,12 +787,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2b1. MedBook shows an error message.
     - Use case ends.
 
-### UC11 - Deleting a Record under a Patient
+### UC12 - Editing a Record under a Patient
 
 - **Actor**: User
 - **System**: MedBook
 - **Main Success Scenario (MSS)**:
-  1. User views a patient (UC09)
+    1. User lists all patients (UC03).
+    2. User view a specific patient's medical records (UC10).
+    2. User provides patient ID, record ID, record detail fields, and updated record details.
+    3. MedBook updates the patient's record entry.
+    4. MedBook shows successful edited record details.
+- **Extensions**:
+    - 3a. User gives an invalid input in any field.
+         - 3a1. MedBook shows an error message stating which field has invalid input.
+         - Use case ends.
+    - 3b. User gives an invalid patient ID
+         - 3b1. MedBook shows an error message stating "The person index provided is invalid"
+         - Use case ends.
+    - 3c. User gives an invalid record ID
+         - 3c1. MedBook shows an error message  stating "The record index provided is invalid"
+         - Use case ends.
+    - 3d. User gives any invalid field
+         - 3d1. MedBook shows an error message stating invalid format of command.
+         - Use case ends.
+    - 3e. User gives multiple date field.
+         - 3e1. MedBook shows an error message stating "Multiple values specified for the following single-valued field(s): d/"
+         - Use case ends.
+
+
+### UC13 - Deleting a Record under a Patient
+
+- **Actor**: User
+- **System**: MedBook
+- **Main Success Scenario (MSS)**:
+  1. User views a patient (UC10)
   2. User requests to delete a record under a patient
   3. MedBook returns a list of all the records except for the deleted record and informs the user.
   4. User views the list of the records of the patient.
@@ -746,12 +832,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2b1. MedBook shows an error message.
     - Use case ends.
 
-### UC12 - Searching for Records
+### UC14 - Searching for Records
 
 - **Actor**: User
 - **System**: MedBook
 - **Main Success Scenario (MSS)**:
-  1. User views a patient (UC09)
+  1. User views a patient (UC10)
   2. User initiates a record search of the currently viewing patient using specific keywords.
   3. MedBook performs a case-insensitive search.
   4. MedBook returns a list of matching records.
@@ -764,7 +850,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 4a1. MedBook displays a message: "No matches found."
     - Use case ends.
 
-### UC11 - Adding an Appointment
+### UC15 - Adding an Appointment
 
 - **Actor**: User
 - **System**: MedBook
@@ -781,7 +867,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - Steps 3a1-3a3 are repeated until the appointment details entered is correct.
     - Use Case resumes from step 4.
 
-### UC12 - Viewing Appointments
+### UC16 - Viewing Appointments
 
 - **Actor**: User
 - **System**: MedBook
@@ -789,13 +875,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   1. User requests to view appointments.
   2. MedBook shows the user all appointments
 
-### UC13 - Deleting an Appointment
+### UC17 - Deleting an Appointment
 
 - **Actor**: User
 - **System**: MedBook
 - **Preconditions**: There is at least one appointment.
 - **Main Success Scenario (MSS)**:
-  1. User views all appointments (UC12).
+  1. User views all appointments (UC16).
   2. User requests to delete a new appointment.
   3. MedBook prompts the user to enter the appointment's ID.
   4. User enters the appointment's ID.
@@ -1019,7 +1105,27 @@ Adding to the glossary ensures that all potential users, regardless of their lev
    - Expected: Error message displayed due to unknown command.
 
 ---
+### Editing a Patient's Record Details
 
+#### When the Patient Exists and Record Exists
+
+1. Prerequisites: Ensure the record list of the patient is displayed and contains the entry you wish to edit.
+2. Test Case: `editrecord 1/1 c/Fever`
+  - Expected: The record at index 1 of the Patient at index 1 has its conditions updated to only fever. Details shown in status message.
+3. Test Case: `editrecord 1/1 c/Fever m/Paracetamol`
+  - Expected: The record at index 1 of the Patient at index 1 has its conditions updated to only fever and medications to only Paracetamol. Details shown in status message.
+4. Test Case: `editrecord x/1 c/Fever` (where x > patient list size)
+  - Expected: Error message displayed, record's details unchanged.
+5. Test Case: `editrecord 1/x c/Fever` (where x > record list size)
+  - Expected: Error message displayed, record's details unchanged.
+6. Test Case: `edirecord 1/1 c/Fever`
+   - Expected: Error message displayed due to unknown command.
+7. Test Case: `editrecord 1/1 d/12112023`
+   - Expected: Error message displayed suggesting date and time should in the form of "dd-mm-yyyy hhmm".
+8. Test Case: `editrecord 1/1 d/12-11-2023 2200 d/13-11-2023 2200`
+   - Expected: Error message displayed suggesting multiple inputs of date are not allowed.
+
+---
 ### Deleting a Record under Patient
 
 1. Prerequisites: Ensure the patient list is displayed
@@ -1216,3 +1322,42 @@ To make the NRIC parameter more inclusive and reflective of real-world use cases
 Due to current constraints in the Parser which causes / to be parsed as tags, the "/" character cannot be entered into the name parameter. As such, users would currently not be able to enter "Muhammed Ali s/o Muhammed Ali". We would implement this feature in the future for even more accurate patient naming.
 
 **Patient Index Alignment**: The Patient Index in _Pinned Patient_ and _Person Being Viewed_ will be aligned with the patient list, ensuring consistency with the displayed indices instead of using a One-Indexed list.
+
+## Appendix: Effort
+
+This appendix aims to provide evaluators with an insight into the total effort that went into the development of Medbook, a comprehensive desktop application for managing patient details and medical records in private clinics.
+
+### Effort Overview
+
+**Duration:** The project spanned approximately 2 months from initial conception to final release.
+**Team:** Consisted of 5 members.
+
+#### Technical Complexity and Challenges
+
+- **Data Security:** Implementing robust security measures such as data encryption to protect sensitive patient information was paramount and required extensive research and testing. (It was omitted due to constraints related to PE-Testing)
+- **Defensive Coding:** We enforced immutability of `Person`, `Record`, and `Appointment` to maintain data integrity.
+- **User Interface:** Crafting an intuitive GUI that also supported a CLI for efficiency demanded iterative design and usability testing.
+
+#### Effort Quantification
+
+- **Development:** The team invested over 300 hours in coding, with a focused effort on crafting intuitive and responsive GUI and CLI interfaces. This investment reflects our commitment to usability and accessibility, ensuring that both novice and experienced users can navigate the application with ease.
+
+- **Testing:** More than 100 hours were dedicated to a combination of manual and automated testing. This rigorous testing protocol was critical in validating the application's reliability and optimizing its performance across various user scenarios and system environments.
+
+- **Documentation:** We allocated 50 hours to developing thorough user documentation. This comprehensive guide is pivotal for facilitating a quick adoption of the application by new users and serves as a reliable reference for existing users to leverage the application's full potential.
+
+#### Reuse of Existing Solutions
+
+- **Library Reuse:** Utilized the JavaFX library for the GUI, which saved much effort for front-end development.
+
+#### Effort Comparison with Reference Projects:
+
+- **Compared to AB3:** the development of Medbook demanded considerably more effort, primarily due to its capability to manage multiple entity types such as patients, records, and appointments. This multifaceted approach contrasts with AB3's design, which is centered around handling a single entity type.
+Moreover, Medbook was built upon the AB3 architecture as a foundational base, necessitating a deep understanding of the existing complex framework. Even though certain features in Medbook were adapted from AB3 to suit our specific needs, significant effort was required to modify and extend these features. Tailoring pre-existing functionalities to fit into our more comprehensive application model involved intricate work, ensuring seamless integration and functionality within Medbook's broader scope.Achievements
+
+- Despite the high complexity, the team managed to deliver Medbook on schedule.
+- The application has passed all security audits without any major issues.
+- User feedback has been overwhelmingly positive, especially regarding the ease of use and performance of the application.
+
+#### Conclusion
+The successful development of Medbook is a testament to the well-coordinated effort, rigorous testing, and effective project management that adapted to challenges and complexity with innovative solutions and strategic planning.
