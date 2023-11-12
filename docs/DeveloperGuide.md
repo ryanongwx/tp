@@ -311,7 +311,7 @@ The `addrecord` command integrates a new `Record` object with the patient's deta
 - `AddRecordCommandParser#parse(String)`: Parses command input
 - `AddRecordCommand#execute(Model)`: Executes addrecord command
 - `UniqueRecordList#add(Record)`: Adds a `Record` in the `UniqueRecordList`.
-- `Model#updateRecordList(Person, Index)`, `AddressBook#setRecords(Person, Index)`, `UniqueRecordList#setRecords(UniqueRecordList)`: Updates record details with added record.
+- `Model#updateRecordList(Person)`, `AddressBook#setRecords(Person)`, `UniqueRecordList#setRecords(UniqueRecordList)`: Updates record details with added record.
 - `Model#setPerson(Person, Person)`, `AddressBook#setPerson(Person, Person)`, `UniquePersonList#setPerson(Person, Person)`: Updates patient details.
 
 #### Implementation Steps
@@ -333,7 +333,7 @@ The `deleterecord` command deletes a specified record in `UniqueRecordList` of a
 - `DeleteRecordCommandParser#parse(String)`: Parses command input.
 - `DeleteRecordCommand#execute(Model)`: Executes deleterecord command.
 - `UniqueRecordList#remove(Record)`: Deletes a `Record` in the `UniqueRecordList`.
-- `Model#updateRecordList(Person, Index)`, `AddressBook#setRecords(Person, Index)`, `UniqueRecordList#setRecords(UniqueRecordList)`: Updates record details with deleted record.
+- `Model#updateRecordList(Person)`, `AddressBook#setRecords(Person)`, `UniqueRecordList#setRecords(UniqueRecordList)`: Updates record details with deleted record.
 - `Model#setPerson(Person, Person)`, `AddressBook#setPerson(Person, Person)`, `UniquePersonList#setPerson(Person, Person)`: Updates patient details.
 
 ##### Implementation Steps
@@ -526,20 +526,18 @@ These methods in `AddressBook` are exposed via the `Model` interface (`updateRec
 
 The following sequence diagram shows how the view operation works:
 
-<puml src="diagrams/ViewSequenceDiagram.puml" alt="ViewSequenceDiagram" />
+<puml src="diagrams/ViewAppointmentSequenceDiagram.puml"/>
 
 ### Design Considerations
 
-#### How View Executes
+**Aspect: Structure of the Appointment class:**
 
-- **Alternative 1**: (Chosen) Utilize `UniqueRecordList` for `records` and `UniquePersonList` for `personBeingViewed`.
-  - _Pros_: Simpler implementation.
-  - _Cons_: Potential memory usage issues.
-- **Alternative 2**: Utilize `UniqueRecordList` for `records` and `Person` for `personBeingViewed`.
-  - _Pros_: Reduced memory usage.
-  - _Cons_: Increased complexity and required additional object manipulations.
-
----
+- **Alternative 1 (Current Choice)**: `Model` holds a `UniqueAppointmentList` consisting of all `Appointment` objects, each `Person` also has a `UniqueAppointmentList` consisting of all `Appointment` objects assigned to the person. Each `Appointment` object has the corresponding `Person` `NRIC` as a field.
+  - _Pros_: Operations like searching and filtering for all appointments are easier when a centralized list is available.
+  - _Cons_: Keeping the central `UniqueAppointmentList` in `Model` and individual lists in each `Person` synchronized can be challenging and might lead to data inconsistencies if not managed properly. Any change in an `Appointment` requires updates in two places, adding to the complexity and processing time.
+- **Alternative 2**: Each `Person` holds their own `UniqueAppointmentList` consisting of all `Appointment` objects assigned to the person.
+  - _Pros_: This approach simplifies the data model by avoiding the need for a centralized appointment list.
+  - _Cons_: Operations that require knowledge of all appointments, like finding available slots or generating reports, become more complex, as they need to aggregate data from each Person.
 
 ### User Stories
 
@@ -699,6 +697,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - **Extensions**:
   - 3a. No matches found.
     - 3a1. MedBook displays a message: "No matches found."
+    - Use case ends.
+
+### UC09 - View Patient's Medical Records
+
+- **Actor**: User
+- **System**: MedBook
+- **Main Success Scenario (MSS)**:
+  1. User lists all patients (UC03).
+  2. User requests to view a specific patient's records.
+  3. MedBook displays the medical records of the patient.
+- **Extensions**:
+  - 2a. Given ID is invalid.
+    - 2a1. MedBook shows an error message.
     - Use case ends.
 
 ### UC10 - Adding an Appointment
@@ -925,6 +936,30 @@ Adding to the glossary ensures that all potential users, regardless of their lev
 
 ---
 
+### View Patient's Medical Records
+
+1. Prerequisites: Ensure the patient list is displayed and contains the entry you wish to edit.
+2. Test Case: `view 1`
+   - Expected: First contact deleted, details shown in status message.
+3. Test Case: `view 0`
+   - Expected: Error message displayed, status bar unchanged.
+4. Other Test Cases: `view`, `view x` (where x > list size)
+   - Expected: Error message displayed, status bar unchanged.
+
+---
+
+### View Patient's Medical Records
+
+1. Prerequisites: Ensure the patient list is displayed and contains the entry you wish to edit.
+2. Test Case: `view 1`
+   - Expected: First contact deleted, details shown in status message.
+3. Test Case: `view 0`
+   - Expected: Error message displayed, status bar unchanged.
+4. Other Test Cases: `view`, `view x` (where x > list size)
+   - Expected: Error message displayed, status bar unchanged.
+
+---
+
 ### Pinnning a Patient
 
 #### Pinning a patient while all patients are being shown
@@ -1034,3 +1069,5 @@ To make the NRIC parameter more inclusive and reflective of real-world use cases
 #### Accepting / in Name parameter
 
 Due to current constraints in the Parser which causes / to be parsed as tags, the "/" character cannot be entered into the name parameter. As such, users would currently not be able to enter "Muhammed Ali s/o Muhammed Ali". We would implement this feature in the future for even more accurate patient naming.
+
+**Patient Index Alignment**: The Patient Index in _Pinned Patient_ and _Person Being Viewed_ will be aligned with the patient list, ensuring consistency with the displayed indices instead of using a One-Indexed list.

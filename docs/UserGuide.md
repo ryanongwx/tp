@@ -1,7 +1,7 @@
 ---
-  layout: default.md
-  title: "User Guide"
-  pageNav: 3
+layout: default.md
+title: "User Guide"
+pageNav: 3
 ---
 
 # User Guide
@@ -25,6 +25,8 @@ Discover the power of Medbook:
 - **Optimized for Speed**: Medbook offers both a Command Line Interface (CLI) and an intuitive Graphical User Interface, making it ideal for fast typists like you.
 - **QuickStart**: New to Medbook? Click [here](#quick-start) to start your journey.
 
+---
+
 ## Table of contents
 
 <!-- * Table of Contents -->
@@ -46,7 +48,7 @@ We're here to make your experience as user-friendly as possible. Let's get start
 
 1. Ensure you have Java `11` or above installed in your Computer.
    - [How do I check my version of Java?](#faq)
-1. Download the latest jar file (`medbook.jar`) from our [github release](https://github.com/AY2324S1-CS2103T-T12-4/tp/releases).
+1. Download the latest jar file (`medbook.jar`) from our [GitHub release](https://github.com/AY2324S1-CS2103T-T12-4/tp/releases).
 
 1. Move the jar file to the folder you want to store the data of the patients.
 
@@ -140,7 +142,7 @@ Here is a brief summary of GUI component of the main window of Medbook.
 2. Let us try invoking the help window. Type help in the command box and press Enter to execute it.
    Please refer to the first section of [feature](#features) to have a more clear understanding of requirements of the parameters.
    A similar help box as below should pop up.<br> <img src="images/HelpWindow.png" width="500"/>
-3. Now, let us try adding a new patient. In the command box, type in `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` and press Enter.
+3. Now, let us try adding a new patient. In the command box, type in `addpatient n/John Doe i/A0000000B e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` and press Enter.
    A success message should be displayed.<br><img src="images/AddPatientSuccess.png" width="800"/>
 4. Try adding a few more patient to Medbook by yourself!
 5. Now, let us try adding a record to a patient. In the command box, type in `addrecord 3 d/18-09-2023 1800 c/Fever m/Paracetamol` and press Enter.
@@ -336,7 +338,7 @@ Examples:
 - `view 2` displays the medical records of the **2nd patient** in the patients list. The displayed records will be in the **RECORDS** list and patient information will be in the **Patient Being Viewed** section.
 
 <box type="info" seamless>
-    The PATIENT INDEX in the Patient Being Viewed section remains consistent after using the `find`, `list` or `delete` command.
+    The PATIENT INDEX in the Patient Being Viewed section remains 1, if you wish to quickly operate on the patient, please use search command to locate the patient with the patient's detail.
 </box>
 
 <u>[Back to Top](#user-guide)</u>
