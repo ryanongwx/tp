@@ -26,7 +26,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList personBeingViewed;
     private final UniqueRecordList records;
     private final UniqueAppointmentList appointments;
-    private List<Index> patientIndex;
+
     /*
      * The 'unusual' code block below is a non-static initialization block,
      * sometimes used to avoid duplication
@@ -42,7 +42,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         records = new UniqueRecordList();
         appointments = new UniqueAppointmentList();
         personBeingViewed = new UniquePersonList();
-        patientIndex = new ArrayList<>();
     }
 
     public AddressBook() {
@@ -66,11 +65,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
-    public void setRecords(Person person, Index index) {
+    public void setRecords(Person person) {
         ArrayList<Person> beingViewed = new ArrayList<>();
         beingViewed.add(person);
-        this.patientIndex.clear();
-        this.patientIndex.add(index);
         this.personBeingViewed.setPersons(beingViewed);
         this.records.setRecords(person.getRecords());
     }
@@ -149,10 +146,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public ObservableList<Record> getRecordList() {
         return records.asUnmodifiableObservableList();
-    }
-
-    public List<Index> getPatientIndex() {
-        return this.patientIndex;
     }
 
     public ObservableList<Appointment> getAppointmentList() {

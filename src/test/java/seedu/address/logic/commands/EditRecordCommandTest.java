@@ -56,7 +56,7 @@ public class EditRecordCommandTest {
                 Messages.format(editedRecord, editedPerson));
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-        expectedModel.updateRecordList(editedPerson, INDEX_FIRST_PERSON);
+        expectedModel.updateRecordList(editedPerson);
 
         assertCommandSuccess(editRecordCommand, model, expectedMessage, expectedModel);
     }
@@ -83,7 +83,7 @@ public class EditRecordCommandTest {
                 editedRecord, editedPerson));
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-        expectedModel.updateRecordList(editedPerson, INDEX_FIRST_PERSON);
+        expectedModel.updateRecordList(editedPerson);
 
         assertCommandSuccess(editRecordCommand, model, expectedMessage, expectedModel);
     }
@@ -121,7 +121,7 @@ public class EditRecordCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-        expectedModel.updateRecordList(editedPerson, INDEX_FIRST_PERSON);
+        expectedModel.updateRecordList(editedPerson);
 
         assertCommandSuccess(editRecordCommand, model, expectedMessage, expectedModel);
     }
