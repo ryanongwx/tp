@@ -1,7 +1,7 @@
 ---
-  layout: default.md
-  title: "User Guide"
-  pageNav: 3
+layout: default.md
+title: "User Guide"
+pageNav: 3
 ---
 
 # User Guide
@@ -25,17 +25,14 @@ Discover the power of Medbook:
 - **Optimized for Speed**: Medbook offers both a Command Line Interface (CLI) and an intuitive Graphical User Interface, making it ideal for fast typists like you.
 - **QuickStart**: New to Medbook? Click [here](#quick-start) to start your journey.
 
+---
 
 ## Table of contents
 
 <!-- * Table of Contents -->
 <page-nav-print />
 
-<<<<<<< HEAD
-=======
----
 
->>>>>>> master
 ## How to Navigate the User Guide
 
 Welcome to the Medbook User Guide! Our goal is to empower you with the knowledge and confidence to make the most of Medbook's features.
@@ -46,17 +43,13 @@ Welcome to the Medbook User Guide! Our goal is to empower you with the knowledge
 
 We're here to make your experience as user-friendly as possible. Let's get started!
 
-<<<<<<< HEAD
 <u>[Back to Top](#user-guide)</u>
 
-## Quick start 
-=======
 ## Quick start
->>>>>>> master
 
 1. Ensure you have Java `11` or above installed in your Computer.
    - [How do I check my version of Java?](#faq)
-1. Download the latest jar file (`medbook.jar`) from our [github release](https://github.com/AY2324S1-CS2103T-T12-4/tp/releases).
+1. Download the latest jar file (`medbook.jar`) from our [GitHub release](https://github.com/AY2324S1-CS2103T-T12-4/tp/releases).
 
 1. Move the jar file to the folder you want to store the data of the patients.
 
@@ -92,7 +85,7 @@ The application should open up similar to the image below.
 1. Learn more about navigating the GUI [here](#navigating-the-graphical-user-interface-gui).
 2. For new users, learn how to use Medbook [here](#medbook-tutorial).
 3. For advanced users, view all the available features [here](#features).
-    
+
 <u>[Back to Top](#user-guide)</u>
 
 ## Glossary
@@ -102,7 +95,7 @@ The application should open up similar to the image below.
 Here are some description of the terms used throughout this user guide.
 
 | **Term**      | **Definition**                                                                                                                                                                  |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Parameter     | A parameter allow you to customize the behavior of the command by providing specific values                                                                                     |
 | Command       | A command is a textual input that users type into the command-line interface to communicate with the application                                                                |
 | GUI           | GUI is graphical user interface. It manages the interaction between user and the application and also gives a visual display of Medbook.                                        |
@@ -118,7 +111,7 @@ Here are some description of the terms used throughout this user guide.
 Here is a brief summary of GUI component of the main window of Medbook.
 
 | **Name of component**    | **Description**                                                                                             |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------- |
+|--------------------------|-------------------------------------------------------------------------------------------------------------|
 | Menu Bar                 | Contains the help and file drop down menu for Medbook                                                       |
 | Message Display Box      | Display the message of every command. Either can be an error message or success message                     |
 | Patient List             | Contains all the Patient cards stored in Medbook                                                            |
@@ -132,7 +125,7 @@ Here is a brief summary of GUI component of the main window of Medbook.
 ![Appointment Window](images/ViewAppointmentWindow.png)
 
 | **Name of component** | **Description**                                                           |
-| --------------------- | ------------------------------------------------------------------------- |
+|-----------------------|---------------------------------------------------------------------------|
 | Appointment Card      | Contains information of appointments including name, date and NRIC number |
 | Appointment List      | Holds a list of Appointment card                                          |
 | Calendar              | A calendar that displays appointments at certain date                     |
@@ -150,7 +143,7 @@ Here is a brief summary of GUI component of the main window of Medbook.
 2. Let us try invoking the help window. Type help in the command box and press Enter to execute it.
    Please refer to the first section of [feature](#features) to have a more clear understanding of requirements of the parameters.
    A similar help box as below should pop up.<br> <img src="images/HelpWindow.png" width="500"/>
-3. Now, let us try adding a new patient. In the command box, type in `addpatient n/John Doe e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` and press Enter.
+3. Now, let us try adding a new patient. In the command box, type in `addpatient n/John Doe i/A0000000B e/johndoe@gmail.com p/12345678 g/M a/26 bt/AB+ al/Penicillin` and press Enter.
    A success message should be displayed.<br><img src="images/AddPatientSuccess.png" width="800"/>
 4. Try adding a few more patient to Medbook by yourself!
 5. Now, let us try adding a record to a patient. In the command box, type in `addrecord 3 d/18-09-2023 1800 c/Fever m/Paracetamol` and press Enter.
@@ -206,20 +199,20 @@ You may now have a basic understanding of this software. Try out the features in
 
 | FIELD        | PREFIX | CONSTRAINTS                                                                                                   |
 |--------------|--------|---------------------------------------------------------------------------------------------------------------|
-| **NAME**     | n      | Up to 256 alphanumeric characters                                                                             |
+| **NAME**     | n      | Alphanumeric characters, dashes and dots only                                                                            |
 | **NRIC**     | i      | Starts with a letter, followed by seven digits, and ends with another letter (letters are not case-sensitive) |
 | **EMAIL**    | e      | Emails should be of the format local-part@domain                                                              |
 | **GENDER**   | g      | Either **M** or **F**                                                                                         |
 | **PHONE**    | p      | Must be at least 3 digits long                                                                                |
 | **AGE**      | a      | Must be a non-negative integer                                                                                |
 | **BLOODTYPE**| bt     | Must be one of **A-**, **A+**, **B-**, **B+**, **AB-**, **AB+**, **O-**, **O+**                               |
-| **ALLERGY**  | al     | Up to 256 alphanumeric.                                                                                       |
+| **ALLERGY**  | al     | Alphanumeric characters only                                                                                       |
 | **DATE**     | d      | Must be in the form of 'dd-MM-yyyy HHmm'                                                                      |
-| **CONDITION**| c      | Up to 256 alphanumeric characters                                                                             |
-| **MEDICATION**| m     | Up to 256 alphanumeric characters                                                                             |
+| **CONDITION**| c      | Alphanumeric characters only                                                                            |
+| **MEDICATION**| m     | Alphanumeric characters only                                                                            |
 
 <box type="info" seamless>
- 
+
 **Notes for email format:** <br>
 
 1. The **local-part** should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br>
@@ -236,11 +229,12 @@ The **domain** name must: <br>
 
 **Notes for allergy format:** <br>
 - Multiple words for an allergy must be seperated with hyphen.
-- Each word must be alphanumeric characters. 
+- Each word must be alphanumeric characters.
 
 </box>
 
 <u>[Back to Top](#user-guide)</u>
+
 
 ### Viewing help : `help`
 
@@ -267,6 +261,7 @@ His email and phone number is **johndoe@gmail.com** and **12345678**, respective
 <box type="info" seamless>
 Info:
 If the patient does not have an NRIC, eg. foreigners, a placeholder NRIC which is not valid such as `A1234567A` can be used.
+If the patient's name contains the "/" character, use the "-" character instead. For example, use "s-o" instead of "s/o".
 </box>
 
 <u>[Back to Top](#user-guide)</u>
@@ -323,7 +318,8 @@ Examples:
 - `list` lists all the patients in the **Patient List**.
 
 <box type="info" seamless>
-    The `list` command allows you to easily view all the patients in the Patient List. For instance, after you've used the `search` command to find specific patients using keywords, you can use the `list` command to gather all the patients conveniently! 
+    The `list` command allows you to easily view all the patients in the Patient List. For instance, after you've used the `search` command to find specific patients using keywords, you can use the `list` command to gather all
+  the patients conveniently!
 </box>
 
 <u>[Back to Top](#user-guide)</u>
@@ -343,7 +339,7 @@ Examples:
 - `view 2` displays the medical records of the **2nd patient** in the patients list. The displayed records will be in the **RECORDS** list and patient information will be in the **PATIENT BEING VIEWED** section.
 
 <box type="info" seamless>
-    The PATIENT INDEX in the Patient Being Viewed section remains consistent after using the `find`, `list` or `delete` command. 
+    The PATIENT INDEX in the Patient Being Viewed section remains 1, if you wish to quickly operate on the patient, please use search command to locate the patient with the patient's detail.
 </box>
 
 <u>[Back to Top](#user-guide)</u>
