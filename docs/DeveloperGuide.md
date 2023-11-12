@@ -572,7 +572,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 3a1. MedBook displays a message: "No matches found."
     - Use case ends.
 
-### UC09 - View Medical Records
+### UC09 - View Patient's Medical Records
 
 - **Actor**: User
 - **System**: MedBook
@@ -765,6 +765,17 @@ Adding to the glossary ensures that all potential users, regardless of their lev
 
 ---
 
+### View Patient's Medical Records
+1. Prerequisites: Ensure the patient list is displayed and contains the entry you wish to edit.
+2. Test Case: `view 1`
+    - Expected: First contact deleted, details shown in status message.
+3. Test Case: `view 0`
+    - Expected: Error message displayed, status bar unchanged.
+4. Other Test Cases: `view`, `view x` (where x > list size)
+    - Expected: Error message displayed, status bar unchanged.
+
+---
+
 ### Verifying Patient Data Integrity
 
 #### After Operations
@@ -805,3 +816,5 @@ We plan to enhance the calendar navigation by introducing a more efficient way f
 **`viewcalender MM YYYY` command**: For users who prefer typing through the CLI, we will implement a command that allows them to view the calendar for a specific month and year. Users will be able to enter a command in the format viewcalendar MM YYYY (e.g., viewcalendar 12 2023 to view December 2023), and the calendar will update to display the selected month and year.
 
 **Accepting / in Name parameter**: Due to current constraints in the Parser which causes / to be parsed as tags, the "/" character cannot be entered into the name parameter. As such, users would currently not be able to enter "Muhammed Ali s/o Muhammed Ali". We would implement this feature in the future for even more accurate patient naming.
+
+**Patient Index Alignment**: The Patient Index will be aligned with the patient list, ensuring consistency with the displayed indices instead of using a One-Indexed list.
