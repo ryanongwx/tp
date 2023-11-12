@@ -17,15 +17,20 @@ title: "Hanjoo's Project Portfolio Page"
   - Allows doctors to add a medical record to a patient after visit. The record would include information about date and time of the visit, conditions of the patient, and prescribed medicine for the patient.
   - Created the parser class and the command class to execute the adding record command.
 
-* **New Feature 1**: Search Record
+* **New Feature 2**: Search Record
   - Allow doctors to search for the past records of the patient that they are currently viewing using keywords.
   - Created the parser class and the command class to execute the searching record command.
+
+* **New Feature 3** Delete Record
+  * Allow doctors to delete records of patients if necessary
+  * Created the parser class and the command class to execute the deleting record command.
 
 * **Project management**
 
 * **Documentation**
-  - User Guide 
-    - Added new sections explaining how to use the new features and commands I implemented, which are `addrecord` and `searchrecord` command. 
+  - User Guide
+    - Added new sections explaining how to use the new features and commands I implemented, which are `addrecord` and `searchrecord`
+    command. 
     - Modified `addpatient` command (originally `addperson` command)  section following to the updated attributes of the patient.
   - Developer Guide
     - Added implementation details for `addrecord` command.
