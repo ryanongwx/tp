@@ -186,17 +186,17 @@ You may now have a basic understanding of this software. Try out the features in
 
 | FIELD          | PREFIX | CONSTRAINTS                                                                                                   |
 | -------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
-| **NAME**       | n      | Up to 256 alphanumeric characters                                                                             |
+| **NAME**       | n      | Alphanumeric characters, dashes and dots only only                                                                              |
 | **NRIC**       | i      | Starts with a letter, followed by seven digits, and ends with another letter (letters are not case-sensitive) |
 | **EMAIL**      | e      | Valid email format: **email@domain.com**                                                                      |
 | **GENDER**     | g      | Either **M** or **F**                                                                                         |
 | **PHONE**      | p      | Must be 8 digits                                                                                              |
 | **AGE**        | a      | Must be a non-negative integer                                                                                |
 | **BLOODTYPE**  | bt     | Must be one of **A-**, **A+**, **B-**, **B+**, **AB-**, **AB+**, **O-**, **O+**                               |
-| **ALLERGY**    | al     | Up to 256 alphanumeric characters                                                                             |
-| **DATETIME**   | d      | Must be in the form of 'dd-MM-yyyy HHmm'                                                                      |
-| **CONDITION**  | c      | Up to 256 alphanumeric characters                                                                             |
-| **MEDICATION** | m      | Up to 256 alphanumeric characters                                                                             |
+| **ALLERGY**    | al     | Alphanumeric characters only                                                                            |
+| **DATETIME**   | d      | Must be in the format of 'dd-MM-yyyy HHmm'                                                                      |
+| **CONDITION**  | c      | Alphanumeric characters only                                                                          |
+| **MEDICATION** | m      | Alphanumeric characters only                                                                             |
 
 ### Viewing help : `help`
 
@@ -221,6 +221,7 @@ His email and phone number is **johndoe@gmail.com** and **12345678**, respective
 <box type="info" seamless>
 Info:
 If the patient does not have an NRIC, eg. foreigners, a placeholder NRIC which is not valid such as `A1234567A` can be used.
+If the patient's name contains the "/" character, use the "-" character instead. For example, use "s-o" instead of "s/o".
 </box>
 
 ### Adding Medical Records : `addrecord`

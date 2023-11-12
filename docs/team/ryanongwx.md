@@ -23,15 +23,18 @@ Given below are my contributions to the project.
 * **New Feature 2**: Add Encryption/Decryption Functionality
   - Encrypts data from the application using AES encryption such that the data in the addressbook.json file is encrypted.
   - This is to ensure privacy and confidentiality for patient data.
-  - This funnctionality was later scrapped due to the group prject constraints
+  - This functionality was later scrapped due to the group prject constraints
+  
 
 * **Bug Fixes**: Fixed all Bugs in repo for v1.2
   - [Link to Bug Fix](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/40)
-  - Prior to this all Java CI checks failed due to failing of testcases and some features no implemented correctly
-  - Fixed wrong feature implementations wrote by teammates and fixed all testcases such that all Java CI checks could pass
+  - Prior to this all Java CI checks failed due to failing of testcases and some features not implemented correctly
+  - Fixed wrong feature implementations wrote by teammates in addrecord, addpatient and pin patient commands.
+  - Fixed all testcases such that all Java CI checks could pass in in addrecord, addpatient and pin patient commands.
 
 * **Project management**:
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Filmed and stitched the video demo together
 
 * **Documentation**:
   * User Guide:
