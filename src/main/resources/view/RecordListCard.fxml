@@ -36,8 +36,8 @@
                 <!-- Button to attach files -->
                 <Button text="Attach File" onAction="#handleAttachFile"/>
             </HBox>
-            <Label fx:id="condition" styleClass="cell_small_label" text="$condition"/>
-            <Label fx:id="medication" styleClass="cell_small_label" text ="\$medication"/>
+            <Label fx:id="condition" styleClass="cell_small_label" text="$condition" wrapText="true"/>
+            <Label fx:id="medication" styleClass="cell_small_label" text ="\$medication" wrapText="true"/>
         </VBox>
     </GridPane>
 </HBox>
