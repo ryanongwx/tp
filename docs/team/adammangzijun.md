@@ -6,13 +6,8 @@ title: "Adam's Project Portfolio Page"
 ### Project: MedBook
 
 ## Overview:
-<<<<<<< HEAD
-Medbook streamlines patient management for healthcare professionals.
-=======
 MedBook - Medbook streamlines patient management for healthcare professionals.
->>>>>>> master
 It simplifies the process of accessing patients' contact information and medical records, making it easier for healthcare providers to efficiently coordinate care.
-
 
 ## Summary of Contributions
 - Code contributed: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=adammangzijun&breakdown=true)

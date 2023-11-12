@@ -205,21 +205,6 @@ You may now have a basic understanding of this software. Try out the features in
 
 ### Parameters
 
-<<<<<<< HEAD
-| FIELD        | PREFIX | CONSTRAINTS                                                                                                   |
-|--------------|--------|---------------------------------------------------------------------------------------------------------------|
-| **NAME**     | n      | Must contain alphanumeric characters, spaces, dots, and dashes, and it should not be blank                    |
-| **NRIC**     | i      | Starts with a letter, followed by seven digits, and ends with another letter (letters are not case-sensitive) |
-| **EMAIL**    | e      | Emails should be of the format local-part@domain                                                              |
-| **GENDER**   | g      | Either **M** or **F**                                                                                         |
-| **PHONE**    | p      | Must only contain numbers, and it should be at least 3 digits long                                            |
-| **AGE**      | a      | Must be a non-negative integer                                                                                |
-| **BLOODTYPE**| bt     | Must be one of **A-**, **A+**, **B-**, **B+**, **AB-**, **AB+**, **O-**, **O+**                               |
-| **ALLERGY**  | al     | Must contain only alphanumeric characters                                                                     |
-| **DATE**     | d      | Must be in the form of 'dd-MM-yyyy HHmm'                                                                      |
-| **CONDITION**| c      | Must contain only alphanumeric characters, spaces and dashes                                                  |
-| **MEDICATION**| m     | Must contain only alphanumeric characters, spaces and dashes                                                  |
-=======
 | FIELD          | PREFIX | CONSTRAINTS                                                                                                   |
 | -------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
 | **NAME**       | n      | Alphanumeric characters, dashes, spaces and dots only                                                         |
@@ -233,7 +218,6 @@ You may now have a basic understanding of this software. Try out the features in
 | **DATE**       | d      | Must be in the form of 'dd-MM-yyyy HHmm'                                                                      |
 | **CONDITION**  | c      | Alphanumeric characters, dashes and spaces only                                                               |
 | **MEDICATION** | m      | Alphanumeric characters, dashes and spaces only                                                               |
->>>>>>> master
 
 <box type="info" seamless>
 
@@ -253,13 +237,8 @@ The **domain** name must: <br>
 
 **Notes for allergy format:** <br>
 
-<<<<<<< HEAD
 1. When noting down allergies that consist of multiple words, they should be consolidated into a single word with each word's initial letter capitalized. <br>
 **Example:** Red Meat should be written as RedMeat.
-=======
-- Multiple words for an allergy must be seperated with hyphen.
-- Each word must be alphanumeric characters.
->>>>>>> master
 
 </box>
 
