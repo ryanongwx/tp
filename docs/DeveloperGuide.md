@@ -236,7 +236,7 @@ An `Appointment` is comprised of:
 
 - `Name`: Appointment’s title.
 - `DateTime`: Scheduling details.
-- `Person`: The patient involved.
+- `Nric`: Nric of the patient involved.
 
 Uniqueness is enforced through a `UniqueAppointmentList`.
 
@@ -251,7 +251,7 @@ Uniqueness is enforced through a `UniqueAppointmentList`.
 1. **Parse User Input**: Utilize `AddAppointmentCommandParser` for attribute validation.
 2. **Create and Execute**: Instantiate an `Appointment` and execute `AddAppointmentCommand`.
 
-<puml src="diagrams/AddAppointmentSequenceDiagram.puml" width="450" />
+<puml src="diagrams/AddAppointmentSequenceDiagram.puml"/>
 
 #### Design Considerations
 
@@ -695,3 +695,35 @@ We plan to enhance the calendar navigation by introducing a more efficient way f
 **Manual Selection of Month and Year**: A dropdown menu or a picker control will be integrated into the UI, enabling users to quickly jump to a specific month and year without sequentially navigating through each month.
 
 **`viewcalender MM YYYY` command**: For users who prefer typing through the CLI, we will implement a command that allows them to view the calendar for a specific month and year. Users will be able to enter a command in the format viewcalendar MM YYYY (e.g., viewcalendar 12 2023 to view December 2023), and the calendar will update to display the selected month and year.
+
+### Enhanced Appointment Calender UI
+
+#### Current Implementation
+
+The existing UI of the Appointment Calendar displays a truncated version of the appointment name and limits the visible appointments to only two per day. This restriction can lead to incomplete information visibility which is not optimal for efficiency and user experience.
+
+#### Proposed Enhancement
+
+To improve the user interface and overall user experience of the Appointment Calendar, the following enhancements are proposed:
+
+**Expanded Appointment Visibility**: Modify the calendar layout to allow for the display of more than two appointments per day. This could involve redesigning the day cells to accommodate more entries or implementing a scrolling mechanism within each day cell for days with numerous appointments.
+Ensure that the UI remains uncluttered and user-friendly, even with the inclusion of more appointment entries per day.
+
+**Full Appointment Name Display**: Adjust the UI to display the full name of each appointment, rather than a truncated version. This will enable users to quickly identify appointments at a glance without needing to hover over or click into the appointment for full details.
+Implement a dynamic text resizing or wrapping feature within each calendar entry to ensure that longer appointment names fit within the allocated space without compromising readability.
+
+**Responsive and Adaptive Design**: Enhance the calendar’s responsive design so it adapts effectively to different screen sizes and resolutions. This ensures that the increased information density does not negatively impact users on smaller screens or mobile devices.
+
+### Enhanced NRIC Parameter for Patients
+
+#### Current Implementation
+
+In the current implementation the NRIC parameter for patient identification is limited in its format. It accepts an entry consisting of an alphabet, followed by seven digits, and then another alphabet. This format, while broadly useful, does not align completely with real-world scenarios, particularly in Singapore, and lacks the flexibility required for foreign patients.
+
+#### Proposed Enhancement
+
+To make the NRIC parameter more inclusive and reflective of real-world use cases, especially in Singapore, we propose enhancing the NRIC parameter with the following features:
+
+**Restricted First Alphabet**: The first alphabet in the NRIC will now be restricted to specific letters, such as 'S' and 'T', which are currently used in Singapore. This change aligns the system more closely with the actual format of NRICs in Singapore.
+
+**Optional Passport Number Support**: To accommodate foreign patients who do not have an NRIC, the system will be enhanced to accept passport numbers as an alternative identifier. This feature is particularly important for private clinics that cater to a diverse patient base, including non-residents and tourists.

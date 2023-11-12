@@ -107,7 +107,7 @@ Here is a brief summary of GUI component of the main window of Medbook.
 | Message Display Box      | Display the message of every command. Either can be an error message or success message                     |
 | Patient List             | Contains all the Patient cards stored in Medbook                                                            |
 | Patient Information card | Contains information of the Patient including age, blood type, gender, contact information and allergies    |
-| Patient Being viewed     | Contains the patient card of currently being viewed patient                                                 |
+| Patient Being Viewed     | Contains the patient card of currently being viewed patient                                                 |
 | Medical Record List      | Contains all the Record card of the patient currently being viewed                                          |
 | Record Card              | Contains information of the medical record including appointment date, condition, and prescribed medication |
 | Pinned Patient List      | Contains all the patient cards after command pin                                                            |
@@ -184,19 +184,20 @@ You may now have a basic understanding of this software. Try out the features in
 
 ### Parameters
 
-| FIELD          | PREFIX | CONSTRAINTS                                                                                                   |
-| -------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
-| **NAME**       | n      | Up to 256 alphanumeric characters                                                                             |
-| **NRIC**       | i      | Starts with a letter, followed by seven digits, and ends with another letter (letters are not case-sensitive) |
-| **EMAIL**      | e      | Valid email format: **email@domain.com**                                                                      |
-| **GENDER**     | g      | Either **M** or **F**                                                                                         |
-| **PHONE**      | p      | Must be 8 digits                                                                                              |
-| **AGE**        | a      | Must be a non-negative integer                                                                                |
-| **BLOODTYPE**  | bt     | Must be one of **A-**, **A+**, **B-**, **B+**, **AB-**, **AB+**, **O-**, **O+**                               |
-| **ALLERGY**    | al     | Up to 256 alphanumeric characters                                                                             |
-| **DATETIME**   | d      | Must be in the form of 'dd-MM-yyyy HHmm'                                                                      |
-| **CONDITION**  | c      | Up to 256 alphanumeric characters                                                                             |
-| **MEDICATION** | m      | Up to 256 alphanumeric characters                                                                             |
+| FIELD               | PREFIX | CONSTRAINTS                                                                                                   |
+| ------------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
+| **NAME**            | n      | Alphanumeric characters, `.` and `-` only                                                                     |
+| **NRIC**            | i      | Starts with a letter, followed by seven digits, and ends with another letter (letters are not case-sensitive) |
+| **EMAIL**           | e      | Valid email format: **email@domain.com**                                                                      |
+| **GENDER**          | g      | Either **M** or **F**                                                                                         |
+| **PHONE**           | p      | Must be 8 digits                                                                                              |
+| **AGE**             | a      | Must be a non-negative integer                                                                                |
+| **BLOODTYPE**       | bt     | Must be one of **A-**, **A+**, **B-**, **B+**, **AB-**, **AB+**, **O-**, **O+**                               |
+| **ALLERGY**         | al     | Alphanumeric characters only                                                                                  |
+| **DATETIME**        | d      | Must be in the form of 'dd-MM-yyyy HHmm'                                                                      |
+| **CONDITION**       | c      | Alphanumeric characters only                                                                                  |
+| **MEDICATION**      | m      | Alphanumeric characters only                                                                                  |
+| **APPOINTMENTNAME** | m      | Alphanumeric characters, `.` and `-` only                                                                     |
 
 ### Viewing help : `help`
 
@@ -234,7 +235,7 @@ Format: `addrecord PATIENTID d/DATETIME c/CONDITIONS... m/MEDICATIONS...`
 - Constraints of each field are as stated in the **CONSTRAINTS** section above. <br>
 
 - Duplicate entries for **CONDITIONS** and **MEDICATIONS** are allowed and will be considered as separate entries.
-  * Therefore, `addrecord 1 d/10-11-2023 1800 c/Flu c/Flu m/Ibuprofen m/Ibuprofen` will store **[Flu, Flu]** and **[Ibuprofen, Ibuprofen]** for conditions and medications, respectively.
+  - Therefore, `addrecord 1 d/10-11-2023 1800 c/Flu c/Flu m/Ibuprofen m/Ibuprofen` will store **[Flu, Flu]** and **[Ibuprofen, Ibuprofen]** for conditions and medications, respectively.
 
 Examples:
 
@@ -282,11 +283,11 @@ Format: `view PATIENTID`
 
 - The medical records of the patient with the corresponding `PATIENTID` will be displayed on screen in the **Medical Record List**. <br>
 
-- Information about the patient will be displayed in the **PATIENT BEING VIEWED** section. <br>
+- Information about the patient will be displayed in the **Patient Being Viewed** section. <br>
 
 Examples:
 
-- `view 2` displays the medical records of the **2nd patient** in the patients list. The displayed records will be in the **RECORDS** list and patient information will be in the **PATIENT BEING VIEWED** section.
+- `view 2` displays the medical records of the **2nd patient** in the patients list. The displayed records will be in the **RECORDS** list and patient information will be in the **Patient Being Viewed** section.
 
 <box type="info" seamless>
     The PATIENT INDEX in the Patient Being Viewed section remains consistent after using the `find`, `list` or `delete` command. 
@@ -302,8 +303,8 @@ Format: `viewappointment`
 
 - The **description**, **date and time**, and **NRIC** of the patient involved in appointment will be displayed in the **Appointment List**. <br>
 
-- The **description** of appointments will also appear on the calendar at the corresponding **date**. <br>
-  **Note**: Only the **first two** appointments according to the **APPOINTMENTS** list will be displayed on the calendar per date.
+- A truncated **description** of appointments will also appear on the calendar at the corresponding **date**. <br>
+  **Note**: Only the **first two** appointments according to the **Appointment List** will be displayed on the calendar per date.
 
 ### Editing details of a patient : `editpatient`
 
