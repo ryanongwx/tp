@@ -196,7 +196,7 @@ You may now have a basic understanding of this software. Try out the features in
 
 | FIELD          | PREFIX | CONSTRAINTS                                                                                                   |
 | -------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
-| **NAME**       | n      | Alphanumeric characters, dashes and dots only                                                                 |
+| **NAME**       | n      | Alphanumeric characters, dashes, spaces and dots only                                                         |
 | **NRIC**       | i      | Starts with a letter, followed by seven digits, and ends with another letter (letters are not case-sensitive) |
 | **EMAIL**      | e      | Emails should be of the format local-part@domain                                                              |
 | **GENDER**     | g      | Either **M** or **F**                                                                                         |
@@ -205,8 +205,8 @@ You may now have a basic understanding of this software. Try out the features in
 | **BLOODTYPE**  | bt     | Must be one of **A-**, **A+**, **B-**, **B+**, **AB-**, **AB+**, **O-**, **O+**                               |
 | **ALLERGY**    | al     | Alphanumeric characters only                                                                                  |
 | **DATE**       | d      | Must be in the form of 'dd-MM-yyyy HHmm'                                                                      |
-| **CONDITION**  | c      | Alphanumeric characters only                                                                                  |
-| **MEDICATION** | m      | Alphanumeric characters only                                                                                  |
+| **CONDITION**  | c      | Alphanumeric characters, dashes and spaces only                                                               |
+| **MEDICATION** | m      | Alphanumeric characters, dashes and spaces only                                                               |
 
 <box type="info" seamless>
 

@@ -861,8 +861,6 @@ We plan to enhance the calendar navigation by introducing a more efficient way f
 
 **`viewcalender MM YYYY` command**: For users who prefer typing through the CLI, we will implement a command that allows them to view the calendar for a specific month and year. Users will be able to enter a command in the format viewcalendar MM YYYY (e.g., viewcalendar 12 2023 to view December 2023), and the calendar will update to display the selected month and year.
 
-**Accepting / in Name parameter**: Due to current constraints in the Parser which causes / to be parsed as tags, the "/" character cannot be entered into the name parameter. As such, users would currently not be able to enter "Muhammed Ali s/o Muhammed Ali". We would implement this feature in the future for even more accurate patient naming.
-
 ### Enhanced Appointment Calender UI
 
 #### Current Implementation
@@ -894,3 +892,7 @@ To make the NRIC parameter more inclusive and reflective of real-world use cases
 **Restricted First Alphabet**: The first alphabet in the NRIC will now be restricted to specific letters, such as 'S' and 'T', which are currently used in Singapore. This change aligns the system more closely with the actual format of NRICs in Singapore.
 
 **Optional Passport Number Support**: To accommodate foreign patients who do not have an NRIC, the system will be enhanced to accept passport numbers as an alternative identifier. This feature is particularly important for private clinics that cater to a diverse patient base, including non-residents and tourists.
+
+#### Accepting / in Name parameter
+
+Due to current constraints in the Parser which causes / to be parsed as tags, the "/" character cannot be entered into the name parameter. As such, users would currently not be able to enter "Muhammed Ali s/o Muhammed Ali". We would implement this feature in the future for even more accurate patient naming.
