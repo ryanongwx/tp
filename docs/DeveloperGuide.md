@@ -244,14 +244,66 @@ Uniqueness is enforced through a `UniqueAppointmentList`.
 
 ##### Overview
 
-`addappointment` adds a new `Appointment` to MedBook.
+The `addappointment` command adds a new `Appointment` to MedBook.
 
-#### Implementation Steps
+##### Related Classes and Methods:
 
-1. **Parse User Input**: Utilize `AddAppointmentCommandParser` for attribute validation.
-2. **Create and Execute**: Instantiate an `Appointment` and execute `AddAppointmentCommand`.
+- `AddAppointmentCommandParser#parse(String)`: Parses command input
+- `AddAppointmentCommand#execute(Model)`: Executes `addappointment` command
+- `UniqueAppointmentList#add(Appointment)`: Adds an `Appointment`to the `UniqueAppointmentList`
+- `Model#setPerson(Person, Person)`, `AddressBook#setPerson(Person, Person)`, `UniquePersonList#setPerson(Person, Person)`: Updates patient details.
+- `Model#resetAppointmentList()`: Resets the `UniqueAppointmentList` of the `Model`
+
+##### Implementation Steps
+
+1. **Parse User Input**: `AddAppointmentCommandParser` checks for necessary parameters and their validity.
+2. **Create Appointment Object**: An `Appointment` object is instantiated during `AddAppointmentCommandParser#parse(String)` and passed to the `AddAppointmentCommand`.
+3. **Execute Command**: `AddAppointmentCommand#execute(Model)` adds the new `Appointment` to the corresponding patient's `UniqueAppointmentList` and resets the `UniqueAppointmentList` of the `Model`.
 
 <puml src="diagrams/AddAppointmentSequenceDiagram.puml"/>
+
+#### Deleting an Appointment
+
+##### Overview
+
+The `deleteappointment` command deletes a specific `Appointment` from MedBook.
+
+##### Related Classes and Methods
+
+- `DeleteAppointmentCommandParser#parse(String)`: Parses command input
+- `DeleteAppointmentCommand#execute(Model)`: Executes `deleterecord` command
+- `UniqueAppointmentList#remove(Appointment)`: Deletes an `Appointment` from the `UniqueAppointmentList`
+- `Model#setPerson(Person, Person)`, `AddressBook#setPerson(Person, Person)`, `UniquePersonList#setPerson(Person, Person)`: Updates patient details
+- `Model#resetAppointmentList()`: Resets the `UniqueAppointmentList` of the `Model`
+
+##### Implementation Steps
+
+1. **Parse User Input**: `DeleteAppointmentCommandParser` checks for the validity of the `Appointment` index.
+2. **Create Index Object**: An `Index` object is instantiated during `DeleteAppointmentCommandParser#parse(String)` and passed to the `DeleteAppointmentCommand`.
+3. **Execute Command**: `DeleteAppointmentCommand#execute(Model)` deletes the specified `Appointment` from the corresponding patient's `UniqueAppointmentList` and resets the `UniqueAppointmentList` of the `Model`.
+
+<puml src="diagrams/DeleteAppointmentSequenceDiagram.puml"/>
+
+#### Viewing the Appointment Window
+
+##### Overview
+
+The `viewappointment` command opens/focuses the `AppointmentsWindow`.
+
+##### Related Classes and Methods
+
+- `ViewAppointmentCommand#execute(Model)`: Executes `viewappointment` command
+- `MainWindow#handleAppointments()`: Opens/focuses the `AppointmentsWindow`
+- `AppointmentsWindow`, `AppointmentListPanel`, `AppointmentCalenderPanel`: UI components which display the `Appointment` information
+- `AppointmentsWindow#fillInnerParts`: Initializes `AppointmentListPanel` and `AppointmentCalendarPanel`, populating them with data from a `UniqueAppointmentList`
+
+##### Implementation Steps
+
+1. **Parse User Input**: `DeleteAppointmentCommandParser` checks for the validity of the `Appointment` index.
+2. **Create Index Object**: An `Index` object is instantiated during `DeleteAppointmentCommandParser#parse(String)` and passed to the `DeleteAppointmentCommand`.
+3. **Execute Command**: `DeleteAppointmentCommand#execute(Model)` deletes the specified `Appointment` from the corresponding patient's `UniqueAppointmentList` and resets the `UniqueAppointmentList` of the `Model`.
+
+<puml src="diagrams/DeleteAppointmentSequenceDiagram.puml"/>
 
 #### Design Considerations
 
