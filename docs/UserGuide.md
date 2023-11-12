@@ -317,7 +317,7 @@ Examples:
 
 <box type="info" seamless>
     The `list` command allows you to easily view all the patients in the Patient List. For instance, after you've used the `search` command to find specific patients using keywords, you can use the `list` command to gather all
-  the patients conveniently! 
+  the patients conveniently!
 </box>
 
 <u>[Back to Top](#user-guide)</u>

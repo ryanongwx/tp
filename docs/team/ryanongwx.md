@@ -24,7 +24,7 @@ Given below are my contributions to the project.
   - Encrypts data from the application using AES encryption such that the data in the addressbook.json file is encrypted.
   - This is to ensure privacy and confidentiality for patient data.
   - This functionality was later scrapped due to the group prject constraints
-  
+
 
 * **Bug Fixes**: Fixed all Bugs in repo for v1.2
   - [Link to Bug Fix](https://github.com/AY2324S1-CS2103T-T12-4/tp/pull/40)
