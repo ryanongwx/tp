@@ -153,14 +153,93 @@ Key functionalities include:
 Classes used by multiple components are housed in the `seedu.addressbook.commons` package.
 
 ---
+## Patient Features
 
-## Implementation
+A `Person` object encapsulates various attributes:
 
-This section delves into the implementation details of various noteworthy features.
+- `Name`: Patient's first and last name (and middle name, if applicable)
+- `Nric`: Patient's NRIC
+- `Email`: Patient's email address
+- `Phone`: Patient's phone number
+- `Gender`: Patient's gender
+- `Age`: Patient's age
+- `BloodType`: Patient's blood type
+- `Set<Allergy>`: Patient's allergies
+- `UniqueRecordList`: Patient's records of past visits to the clinic.
+- `UniqueAppointmentList`: Patient's scheduled appointments.
+- `isPinned`: Patient's pin status.
 
-### Records Feature
+Uniqueness of person is maintained through the `UniquePersonList`.
 
-#### General Implementation Details
+<puml src="diagrams/PersonClassDiagram.puml"/>
+
+### Adding a Patient
+#### Overview
+The `addpatient` command integrates a new `Person` object with the patient's details in MedBook.
+
+#### Related Classes and Methods
+- `AddCommandParser#parse(String)`: Parses command input
+- `AddCommand#execute(Model)`: Executes addrecord command
+- `Model#addPerson(Person)`, `AddressBook#addPerson(Person)`, `UniquePersonList#add(Person)`: Adds a patient.
+
+#### Implementation Steps
+
+1. **Parse User Input**: `AddCommandParser` checks for necessary parameters and their validity.
+2. **Create Record Object**: A `Person` object is instantiated during `AddCommandParser#parse(String)` and handed over to the `AddCommand`.
+3. **Execute Command**: `AddRecordCommand#execute(Model)` adds the new `Person` to the `UniquePersonList` in the `AddressBook`.
+
+<puml src="diagrams/AddPatientSequenceDiagram.puml" width="450" />
+
+### Editing Patient Details
+
+The `editpatient` mechanism is primarily handled by `EditCommand`.
+
+### Workflow
+
+1. **Initialization**: On startup, the `AddressBook` is populated with sample data.
+2. **Execution**: The user modifies a patient’s details using the `editpatient` command, triggering updates in the `Model` and `AddressBook`.
+3. **Update**: The patient’s details are updated and the new AddressBook is displayed.
+
+**Related Classes and Methods:**
+
+- `EditCommandParser`: Parses command input.
+- `EditPersonDescriptor`: Holds editable patient details.
+- `ModelManager#setPerson(Person,Person)`, `AddressBook#setPerson(Person,Person)`, `UniquePersonList#setPerson(Person,Person)`: Updates patient details.
+
+**Sequence Diagram**: _Pending Implementation_
+
+### Design Considerations
+
+**Aspect: Edit Patient Execution:**
+
+- **Alternative 1 (Current Choice)**: Create a copy of the `Person`, edit, then replace.
+  - _Pros_: Future-proof, maintains data integrity.
+  - _Cons_: Adds complexity, potential performance issues.
+- **Alternative 2**: Directly edit the `Person` in the AddressBook.
+  - _Pros_: Straightforward.
+  - _Cons_: Limits future functionalities, potential data integrity issues.
+
+### Searching a Patient
+
+#### Overview
+The `search` command filters `FilteredPersonList` of the list of patients using one or more keywords.
+
+#### Related Classes and Methods
+- `FindCommandParser#parse(String)`: Parses command input.
+- `FindCommand#execute(Model)`: Executes searchrecord command.
+- `Model#updateFilteredList(Predicate)`: Updates `FilteredPersonList` of the currently viewing patient.
+- `NameContainsKeywordsPredicate#test(Record)`: Tests if `Patient` contains keyword(s).
+
+#### Implementations Steps
+1. **Parse User Input**: `FindCommandParser` checks for existence of the keyword(s) and creates an array of keywords.
+2. **Create Predicate Object**: A `NameContainsKeywordsPredicate` object is instantiated during `FindCommandParser#parse(String)` and handed over to the `FindCommand`.
+3. **Execute Command**: `Findommand#execute(Model)` finds patients containing keywords using `NameContainsKeywordsPredicate#test(Record)` and updates `FilteredPersonList`, which is the list of patients being viewed.
+
+<puml src="diagrams/SearchSequenceDiagram.puml" width="450" />
+
+## Records Feature
+
+### General Implementation Details
 
 <puml src="diagrams/RecordClassDiagram.puml"/>
 
@@ -172,63 +251,119 @@ A `Record` object encapsulates various attributes:
 
 Uniqueness of records is maintained through the `UniqueRecordList`.
 
-#### Adding a Record
+### Adding a Record
 
-##### Overview
-
+#### Overview
 The `addrecord` command integrates a new `Record` object with the patient's details in MedBook.
+
+#### Related Classes and Methods
+- `AddRecordCommandParser#parse(String)`: Parses command input
+- `AddRecordCommand#execute(Model)`: Executes addrecord command
+- `UniqueRecordList#add(Record)`: Adds a `Record` in the `UniqueRecordList`.
+- `Model#updateRecordList(Person, Index)`, `AddressBook#setRecords(Person, Index)`, `UniqueRecordList#setRecords(UniqueRecordList)`: Updates record details with added record.
+- `Model#setPerson(Person, Person)`, `AddressBook#setPerson(Person, Person)`, `UniquePersonList#setPerson(Person, Person)`: Updates patient details.
 
 #### Implementation Steps
 
 1. **Parse User Input**: `AddRecordCommandParser` checks for necessary parameters and their validity.
-2. **Create Record Object**: A `Record` object is instantiated and handed over to the `AddRecordCommand`.
-3. **Execute Command**: `AddRecordCommand#execute()` adds the new `Record` to the patient's `UniqueRecordList`.
+2. **Create Record Object**: A `Record` object is instantiated during `AddRecordCommandParser#parse(String)` and handed over to the `AddRecordCommand`.
+3. **Execute Command**: `AddRecordCommand#execute(Model)` adds the new `Record` to the patient's `UniqueRecordList`.
 
 <puml src="diagrams/AddRecordSequenceDiagram.puml" width="450" />
 
-#### Design Considerations
+### Deleting a Record
 
-**Aspect: Structure of the Appointment class:**
+#### Overview
+The `deleterecord` command deletes a specified record in `UniqueRecordList` of a patient.
 
-- **Alternative 1 (Current Choice)**: Each `Person` object holds a `UniqueRecordList`.
-  - _Pros_: Simplifies the retrieval of a person's records.
-  - _Cons_: Fetching records across all individuals can be cumbersome.
-- **Alternative 2**: The `Model` holds a `UniqueRecordList` for records of all patients.
-  - _Pros_: Convenient for displaying all records.
-  - _Cons_: Hard to fetch records associated with a specific `Person`.
+#### Related Classes and Methods
+- `DeleteRecordCommandParser#parse(String)`: Parses command input.
+- `DeleteRecordCommand#execute(Model)`: Executes deleterecord command.
+- `UniqueRecordList#remove(Record)`: Deletes a `Record` in the `UniqueRecordList`.
+- `Model#updateRecordList(Person, Index)`, `AddressBook#setRecords(Person, Index)`, `UniqueRecordList#setRecords(UniqueRecordList)`: Updates record details with deleted record.
+- `Model#setPerson(Person, Person)`, `AddressBook#setPerson(Person, Person)`, `UniquePersonList#setPerson(Person, Person)`: Updates patient details.
 
-### Edit Patient Feature
+##### Implementation Steps
+1. **Parse User Input**: `DeleteRecordCommandParser` checks for the validity of the patient and record indices.
+2. **CreateIndex Object**: Two `Index` objects, patient index and record index, are instantiated during `DeleteRecordCommandParser#parse(String)` and handed over to the `DeleteRecordCommand`.
+3. **Execute Command**: `DeleteRecordCommand#execute(Model)` deletes specified record of the specified patient and updates `UniqueRecordList` of that patient.
 
-The `editpatient` mechanism is primarily handled by `EditCommand`.
+<puml src="diagrams/DeleteRecordSequenceDiagram.puml" width="450" />
 
-#### Workflow
 
-1. **Initialization**: On startup, the `AddressBook` is populated with sample data.
-2. **Execution**: The user modifies a patient’s details using the `editpatient` command, triggering updates in the `Model` and `AddressBook`.
-3. **Update**: The patient’s details are updated and the new AddressBook is displayed.
+### Searching a Record
 
-**Related Classes and Methods:**
+#### Overview
+The `searchrecord` command filters `UniqueRecordList` of the currently viewing patient using one or more keywords.
 
-- `EditCommandParser`: Parses command input.
-- `EditPersonDescriptor`: Holds editable patient details.
+#### Related Classes and Methods
+- `FindRecordCommandParser#parse(String)`: Parses command input.
+- `FindRecordCommand#execute(Model)`: Executes searchrecord command.
+- `Model#updateFilteredRecordList(Predicate)`: Updates `UniqueRecordList` of the currently viewing patient.
+- `RecordContainsKeywordsPredicate#test(Record)`: Tests if `Record` contains keyword(s).
+
+#### Implementations Steps
+1. **Parse User Input**: `FindRecordCommandParser` checks for existence of the keyword(s) and creates an array of keywords.
+2. **Create Predicate Object**: A `RecordContainsKeywordsPredicate` object is instantiated during `FindRecordCommandParser#parse(String)` and handed over to the `FindRecordCommand`.
+3. **Execute Command**: `FindRecordCommand#execute(Model)` finds records containing keywords using `RecordContainsKeywordsPredicate#test(Record)` and updates `UniqueRecordList` of the currently viewing patient.
+
+<puml src="diagrams/FindRecordSequenceDiagram.puml" width="450" />
+
+### Attaching Files to Patient Records
+
+#### Overview
+
+The "Attach Files to Patient Records" feature allows users to associate files with patient records, enhancing the completeness and accessibility of patient information.
+
+#### Target Audience
+
+This feature benefits healthcare professionals and medical staff who need to store and access additional patient-related documents, such as medical images, lab reports, or scanned documents.
+
+#### Related Class and Methods
+- `RecordCommand`: Manages the User Interface for each record.
+- `Record`: Model class which stores patient records.
 - `ModelManager#setPerson(Person,Person)`, `AddressBook#SetPerson(Person,Person)`, `UniquePersonList#setPerson(Person,Person)`: Updates patient details.
 
-**Sequence Diagram**: _Pending Implementation_
+#### Implementation Steps
 
-#### Design Considerations
+#### User Interface
 
-**Aspect: Edit Patient Execution:**
+##### Attaching Files
 
-- **Alternative 1 (Current Choice)**: Create a copy of the `Person`, edit, then replace.
-  - _Pros_: Future-proof, maintains data integrity.
-  - _Cons_: Adds complexity, potential performance issues.
-- **Alternative 2**: Directly edit the `Person` in the AddressBook.
-  - _Pros_: Straightforward.
-  - _Cons_: Limits future functionalities, potential data integrity issues.
+- Users can attach files to patient records through a user-friendly graphical interface.
+- A dedicated button opens a file explorer, allowing users to select and attach files.
+- The selected file's path is automatically stored in the `filePath` field of the associated `Record` instance.
 
-### Appointments Feature
+##### Opening Attached Files
 
-#### General Implementation Details
+- To access attached files, users simply click on the file path displayed within the patient record.
+- The application attempts to open the file using the default program associated with its file type.
+
+#### Diagram
+
+The following sequence diagram provides an overview of how the file attachment operation works:
+
+<puml src="diagrams/AttachFileSequenceDiagram.puml" alt="AttachFileSequenceDiagram" />
+
+
+#### Alternative Considerations
+
+In designing this feature, we considered two primary approaches:
+
+1. **Current Implementation (GUI)**:
+   - _Pros_: The graphical user interface (GUI) for file attachments is user-friendly, especially for individuals less familiar with command-line interfaces (CLI).
+   - _Cons_: It may be relatively slower for users proficient with CLI-based interactions.
+
+2. **Command-Line Interface (CLI)**:
+   - _Pros_: CLI-based file attachment would cater to users who prefer efficient, command-driven workflows.
+   - _Cons_: May require a learning curve for users less experienced with command-line interactions.
+
+Ultimately, the decision was made to implement the feature with a GUI to ensure accessibility and ease of use for a broader range of users, while still allowing for efficient management of patient records.
+
+
+## Appointments Feature
+
+### General Implementation Details
 
 <puml src="diagrams/AppointmentClassDiagram.puml"/>
 
@@ -242,18 +377,18 @@ Uniqueness is enforced through a `UniqueAppointmentList`.
 
 #### Adding an Appointment
 
-##### Overview
+#### Overview
 
 `addappointment` adds a new `Appointment` to MedBook.
 
-#### Implementation Steps
+### Implementation Steps
 
 1. **Parse User Input**: Utilize `AddAppointmentCommandParser` for attribute validation.
 2. **Create and Execute**: Instantiate an `Appointment` and execute `AddAppointmentCommand`.
 
 <puml src="diagrams/AddAppointmentSequenceDiagram.puml" width="450" />
 
-#### Design Considerations
+### Design Considerations
 
 **Aspect: Structure of the Appointment class:**
 
@@ -298,34 +433,6 @@ The following sequence diagram shows how the view operation works:
 - **Alternative 2**: Utilize `UniqueRecordList` for `records` and `Person` for `personBeingViewed`.
   - _Pros_: Reduced memory usage.
   - _Cons_: Increased complexity and required additional object manipulations.
-
----
-
-## Attach Files to Patient Records
-
-### Implementation Details
-
-This feature extends the `Record` class to include a `filePath`, allowing file attachments to patient records.
-
-#### Record Class
-
-```java
-public class Record {
-    // Additional filepath field
-    private String filePath;
-}
-```
-
-#### User Interface
-
-- **Attach File**: Users can attach files through a button click, which opens a file explorer for file selection. The `filePath` in `Record` gets updated accordingly.
-- **Opening Attached Files**: Clicking the file path attempts to open the file with the default associated program.
-
-### Design Considerations
-
-- **Current Implementation**: Using GUI for file attachments.
-  - _Pros_: User-friendly, especially for non-CLI users.
-  - _Cons_: May be slower for users proficient with CLI.
 
 ---
 
@@ -685,3 +792,5 @@ We plan to enhance the calendar navigation by introducing a more efficient way f
 **Manual Selection of Month and Year**: A dropdown menu or a picker control will be integrated into the UI, enabling users to quickly jump to a specific month and year without sequentially navigating through each month.
 
 **`viewcalender MM YYYY` command**: For users who prefer typing through the CLI, we will implement a command that allows them to view the calendar for a specific month and year. Users will be able to enter a command in the format viewcalendar MM YYYY (e.g., viewcalendar 12 2023 to view December 2023), and the calendar will update to display the selected month and year.
+
+**Accepting / in Name parameter**: Due to current constraints in the Parser which causes / to be parsed as tags, the "/" character cannot be entered into the name parameter. As such, users would currently not be able to enter "Muhammed Ali s/o Muhammed Ali". We would implement this feature in the future for even more accurate patient naming.
