@@ -611,7 +611,9 @@ Attach local files to a patient's medical record by clicking on the **Attach** b
 
 <box type="warning" seamless>
 
-**Caution**: Refrain from deleting/relocating the local file. If necessary, re-attach the new file after relocation/deletion.
+**Caution**: 
+- Refrain from deleting/relocating the local file. If necessary, re-attach the new file after relocation/deletion.
+- Ensure that you have selected a default launcher for the selected file type.
 </box>
 
 Screenshots:
