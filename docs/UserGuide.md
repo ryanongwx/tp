@@ -1,7 +1,6 @@
 ---
 layout: default.md
 title: "User Guide"
-pageNavTitle:"Table of Contents"
 pageNav: 3
 ---
 
@@ -34,7 +33,7 @@ With MedBook, experience a new level of convenience and control:
 
 ## Table of Contents
 
-<page-nav/>
+<page-nav-print/>
 
 ---
 
