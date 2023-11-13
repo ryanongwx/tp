@@ -65,9 +65,6 @@ For example, the `Logic` component's API is defined in `Logic.java`, and its fun
 - **API**: [`Ui.java`](https://github.com/AY2324S1-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 - The UI component is responsible for handling all user interface operations.
 
-<details>
-<summary>Click to expand details</summary>
-
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
 The UI is composed of various components such as `MainWindow`, `CommandBox`, `ResultDisplay`, `PersonListPanel`, and `StatusBarFooter`, all of which inherit from the `UiPart` class.
@@ -81,17 +78,12 @@ Key responsibilities include:
 - Maintaining a reference to the `Logic` component for command execution.
 - Depending on certain `Model` classes to display `Person` objects.
 
-</details>
-
 ---
 
 #### Logic Component
 
 - **API**: [`Logic.java`](https://github.com/AY2324S1-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 - The Logic component is responsible for interpreting and executing user commands.
-
-<details>
-<summary>Click to expand details</summary>
 
 Here's a partial class diagram of the `Logic` component:
 
@@ -104,17 +96,12 @@ Key functionalities include:
 - Depending on the `Model` component to perform data operations.
 - Managing various command parsers to handle specific command formats.
 
-</details>
-
 ---
 
 #### Model Component
 
 - **API**: [`Model.java`](https://github.com/AY2324S1-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 - The Model component manages the application's in-memory data.
-
-<details>
-<summary>Click to expand details</summary>
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" alt="Model Component Class Diagram"/>
 
@@ -124,17 +111,12 @@ Key responsibilities include:
 - Managing user preferences.
 - Providing an unmodifiable view of lists of `Person` objects for UI binding.
 
-</details>
-
 ---
 
 #### Storage Component
 
 - **API**: [`Storage.java`](https://github.com/AY2324S1-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 - The Storage component manages data persistence.
-
-<details>
-<summary>Click to expand details</summary>
 
 <puml src="diagrams/StorageClassDiagram.puml" width="550" alt="Storage Component Class Diagram"/>
 
@@ -143,8 +125,6 @@ Key functionalities include:
 - Saving and retrieving address book data and user preferences in JSON format.
 - Implementing both `AddressBookStorage` and `UserPrefStorage` for flexibility.
 - Depending on certain `Model` classes for data object definitions.
-
-</details>
 
 ---
 
@@ -218,21 +198,22 @@ The `editpatient` command in MedBook facilitates the modification of patient inf
 #### Design Considerations
 
 **Alternative 1 (Current Choice)**: Implement an Edit-by-Cloning Strategy
+
 - Pros :
-   - **Scalability:** By cloning the `Person` object before editing, the system is better equipped to handle future enhancements that may require complex transactional operations.
-   - **Data Integrity:** This method ensures that the original `Person` object remains unaltered during the edit process, which reduces the risk of data corruption in the event of an operation failure.
+  - **Scalability:** By cloning the `Person` object before editing, the system is better equipped to handle future enhancements that may require complex transactional operations.
+  - **Data Integrity:** This method ensures that the original `Person` object remains unaltered during the edit process, which reduces the risk of data corruption in the event of an operation failure.
 - Cons : Adds complexity, potential performance issues.
 
 **Alternative 2**: Modify the `Person` Object Directly in the AddressBook
+
 - Pros:
-   - **Simplicity:** This straightforward approach requires less code, making it easier to implement and understand.
-   - **Efficiency:** Operating directly on the `Person` object without cloning can be more performant, especially when dealing with simple edits that do not span multiple data fields.
+  - **Simplicity:** This straightforward approach requires less code, making it easier to implement and understand.
+  - **Efficiency:** Operating directly on the `Person` object without cloning can be more performant, especially when dealing with simple edits that do not span multiple data fields.
 - Cons:
-   - **Limited Flexibility:** Direct modification constrains the ability to extend the system with complex transactional features or undo/redo capabilities without significant refactoring.
-   - **Data Risk:** Without the safeguard of working on a cloned instance, there's a higher risk of inadvertently corrupting data during edit operations.
+  - **Limited Flexibility:** Direct modification constrains the ability to extend the system with complex transactional features or undo/redo capabilities without significant refactoring.
+  - **Data Risk:** Without the safeguard of working on a cloned instance, there's a higher risk of inadvertently corrupting data during edit operations.
 
 By considering these alternatives, the development team has chosen to prioritize a robust foundation for future development and data integrity, despite the trade-offs in complexity and potential impact on performance.
-
 
 ### Searching a Patient
 
@@ -361,22 +342,23 @@ Similar to editing patient, a clone is being created and modified, and then repl
 **Alternative 1 (Current Choice):** Clone the Record object, modify the clone, and then replace the original.
 
 - Pros:
-   -	**Data Integrity:** By working on a clone, we minimize the risk of corrupting the original data in case of an error during the update process.
-   -	**Undo/Redo Capability:** This approach allows for an easier implementation of undo/redo functionalities as we have distinct before and after states.
-   -	**Consistency:** It maintains a consistent methodology with the editpatient command, which uses a similar approach for updating patient details.
+
+  - **Data Integrity:** By working on a clone, we minimize the risk of corrupting the original data in case of an error during the update process.
+  - **Undo/Redo Capability:** This approach allows for an easier implementation of undo/redo functionalities as we have distinct before and after states.
+  - **Consistency:** It maintains a consistent methodology with the editpatient command, which uses a similar approach for updating patient details.
 
 - Cons:
-   -	**Performance Overhead:** Cloning objects can introduce a performance hit, especially if the record is large or if there are many fields to update.
-   -	**Complexity:** The codebase complexity increases due to the additional steps required to manage the cloning and replacement process.
+  - **Performance Overhead:** Cloning objects can introduce a performance hit, especially if the record is large or if there are many fields to update.
+  - **Complexity:** The codebase complexity increases due to the additional steps required to manage the cloning and replacement process.
 
 **Alternative 2:** Update the Record object directly within the AddressBook.
 
 - Pros:
-   -	**Performance:** This approach is more performant since it involves direct manipulation of the object without the need to create a copy.
-   -	**Simplicity:** The logic is more straightforward, as it doesn't involve cloning, making the code easier to understand and maintain.
+  - **Performance:** This approach is more performant since it involves direct manipulation of the object without the need to create a copy.
+  - **Simplicity:** The logic is more straightforward, as it doesn't involve cloning, making the code easier to understand and maintain.
 - Cons:
-   -	**Risk to Data Integrity:** Any errors during the update can corrupt the original data, as changes are made in place.
-   -	**Difficulty in Extending Functionality:** Future features such as undo/redo or real-time collaboration could be harder to implement as changes are not isolated.
+  - **Risk to Data Integrity:** Any errors during the update can corrupt the original data, as changes are made in place.
+  - **Difficulty in Extending Functionality:** Future features such as undo/redo or real-time collaboration could be harder to implement as changes are not isolated.
 
 In conclusion, the decision to proceed with Alternative 1 was made to prioritize the application's long-term robustness and maintainability, accepting the trade-offs in performance and immediate simplicity for the sake of a safer and more extensible editing feature.
 
@@ -780,28 +762,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - **Actor**: User
 - **System**: MedBook
 - **Main Success Scenario (MSS)**:
-    1. User lists all patients (UC03).
-    2. User view a specific patient's medical records (UC10).
-    2. User provides patient ID, record ID, record detail fields, and updated record details.
-    3. MedBook updates the patient's record entry.
-    4. MedBook shows successful edited record details.
+  1. User lists all patients (UC03).
+  2. User view a specific patient's medical records (UC10).
+  3. User provides patient ID, record ID, record detail fields, and updated record details.
+  4. MedBook updates the patient's record entry.
+  5. MedBook shows successful edited record details.
 - **Extensions**:
-    - 3a. User gives an invalid input in any field.
-         - 3a1. MedBook shows an error message stating which field has invalid input.
-         - Use case ends.
-    - 3b. User gives an invalid patient ID
-         - 3b1. MedBook shows an error message stating "The person index provided is invalid"
-         - Use case ends.
-    - 3c. User gives an invalid record ID
-         - 3c1. MedBook shows an error message  stating "The record index provided is invalid"
-         - Use case ends.
-    - 3d. User gives any invalid field
-         - 3d1. MedBook shows an error message stating invalid format of command.
-         - Use case ends.
-    - 3e. User gives multiple date field.
-         - 3e1. MedBook shows an error message stating "Multiple values specified for the following single-valued field(s): d/"
-         - Use case ends.
-
+  - 3a. User gives an invalid input in any field.
+    - 3a1. MedBook shows an error message stating which field has invalid input.
+    - Use case ends.
+  - 3b. User gives an invalid patient ID
+    - 3b1. MedBook shows an error message stating "The person index provided is invalid"
+    - Use case ends.
+  - 3c. User gives an invalid record ID
+    - 3c1. MedBook shows an error message stating "The record index provided is invalid"
+    - Use case ends.
+  - 3d. User gives any invalid field
+    - 3d1. MedBook shows an error message stating invalid format of command.
+    - Use case ends.
+  - 3e. User gives multiple date field.
+    - 3e1. MedBook shows an error message stating "Multiple values specified for the following single-valued field(s): d/"
+    - Use case ends.
 
 ### UC13 - Deleting a Record under a Patient
 
@@ -1093,19 +1074,28 @@ Adding to the glossary ensures that all potential users, regardless of their lev
    - Expected: Error message displayed due to unknown command.
 
 ---
+
 ### Editing a Patient's Record Details
 
 #### When the Patient Exists and Record Exists
 
 1. Prerequisites: Ensure the record list of the patient is displayed and contains the entry you wish to edit.
 2. Test Case: `editrecord 1/1 c/Fever`
-  - Expected: The record at index 1 of the Patient at index 1 has its conditions updated to only fever. Details shown in status message.
+
+- Expected: The record at index 1 of the Patient at index 1 has its conditions updated to only fever. Details shown in status message.
+
 3. Test Case: `editrecord 1/1 c/Fever m/Paracetamol`
-  - Expected: The record at index 1 of the Patient at index 1 has its conditions updated to only fever and medications to only Paracetamol. Details shown in status message.
+
+- Expected: The record at index 1 of the Patient at index 1 has its conditions updated to only fever and medications to only Paracetamol. Details shown in status message.
+
 4. Test Case: `editrecord x/1 c/Fever` (where x > patient list size)
-  - Expected: Error message displayed, record's details unchanged.
+
+- Expected: Error message displayed, record's details unchanged.
+
 5. Test Case: `editrecord 1/x c/Fever` (where x > record list size)
-  - Expected: Error message displayed, record's details unchanged.
+
+- Expected: Error message displayed, record's details unchanged.
+
 6. Test Case: `edirecord 1/1 c/Fever`
    - Expected: Error message displayed due to unknown command.
 7. Test Case: `editrecord 1/1 d/12112023`
@@ -1114,6 +1104,7 @@ Adding to the glossary ensures that all potential users, regardless of their lev
    - Expected: Error message displayed suggesting multiple inputs of date are not allowed.
 
 ---
+
 ### Deleting a Record under Patient
 
 1. Prerequisites: Ensure the patient list is displayed
@@ -1341,11 +1332,12 @@ This appendix aims to provide evaluators with an insight into the total effort t
 #### Effort Comparison with Reference Projects:
 
 - **Compared to AB3:** the development of Medbook demanded considerably more effort, primarily due to its capability to manage multiple entity types such as patients, records, and appointments. This multifaceted approach contrasts with AB3's design, which is centered around handling a single entity type.
-Moreover, Medbook was built upon the AB3 architecture as a foundational base, necessitating a deep understanding of the existing complex framework. Even though certain features in Medbook were adapted from AB3 to suit our specific needs, significant effort was required to modify and extend these features. Tailoring pre-existing functionalities to fit into our more comprehensive application model involved intricate work, ensuring seamless integration and functionality within Medbook's broader scope.Achievements
+  Moreover, Medbook was built upon the AB3 architecture as a foundational base, necessitating a deep understanding of the existing complex framework. Even though certain features in Medbook were adapted from AB3 to suit our specific needs, significant effort was required to modify and extend these features. Tailoring pre-existing functionalities to fit into our more comprehensive application model involved intricate work, ensuring seamless integration and functionality within Medbook's broader scope.Achievements
 
 - Despite the high complexity, the team managed to deliver Medbook on schedule.
 - The application has passed all security audits without any major issues.
 - User feedback has been overwhelmingly positive, especially regarding the ease of use and performance of the application.
 
 #### Conclusion
+
 The successful development of Medbook is a testament to the well-coordinated effort, rigorous testing, and effective project management that adapted to challenges and complexity with innovative solutions and strategic planning.
