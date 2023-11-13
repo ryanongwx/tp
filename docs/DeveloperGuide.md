@@ -1328,6 +1328,8 @@ The Patient ID in the patients in the **Pinned Patient List** and **Patient Bein
 
 #### Proposed Enhancement
 
+Modify the way panels create new person card entries. This could involve creating new lists to keep track of the patient index and update commands associated with the Pinned Patients and Patient Being Viewed.
+
 ## Appendix: Effort
 
 This appendix aims to an insight into the total effort that went into the development of Medbook.
