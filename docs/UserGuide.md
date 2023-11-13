@@ -352,6 +352,7 @@ Screenshots:
 
 ![AddAppointment Screenshots](images/screenshots/addAppointment.png)
 ![AddAppointment Screenshots](images/screenshots/addAppointment%20-%20after.png)
+![AddAppointment Screenshots](images/screenshots/viewAppointment.png)
 
 <u>[Back to Table Of Contents](#table-of-contents)</u>
 
@@ -376,6 +377,7 @@ Examples:
 Screenshots:
 
 ![View Screenshots](images/screenshots/view.png)
+![View Screenshots](images/screenshots/view%20-%20after.png)
 
 <u>[Back to Table Of Contents](#table-of-contents)</u>
 
@@ -537,8 +539,8 @@ Example:
 
 Screenshots:
 
-![Delete Screenshots](images/screenshots/delete.png)
-![Delete Screenshots](images/screenshots/delete%20-%20after.png)
+![Delete Screenshots](images/screenshots/delete.jpg)
+![Delete Screenshots](images/screenshots/delete%20-%20after.jpg)
 
 <u>[Back to Table Of Contents](#table-of-contents)</u>
 
@@ -609,7 +611,9 @@ Attach local files to a patient's medical record by clicking on the **Attach** b
 
 <box type="warning" seamless>
 
-**Caution**: Refrain from deleting/relocating the local file. If necessary, re-attach the new file after relocation/deletion.
+**Caution**: 
+- Refrain from deleting/relocating the local file. If necessary, re-attach the new file after relocation/deletion.
+- Ensure that you have selected a default launcher for the selected file type.
 </box>
 
 Screenshots:
