@@ -66,7 +66,7 @@ For example, the `Logic` component's API is defined in `Logic.java`, and its fun
 - The UI component is responsible for handling all user interface operations.
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
-<puml src="diagrams/UiDetailedClassDiagram.puml">
+<puml src="diagrams/UiDetailedClassDiagram.puml"/>
 
 The UI is composed of various components such as `MainWindow`, `CommandBox`, `ResultDisplay`, `PersonListPanel`, and `StatusBarFooter`, all of which inherit from the `UiPart` class.
 
