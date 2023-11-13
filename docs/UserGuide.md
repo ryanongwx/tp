@@ -1,7 +1,6 @@
 ---
 layout: default.md
 title: "User Guide"
-pageNavTitle:"Table of Contents"
 pageNav: 3
 ---
 
@@ -34,7 +33,7 @@ With MedBook, experience a new level of convenience and control:
 
 ## Table of Contents
 
-<page-nav/>
+<page-nav-print/>
 
 ---
 
@@ -68,11 +67,14 @@ We're here to make your experience as user-friendly as possible. Let's get start
 
    - Choose a folder where you'd like to manage your patient data.
      <box type="tip" seamless>
-     **Tip**: Create a new folder named `MedBook` for easy organization.
-     </box>
-   - Move `medbook.jar` into the folder as shown below.
-     - **Windows Users**:![Ui](images/WinUserDir.png)
-     - **Mac Users**:![Ui](images/MacUserDir.png)
+
+**Tip**: Create a new folder named `MedBook` for easy organization.
+
+</box>
+
+- Move `medbook.jar` into the folder as shown below.
+  - **Windows Users**:![Ui](images/WinUserDir.png)
+  - **Mac Users**:![Ui](images/MacUserDir.png)
 
 4. **Accessing Terminal**:
 
@@ -84,10 +86,14 @@ We're here to make your experience as user-friendly as possible. Let's get start
      - Find **Terminal** in "Utilities" under "Applications". Or, you can use Spotlight Search (Command + Spacebar) and typing "Terminal".
 
 5. **Launch MedBook**:
+
    - Navigate to to the folder where you have stored `medbook.jar` using the `cd` command
      <box type="tip" seamless>
+
      **Tip**: Right-click the folder and select `New Terminal at Folder` (**Mac**) or `Open in Terminal` (**Windows**) to instantly navigate to the folder in your **Terminal**!
+
      </box>
+
    - Type `java -jar medbook.jar` and hit Enter to start MedBook.<br>
 
 Once launched, MedBook will look like this:
@@ -160,7 +166,9 @@ Here is a brief summary of the GUI components in MedBook.
    - Launch the MedBook application. You may refer to [here](#quick-start).
 
     <box type="info" seamless>
-    **Info**: Upon starting, MedBook will display some sample data to help you get familiar.
+
+   **Info**: Upon starting, MedBook will display some sample data to help you get familiar.
+
     </box>
 
 2. **Opening the Help Window**:
@@ -370,7 +378,9 @@ Examples:
 - `view 2` displays the medical records of the patient with the `PATIENTID` of **2**. The medical records will be displayed in the **Medical Record List** and patient information will be in the **Patient Being Viewed** section.
 
     <box type="info" seamless>
-    **Info**: The PATIENTID in the Patient Being Viewed section will display **1**. If you wish to perform commands on the patient, use the PATIENTID displayed in the Patient List.
+
+  **Info**: The PATIENTID in the Patient Being Viewed section will display **1**. If you wish to perform commands on the patient, use the PATIENTID displayed in the Patient List.
+
     </box>
 
 Screenshots:
@@ -397,14 +407,18 @@ Format: `editpatient PATIENTID PREFIX/NEWVALUE...`
 
 - Acceptable fields: `NAME`, `EMAIL`, `PHONE`, `GENDER`, `AGE`, `BLOODTYPE`, `ALLERGY`. <br>
   <box type="info" seamless>
+
   **Note**: `NRIC` cannot be edited.
+
   </box>
 
 - Existing values in the respective fields will be updated to the `NEWVALUE`. <br>
 
 - Multiple entries of `ALLERGY` are allowed i.e `editpatient 1 al/Seafood al/Dust`. <br>
   <box type="info" seamless>
+
   **Note**: When editing `ALLERGY`, the existing allergies of the patient will be removed i.e adding of allergies is not cumulative.
+
   </box>
 
 Examples:
@@ -462,15 +476,19 @@ Format: `search KEYWORD [MOREKEYWORDS]...`
 
 - Patients with detail that are not exactly the same as the `KEYWORD` searched will not appear. e.g. **Han** will not return **Hans**. <br>
 
-    <box type="info" seamless>
-    **Note**: The details of the patient's medical records will not be searched.
-    </box>
+<box type="info" seamless>
 
-    <box type="tip" seamless>
-      **Tip**: Maximize the efficiency of the `search` command to quickly locate patients. It's perfect for filtering patient lists - for instance, identifying patients with specific allergies.
-  </box>
+**Note**: The details of the patient's medical records will not be searched.
 
-  Examples:
+</box>
+
+<box type="tip" seamless>
+
+**Tip**: Maximize the efficiency of the `search` command to quickly locate patients. It's perfect for filtering patient lists - for instance, identifying patients with specific allergies.
+
+ </box>
+
+Examples:
 
 - `search Alex` Will display patients with **Alex** in their details. <br>
 
@@ -496,7 +514,9 @@ Format: `searchrecord KEYWORD [MOREKEYWORDS]...`
 - Medical records with detail that are not exactly the same as the **KEYWORD** searched will not appear. e.g. **Head** will not return **Headache**. <br>
 
   <box type="important" seamless>
+
   **Important**: The **Patient Being Viewed** section should not be empty. Otherwise `searchrecord` command will not return any medical records.
+
   </box>
 
 Examples:
@@ -517,9 +537,11 @@ Format: `list`
 
 - **All** patients will be shown in the **Patient List**.
 
-    <box type="tip" seamless>
-       **Tip**: The `list` command allows you to easily view all the patients in the **Patient List**. For instance, after you've used the `search` command to find specific patients, you can use the `list` command to gather all the patients conveniently!
-    </box>
+<box type="tip" seamless>
+
+**Tip**: The `list` command allows you to easily view all the patients in the **Patient List**. For instance, after you've used the `search` command to find specific patients, you can use the `list` command to gather all the patients conveniently!
+
+</box>
 
 <u>[Back to Table Of Contents](#table-of-contents)</u>
 
@@ -609,7 +631,11 @@ Attach local files to a patient's medical record by clicking on the **Attach** b
 
 <box type="warning" seamless>
 
-**Caution**: Refrain from deleting/relocating the local file. If necessary, re-attach the new file after relocation/deletion.
+**Caution**:
+
+- Refrain from deleting/relocating the local file. If necessary, re-attach the new file after relocation/deletion.
+- Ensure that you have selected a default launcher for the selected file type.
+
 </box>
 
 Screenshots:
@@ -641,6 +667,7 @@ MedBook data is saved automatically as a JSON file located in `[jar file locatio
 <box type="warning" seamless>
 
 **Caution**: Only advanced users are encouraged to make changes to the data file as wrong data formatting may result in the application not working as intended.
+
 </box>
 
 <u>[Back to Table Of Contents](#table-of-contents)</u>
