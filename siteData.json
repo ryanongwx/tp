@@ -46,6 +46,7 @@
         "setting-up-and-getting-started": "Setting up and Getting Started",
         "design-overview": "Design Overview",
         "architecture": "Architecture",
+        "detailed-component-descriptions": "Detailed Component Descriptions",
         "common-classes": "Common Classes",
         "patient-features": "Patient Features",
         "general-implementation-details": "General Implementation Details",
@@ -220,8 +221,6 @@
         "summary-of-contributions": "Summary of Contributions",
         "contributions-to-team-based-tasks": "Contributions to Team-Based Tasks",
         "contributions-beyond-the-project-team": "Contributions Beyond the Project Team",
-        "optional-contributions-to-the-developer-guide-extracts": "Optional Contributions to the Developer Guide (Extracts)",
-        "optional-contributions-to-the-user-guide-extracts": "Optional Contributions to the User Guide (Extracts)",
         "project-effort-explanation": "Project Effort Explanation"
       },
       "headingKeywords": {}
