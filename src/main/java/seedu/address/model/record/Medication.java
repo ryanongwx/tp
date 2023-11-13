@@ -15,7 +15,7 @@ public class Medication {
 
     /**
      * Constructs a {@code Medication}
-     * 
+     *
      * @param medication A valid medication name.
      */
     public Medication(String medication) {
