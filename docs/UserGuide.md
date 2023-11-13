@@ -352,6 +352,7 @@ Screenshots:
 
 ![AddAppointment Screenshots](images/screenshots/addAppointment.png)
 ![AddAppointment Screenshots](images/screenshots/addAppointment%20-%20after.png)
+![AddAppointment Screenshots](images/screenshots/viewAppointment.png)
 
 <u>[Back to Table Of Contents](#table-of-contents)</u>
 
@@ -376,6 +377,7 @@ Examples:
 Screenshots:
 
 ![View Screenshots](images/screenshots/view.png)
+![View Screenshots](images/screenshots/view%20-%20after.png)
 
 <u>[Back to Table Of Contents](#table-of-contents)</u>
 
@@ -537,8 +539,8 @@ Example:
 
 Screenshots:
 
-![Delete Screenshots](images/screenshots/delete.png)
-![Delete Screenshots](images/screenshots/delete%20-%20after.png)
+![Delete Screenshots](images/screenshots/delete.jpg)
+![Delete Screenshots](images/screenshots/delete%20-%20after.jpg)
 
 <u>[Back to Table Of Contents](#table-of-contents)</u>
 
