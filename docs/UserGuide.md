@@ -217,13 +217,13 @@ Congratulations! You are now ready to explore MedBook on your own. Experiment wi
 
 - **Unique Identifiers**: **Must be a positive integer** like 1, 2, 3, …​
 
-  - `PATIENTID`: The unique ID for a patient shown in the **Patient List**.<br>
+  - `PATIENTID`: The unique identification for a patient shown in the **Patient List**.<br>
 
-  - `RECORDID`: The unique ID for a medical record shown in the displayed **Medical Record List** of a specific patient.<br>
+  - `RECORDID`: The unique identification for a medical record shown in the displayed **Medical Record List** of a specific patient.<br>
 
-  - `APPOINTMENTID`: The unique ID for an appointment shown in the displayed **Appointment List**.<br>
+  - `APPOINTMENTID`: The unique identification for an appointment shown in the displayed **Appointment List**.<br>
 
-  - `PINNEDID`: The unique ID for a patient shown in the displayed **Pinned Patient List**.<br>
+  - `PINNEDID`: The unique identification for a patient shown in the displayed **Pinned Patient List**.<br>
 
 </box>
 
