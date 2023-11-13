@@ -84,7 +84,7 @@ public class AppointmentCalendarPanel extends UiPart<Region> {
 
         // Print headers (days of the week)
         DayOfWeek[] daysOfWeek = { DayOfWeek.SUNDAY, DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
-                DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY };
+            DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY };
         for (int i = 0; i < daysOfWeek.length; i++) {
             Label label = new Label(daysOfWeek[i].toString().substring(0, 3));
             label.setAlignment(Pos.CENTER);
