@@ -545,34 +545,28 @@ The `viewappointment` command opens/focuses the `AppointmentsWindow`.
   - _Pros_: This approach simplifies the data model by avoiding the need for a centralized appointment list.
   - _Cons_: Operations that require knowledge of all appointments, like finding available slots or generating reports, become more complex, as they need to aggregate data from each Person.
 
-## View Feature
+### Viewing a patient's medical records
 
-### Implementation
-
-The view mechanism is facilitated through `ViewCommand`, which takes a `PATIENTINDEX` as input and updates the `records` and `personBeingViewed` attributes in `AddressBook`.
-
-Key components implemented include:
-
-- `ViewCommandParser`: Parses command input to create a `ViewCommand` with the specified `PATIENTINDEX`.
-- `AddressBook`: Contains methods such as `setRecords(Person)`, `getRecordList()`, and `getPersonBeingViewed()`.
+#### Related class and methods
+- `ViewCommandParser#parse(String)`: Parses command input.
+- `ViewCommand#execute(model)`: Executes ViewCommand command.
+- `MainWindow`: A UI component that provides space for panels.
 - `RecordCard`: A UI component displaying a single record’s information.
 - `RecordListPanel`: A UI component housing a list of `RecordCard`s.
+- `AddressBook#setRecords(Person)`, `Model#updateRecordList(Person)`: Update the record list.
+- `AddressBook#getRecordList()`, `Model#getRecordList()`, `Logic#getRecordList()`: Get the record list of the patient currently being viewed.
+- `AddressBook#getPersonBeingViewed()`, `Model#getPersonBeingViewed()`, `Logic#getPersonBeingViewed()`: Get the patient currently being viewed
 
-These methods in `AddressBook` are exposed via the `Model` interface (`updateRecords(Person)`, `getRecordList()`, `getPersonBeingViewed()`), and their get variants are also available through the `Logic` interface.
+#### Implementation steps
 
-### Usage Scenario
-
-1. **Initialization**: Upon launch, `AddressBook` is populated with sample data. `MainWindow` invokes `getRecordList()` and `getPersonBeingViewed()` to initialize the `recordListPanel` and `personBeingViewedPanel`.
-
-2. **View Command**: User executes `view 1`, initiating a `Model#updateRecords(Person)` call.
-
-   > **Note**: A failed command will not trigger a `Model#updateRecords(Person)` call, preventing any updates to `records` and `personBeingViewed`.
-
-3. **Update and Display**: `Model` updates `AddressBook`’s variables, displaying the patient's medical records and personal card in their respective UI panels.
+1. **Initialization**: Upon launch, `AddressBook` is populated with sample data. `MainWindow` invokes `Logic#getRecordList()` and `Logic#getPersonBeingViewed()` to initialize the `recordListPanel` and `personBeingViewedPanel`.
+2. **Parse User Input**: `ViewCommandParser` checks for validity of the patient index.
+3. **Create Index Object**: An `Index` object, target index, is instantiated during the `ViewCommandParser#parse(String)` and handed over to the `ViewCommand`.
+4. **Update and Display**: `ViewCommand#execute(Model)` invokes the `Model#updateRecordList(Person)` to update the record list of the specified patient. The record list of the specific patient is displayed.
 
 The following sequence diagram shows how the view operation works:
 
-<puml src="diagrams/ViewAppointmentSequenceDiagram.puml"/>
+<puml src="diagrams/ViewSequenceDiagram.puml" alt="ViewSequenceDiagram" />
 
 ### Design Considerations
 
@@ -589,35 +583,29 @@ The following sequence diagram shows how the view operation works:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …      | I want to …                                                                                                | So that I can…                                                    |
-| -------- | ----------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `* * *`  | user        | _add_ a patient’s medical records and contact details                                                      | keep track of them efficiently                                    |
-| `* * *`  | user        | _view_ a list of all the patients in the app                                                               | quickly see all my patients at once                               |
-| `* * *`  | user        | _delete_ a specific patient’s details from the ap                                                          | remove patients that are no longer relevant or needed             |
-| `* * *`  | user        | _edit_ an existing patient’s details in the app                                                            | keep the information accurate and up-to-date                      |
-| `* * *`  | user        | _search_ for specific patients using keywords such as patient’s name or medical record                     | easily search for and locate specific patients in the app         |
-| `* * *`  | user        | see the app populated with sample data                                                                     | easily see how the app will look when it is in use                |
-| `* * *`  | new user    | access a “help” page to view the app’s functionalities                                                     | learn how to use the application effectively                      |
-| `* * *`  | new user    | _clear all_ current data                                                                                   | get rid of sample/experimental data I used for exploring the app  |
-| `* * *`  | user        | exit the application and save the address book automatically                                               |                                                                   |
-| `* *`    | busy user   | _pin_ a specific patient                                                                                   | remember to contact them                                          |
-| `* *`    | user        | import my patient details into the app                                                                     | efficiently manage my existing patient information                |
-| `* * `   | user        | reorganize the address book in terms of appointment date/time and/or alphabetical order of patients’ names | have a sorted list to for other purposes                          |
-| `* *`    | user        | receive regular updates and bug fixes for the app                                                          | ensure that it remains functional and bug-free                    |
-| `* *`    | user        | attach files such as lab reports and prescription images to a patient's profile                            | maintain a comprehensive record of all patient information        |
-| `* *`    | user        | view a history log of all the changes made to a patient's record                                           | track updates and maintain a reliable record                      |
-| `* *`    | expert user | separate my patients into different categories                                                             | easily filter out my patients accordingly                         |
-| `* *`    | busy user   | clear the contacts related to a specific patient                                                           | remove them all at one go                                         |
-| `*`      | user        | view a daily schedule of patient appointments within the app                                               | prepare for my daily patient consultations                        |
-| `*`      | user        | reschedule or cancel appointments within the app                                                           | have flexibility in appointment dates                             |
-| `*`      | user        | set access permissions(password protected)                                                                 | allow only authorized personnel to view or modify patient details |
-| `*`      | user        | print a patient’s medical record directly from the app                                                     | facilitate physical record keeping and sharing of information     |
-| `*`      | expert user | create reminders for my patients to follow up                                                              | make sure that patients remember their follow up appointment      |
-| `*`      | expert user | record patients who didn’t show up                                                                         | to keep track of patients who tend to miss appointment dates      |
-| `*`      | expert user | export patient data to a CSV file or other common formats                                                  | easily share or transfer data between different systems           |
-| `*`      | busy user   | reminders for upcoming patient appointments                                                                | remember to attend all the consultations                          |
-| `*`      | busy user   | blacklist certain patients                                                                                 | remove absurd patients                                            |
-
+| Priority | As a …​       | I want to …​                                                                                    | So that I can…​                                                              |
+|----------|---------------|-------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| `* * *`  | user          | _add_ a patient's detail including age, gender, or blood type etc. to the app                   | update the app with new patients                                             |
+| `* * *`  | user          | _add_ a patient’s medical record, details including date, condition and medication subscribed   | manage patients medical records efficiently                                  |
+| `* * *`  | user          | _add_ an appointment with a patient                                                             | efficiently manage the patient's healthcare appointments                     |
+| `* * *`  | user          | _view_ a list of all the patients in the app                                                    | quickly see all my patients at once                                          |
+| `* * *`  | user          | _view_ a list of medical records of a patient                                                   | quickly see all the medical records of a patient at once                     |
+| `* * *`  | user          | _edit_ an existing patient’s details in the app                                                 | keep the information accurate and up-to-date                                 |
+| `* * *`  | user          | _edit_ an existing patient’s medical record in the app                                          | keep the medical record accurate and up-to-date                              |
+| `* * *`  | user          | _delete_ a specific patient from the app                                                        | remove patients that are no longer relevant or needed                        |
+| `* * *`  | user          | _delete_ a specific medical record of a patient                                                 | remove outdated medical records, and respect patient privacy when necessary. |
+| `* * *`  | new user      | see the app populated with sample data                                                          | easily see how the app will look when it is in use                           |
+| `* * *`  | new user      | access a “help” page to view the app’s functionalities                                          | learn how to use the application effectively                                 |
+| `* * *`  | user          | exit the application and save the address book automatically                                    |                                                                              |
+| `* *`    | user          | _search_ for specific patients using keywords such as patient’s name or blood type etc.         | easily locate specific patients in the app                                   |
+| `* *`    | user          | _search_ for a medical record of a patient using keywords such as date, condition or medication | easily locate the medical records i want to access                           |
+| `* *`    | busy user     | _pin_ a specific patient                                                                        | remember to contact them                                                     |
+| `* *`    | user          | _unpin_ a specific patient                                                                      | remove the patient that needs extra attention                                |
+| `* *`    | user          | receive regular updates and bug fixes for the app                                               | ensure that it remains functional and bug-free                               |
+| `* *`    | user          | attach files such as lab reports and prescription images to a patient's profile                 | maintain a comprehensive record of all patient information                   |
+| `*`      | user          | view a daily schedule of patient appointments within the app                                    | prepare for my daily patient consultations                                   |
+| `*`      | user          | cancel appointments within the app                                                              | have flexibility in appointment dates                                        |
+| `*`      | advanced user | directly edit the MedBook data stored in the JSON file                                          | I can make specific and controlled changes to the data                       |
 ## Use Cases
 
 ### UC01 - Viewing Help
