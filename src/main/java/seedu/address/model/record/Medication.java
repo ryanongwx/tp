@@ -8,7 +8,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * object.
  */
 public class Medication {
-    public static final String MESSAGE_CONSTRAINTS = "Medications should only contain alphanumeric characters, dashes and spaces";
+    public static final String MESSAGE_CONSTRAINTS = "Medications should only contain alphanumeric characters, "
+            + "dashes and spaces";
 
     public static final String VALIDATION_REGEX = "[a-zA-Z0-9- ]+";
     public final String medication;
