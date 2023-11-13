@@ -565,9 +565,9 @@ The `viewappointment` command opens/focuses the `AppointmentsWindow`.
 - `MainWindow`: A UI component that provides space for panels.
 - `RecordCard`: A UI component displaying a single record’s information.
 - `RecordListPanel`: A UI component housing a list of `RecordCard`s.
-- `AddressBook#setRecords(Person)`, `Model#updateRecordList(Person)`: update the record list.
-- `AddressBook#getRecordList()`, `Model#getRecordList()`, `Logic#getRecordList()`: get the record list of the patient currently being viewed.
-- `AddressBook#getPersonBeingViewed()`, `Model#getPersonBeingViewed()`, `Logic#getPersonBeingViewed()`: get the patient currently being viewed
+- `AddressBook#setRecords(Person)`, `Model#updateRecordList(Person)`: Update the record list.
+- `AddressBook#getRecordList()`, `Model#getRecordList()`, `Logic#getRecordList()`: Get the record list of the patient currently being viewed.
+- `AddressBook#getPersonBeingViewed()`, `Model#getPersonBeingViewed()`, `Logic#getPersonBeingViewed()`: Get the patient currently being viewed
 
 #### Implementation steps
 
