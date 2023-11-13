@@ -31,8 +31,7 @@ import seedu.address.logic.commands.ViewCommand;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL =
-            "https://ay2324s1-cs2103t-t12-4.github.io/tp/UserGuide.html";
+    public static final String USERGUIDE_URL = "https://ay2324s1-cs2103t-t12-4.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "A more detailed User "
             + "Guide can be accessed " + "from this url: ";
     public static final String COMMAND_SUMMARY = "COMMAND SUMMARY";
@@ -101,8 +100,8 @@ public class HelpWindow extends UiPart<Stage> {
         deleteRecord.setText(DeleteRecordCommand.MESSAGE_USAGE);
         find.setText(FindCommand.MESSAGE_USAGE);
         findRecords.setText(FindRecordCommand.MESSAGE_USAGE);
-        list.setText(ListCommand.COMMAND_WORD + ": " + ListCommand.MESSAGE_SUCCESS);
-        exit.setText(ExitCommand.COMMAND_WORD + ": " + ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT);
+        list.setText(ListCommand.COMMAND_WORD + ": Lists all patients in MedBook.");
+        exit.setText(ExitCommand.COMMAND_WORD + ": Exits the application.");
     }
 
     /**
@@ -114,21 +113,24 @@ public class HelpWindow extends UiPart<Stage> {
 
     /**
      * Shows the help window.
+     *
      * @throws IllegalStateException
-     *     <ul>
-     *         <li>
-     *             if this method is called on a thread other than the JavaFX Application Thread.
-     *         </li>
-     *         <li>
-     *             if this method is called during animation or layout processing.
-     *         </li>
-     *         <li>
-     *             if this method is called on the primary stage.
-     *         </li>
-     *         <li>
-     *             if {@code dialogStage} is already showing.
-     *         </li>
-     *     </ul>
+     *                               <ul>
+     *                               <li>
+     *                               if this method is called on a thread other than
+     *                               the JavaFX Application Thread.
+     *                               </li>
+     *                               <li>
+     *                               if this method is called during animation or
+     *                               layout processing.
+     *                               </li>
+     *                               <li>
+     *                               if this method is called on the primary stage.
+     *                               </li>
+     *                               <li>
+     *                               if {@code dialogStage} is already showing.
+     *                               </li>
+     *                               </ul>
      */
     public void show() {
         logger.fine("Showing help page about the application.");
