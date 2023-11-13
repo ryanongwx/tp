@@ -4,7 +4,13 @@ title: "Developer Guide"
 pageNav: 3
 ---
 
-# MedBook Developer Guide
+# Developer Guide
+
+<!-- * Table of Contents -->
+
+## Table of Contents
+
+<page-nav/>
 
 ## Acknowledgements
 
